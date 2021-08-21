@@ -1,0 +1,1114 @@
+.sidebar .nav-item .nav-link {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    width: 8rem;
+    text-align: center;
+}
+.nav_images {
+    margin-bottom: -10px;
+}
+
+.session_img {
+    width: 350px;
+}
+.session_buy_subheading {
+    margin-bottom: 7px;
+    font-size: 16px;
+    line-height: 20px;
+    color: #666;
+}
+.session_buy_pera {
+    font-size: 14px;
+    line-height: 16px;
+    color: #666;
+    opacity: 0.54;
+}
+.session_buycta {
+    width: 143px;
+    height: 44px;
+    border: 1px solid #1d6771;
+    background: #1d6771;
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 13px;
+    color: #fff;
+    margin-bottom: 40px;
+    text-align: center;
+}
+.name {
+    font-family: "Roboto";
+    font-size: 16px;
+    line-height: 16px;
+    color: #333;
+    text-align: center;
+}
+.class_section {
+    font-family: "Nunito";
+    color: #666;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    margin-bottom: 0px;
+}
+.profile {
+    font-family: "Nunito";
+    color: #666;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.wallet_heading {
+    font-size: 16px;
+    font-family: "Roboto";
+    line-height: 16px;
+    color: #333;
+    text-align: left;
+}
+.wallet_balance {
+    font-size: 12px;
+    line-height: 12px;
+    font-family: "Roboto";
+}
+.wallet_balance strong {
+    color: #333;
+}
+.balance {
+    font-size: 12px;
+    line-height: 16px;
+    text-align: left;
+}
+.announce {
+    font-size: 22px;
+    font-family: "Roboto";
+    color: #333;
+    text-shadow: none;
+}
+.close_card {
+    font-size: 21px;
+    color: #dadada;
+    opacity: 1;
+    text-shadow: none;
+}
+.list_announce {
+    margin: 25px 0px;
+    width: 340px;
+}
+.list_announce span:nth-child(1) {
+    background: #fff;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    font-family: "Roboto";
+    line-height: 14px;
+    color: #666;
+}
+.list_announce span:nth-child(2) {
+    background: #1d6771;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 7px;
+}
+.cource_class_tile {
+    font-size: 20px;
+    color: #333;
+    text-transform: capitalize;
+}
+.subject_img_block img {
+    width: 100%;
+    opacity: 0.7;
+}
+.subject_name p:nth-child(1) {
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+    color: #666;
+}
+.subject_name p:nth-child(2) {
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    text-align: left;
+    color: #999;
+}
+.border_div {
+    margin: 0px 11px;
+    border-left: 1px solid #c6c6c6;
+    opacity: 0.6;
+}
+.seat_block p:nth-child(1) {
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+    color: #999;
+}
+.seat_block p:nth-child(2) {
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    text-align: left;
+    color: #0033ae;
+}
+.date_block p:nth-child(1) {
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+    color: #999;
+}
+.date_block p:nth-child(2) {
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #f59711;
+}
+.view_detail {
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    text-decoration: underline;
+    color: #333;
+    padding-top: 17px;
+}
+.price_card {
+    max-width: fit-content;
+    background: #ed92fa;
+    border-radius: 8px 0px 0px 8px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 27px;
+    line-height: 24px;
+    color: #ffffff;
+    padding: 10px;
+}
+/* subject card border */
+.subject1 {
+    border: 2px solid #ed92fa;
+    border-radius: 10px;
+}
+.subject2 {
+    border: 2px solid #ff8a78;
+    border-radius: 10px;
+}
+.subject3 {
+    border: 2px solid #e99e68;
+    border-radius: 10px;
+}
+.subject4 {
+    border: 2px solid #58a1e5;
+    border-radius: 10px;
+}
+.subject5 {
+    border: 2px solid #a0ec71;
+    border-radius: 10px;
+}
+.subject6 {
+    border: 2px solid #74eac5;
+    border-radius: 10px;
+}
+.subject7 {
+    border: 2px solid #ff8a78;
+    border-radius: 10px;
+}
+.subject8 {
+    border: 2px solid #58a1e5;
+    border-radius: 10px;
+}
+.price_bg1 {
+    background: #ed92fa;
+}
+.price_bg2 {
+    background: #ff8a78;
+}
+.price_bg3 {
+    background: #e99e68;
+}
+.price_bg4 {
+    background: #58a1e5;
+}
+.price_bg5 {
+    background: #a0ec71;
+}
+.price_bg6 {
+    background: #74eac5;
+}
+.price_bg7 {
+    background: #ff8a78;
+}
+.price_bg8 {
+    background: #58a1e5;
+}
+span.badge.badge-danger.badge-counter {
+    position: absolute;
+    transform: scale(0.7);
+    transform-origin: top right;
+    margin-top: -3px;
+    left: 50px;
+}
+/* my session block css start */
+.nav-link.tab_cta {
+    border: none;
+    background: none;
+    color: #666;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+}
+.nav-link.tab_cta.active {
+    border: none;
+    background: none;
+    color: #1d6771;
+    border-bottom: 2px solid #1d6771;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+}
+.nav-link.tab_cta:hover {
+    border: none;
+    color: #1d6771;
+}
+.nav.nav-tabs {
+    border-bottom: 0px solid #dddfeb;
+}
+.subject_card {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 130%;
+    color: #999999;
+}
+.card_subject_title1 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 130%;
+    color: #333333;
+}
+.card_subject_title2 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 130%;
+    color: #0033ae;
+}
+.card_subject_title3 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 130%;
+    color: #0ea47e;
+}
+.border-left.second_left_border {
+    height: 50px;
+}
+.border-left.first_left_border {
+    height: 50px;
+}
+.date_text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 130%;
+    color: #999999;
+    text-align: center;
+    margin-top: -25px;
+    margin-left: 30px;
+}
+.card_cta .fa {
+    font-size: 30px;
+    color: #dddbdb;
+    font-weight: 600;
+}
+.cource_done_card {
+    box-shadow: 0px 2px 10px rgb(0 0 0 / 10%);
+    border-radius: 4px;
+}
+.cource_done_card p:nth-child(1) {
+    font-family: Roboto;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 120%;
+    color: #666666;
+}
+.cource_done_card p:nth-child(2) {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 150%;
+    color: #333333;
+}
+.circle_heading_section {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 130%;
+    color: #333333;
+}
+.circle_pera_setion {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 120%;
+    color: #333333;
+    margin-bottom: 0;
+}
+.circle_link {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 120%;
+    text-decoration-line: underline;
+    color: #1d6771;
+}
+.profile_icon_card img {
+    width: 70px;
+    height: 70px;
+
+    border-radius: 50%;
+}
+.chat_block p:nth-child(1) {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 130%;
+    color: #666666;
+    margin-bottom: 10px;
+}
+.chat_block p:nth-child(2) {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 120%;
+    color: #999999;
+    width: 230px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.send_msg {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 13px;
+    color: #1d6771;
+}
+.send_msg:hover {
+    color: #1d6771;
+}
+.chat_card {
+    border-radius: 4px;
+    height: 110px;
+}
+.chat_card_background1 {
+    background: #e0fbf4;
+}
+.chat_card_background2 {
+    background: #fdf5d2;
+}
+.chat_card_background2 {
+    background: #f9dfe6;
+}
+.chat_card_background2 {
+    background: #f2fec8;
+}
+.buy_card_section {
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 16px;
+    color: #333333;
+}
+.display_card_header {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #ffffff;
+    text-align: left;
+    padding: 8px;
+}
+.display_card_bg {
+    background: #57afc3;
+    border-radius: 4px 4px 0px 0px;
+}
+.display_card_bg2 {
+    background: #c1607a;
+    border-radius: 4px 4px 0px 0px;
+}
+
+.display_card_body p:nth-child(1) {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    color: #333333;
+    margin-bottom: 5px;
+}
+.display_card_body p:nth-child(2) {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #999999;
+    margin-bottom: 5px;
+}
+display_card_body p:nth-child(3) {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1d7dea;
+    margin-bottom: 5px;
+}
+.display_card_body {
+    padding: 10px;
+}
+/* my session block css end */
+/* subject booster css start */
+.session_heading_subject {
+    position: relative;
+    font-size: 24px;
+    line-height: 25.2px;
+}
+.session_heading_subject:after {
+    content: "";
+    position: absolute;
+    background: #8bcaff;
+    width: 122px;
+    height: 24px;
+    margin: auto;
+    z-index: -1;
+    left: 0.8%;
+    top: 37%;
+}
+.arrow {
+    position: relative;
+}
+.arrow:after {
+    content: "";
+    height: 10px;
+    width: 10px;
+    position: absolute;
+    border: 2px solid #231f20;
+    border-top: none;
+    border-right: none;
+    transform: rotate(-40deg);
+    margin-left: 5px;
+    top: 11px;
+    right: 10px;
+    vertical-align: 0.255em;
+    background-color: transparent;
+}
+.Session_text {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 130%;
+    color: #3e97e4;
+}
+.Session_pera {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #666666;
+    margin-bottom: 10px;
+}
+.Session_date {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #333333;
+}
+.teacher_name {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 130%;
+    color: #0033ae;
+}
+.msg_title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+}
+.msg_block {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #333333;
+}
+.query_title {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 130%;
+    color: #3e97e4;
+}
+.query_input input {
+    background: #ffffff;
+    border: 0.5px solid rgba(153, 153, 153, 0.6);
+    box-sizing: border-box;
+    border-radius: 8px;
+    width: 100%;
+    height: 60px;
+    padding-left: 10px;
+}
+.submit_text {
+    background: #56a4e7;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+    border-radius: 4px;
+    color: #fff;
+    width: 100px;
+    height: 37px;
+}
+.submit_text:hover {
+    color: #fff;
+}
+.submit-msg {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    color: rgba(246, 46, 46, 0.8);
+}
+.home_title {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 130%;
+    color: #fb7d7f;
+}
+.card_border {
+    background: #ffffff;
+    border: 1px solid #cbcbcb;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+.assien_title {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 94%;
+    text-transform: uppercase;
+    color: #fb7d7f;
+}
+.fa.fa-download {
+    color: #fb7d7f;
+    padding: 5px;
+    background: rgba(250, 158, 159, 0.1);
+    border-radius: 50%;
+    font-size: 12px;
+}
+input#uploadedFile {
+    height: 38px;
+}
+.upload {
+    background: #fb7d7f;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    color: #ffffff;
+}
+.feedback {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 130%;
+    color: #885fd7;
+}
+.fa.fa-star {
+    color: #e4e4e4;
+}
+.fa.fa-star.checked {
+    color: orange;
+}
+.text_section {
+    background: #ffffff;
+    border: 0.5px solid rgba(153, 153, 153, 0.6);
+    box-sizing: border-box;
+    border-radius: 8px;
+    width: 100%;
+    height: 60px;
+    padding-left: 10px;
+}
+.feedback_submit {
+    background: #885fd7;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 13px;
+    text-align: center;
+    height: 36px;
+    width: 100px;
+    color: #ffffff;
+}
+.display_card_bg1 {
+    background: #fb9d55;
+}
+.display_card_bg2 {
+    background: #fb7f73;
+}
+.display_card_bg3 {
+    background: #1acfc9;
+}
+.display_card_bg4 {
+    background: #00eaae;
+}
+.ok_button {
+    background: #1d6771;
+    border-radius: 4px;
+    width: 100px;
+    height: 44px;
+    border: 1px solid #1d6771;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    text-transform: capitalize;
+    color: #ffffff;
+}
+.modal_pera {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: #333333;
+}
+.modal_heading {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #333333;
+}
+.btn.session_cta {
+    background: #3e97e4;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+    border-radius: 4px;
+    color: #fff;
+    height: 36px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 13px;
+    text-align: center;
+}
+.session_timer {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 130%;
+    color: #258ce3;
+}
+/* homework block css start */
+/* Tabs*/
+/* section {
+  padding: 60px 0;
+} */
+
+section .section-title {
+    text-align: center;
+    color: #007b5e;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+#tabs {
+    /* background: #007b5e; */
+    color: #333;
+}
+#tabs h6.section-title {
+    color: #333;
+}
+
+#tabs .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    font-family: Roboto;
+    font-style: normal;
+}
+#tabs .nav-tabs .nav-link {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    font-size: 20px;
+    margin: 9px;
+    width: 190px;
+}
+.nav-item.nav-link.homework_tab.active {
+    background: #11b5d9;
+    border: 1px solid #11b5d9;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 12%);
+    border-radius: 8px;
+    color: #fff;
+}
+.nav-item.nav-link.homework_tab {
+    background: #ffffff;
+    border: 1px solid #11b5d9;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 12%);
+    border-radius: 8px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+    color: #999999;
+}
+.nav-item.nav-link.quiz-tab.active {
+    background: #ff6890;
+    border: 1px solid #ff6890;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 12%);
+    border-radius: 8px;
+    color: #fff;
+}
+.nav-item.nav-link.quiz-tab {
+    background: #ffffff;
+    border: 1px solid #ff6890;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 12%);
+    border-radius: 8px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+    color: #999999;
+}
+.nav-item.nav-link.remarks-tab.active {
+    background: #a6c437;
+    border: 1px solid #a6c437;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 12%);
+    border-radius: 8px;
+    color: #fff;
+}
+.nav-item.nav-link.remarks-tab {
+    background: #ffffff;
+    border: 1px solid #a6c437;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 12%);
+    border-radius: 8px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+    color: #999999;
+}
+.nav-item.nav-link.archive-tab.active {
+    background: #f1ab00;
+    border: 1px solid #f1ab00;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 12%);
+    border-radius: 8px;
+    color: #fff;
+}
+.nav-item.nav-link.archive-tab {
+    background: #ffffff;
+    border: 1px solid #f1ab00;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 12%);
+    border-radius: 8px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+    color: #999999;
+}
+.nav-item.nav-link.feedback-tab.active {
+    background: #ed92fa;
+    border: 1px solid #ed92fa;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 12%);
+    border-radius: 8px;
+    color: #fff;
+}
+.nav-item.nav-link.feedback-tab {
+    background: #ffffff;
+    border: 1px solid #ed92fa;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 12%);
+    border-radius: 8px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+    color: #999999;
+}
+.home-work-card-border {
+    border: 2px solid #8bcaff;
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+.session_data_block {
+    background: #bcffee;
+    border: 1px solid #bcffee;
+    box-sizing: border-box;
+    padding: 6px 10px;
+}
+.session_title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #666666;
+}
+.session_date {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 16px;
+    align-items: center;
+    color: #919191;
+}
+.tab-section {
+    padding: 0px 20px;
+}
+.session_no {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: #333333;
+}
+a.nav-link.tab_title.active {
+    background: unset;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    color: #1d6771;
+    border-bottom: 2px solid;
+    border-radius: 0px;
+    text-transform: capitalize;
+    padding: 0px;
+}
+
+a.nav-link.tab_title {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    align-items: center;
+    text-align: center;
+    color: #666666;
+    text-transform: capitalize;
+    padding: 0px;
+    width: 85px;
+}
+.nav-link.tab_cta {
+    border: none;
+    background: none;
+    color: #666;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.nav-link.tab_cta.active {
+    border: none;
+    background: none;
+    color: #1d6771;
+    border-bottom: 2px solid #1d6771;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.nav-link.tab_cta:hover {
+    border: none;
+    color: #1d6771;
+}
+
+.nav.nav-tabs {
+    border-bottom: 0px solid #dddfeb;
+}
+
+.subject_card {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 130%;
+    color: #999999;
+}
+hr.space_border {
+    margin-top: 1px;
+}
+.tile_card_comment {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 130%;
+    color: #1d6771;
+    padding: 15px;
+}
+.comment_block {
+    background: #fcfafa;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    color: #666666;
+}
+.pdf_block span {
+    padding-right: 20px;
+}
+.file_upload {
+    margin: 0;
+    padding: 2rem 1.5rem;
+    font: 1rem/1.5 "PT Sans", Arial, sans-serif;
+    color: #5a5a5a;
+}
+.file {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    height: 2.5rem;
+}
+.file input {
+    min-width: 14rem;
+    margin: 0;
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+.file-custom {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 5;
+    height: 2.5rem;
+    padding: 0.5rem 1rem;
+    line-height: 1.5;
+    color: #555;
+    background-color: #fff;
+    border: 0.075rem solid #ddd;
+    border-radius: 0.25rem;
+    box-shadow: inset 0 0.2rem 0.4rem rgb(0 0 0 / 5%);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.file-custom:before {
+    position: absolute;
+    top: -0.075rem;
+    right: -0.075rem;
+    bottom: -0.075rem;
+    z-index: 6;
+    display: block;
+    content: "Upload File";
+    height: 2.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #eee;
+    border: 0.075rem solid #ddd;
+    border-radius: 0 0.25rem 0.25rem 0;
+    background: #1d6771;
+    box-sizing: border-box;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    color: #ffffff;
+}
+.file-custom:after {
+    content: "priyanka";
+}
+/* homework css end */
+/* subject booster css end */
+@media only screen and (max-width: 768px) {
+    .list_announce {
+        width: 100%;
+    }
+    .fa.fa-star {
+        color: #e4e4e4;
+        font-size: 12px;
+    }
+}

@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Teacher dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    <link
+      href="http://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Custom styles for this template-->
+    <link href="css/student-admin.css" rel="stylesheet" />
+    <link href="css/session.css" rel="stylesheet" />
+  </head>
+
+  <body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <ul
+        class="student_dashboard navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar"
+      >
+        <!-- Sidebar - Brand -->
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href="index.html"
+        >
+          <div class="sidebar-brand-icon">
+            <img src="img/logo.png" title="logo" alt="logo" />
+          </div>
+        </a>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0" />
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+          <a class="nav-link" href="#">
+            <div class="nav_images">
+              <img src="img/teacher/live-icon.svg" />
+            </div>
+            <br />
+            <span>Live Classes</span>
+          </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#">
+            <div class="nav_images">
+              <img src="img/teacher/one to one.svg" />
+            </div>
+            <br />
+            <span>One to One</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#">
+            <div class="nav_images">
+              <img src="img/teacher/user-icon.svg" />
+            </div>
+            <br />
+            <span>Profile</span>
+          </a>
+        </li>
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <div class="nav_images">
+              <img src="img/teacher/videoconference.svg" />
+            </div>
+            <br />
+
+            <span>Manage Questions</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <div class="nav_images"><img src="img/teacher/setting.svg" /></div>
+            <br />
+
+            <span>Settings</span>
+          </a>
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+          <a class="nav-link" href="tables.html">
+            <div class="nav_images"><img src="img/calender.svg" /></div>
+            <br />
+            <span>Calender</span>
+          </a>
+        </li>
+        <!-- Nav Item - Alerts -->
+        <li class="nav-item dropdown no-arrow mx-1 pl-5">
+          <a
+            class="dropdown-toggle"
+            href="#"
+            id="alertsDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="fas fa-bell fa-fw"></i>
+            <!-- Counter - Alerts -->
+            <span class="badge badge-danger badge-counter">3+</span>
+          </a>
+          <!-- Dropdown - Alerts -->
+          <div
+            class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+            aria-labelledby="alertsDropdown"
+          >
+            <h6 class="dropdown-header">Alerts Center</h6>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+              <div class="mr-3">
+                <div class="icon-circle bg-primary">
+                  <i class="fas fa-file-alt text-white"></i>
+                </div>
+              </div>
+              <div>
+                <div class="small text-gray-500">December 12, 2019</div>
+                <span class="font-weight-bold"
+                  >A new monthly report is ready to download!</span
+                >
+              </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+              <div class="mr-3">
+                <div class="icon-circle bg-success">
+                  <i class="fas fa-donate text-white"></i>
+                </div>
+              </div>
+              <div>
+                <div class="small text-gray-500">December 7, 2019</div>
+                $290.29 has been deposited into your account!
+              </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+              <div class="mr-3">
+                <div class="icon-circle bg-warning">
+                  <i class="fas fa-exclamation-triangle text-white"></i>
+                </div>
+              </div>
+              <div>
+                <div class="small text-gray-500">December 2, 2019</div>
+                Spending Alert: We've noticed unusually high spending for your
+                account.
+              </div>
+            </a>
+            <a class="dropdown-item text-center small text-gray-500" href="#"
+              >Show All Alerts</a
+            >
+          </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block" />
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+      </ul>
+
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Topbar -->
+          <nav
+            class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow"
+          >
+            <!-- Sidebar Toggle (Topbar) -->
+            <button
+              id="sidebarToggleTop"
+              class="btn btn-link d-md-none rounded-circle mr-3"
+            >
+              <i class="fa fa-bars"></i>
+            </button>
+            <!-- Topbar Search -->
+            <div class="dashboard_title">My Dashboard</div>
+            <form class="d-none d-sm-inline-block form-inline navbar-search">
+              <div class="d-flex">
+                <div class="input-group">
+                  <select class="form-control border-0 nav_border_line">
+                    <optgroup>
+                      <option value="volvo">all</option>
+                      <option value="saab">all1</option>
+                    </optgroup>
+                  </select>
+                  <input
+                    type="text"
+                    class="serch_block bg-white form-control bg-light border-0 small"
+                    placeholder="Search for..."
+                    aria-label="Search"
+                    aria-describedby="basic-addon2"
+                  />
+                  <div class="input-group-append">
+                    <button class="btn btn-primary search_cta" type="button">
+                      <i class="fas fa-search fa-sm"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <ul class="navbar-nav">
+              <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+              <li class="nav-item dropdown no-arrow d-sm-none">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="searchDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div
+                  class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                  aria-labelledby="searchDropdown"
+                >
+                  <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control bg-light border-0 small"
+                        placeholder="Search for..."
+                        aria-label="Search"
+                        aria-describedby="basic-addon2"
+                      />
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                          <i class="fas fa-search fa-sm"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </li>
+
+              <div class="topbar-divider d-none d-sm-block"></div>
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="userDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <div class="text-center">
+                    <img
+                      class="img-profile rounded-circle"
+                      src="img/undraw_profile.svg"
+                    />
+                  </div>
+                  <div class="mr-2 d-none d-lg-inline text-gray-600 small">
+                    Douglas McGee
+                  </div>
+                </a>
+                <!-- Dropdown - User Information -->
+                <div
+                  class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="userDropdown"
+                >
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Profile
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Settings
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Activity Log
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a
+                    class="dropdown-item"
+                    href="#"
+                    data-toggle="modal"
+                    data-target="#logoutModal"
+                  >
+                    <i
+                      class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
+                    ></i>
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <!-- End of Topbar -->
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            <!-- Page Heading -->
+            <div
+              class="d-sm-flex align-items-center justify-content-between mb-4"
+            >
+              <h1 class="h3 mb-0 text-gray-800 session_heading">My Session</h1>
+            </div>
+            <!-- image block -->
+            <div class="row">
+              <div class="col-xl-12 col-lg-12">
+                <div class="mt-5 bg_img">
+                  <ul class="nav nav-pills nav-fill navtop add_class_tab">
+                    <li class="nav-item">
+                      <a
+                        class="nav-link tab_title add_new_class"
+                        href="#menu1"
+                        data-toggle="tab"
+                        >ADD NEW CLASS</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        class="nav-link tab_title add_new_class active"
+                        href="#menu2"
+                        data-toggle="tab"
+                        >MANAGE CLASSES</a
+                      >
+                    </li>
+                  </ul>
+                
+                  <div class="tab-content">
+                    <div class="tab-pane" role="tabpanel" id="menu1">
+                      <div class="card shadow mt-3">
+                        <div
+                          class="card-body card_left_border border_left_color1"
+                        >
+                          <div class="subject_edit subject_flex">
+                            <div class="subject_practis">
+                              <p class="subject">Math Practice</p>
+                              <p class="time_pera">
+                                <span>23 Jan,</span
+                                ><span>04:00pm - 05:00pm</span>
+                              </p>
+                            </div>
+                            <div class="starttime_block">
+                              <p class="sub_subject">Starts in</p>
+                              <p class="green_text">00:08:55</p>
+                            </div>
+                            <div class="class_block">
+                              <p class="sub_subject">Class</p>
+                              <p class="blue_text">10th</p>
+                            </div>
+                            <div class="class_block">
+                              <p class="sub_subject">Subject</p>
+                              <p class="blue_text">Maths</p>
+                            </div>
+                            <div class="class_block">
+                              <p class="sub_subject">Time</p>
+                              <p class="blue_text">30 Min</p>
+                            </div>
+                            <div class="class_mb">
+                              <p class="sub_subject">Students</p>
+                              <p class="blue_text">30</p>
+                            </div>
+                            <div class="delite_icon">
+                              <img
+                                src="img/delete.svg"
+                                width="20"
+                                height="20"
+                              />
+                            </div>
+                            <div class="edit_icon">
+                              <img src="img/edit.svg" width="20" height="20" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card shadow mt-3">
+                        <div
+                          class="card-body card_left_border border_left_color2"
+                        >
+                          <div class="subject_edit">
+                            <div class="subject_practis">
+                              <p class="subject">Math Practice</p>
+                              <p class="time_pera">
+                                <span>23 Jan,</span
+                                ><span>04:00pm - 05:00pm</span>
+                              </p>
+                            </div>
+                            <div class="starttime_block">
+                              <p class="sub_subject">Starts in</p>
+                              <p class="green_text">00:08:55</p>
+                            </div>
+                            <div class="class_block">
+                              <p class="sub_subject">Class</p>
+                              <p class="blue_text">10th</p>
+                            </div>
+                            <div class="class_block">
+                              <p class="sub_subject">Subject</p>
+                              <p class="blue_text">Maths</p>
+                            </div>
+                            <div class="class_block">
+                              <p class="sub_subject">Time</p>
+                              <p class="blue_text">30 Min</p>
+                            </div>
+                            <div class="class_mb">
+                              <p class="sub_subject">Students</p>
+                              <p class="blue_text">30</p>
+                            </div>
+                            <div class="delite_icon">
+                              <img
+                                src="img/delete.svg"
+                                width="20"
+                                height="20"
+                              />
+                            </div>
+                            <div class="edit_icon">
+                              <img src="img/edit.svg" width="20" height="20" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card shadow mt-3">
+                        <div
+                          class="card-body card_left_border border_left_color3"
+                        >
+                          <div class="subject_edit">
+                            <div class="subject_practis">
+                              <p class="subject">Math Practice</p>
+                              <p class="time_pera">
+                                <span>23 Jan,</span
+                                ><span>04:00pm - 05:00pm</span>
+                              </p>
+                            </div>
+                            <div class="starttime_block">
+                              <p class="sub_subject">Starts in</p>
+                              <p class="green_text">00:08:55</p>
+                            </div>
+                            <div class="class_block">
+                              <p class="sub_subject">Class</p>
+                              <p class="blue_text">10th</p>
+                            </div>
+                            <div class="class_block">
+                              <p class="sub_subject">Subject</p>
+                              <p class="blue_text">Maths</p>
+                            </div>
+                            <div class="class_block">
+                              <p class="sub_subject">Time</p>
+                              <p class="blue_text">30 Min</p>
+                            </div>
+                            <div class="class_mb">
+                              <p class="sub_subject">Students</p>
+                              <p class="blue_text">30</p>
+                            </div>
+                            <div class="delite_icon">
+                              <img
+                                src="img/delete.svg"
+                                width="20"
+                                height="20"
+                              />
+                            </div>
+                            <div class="edit_icon">
+                              <img src="img/edit.svg" width="20" height="20" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card shadow mt-3">
+                        <div
+                          class="card-body card_left_border border_left_color4"
+                        >
+                          <div class="subject_edit">
+                            <div class="subject_practis">
+                              <p class="subject">Math Practice</p>
+                              <p class="time_pera">
+                                <span>23 Jan,</span
+                                ><span>04:00pm - 05:00pm</span>
+                              </p>
+                            </div>
+                            <div class="starttime_block">
+                              <p class="sub_subject">Starts in</p>
+                              <p class="green_text">00:08:55</p>
+                            </div>
+                            <div class="class_block">
+                              <p class="sub_subject">Class</p>
+                              <p class="blue_text">10th</p>
+                            </div>
+                            <div class="class_block">
+                              <p class="sub_subject">Subject</p>
+                              <p class="blue_text">Maths</p>
+                            </div>
+                            <div class="class_block">
+                              <p class="sub_subject">Time</p>
+                              <p class="blue_text">30 Min</p>
+                            </div>
+                            <div class="class_mb">
+                              <p class="sub_subject">Students</p>
+                              <p class="blue_text">30</p>
+                            </div>
+                            <div class="delite_icon">
+                              <img
+                                src="img/delete.svg"
+                                width="20"
+                                height="20"
+                              />
+                            </div>
+                            <div class="edit_icon">
+                              <img src="img/edit.svg" width="20" height="20" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane active" role="tabpanel" id="menu2">
+                      <!-- datepicker start -->
+                      <div class="calander d-flex mt-5">
+                          
+                        <div class="calander_div">
+                            <p class="sellect_pera">Select entry From </p>
+                          <p class="sellect_pera"> <input type="text" id="datepicker" /></p>
+                          <div><p class="sellect_pera">To</p></div>
+                          <p><input type="text" id="datepicker" /></p>
+                        </div>
+                        
+                       
+                        <div class="filter_div">
+                            <p class="sellect_pera filter">Filter By</p>
+                            <div class="filter_select select">
+                              <select name="slct" id="slct">
+                                <option selected disabled>Choose an option</option>
+                                <option value="1">Pure CSS</option>
+                                <option value="2">No JS</option>
+                                <option value="3">Nice!</option>
+                              </select>
+                            </div>
+                        </div>
+                      </div>
+                      <!-- datepicker end -->
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="card shadow border_block card_bg1 mt-3">
+                            <div class="card-body">
+                              <div class="subject_edit subject_flex">
+                                <div class="test_title_div">
+                                  <p class="test_title">
+                                    Test Class 1 Math session
+                                  </p>
+                                </div>
+                                <div class="live-info">
+                                  <span class="dot"></span>
+                                </div>
+                              </div>
+                              <div class="border_bottom1"></div>
+                              <div class="subject_edit subject_flex">
+                                <div><p class="sub_pera">Subject</p></div>
+                                <div><p class="sub_title">English</p></div>
+                              </div>
+                              <div class="subject_edit subject_flex">
+                                <div><p class="sub_pera">Assigned to</p></div>
+                                <div><p class="sub_title">Henry Oats</p></div>
+                              </div>
+                              <div class="subject_edit subject_flex">
+                                <div class="border_line">
+                                    <p class="sub_pera">Price Per Session</p>
+                                    <p class="price_no">05</p>
+                                </div>
+                                <!-- <div class="border-right"></div> -->
+                                <div>
+                                    <p class="sub_pera">Total</p>
+                                    <p class="price_no">20</p>
+                                </div>
+                              </div>
+                              <div class="subject_edit subject_flex">
+                                <div >
+                                    <p class="sub_pera">Total seats</p>
+                                    <p class="price_no">05</p>
+                                </div>
+                                <!-- <div class="border-right"></div> -->
+                                <div>
+                                    <p class="sub_pera">Booked Seats</p>
+                                    <p class="book_sheet font-color1">20</p>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="subject_edit subject_flex view_block view_block_bg1">
+                                <div>
+                                   <a class="view_details" href="#">View Details</a>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                    <div class="delite_icon space_img">
+                                        <img
+                                          src="img/delete.svg"
+                                          width="20"
+                                          height="20"
+                                        />
+                                      </div>
+                                      <div class="edit_icon space_img">
+                                        <img src="img/edit.svg" width="20" height="20" />
+                                      </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card shadow border_block card_bg2 mt-3">
+                              <div class="card-body">
+                                <div class="subject_edit subject_flex">
+                                  <div class="test_title_div">
+                                    <p class="test_title">
+                                      Test Class 1 Math session
+                                    </p>
+                                  </div>
+                                  <div class="live-info">
+                                    <span class="dot"></span>
+                                  </div>
+                                </div>
+                                <div class="border_bottom2"></div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Subject</p></div>
+                                  <div><p class="sub_title">English</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Assigned to</p></div>
+                                  <div><p class="sub_title">Henry Oats</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div class="border_line">
+                                      <p class="sub_pera">Price Per Session</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Total</p>
+                                      <p class="price_no">20</p>
+                                  </div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div >
+                                      <p class="sub_pera">Total seats</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Booked Seats</p>
+                                      <p class="book_sheet font-color2">20</p>
+                                  </div>
+                              </div>
+                              </div>
+                              <div class="subject_edit subject_flex view_block view_block_bg2 ">
+                                  <div>
+                                     <a class="view_details" href="#">View Details</a>
+                                  </div>
+                                  <div class="subject_edit subject_flex">
+                                      <div class="delite_icon space_img">
+                                          <img
+                                            src="img/delete.svg"
+                                            width="20"
+                                            height="20"
+                                          />
+                                        </div>
+                                        <div class="edit_icon space_img">
+                                          <img src="img/edit.svg" width="20" height="20" />
+                                        </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="card shadow border_block card_bg3 mt-3">
+                              <div class="card-body">
+                                <div class="subject_edit subject_flex">
+                                  <div class="test_title_div">
+                                    <p class="test_title">
+                                      Test Class 1 Math session
+                                    </p>
+                                  </div>
+                                  <div class="live-info">
+                                    <span class="dot"></span>
+                                  </div>
+                                </div>
+                                <div class="border_bottom3"></div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Subject</p></div>
+                                  <div><p class="sub_title">English</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Assigned to</p></div>
+                                  <div><p class="sub_title">Henry Oats</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div class="border_line">
+                                      <p class="sub_pera">Price Per Session</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Total</p>
+                                      <p class="price_no">20</p>
+                                  </div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div >
+                                      <p class="sub_pera">Total seats</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Booked Seats</p>
+                                      <p class="book_sheet font-color3">20</p>
+                                  </div>
+                              </div>
+                              </div>
+                              <div class="subject_edit subject_flex view_block view_block_bg3">
+                                  <div>
+                                     <a class="view_details" href="#">View Details</a>
+                                  </div>
+                                  <div class="subject_edit subject_flex">
+                                      <div class="delite_icon space_img">
+                                          <img
+                                            src="img/delete.svg"
+                                            width="20"
+                                            height="20"
+                                          />
+                                        </div>
+                                        <div class="edit_icon space_img">
+                                          <img src="img/edit.svg" width="20" height="20" />
+                                        </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="card shadow border_block card_bg4 mt-3">
+                              <div class="card-body">
+                                <div class="subject_edit subject_flex">
+                                  <div class="test_title_div">
+                                    <p class="test_title">
+                                      Test Class 1 Math session
+                                    </p>
+                                  </div>
+                                  <div class="live-info">
+                                    <span class="dot"></span>
+                                  </div>
+                                </div>
+                                <div class="border_bottom4"></div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Subject</p></div>
+                                  <div><p class="sub_title">English</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Assigned to</p></div>
+                                  <div><p class="sub_title">Henry Oats</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div class="border_line">
+                                      <p class="sub_pera">Price Per Session</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Total</p>
+                                      <p class="price_no">20</p>
+                                  </div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div >
+                                      <p class="sub_pera">Total seats</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Booked Seats</p>
+                                      <p class="book_sheet font-color4">20</p>
+                                  </div>
+                              </div>
+                              </div>
+                              <div class="subject_edit subject_flex view_block view_block_bg4">
+                                  <div>
+                                     <a class="view_details" href="#">View Details</a>
+                                  </div>
+                                  <div class="subject_edit subject_flex">
+                                      <div class="delite_icon space_img">
+                                          <img
+                                            src="img/delete.svg"
+                                            width="20"
+                                            height="20"
+                                          />
+                                        </div>
+                                        <div class="edit_icon space_img">
+                                          <img src="img/edit.svg" width="20" height="20" />
+                                        </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="card shadow border_block card_bg5 mt-3">
+                              <div class="card-body">
+                                <div class="subject_edit subject_flex">
+                                  <div class="test_title_div">
+                                    <p class="test_title">
+                                      Test Class 1 Math session
+                                    </p>
+                                  </div>
+                                  <div class="live-info">
+                                    <span class="dot"></span>
+                                  </div>
+                                </div>
+                                <div class="border_bottom5"></div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Subject</p></div>
+                                  <div><p class="sub_title">English</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Assigned to</p></div>
+                                  <div><p class="sub_title">Henry Oats</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div class="border_line">
+                                      <p class="sub_pera">Price Per Session</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Total</p>
+                                      <p class="price_no">20</p>
+                                  </div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div >
+                                      <p class="sub_pera">Total seats</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Booked Seats</p>
+                                      <p class="book_sheet font-color5">20</p>
+                                  </div>
+                              </div>
+                              </div>
+                              <div class="subject_edit subject_flex view_block view_block_bg5">
+                                  <div>
+                                     <a class="view_details" href="#">View Details</a>
+                                  </div>
+                                  <div class="subject_edit subject_flex">
+                                      <div class="delite_icon space_img">
+                                          <img
+                                            src="img/delete.svg"
+                                            width="20"
+                                            height="20"
+                                          />
+                                        </div>
+                                        <div class="edit_icon space_img">
+                                          <img src="img/edit.svg" width="20" height="20" />
+                                        </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="card shadow border_block card_bg6 mt-3">
+                              <div class="card-body">
+                                <div class="subject_edit subject_flex">
+                                  <div class="test_title_div">
+                                    <p class="test_title">
+                                      Test Class 1 Math session
+                                    </p>
+                                  </div>
+                                  <div class="live-info">
+                                    <span class="dot"></span>
+                                  </div>
+                                </div>
+                                <div class="border_bottom6"></div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Subject</p></div>
+                                  <div><p class="sub_title">English</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Assigned to</p></div>
+                                  <div><p class="sub_title">Henry Oats</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div class="border_line">
+                                      <p class="sub_pera">Price Per Session</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Total</p>
+                                      <p class="price_no">20</p>
+                                  </div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div >
+                                      <p class="sub_pera">Total seats</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Booked Seats</p>
+                                      <p class="book_sheet font-color6">20</p>
+                                  </div>
+                              </div>
+                              </div>
+                              <div class="subject_edit subject_flex view_block view_block_bg6">
+                                  <div>
+                                     <a class="view_details" href="#">View Details</a>
+                                  </div>
+                                  <div class="subject_edit subject_flex">
+                                      <div class="delite_icon space_img">
+                                          <img
+                                            src="img/delete.svg"
+                                            width="20"
+                                            height="20"
+                                          />
+                                        </div>
+                                        <div class="edit_icon space_img">
+                                          <img src="img/edit.svg" width="20" height="20" />
+                                        </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="card shadow border_block card_bg7 mt-3">
+                              <div class="card-body">
+                                <div class="subject_edit subject_flex">
+                                  <div class="test_title_div">
+                                    <p class="test_title">
+                                      Test Class 1 Math session
+                                    </p>
+                                  </div>
+                                  <div class="live-info">
+                                    <span class="dot active"></span>
+                                  </div>
+                                </div>
+                                <div class="border_bottom7"></div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Subject</p></div>
+                                  <div><p class="sub_title">English</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Assigned to</p></div>
+                                  <div><p class="sub_title">Henry Oats</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div class="border_line">
+                                      <p class="sub_pera">Price Per Session</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Total</p>
+                                      <p class="price_no">20</p>
+                                  </div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div >
+                                      <p class="sub_pera">Total seats</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Booked Seats</p>
+                                      <p class="book_sheet font-color7">20</p>
+                                  </div>
+                              </div>
+                              </div>
+                              <div class="subject_edit subject_flex view_block view_block_bg7">
+                                  <div>
+                                     <a class="view_details" href="#">View Details</a>
+                                  </div>
+                                  <div class="subject_edit subject_flex">
+                                      <div class="delite_icon space_img">
+                                          <img
+                                            src="img/delete.svg"
+                                            width="20"
+                                            height="20"
+                                          />
+                                        </div>
+                                        <div class="edit_icon space_img">
+                                          <img src="img/edit.svg" width="20" height="20" />
+                                        </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="card shadow border_block card_bg8 mt-3">
+                              <div class="card-body">
+                                <div class="subject_edit subject_flex">
+                                  <div class="test_title_div">
+                                    <p class="test_title">
+                                      Test Class 1 Math session
+                                    </p>
+                                  </div>
+                                  <div class="live-info">
+                                    <span class="dot active"></span>
+                                  </div>
+                                </div>
+                                <div class="border_bottom8"></div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Subject</p></div>
+                                  <div><p class="sub_title">English</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div><p class="sub_pera">Assigned to</p></div>
+                                  <div><p class="sub_title">Henry Oats</p></div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div class="border_line">
+                                      <p class="sub_pera">Price Per Session</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Total</p>
+                                      <p class="price_no">20</p>
+                                  </div>
+                                </div>
+                                <div class="subject_edit subject_flex">
+                                  <div >
+                                      <p class="sub_pera">Total seats</p>
+                                      <p class="price_no">05</p>
+                                  </div>
+                                  <!-- <div class="border-right"></div> -->
+                                  <div>
+                                      <p class="sub_pera">Booked Seats</p>
+                                      <p class="book_sheet font-color8">20</p>
+                                  </div>
+                              </div>
+                              </div>
+                              <div class="subject_edit subject_flex view_block view_block_bg8">
+                                  <div>
+                                     <a class="view_details" href="#">View Details</a>
+                                  </div>
+                                  <div class="subject_edit subject_flex">
+                                      <div class="delite_icon space_img">
+                                          <img
+                                            src="img/delete.svg"
+                                            width="20"
+                                            height="20"
+                                          />
+                                        </div>
+                                        <div class="edit_icon space_img">
+                                          <img src="img/edit.svg" width="20" height="20" />
+                                        </div>
+                                  </div>
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Content Row -->
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>©Copyright 2021-2022 WA Academy. All Rights Reserved </span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/student.js"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $(function () {
+        $("#datepicker").datepicker({
+          numberOfMonths: 3,
+          showButtonPanel: true,
+        });
+      });
+    </script>
+  </body>
+</html>

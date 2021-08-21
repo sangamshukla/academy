@@ -1,0 +1,378 @@
+/* form animation */
+.seminor-login-form .form-group {
+  position: relative;
+  margin-bottom: 1.5em !important;
+}
+.seminor-login-form .form-control {
+  border: 0px solid #ced4da !important;
+  border-bottom: 1px solid #adadad !important;
+  border-radius: 0 !important;
+  /* width: 317px; */
+}
+.seminor-login-form .form-control:focus,
+.seminor-login-form .form-control:active {
+  outline: none !important;
+  outline-width: 0;
+  border-color: #adadad !important;
+  box-shadow: 0 0 0 0.2rem transparent;
+}
+*:focus {
+  outline: none;
+}
+.seminor-login-form {
+  padding: 2em 0 0;
+}
+
+.form-control-placeholder {
+  position: absolute;
+  top: 0;
+  padding: 0px 0 0 13px;
+  transition: all 200ms;
+  opacity: 0.5;
+  border-top: 0px;
+  border-left: 0;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  border-right: 0;
+}
+
+.form-control:focus + .form-control-placeholder,
+.form-control:valid + .form-control-placeholder {
+  font-size: 75%;
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+  opacity: 1;
+}
+
+.container-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.checkmark-box {
+  position: absolute;
+  top: -0px;
+  left: 10px;
+  height: 18px;
+  width: 18px;
+  background-color: #adadad;
+  border-radius: 4px;
+}
+.container-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 40px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  color: #9e9b9b;
+}
+.container-checkbox input:checked ~ .checkmark-box:after {
+  color: #fff;
+}
+.container-checkbox input:checked ~ .checkmark-box:after {
+  display: block;
+}
+.container-checkbox .checkmark-box:after {
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.checkmark:after,
+.checkmark-box:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.container-checkbox input:checked ~ .checkmark-box {
+  border: 0px solid transparent;
+  border-radius: 4px;
+  background: #1d6771;
+}
+.btn-check-log .btn-check-login {
+  padding: 10px 0;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 13px;
+  letter-spacing: 0px;
+  text-align: center;
+  color: #fff;
+}
+
+.btn-check-login {
+  background-color: transparent;
+  border: 1px solid #1d6771;
+  background: #1d6771;
+  box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+  border-radius: 4px;
+  width: 145px;
+}
+
+.forgot-pass-fau a {
+  text-decoration: none !important;
+  font-size: 14px;
+}
+.text-primary-fau {
+  color: #1959a2;
+}
+
+.select-form-control-placeholder {
+  font-size: 100%;
+  padding: 7px 0 0 13px;
+  margin: 0;
+}
+/* socical section css */
+.fancy span:before {
+  right: 100%;
+  margin-right: 15px;
+}
+.fancy {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  color: #848484;
+}
+
+.fancy span:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  border-bottom: 1px solid #000;
+  top: 5px;
+  width: 20px;
+  opacity: 0.3;
+}
+.fancy span:after {
+  left: 55%;
+  margin-left: 15px;
+}
+.fancy span:before {
+  content: "";
+  position: absolute;
+  height: 5px;
+  border-bottom: 1px solid #000;
+  top: 5px;
+  width: 20px;
+  right: 10px;
+  opacity: 0.3;
+}
+.social_icon {
+  display: flex;
+  justify-content: center;
+  /* width: 135px; */
+}
+.loginpera {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 13px;
+}
+.account {
+  color: #999;
+}
+/* view detail css start */
+/* Math Booster css */
+.math_csc {
+  padding: 0% 5%;
+}
+.subject_heading {
+  position: relative;
+  font-family: Nunito;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 42px;
+  padding: 0% 5%;
+}
+.subject_heading:before {
+  content: "";
+  position: absolute;
+  background: #8bcaff;
+  width: 90px;
+  height: 24px;
+  margin: auto;
+  z-index: -100;
+  left: 4.8%;
+  top: 27%;
+}
+.subject_card {
+  height: 400px;
+  padding: 30px;
+  background: #58a1e5;
+  border-radius: 8px;
+  background-color: rgba(88, 161, 229, 0.2);
+  border: 1px solid #58a1e5;
+  width: 670px;
+  text-align: center;
+}
+.session_section {
+  margin: 80px 0px;
+  padding: 0% 5%;
+}
+.subject_card img {
+  width: 547px;
+  height: 308px;
+}
+.sub_title {
+  font-family: Nunito;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 31px;
+  color: #666;
+}
+.name_section {
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 23px;
+  color: #666;
+}
+.subject_detail p:nth-child(1) {
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  color: #999;
+}
+.subject_detail p:nth-child(2) {
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+}
+.blue_cr {
+  color: #0033ae;
+}
+.color_og {
+  color: #f59711;
+}
+.border_left {
+  border-left: 1px solid #c6c6c6;
+  opacity: 0.6;
+}
+.share {
+  font-family: Nunito;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+}
+.share_section {
+  margin-top: 30px;
+}
+.doler_text {
+  font-family: Roboto;
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+  color: #58a1e5;
+  padding-top: 25px;
+}
+/* add to cart &buy buttom css */
+.add_cart_section {
+  width: 143px;
+  height: 44px;
+  background-color: #fff;
+  border: 1px solid #1d6771;
+  color: #1d6771;
+  font-size: 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  margin-right: 7px;
+}
+.buy_now_cta {
+  width: 143px;
+  height: 44px;
+  background-color: #1d6771;
+  border: 1px solid #1d6771;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 4px;
+  font-weight: 500;
+  margin-left: 7px;
+}
+/* modalc ss start */
+.modal_cta_sections {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  color:#1D6771;
+}
+button#login-modal{
+  color:#1D6771;
+}
+.modal_cta_sections .login button{
+  font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    align-items: center;
+    text-align: center;
+    color: #1D6771;
+}
+a.nav-link.active{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 21px;
+  text-align: center;
+}
+.modal_cta_sections .nav-pills .nav-link.active{
+  width: 160px;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 10%);
+    border-radius: 4px;
+
+    padding: 0px;
+    background-color: unset;
+}
+.btn .btn_block_modal .active:focus{
+  box-shadow: none;
+}
+.btn .btn_block_modal{
+  color:#1D6771;
+}
+button.btn.btn_block_modal.inactive {
+  text-align: center;
+  width: 160px;
+  margin-top: -14px;
+  color: #1D6771;
+  font-size: 17px;
+}
+button.btn-check-login.loginmodal_cta {
+  width: 100%;
+  padding: 12px 5px;
+}
+.social_icon.ml-1.social_icon_modal {
+  display: flex;
+  width: 100%;
+  text-align: center;
+}
+
+/* modal css end */

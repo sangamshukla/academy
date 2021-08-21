@@ -1,0 +1,452 @@
+/* table css start */
+#sailorTableArea {
+  max-height: 300px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+#sailorTable {
+  white-space: normal;
+}
+tbody {
+  display: block;
+  height: 200px;
+  overflow: auto;
+}
+thead,
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.card_header .table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(88, 161, 229, 0.1);
+}
+.card_header .table-bordered td,
+.table-bordered th {
+  border: 0px solid #dee2e6;
+}
+td.session_no {
+  width: 25%;
+}
+.table-bordered thead td,
+.table-bordered thead th {
+  background-color: rgba(88, 161, 229, 0.1);
+}
+#sailorTableArea {
+  max-height: 500px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.card_header tbody {
+  display: block;
+  height: unset;
+  overflow: auto;
+}
+.right_section {
+  margin-top: 10px;
+}
+/* table css end */
+/* calander css start */
+.day {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+  color: #999999;
+  padding-left: 13px;
+}
+.day_date {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 33px;
+  color: #666666;
+}
+
+.report_status {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.report_status p {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  color: #666666;
+}
+form.month_week_block {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 11px;
+}
+.checkmark-box.week_checkbox {
+  width: 24px;
+  height: 24px;
+  margin-top: -4px;
+}
+.checkmark-box.week_checkbox:after {
+  left: 8px;
+  top: 5px;
+  width: 8px;
+  height: 11px;
+}
+.arrow_block {
+  display: flex;
+}
+.calander_section {
+  padding: 0px 35px;
+}
+.time_block {
+  margin: 20px 60px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  align-items: center;
+  color: #333333;
+}
+.wall_clock {
+  padding-right: 10px;
+}
+.report_block {
+  margin: 20px 60px;
+}
+.find_text {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1d6771;
+}
+.report_block .report_status {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.discription_block {
+  margin: 20px 60px;
+}
+.dis_text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #999999;
+}
+.student_info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.student_info img {
+  width: 35px;
+  height: 28px;
+  margin-right: 20px;
+}
+.notify_block.p1 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 19px;
+  color: #666666;
+  margin-bottom: 0px;
+}
+.notify_block.p2 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: #999999;
+}
+.modal-closer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+.btn.ok_cta {
+  background: #1d6771;
+  border-radius: 4px;
+  width: 100px;
+  height: 40px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  text-transform: capitalize;
+  color: #ffffff;
+}
+.cancle_cta {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  text-transform: capitalize;
+  color: #666666;
+  margin-right: 20px;
+}
+h3.add_title {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: #999999;
+  border-left: 1px solid;
+}
+/* calander css end */
+/* live class css start */
+.live_class_section {
+  padding: 0px 35px;
+
+}
+.live_class {
+  position: relative;
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 130%;
+  color: #333333;
+  padding: 0px 15px;
+}
+.live_class:after {
+  content: "";
+  position: absolute;
+  background: #8bcaff;
+  width: 162px;
+  height: 24px;
+  margin: auto;
+  z-index: -100;
+  left: 8.8%;
+  top: 37%;
+}
+.cover {
+  background-image: url("../assets/img/VideoImage.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 180px;
+}
+video {
+  opacity: 0;
+  width: 100%;
+  transition: 1s;
+  position: absolute;
+  z-index: -1;
+}
+.video-text p {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 150%;
+  color: #333333;
+  margin-bottom: -16px;
+  margin-top: 7px;
+}
+.teacher_img img {
+  border: 1px solid red;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+}
+.fist_pera {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 130%;
+  color: #333333;
+  margin-bottom: 6px;
+}
+.second_pera {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 130%;
+  color: #999999;
+}
+.payment_pera p:nth-child(1) {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 130%;
+  color: #999999;
+  margin-bottom: 6px;
+}
+.payment_pera p:nth-child(2) {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 130%;
+  color: #a6c437;
+}
+.about_pera p:nth-child(1) {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 150%;
+  color: #333333;
+}
+.about_pera p:nth-child(2) {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 125%;
+  color: #999999;
+}
+.show_detail {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 125%;
+  color: #333333;
+}
+/* search input */
+#custom-search-input {
+  margin: 0;
+  margin-top: 10px;
+  padding: 0;
+}
+
+#custom-search-input .search-query {
+  padding-right: 3px;
+  padding-right: 4px \9;
+  padding-left: 3px;
+  padding-left: 4px \9;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.search_icon {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  background: #1d6771;
+  box-shadow: 0px 5px 10px rgb(29 125 234 / 20%);
+  border-radius: 4px;
+  padding: 2px 0px 0px 8px;
+}
+.available_btn {
+  width: 165px;
+  height: 36px;
+  left: 928px;
+  top: 256px;
+  background: #1d6771;
+  border-radius: 4px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center;
+  text-transform: capitalize;
+  color: #ffffff;
+}
+.available_btn:hover {
+  color: #fff;
+}
+.dt_calander {
+  display: block;
+  border: 2px solid #c5c5c5;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px rgb(0 0 0 / 25%);
+  border-radius: 8px;
+  height: 300px;
+}
+.day_block {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+}
+.table_detail table {
+  border: 0.8px solid #999999;
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 7px;
+  line-height: 14px;
+  align-items: center;
+  letter-spacing: 0.75px;
+  color: #999999;
+}
+.table_detail tr {
+  border-bottom: 0.8px solid #999999;
+}
+.table_detail td {
+  border-left: 0.8px solid #999999;
+  padding: 9px;
+  text-align: center;
+}
+.table_detail td:nth-child(1) {
+  border-left: 0px solid #999999;
+}
+td.time_td {
+  width: 80px;
+}
+.table_detail {
+  padding: 0px 10px;
+}
+.table_detail tbody {
+  height: 200px;
+}
+.day_block p {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: 0.75px;
+  color: #a6c437;
+}
+.day_block.date_p p {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: 0.75px;
+  color: #999999;
+}
+.active_time {
+  background: linear-gradient(0deg, #33bd9a, #33bd9a), #33bd9a;
+  box-shadow: 0px 0px 10px rgb(0 0 0 / 12%);
+  width: 10px;
+  height: 10px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+}
+/* live class css end */

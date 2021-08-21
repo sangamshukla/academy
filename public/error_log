@@ -1,0 +1,19 @@
+[29-May-2021 18:57:10 Asia/Kolkata] PHP Fatal error:  Cannot use App\Http\Controllers\HomeWorkController as HomeWorkController because the name is already in use in /home/rn0lcrnzyu6k/public_html/testing/routes/web.php on line 24
+[01-Jun-2021 23:52:51 Asia/Kolkata] PHP Fatal error:  Cannot redeclare App\Models\BatchSession::topics() in /home/rn0lcrnzyu6k/public_html/testing/app/Models/BatchSession.php on line 32
+[01-Jun-2021 23:52:56 Asia/Kolkata] PHP Fatal error:  Cannot redeclare App\Models\BatchSession::topics() in /home/rn0lcrnzyu6k/public_html/testing/app/Models/BatchSession.php on line 32
+[10-Jul-2021 17:15:58 Asia/Kolkata] PHP Fatal error:  Uncaught Error: Class 'Facade\FlareClient\Flare' not found in /home/rn0lcrnzyu6k/public_html/testing/vendor/facade/ignition/src/IgnitionServiceProvider.php:233
+Stack trace:
+#0 /home/rn0lcrnzyu6k/public_html/testing/vendor/laravel/framework/src/Illuminate/Container/Container.php(826): Facade\Ignition\IgnitionServiceProvider->Facade\Ignition\{closure}(Object(Illuminate\Foundation\Application), Array)
+#1 /home/rn0lcrnzyu6k/public_html/testing/vendor/laravel/framework/src/Illuminate/Container/Container.php(712): Illuminate\Container\Container->build(Object(Closure))
+#2 /home/rn0lcrnzyu6k/public_html/testing/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(796): Illuminate\Container\Container->resolve('Facade\\FlareCli...', Array, true)
+#3 /home/rn0lcrnzyu6k/public_html/testing/vendor/laravel/framework/src/Illuminate/Container/Container.php(651): Illuminate\Foundation\Application->resolve('Facade\\FlareCli...', Array)
+#4 /home/rn0lcrnzyu6k/public_html/testing/vendor/laravel/framework/src/Illumina in /home/rn0lcrnzyu6k/public_html/testing/vendor/facade/ignition/src/IgnitionServiceProvider.php on line 233
+[27-Jul-2021 10:48:46 Europe/London] PHP Fatal error:  Trait 'Laravel\Scout\Searchable' not found in /home/rn0lcrnzyu6k/public_html/testing/app/Models/User.php on line 11
+[27-Jul-2021 10:52:53 Europe/London] PHP Fatal error:  Trait 'Laravel\Scout\Searchable' not found in /home/rn0lcrnzyu6k/public_html/testing/app/Models/User.php on line 11
+[27-Jul-2021 10:52:54 Europe/London] PHP Fatal error:  Trait 'Laravel\Scout\Searchable' not found in /home/rn0lcrnzyu6k/public_html/testing/app/Models/User.php on line 11
+[27-Jul-2021 10:54:01 Europe/London] PHP Fatal error:  Trait 'Laravel\Scout\Searchable' not found in /home/rn0lcrnzyu6k/public_html/testing/app/Models/User.php on line 11
+[27-Jul-2021 10:54:56 Europe/London] PHP Fatal error:  Trait 'Laravel\Scout\Searchable' not found in /home/rn0lcrnzyu6k/public_html/testing/app/Models/User.php on line 11
+[27-Jul-2021 11:21:17 Europe/London] PHP Fatal error:  Trait 'Laravel\Scout\Searchable' not found in /home/rn0lcrnzyu6k/public_html/testing/app/Models/User.php on line 11
+[18-Aug-2021 13:52:12 Asia/Kolkata] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/rn0lcrnzyu6k/public_html/testing/storage/framework/views/5926a69c7ec8fd74fe371d7d49991d6a276dd90c.php on line 187
+[18-Aug-2021 13:52:17 Asia/Kolkata] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/rn0lcrnzyu6k/public_html/testing/storage/framework/views/5926a69c7ec8fd74fe371d7d49991d6a276dd90c.php on line 187
+[18-Aug-2021 13:52:21 Asia/Kolkata] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/rn0lcrnzyu6k/public_html/testing/storage/framework/views/5926a69c7ec8fd74fe371d7d49991d6a276dd90c.php on line 187

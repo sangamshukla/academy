@@ -1,0 +1,932 @@
+/* wizards css start */
+
+/* Latest compiled and minified CSS included as External Resource*/
+
+/* Optional theme */
+
+/*@import url('//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css');*/
+
+.stepwizard-step p {
+    margin-top: 30px;
+    color: #666;
+}
+
+.stepwizard-row {
+    display: table-row;
+}
+
+.stepwizard {
+    display: table;
+    width: 100%;
+    position: relative;
+    margin-top: 80px;
+}
+
+/* .stepwizard-step button[disabled] {
+    /*opacity: 1 !important;
+  filter: alpha(opacity=100) !important;*/
+/* } */
+
+.stepwizard .btn.disabled,
+.stepwizard .btn[disabled],
+.stepwizard fieldset[disabled] .btn {
+    opacity: 1 !important;
+    color: #bbb;
+}
+
+.stepwizard-row:before {
+    top: 14px;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 84%;
+    height: 1px;
+    background-color: #ccc;
+    z-index: 0;
+    left: 130px;
+}
+
+a.btn.btn-circle.active.btn-default.btn-success {
+    color: #fff;
+    background-color: #169b6b;
+    border-color: #149063;
+}
+
+a.btn.btn-default.btn-circle.btn-success {
+    color: #fff;
+    background-color: #169b6b;
+    border-color: #149063;
+}
+
+.stepwizard-step {
+    display: table-cell;
+    text-align: center;
+    position: relative;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 0px;
+}
+
+a.btn.btn-default {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 16px;
+    line-height: 1.428571429;
+    border-radius: 0px;
+    border: 1px solid;
+    background-color: #fff;
+}
+
+.upload_border.border-dotted {
+    border: 1px solid;
+    text-align: center;
+    padding: 27px;
+    border-style: dashed;
+}
+
+.id_proof.border-dotted {
+    border: 1px solid;
+    text-align: center;
+    padding: 27px;
+    border-style: dashed;
+}
+
+button.upload_btn {
+    background: #1d6771;
+    border-radius: 4px;
+    border: none;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+    padding: 10px;
+}
+
+button.btn.verifyBtn.pull-left {
+    background: #1d6771;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 20%);
+    border-radius: 4px;
+    height: 40px;
+    width: 80px;
+    margin-top: 30px;
+    margin: 30px 20px;
+    font-family: Roboto;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 16px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.5px;
+    color: #ffffff;
+}
+
+.panel-title.personal {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    color: #333333;
+}
+
+.tab_font_title.active {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    align-items: center;
+    text-align: center;
+    color: #33bd9a;
+}
+
+.tab_font_title {
+    font-family: Roboto;
+    font-style: normal;
+    line-height: 20px;
+    align-items: center;
+    text-align: center;
+}
+
+/* table css of teacher profile */
+
+#sailorTableArea {
+    max-height: 500px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+#sailorTable {
+    white-space: normal;
+}
+
+#sailorTableArea tbody {
+    display: block;
+    height: 500px;
+    overflow: auto;
+}
+
+#sailorTableArea thead,
+#sailorTableArea tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#sailorTableArea .table-bordered thead td,
+#sailorTableArea .table-bordered thead th {
+    background-color: #f69a6e;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 10px;
+    color: #333333;
+}
+
+#sailorTableArea .table-bordered th,
+#sailorTableArea .table-bordered td {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    align-items: center;
+    color: #666666;
+    border: 0px solid #e3e6f0;
+}
+
+/* teacher profile css third page */
+
+.card-body.border.student_group_card {
+    padding: 19px;
+}
+
+/*Panel tabs*/
+
+.tab_block_panal.panel-tabs {
+    position: relative;
+    bottom: 30px;
+    clear: both;
+    border-bottom: 1px solid transparent;
+}
+
+.tab_block_panal.panel-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+}
+
+.tab_block_panal.panel-tabs > li > a {
+    margin-right: 2px;
+    margin-top: 4px;
+    line-height: 0.85;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0;
+    color: #ffffff;
+}
+
+.tab_block_panal.panel-tabs > li > a:hover {
+    border-color: transparent;
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.tab_block_panal.panel-tabs > li.active > a,
+.tab_block_panal.panel-tabs > li.active > a:hover,
+.tab_block_panal.panel-tabs > li.active > a:focus {
+    color: #fff;
+    cursor: default;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.23);
+    border-bottom-color: transparent;
+}
+
+ul.tab_nav_panal.nav.panel-tabs {
+    display: block;
+}
+
+/* tab content checkbox */
+
+.tab1_section_checkbox .form-group {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.tab1_section_checkbox .form-group input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+}
+
+.tab1_section_checkbox .form-group label {
+    position: relative;
+    cursor: pointer;
+}
+
+.tab1_section_checkbox .form-group label:before {
+    content: "";
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 2px solid #0079bf;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+        inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.tab1_section_checkbox .form-group input:checked + label:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 9px;
+    width: 6px;
+    height: 14px;
+    border: solid #0079bf;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Vertical Tabs */
+
+.vertical-tabs {
+    font-size: 15px;
+    padding: 10px;
+    color: #000;
+}
+
+.vertical-tabs .nav-tabs .nav-link {
+    border-radius: 0;
+    /* background:#c10101; */
+    text-align: center;
+    font-size: 16px;
+    border: 1px solid #1d6771;
+    color: #333;
+    height: 40px;
+    width: 120px;
+}
+
+.vertical-tabs .nav-tabs .nav-link.active {
+    background-color: #1d6771 !important;
+    color: #fff;
+}
+
+.vertical-tabs .tab-content > .active {
+    display: block;
+}
+
+.vertical-tabs .nav.nav-tabs {
+    border-bottom: 0;
+    /* border-right:3px solid #000; */
+    display: block;
+    float: left;
+    margin-right: 20px;
+    padding-right: 15px;
+}
+
+.vertical-tabs .sv-tab-panel {
+    border: 2px solid #1d6771;
+    /* height:274px; */
+    padding-top: 10px;
+}
+
+@media only screen and (max-width: 420px) {
+    .titulo {
+        font-size: 22px;
+    }
+}
+
+@media only screen and (max-width: 325px) {
+    .vertical-tabs {
+        padding: 8px;
+    }
+}
+
+/* vertical tab section css start */
+
+.prev_tab {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 13px;
+    align-items: center;
+    color: #1d6771;
+    padding: 26px;
+}
+
+button.btn.btn-primary.nextBtn_cta.pull-right {
+    background: #1d6771;
+    width: 99px;
+    border-radius: 4px;
+}
+
+.btn.add_more_cta.pull-right {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 130%;
+    align-items: center;
+    text-align: center;
+    text-transform: capitalize;
+    color: #1d6771;
+    border: 1px solid #1d6771;
+}
+
+.vedio_edit {
+    display: inline-block;
+}
+
+.vedio_delite {
+    display: inline-block;
+    padding-right: 16px;
+}
+
+button.btn.add_more_cta {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 130%;
+    align-items: center;
+    text-align: center;
+    text-transform: capitalize;
+    color: #1d6771;
+    border: 1px solid #1d6771;
+}
+
+.modal-dialog.form_data_modal {
+    max-width: 700px;
+}
+
+label.form_data_lable {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: #666666;
+}
+
+.form_data_input {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    align-items: center;
+    color: #919191;
+}
+
+.prev_cta_txt {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 13px;
+    align-items: center;
+    color: #1d6771;
+    margin-right: 30px;
+    margin-top: 20px;
+}
+
+.next_cta_pre {
+    border: 1px solid;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 13px;
+    text-align: center;
+    width: 99px;
+    height: 44px;
+    background: #1d6771;
+    margin-top: 20px;
+    color: #fff;
+}
+
+/* teacher section */
+
+/* teacher profile section5 css start */
+
+.day {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 33px;
+    color: #999999;
+    padding-left: 13px;
+}
+
+.day_date {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 33px;
+    color: #666666;
+}
+
+.year_box {
+    width: 134px;
+    height: 36px;
+    background: #ffffff;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 10%);
+    border-radius: 4px;
+}
+
+.report_status {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+form.month_week_block {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 11px;
+}
+
+.year_text {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 33px;
+    color: #1d6771;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.report_status p {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: #666666;
+}
+
+form.month_week_block {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 11px;
+}
+
+.container-checkbox {
+    display: block;
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-family: Roboto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    color: #9e9b9b;
+}
+
+.arrow_block {
+    display: flex;
+}
+
+.left_arrow {
+    border-radius: 50%;
+    padding: 5px 10px;
+    background: #ffffff;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 12%);
+    width: 34px;
+}
+
+.right_arrow {
+    border-radius: 50%;
+    padding: 5px 10px;
+    background: #ffffff;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 12%);
+    width: 34px;
+    margin-left: 10px;
+}
+
+.math_border1 {
+    border-left: 5px solid #1d7dea;
+}
+
+.math_border2 {
+    border-left: 5px solid #9948ff;
+}
+
+.math_border3 {
+    border-left: 5px solid #f1ab00;
+}
+
+.math_border4 {
+    border-left: 5px solid #33bd9a;
+}
+
+.subject_card_details {
+    background: #ffffff;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 12%);
+    border-radius: 8px;
+}
+
+.subject_title_section {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 120%;
+    color: #999999;
+}
+
+.subject-title_pera {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 22px;
+    color: #999999;
+}
+.card_subject_title1 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 130%;
+    color: #333333;
+}
+.card_subject_title2 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 130%;
+    color: #0033ae;
+}
+.card_subject_title3 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 130%;
+    color: #0033ae;
+}
+.card_subject_title4 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 130%;
+    color: #33bd9a;
+}
+
+.delete_img {
+    width: 30px;
+}
+
+.edit_img {
+    width: 30px;
+}
+/* teacher profile section5 css end */
+
+
+/* calander css start */
+
+.dt_calander.profile_calander {
+    display: block;
+    border: 2px solid #c5c5c5;
+    background: #ffffff;
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 25%);
+    border-radius: 8px;
+    width: 100%;
+  }
+  .dt_calander.profile_calander td {
+    width: 12.5%;
+    }
+  
+  .day_block p {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 16px;
+    letter-spacing: 0.75px;
+    color: #049DC5;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+  
+  .day_block.date_p p {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 16px;
+    letter-spacing: 0.75px;
+    color: #999999;
+  }
+  
+  .day_block.date_p p.active {
+    border: 1px solid #1D7DEA;
+    background-color: #1D7DEA;
+    border-radius: 50%;
+    padding: 3px 5px;
+    color: #fff;
+  }
+  
+  .active_time {
+    display: inline-block;
+    text-align: center;
+    font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 19px;
+      align-items: center;
+      color: #333333;
+  }
+  .background_td{
+    background: #CDFFF2;
+  }
+  .dt_calander.profile_calander .day_block {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+  }
+  
+  .dt_calander.profile_calander .table_detail table {
+    border: 0.8px solid #999999;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 7px;
+    line-height: 14px;
+    align-items: center;
+    letter-spacing: 0.75px;
+    color: #999999;
+    width:100%;
+  }
+  
+  .dt_calander.profile_calander .table_detail tr {
+    border-bottom: 0.8px solid #999999;
+  }
+  
+  .dt_calander.profile_calander .table_detail td {
+    border-left: 0.8px solid #999999;
+    padding: 26px 5px 26px 5px;
+    text-align: center;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0.75px;
+    color: #999999;
+  }
+  .minuit{
+    color: #049DC5;
+      font-family: Nunito;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 16px;
+      letter-spacing: 0.75px;
+      margin-top: 10px;
+      margin-bottom: 5px;
+  }
+  
+  .dt_calander.profile_calander .table_detail td:nth-child(1) {
+    border-left: 0px solid #999999;
+  }
+  
+  .dt_calander.profile_calandertd .time_td {
+    width: 80px;
+  }
+  
+  .dt_calander.profile_calander .table_detail {
+    padding: 0px 10px;
+  }
+  
+  .dt_calander.profile_calander .table_detail tbody {
+    height: 500px;
+  }
+  .add_task.view_text {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 130%;
+    color: #999999;
+    text-align: right;
+  }
+  .other_session_text {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 130%;
+    color: #333333;
+  }
+  
+  .month_text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 23px;
+    margin-top: -15px;
+    color: #1D6771;
+  }
+
+@media only screen and (max-width: 768px) {
+    .list_announce {
+        width: 100%;
+    }
+    .dashboard_title {
+        display: none;
+    }
+    .topbar {
+        justify-content: space-between;
+    }
+    .subject_edit {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 10px;
+    }
+    .time_pera {
+        font-weight: 700;
+        font-size: 11px;
+        line-height: 22px;
+    }
+    .starttime_block {
+        border-right: 1px solid #e6e6e6;
+        padding: 0px 7px;
+        height: 50px;
+        vertical-align: middle;
+    }
+    .class_block {
+        border-right: 1px solid #e6e6e6;
+        padding: 0px 7px;
+        height: 50px;
+    }
+    .class_mb {
+        padding-left: 7px;
+    }
+    #sailorTable .card_heading {
+        width: 100px;
+    }
+    ul.nav.nav-pills.nav-fill.navtop {
+        width: 100%;
+        overflow: auto;
+        flex-wrap: nowrap;
+    }
+    .tab-content {
+        overflow: hidden;
+    }
+    .sidebar {
+        width: 11rem;
+        overflow: auto;
+    }
+    /* manage_class css star */
+    .test_title_div {
+        max-width: 100%;
+    }
+    .subject_edit.subject_flex {
+        display: flex;
+        justify-content: space-between;
+    }
+    .calander.d-flex {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .calander_div {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 25px;
+    }
+    .sellect_pera {
+        font-family: Nunito;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 16px;
+        text-align: inherit;
+        color: #666666;
+        padding-right: 0px;
+    }
+    .card.shadow.border_block.subject_edit {
+        display: flex;
+        justify-content: space-between;
+        padding: 0px;
+    }
+    .border_line:before {
+        content: "";
+        position: absolute;
+        border-right: 1px solid #e6e6e6;
+        right: -20px;
+        top: 0px;
+        height: 110px;
+    }
+    /* manage_class css end */
+    /* add class css start */
+    ul.nav.nav-pills.nav-fill.navtop.side_tab {
+        display: block;
+        margin: 0px 0px;
+    }
+    a.nav-link.tab_title.side_nav.inner_nav {
+        width: 120px;
+        border: none;
+        margin: 8px;
+    }
+    .list_pdf span {
+        margin-right: 0px;
+    }
+    #sailorTableArea thead,
+    tbody tr {
+        display: block;
+    }
+    /* teacher vedio css start */
+    .video_img {
+        width: 100%;
+    }
+}

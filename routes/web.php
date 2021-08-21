@@ -59,7 +59,7 @@ Route::get('/', function () {
 //     return view('welcome', compact('batches'));
 // });
 
-Auth::routes();
+Auth::routes(); 
 
 Route::get('/admin-login', 'App\Http\Controllers\Auth\LoginController@adminLogin');
 Route::get('/login', 'App\Http\Controllers\Auth\LoginController@showLoginForm');

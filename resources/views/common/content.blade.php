@@ -121,7 +121,7 @@
                             <p class="step_heading">Step -2</p>
                             <p class="step_title">Online Classes</p>
                             <p class="step-pera">
-                               Students can study from anywhere as long as there is access to an internet connection. They can work at their own pace, and can accommodate different learning styles through personalized and one-on-one guidance.
+                               Students can study anywhere as long as there is access to an internet connection. They can work at their own pace, and can accommodate different learning styles through personalized and one-on-one guidance.
                             </p>
                         </div>
                         <div class="right_image"> <img src="{{ asset('wa/assets/img/ayd2.svg') }}"></div>

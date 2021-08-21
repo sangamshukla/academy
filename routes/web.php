@@ -52,7 +52,7 @@ Route::get('/', function () {
         $query->whereDate('start_date_time', '>=', Carbon::today());
     })->latest()->take(8)->get();
     return view('welcome', compact('batches'));
-});
+})->name('/');
 // Route::get('/', function () {
 //     $batches = Batch::latest()->take(8)->get();
 
@@ -95,9 +95,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/session-list', [HomeController::class, 'sessionList']);
     Route::get('zoom/{id}', [HomeController::class, 'zoom']);
     
-     // for sendmail on homepage
+    // for sendmail on homepage
     // Route::get('/contect-mail', [HomeController::class, 'contactMail'])->name('contect-mail');
-   // Route::post('/contact-mail', [HomeController::class, 'contactMailSave'])->name('contact-mail');
+    // Route::post('/contact-mail', [HomeController::class, 'contactMailSave'])->name('contact-mail');
 
     // Teacher Controller
     Route::get('add-teacher', [TeacherController::class, 'create'])->name('add-teacher');
@@ -213,22 +213,20 @@ Route::group(['middleware' => ['auth', 'student']], function () {
         Route::post('get-session-list', [OperationController::class, 'getSeesionList'])->name('get-session-list');
         Route::post('get-student-list', [OperationController::class, 'getStudentList'])->name('get-student-list');
         Route::get('enrolled-student/{id}', [OperationController::class, 'enrolledStudent'])->name('enrolled-student');
-        
-       
     });
-    // 
+    //
       Route::group(['midddleware'=>['auth','teacheroperationadmin']], function () {
           
         // new add class
-        Route::get('create-classes', [BatchController::class, 'create'])->name('class.create');
-        Route::post('create-classes', [BatchController::class, 'store'])->name('class.store');
-        Route::get('manage-classes', [BatchController::class, 'manageClass'])->name('manage-classnew');
+          Route::get('create-classes', [BatchController::class, 'create'])->name('class.create');
+          Route::post('create-classes', [BatchController::class, 'store'])->name('class.store');
+          Route::get('manage-classes', [BatchController::class, 'manageClass'])->name('manage-classnew');
 
-        Route::get('edit-classes/{id}', [BatchController::class, 'edit'])->name('edit-class');
-        Route::post('edit-classes/{id}', [BatchController::class, 'update'])->name('update-class');
-        Route::get('show-classes/{id}', [BatchController::class, 'show'])->name('show-class');
-        Route::get('destroy-classes/{id}', [BatchController::class, 'destroy'])->name('destroy-class');
-    });
+          Route::get('edit-classes/{id}', [BatchController::class, 'edit'])->name('edit-class');
+          Route::post('edit-classes/{id}', [BatchController::class, 'update'])->name('update-class');
+          Route::get('show-classes/{id}', [BatchController::class, 'show'])->name('show-class');
+          Route::get('destroy-classes/{id}', [BatchController::class, 'destroy'])->name('destroy-class');
+      });
     
     Route::get('/payment-success/{id}', function ($id) {
         Transaction::find($id)->update(['status'=> 'yes']);
@@ -241,13 +239,13 @@ Route::group(['middleware' => ['auth', 'student']], function () {
         OrderItems::where('order_payment_id', $tx->order_id)->delete();
         OrderSessionMap::where('order_id', $tx->order_id)->delete();
         $tx->delete();
-       // session()->put('cart', []);
+        // session()->put('cart', []);
         return view('payment.failed');
     });
   Route::get('/search', function (Request $request) {
-        $users= User::search($request->search)->where('role', 'teacher')->get();
-        return response()->json($users);
-    })->name('search');
+      $users= User::search($request->search)->where('role', 'teacher')->get();
+      return response()->json($users);
+  })->name('search');
     
 Route::get('have-purchased', [PaymentController::class, 'checkPurchased'])->name('have-purchased');
 Route::post('pay-due-amount', [HomeWorkController::class, 'payDueAmount'])->name('pay-due-amount');

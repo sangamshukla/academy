@@ -10,7 +10,7 @@
   >
     <div class="sidebar-brand-icon">
       {{-- <img src="{{asset('wa/admindashboard/img/logo.png')}}" title="logo" alt="logo" /> --}}
-     <a href="/testing/public"> <img src="{{asset('wa/admindashboard/img/logo.png')}}" title="logo" alt="logo" /></a>
+     <a href="{{route('/')}}"> <img src="{{asset('wa/admindashboard/img/logo.png')}}" title="logo" alt="logo" /></a>
     </div>
   </a>
   <!-- Divider -->

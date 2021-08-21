@@ -153,7 +153,7 @@
                      <div style="cursor:pointer;" onClick="(function(){
                  
                                 
-                     window.location.href = '/testing/public/student-details/{{ $batch->id }}';
+                     window.location.href = '/student-details/{{ $batch->id }}';
                         
                     })();return false;" class="col-md-3 filter_box filter {{ $batch->classmaster->id  }}">
                             <div  class="single-district card{{ $i }}">
@@ -216,7 +216,7 @@
                                     View details
                                 </a>
                                 {{-- @php $i = 1 @endphp --}}
-                                <a href="{{ url('/testing/public/student-details', $batch->id)}}" class="price_card price_bg{{ $i }}">
+                                <a href="{{ url('/student-details', $batch->id)}}" class="price_card price_bg{{ $i }}">
                                     &pound; {{ $batch->batch_price_per_session }} 
                                 </a>
                                 {{-- @php i++ @endphp --}}

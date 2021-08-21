@@ -18,7 +18,7 @@ $("#generate-session").on("click", function () {
     $("#end_date_time").val(firstDate);
     var row = `
     <div style="margin-top:80px;">
-        <span class="cross_img" style="float:right;" ><img onclick="$(this).closest(\'div\').remove(); deletePlusButton();" src="/testing/public/wa/admindashboard/img/cross-img.svg"></span>
+        <span class="cross_img" style="float:right;" ><img onclick="$(this).closest(\'div\').remove(); deletePlusButton();" src="/wa/admindashboard/img/cross-img.svg"></span>
             <div class="card-body add_class_block add_sectionbox">
                 <form class="form_block">
                     <div class="form-group">
@@ -64,7 +64,7 @@ $("#generate-session").on("click", function () {
         minDate: "-1970/01/01", //yesterday is minimum date(for today use 0 or -1970/01/01)
     });
     var subject_id_value = $("#subject_id").val();
-    $.get("/testing/public/api/topics/" + subject_id_value, function (data, status) {
+    $.get("/api/topics/" + subject_id_value, function (data, status) {
         $("#topic_id").empty();
         $.each(data, function (index, subcategory) {
             $("#topic_id").append(
@@ -139,7 +139,7 @@ function getAvailability(e, id) {
     var teacher_id = $("#class_name").val();
     var duration = $("#duration_per_sessions_id").val();
     $.get(
-        "/testing/public/find/teacher/" +
+        "/find/teacher/" +
             teacher_id +
             "/" +
             batch_start_date_time +
@@ -169,7 +169,7 @@ function addRow() {
     var value_session = "Session-" + value_session;
     var row = `
     <div>
-        <span class="cross_img" style="float:right;" ><img onclick="$(this).closest(\'div\').remove();" src="/testing/public/wa/admindashboard/img/cross-img.svg"></span>
+        <span class="cross_img" style="float:right;" ><img onclick="$(this).closest(\'div\').remove();" src="/wa/admindashboard/img/cross-img.svg"></span>
         <div class="card-body add_class_block add_sectionbox">
             <form class="form_block">
                 <div class="form-group">
@@ -259,7 +259,7 @@ function addRow() {
         }
     }
     var subject_id_value = $("#subject_id").val();
-    $.get("/testing/public/api/topics/" + subject_id_value, function (data, status) {
+    $.get("/api/topics/" + subject_id_value, function (data, status) {
         $(`#topic_id_${index_val}`).empty();
         $.each(data, function (index, subcategory) {
             $(`#topic_id_${index_val}`).append(
@@ -277,7 +277,7 @@ function addRow() {
 //  <button type="button" class="btn del btn-danger btn-xs">x</button>
 $("#select_year").on("change", function () {
     var year_id_value = $("#select_year").val();
-    $.get("/testing/public/api/subjects/" + year_id_value, function (data, status) {
+    $.get("/api/subjects/" + year_id_value, function (data, status) {
         $("#subject_id").empty();
         $("#subject_id").append('<option value="">Choose Subject</option>');
         $.each(data, function (index, subcategory) {
@@ -298,7 +298,7 @@ $("#class_name").on("change", function () {
     var teacher_id = $("#class_name").val();
     var duration = $("#duration_per_sessions_id").val();
     $.get(
-        "/testing/public/api/teacher/" +
+        "/api/teacher/" +
             teacher_id +
             "/" +
             batch_start_date_time +
@@ -356,7 +356,7 @@ $("#class_date_time").on("change", function () {
     }
 
     $.get(
-        "/testing/public/api/teacher/" +
+        "/api/teacher/" +
             teacher_id +
             "/" +
             batch_start_date_time +
@@ -399,7 +399,7 @@ function validateDateTime() {
 
 $("#subject_id").change(function () {
     var subject_id_value = $("#subject_id").val();
-    $.get("/testing/public/api/topics/" + subject_id_value, function (data, status) {
+    $.get("/api/topics/" + subject_id_value, function (data, status) {
         $("#topic_id").empty();
         $.each(data, function (index, subcategory) {
             $("#topic_id").append(
@@ -455,7 +455,7 @@ $("#duration_per_sessions_id").on("change", function () {
     var teacher_id = $("#class_name").val();
     var duration = $("#duration_per_sessions_id").val();
     $.get(
-        "/testing/public/api/teacher/" +
+        "/api/teacher/" +
             teacher_id +
             "/" +
             batch_start_date_time +
@@ -519,7 +519,7 @@ function getAvailabilities(datetimeprovided) {
     var teacher_id = $("#class_name").val();
     var duration = $("#duration_per_sessions_id").val();
     $.get(
-        "/testing/public/find/teacher/" +
+        "/find/teacher/" +
             teacher_id +
             "/" +
             batch_start_date_time +
@@ -670,7 +670,7 @@ $(document).ready(function () {
             // form validation ends here
             if (valid) {
                 $("#showLoader").show();
-                $.post("/testing/public/create-classes", {
+                $.post("/create-classes", {
                     name: $("#class_name").val(),
                     location: $("#location").val(),
                     class_settings_id: $("#class_settings_id").val(),
@@ -713,7 +713,7 @@ $(document).ready(function () {
                         .get(),
                 }).done(function (msg) {
                     $("#showLoader").hide();
-                    window.location = "/testing/public/manage-classes";
+                    window.location = "/manage-classes";
                 });
             }
         }, 5000);

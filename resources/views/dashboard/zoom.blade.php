@@ -1,7 +1,7 @@
 @extends('layouts.student')
 @section('style')
-<link href="/testing/public/wa/dashboard/css/student-admin.css" rel="stylesheet">
-<link href="/testing/public/wa/dashboard/css/session.css" rel="stylesheet">
+<link href="/wa/dashboard/css/student-admin.css" rel="stylesheet">
+<link href="/wa/dashboard/css/session.css" rel="stylesheet">
 @endsection
 @section('content')
 

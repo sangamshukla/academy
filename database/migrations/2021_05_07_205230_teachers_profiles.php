@@ -13,9 +13,7 @@ class TeachersProfiles extends Migration
      */
     public function up()
     {
-        Schema::create(
-            'teacher_profiles',
-            function (Blueprint $table) {
+        Schema::create('teacher_profiles', function (Blueprint $table) {
                 $table->id();
                 $table->string('teacher_profile_photo')->nullable();
                 $table->foreignId('user_id')->unique()->constrained('users')->onUpdate('cascade');

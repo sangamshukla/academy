@@ -1,6 +1,6 @@
 <div style="border: 2px solid green;">
 <div style="text-align: center;">
-    <!--<img src="{{'testing/public/wa/admindashboard/img/logo.png'}}">-->
+    <!--<img src="{{'/wa/admindashboard/img/logo.png'}}">-->
     
      
 </div><br>

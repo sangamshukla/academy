@@ -44,7 +44,7 @@
                                 @endif
                     </div>
                     <div class="left_block">
-                         <a href="http://pariharz.com/testing/public/teacher-calander/<?php echo $batch->assignteacher->id; ?>">
+                         <a href="http://pariharz.com/teacher-calander/<?php echo $batch->assignteacher->id; ?>">
                         <p class="name_section">{{ Str::ucfirst($batch->assignteacher->name) }} &nbsp;&nbsp;&nbsp;&nbsp;
                         {{ $batch->status != 1 ? 'Location : '.$batch->location : '' }}
                         </p></a>
@@ -185,7 +185,7 @@
                             @php $i=1 @endphp
                             @foreach($allBatches as $relatedBatch)
                             <div style="cursor:pointer;" onClick="(function(){
-                                window.location.href = '/testing/public/student-details/{{ $relatedBatch->id }}';
+                                window.location.href = '/student-details/{{ $relatedBatch->id }}';
                             })();return false;" class="swiper-slide card">
                                 <div class="single-district card{{ $i }} slid_card"> 
                                     <div class="card_img mb-3">
@@ -237,7 +237,7 @@
                                         <a href="#" class="view_detail">
                                             View details
                                         </a>
-                                        <a href="{{ url('/testing/public/student-details', $batch->id)}}" class="price_card price_bg{{ $i }}">
+                                        <a href="{{ url('/student-details', $batch->id)}}" class="price_card price_bg{{ $i }}">
                                             {{-- £ 150* --}}
                                             &pound; {{ $batch->batch_price_per_session }}
                                         </a>
@@ -269,7 +269,7 @@
 @if(isset($cart[$batch->id]))
 <script>
  $("#buyNow").click(function(){   
-    window.location.href="/testing/public/buy-now";
+    window.location.href="/buy-now";
  });
 </script>
 @else
@@ -302,7 +302,7 @@
                     $('input[name="session_id[]"]:checked').each(function() {
                     checked += ','+this.value;
                     });
-                    window.location.href = "/testing/public/add-to-cart/{{ $batch->id }}/?session_id="+checked
+                    window.location.href = "/add-to-cart/{{ $batch->id }}/?session_id="+checked
                 }
             });
             
@@ -332,7 +332,7 @@
                     $('input[name="session_id[]"]:checked').each(function() {
                     checked += ','+this.value;
                     });
-                    window.location.href = "/testing/public/add-to-cart/{{ $batch->id }}/?session_id="+checked
+                    window.location.href = "/add-to-cart/{{ $batch->id }}/?session_id="+checked
             });
             
         });

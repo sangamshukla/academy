@@ -31,6 +31,9 @@ class CreateBatchesTable extends Migration
             $table->string('status')->nullable();
             $table->string('location')->nullable();
             $table->string('sell_each_session')->default('0');
+            $table->integer('created_by')->nullable();
+            $table->integer('class_settings_id')->nullable();
+            $table->integer('duration_per_session')->nullable();
             $table->timestamps();
         });
     }

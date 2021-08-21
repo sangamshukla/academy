@@ -2,9 +2,9 @@
   <ul class=" student_dashboard navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/testing/public">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('/')}}">
         <div class="sidebar-brand-icon">
-          <img src="/testing/public/wa/dashboard/img/logo.png" title="logo" alt="logo">
+          <img src="/wa/dashboard/img/logo.png" title="logo" alt="logo">
         </div>
     </a>
     <!-- Divider -->
@@ -13,7 +13,7 @@
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
         <a class="nav-link" href="{{ url('/student-dashboard')}}">
-            <div class="nav_images"><img src="/testing/public/wa/dashboard/img/dasboard.svg"> </div>
+            <div class="nav_images"><img src="/wa/dashboard/img/dasboard.svg"> </div>
             <br>
             <span>Dashboard</span></a>
     </li>
@@ -22,7 +22,7 @@
     <hr class="sidebar-divider">
     <li class="nav-item">
         <a class="nav-link collapsed" href="#">
-            <div class="nav_images"><img src="/testing/public/wa/dashboard/img/wall-clock 1.svg"> </div>
+            <div class="nav_images"><img src="/wa/dashboard/img/wall-clock 1.svg"> </div>
             <br>
             <span>Session</span>
         </a>
@@ -30,7 +30,7 @@
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="{{ url('live-session')}}">
-            <div class="nav_images"><img src="/testing/public/wa/dashboard/img/teacher.svg"> </div>
+            <div class="nav_images"><img src="/wa/dashboard/img/teacher.svg"> </div>
             <br>
             <span>Teachers</span>
         </a>
@@ -38,7 +38,7 @@
     <!-- Nav Item - Charts -->
     <li class="nav-item">
         <a class="nav-link" href="{{ url('packages-details')}}">
-            <div class="nav_images"><img src="/testing/public/wa/dashboard/img/Online course.svg"> </div>
+            <div class="nav_images"><img src="/wa/dashboard/img/Online course.svg"> </div>
             <br>
 
             <span>Courses</span></a>
@@ -47,7 +47,7 @@
     <!-- Nav Item - Tables -->
     <li class="nav-item">
         <a class="nav-link" href="{{ url('fullcalender')}}">
-            <div class="nav_images"><img src="/testing/public/wa/dashboard/img/calender.svg"> </div>
+            <div class="nav_images"><img src="/wa/dashboard/img/calender.svg"> </div>
             <br>
             <span>Calender</span></a>
     </li>

@@ -77,7 +77,7 @@
                 @php $i = 1; @endphp
                 @foreach($students as $student)
                 <div style="cursor:pointer;" onClick="(function(){
-                    window.location.href = '/testing/public/student-details/{{ $student->id }}';
+                    window.location.href = '/student-details/{{ $student->id }}';
                      })();return false;" class="col-lg-3 mb-4">
                     <div class="card subject{{ $i }}">
                         <div class="subject_img_block">

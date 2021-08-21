@@ -132,7 +132,7 @@ class PaymentController extends Controller
      
          \Stripe\Stripe::setApiKey('sk_test_51JAvqVSBWoxgIfNeH50XuVJ06GJPhUNyB9jQJLgUQOtYmjTyVK7cLVhbLGOvgdMgsyIwX4jbUDcjokHQYaPcTaBv0018VNQaS7');
         header('Content-Type: application/json');
-        $YOUR_DOMAIN = 'http://pariharz.com/testing/public';
+        $YOUR_DOMAIN = 'academy.pariharz.com';
         
         $checkout_session = \Stripe\Checkout\Session::create([
         'payment_method_types' => ['card'],
@@ -142,7 +142,7 @@ class PaymentController extends Controller
             'unit_amount' => $amount*100,
             'product_data' => [
                 'name' => 'Wallington Session',
-                'images' => ["http://pariharz.com/testing/public/wa/assets/img/logo.png"],
+                'images' => ["http://pariharz.com/wa/assets/img/logo.png"],
             ],
             ],
             'quantity' => 1,

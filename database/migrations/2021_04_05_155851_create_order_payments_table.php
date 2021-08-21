@@ -17,6 +17,7 @@ class CreateOrderPaymentsTable extends Migration
             $table->id();
             $table->integer('student_id');
             $table->decimal('order_amount', 8, 2);
+            $table->decimal('paid_amount');
             $table->string('applied_coupon_code')->nullable();
             $table->timestamps();
         });

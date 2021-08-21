@@ -545,7 +545,7 @@
                         <div class="col-xl-4 col-lg-4 mb-4 ">
                             <div class="profile_details card py-4 px-4 text-center thirdbox">
                                <div class="profile">
-                                <div class="profile_icon"><img src='/testing/public/wa/dashboard/sessionlist/img/user.png'></div>
+                                <div class="profile_icon"><img src='/wa/dashboard/sessionlist/img/user.png'></div>
                                 <p class="name mb-1">{{ auth()->user()->name }}</p>
                                 <p class="class_section"><span>Year:</span><span>{{ $batch->name }}</span></p>
                                 <a href="#" class="profile"><span>view Profile</span></a>

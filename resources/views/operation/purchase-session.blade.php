@@ -165,7 +165,7 @@ function markChecked()
                     checked += ','+this.value;
                     });
                     var studentId = $('#select-student').val();
-                    window.location.href = "/testing/public/operation-add-to-cart/{{ $batch->id }}/?session_id="+checked+"&student_id="+studentId+"&paid_amount="+paid_amount
+                    window.location.href = "/operation-add-to-cart/{{ $batch->id }}/?session_id="+checked+"&student_id="+studentId+"&paid_amount="+paid_amount
                 }
             });
 

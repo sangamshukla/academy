@@ -28,7 +28,7 @@
                     @php $i=1 @endphp
                     @foreach($batches as $batch)
                      <div style="cursor:pointer;" onClick="(function(){
-                        window.location.href = '/testing/public/student-details/{{ $batch->id }}';
+                        window.location.href = '/student-details/{{ $batch->id }}';
                         
                     })();return false;" class="col-md-3 filter_box filter {{ $batch->classmaster->name  }}">
                             <div  class="single-district card{{ $i }}">

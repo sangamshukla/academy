@@ -1,11 +1,12 @@
 <?php
 
-use App\Models\Subject;
+use App\Models\AssignedHomeWork;
+use App\Models\AssignedHomeWorkStudent;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTopicsTable extends Migration
+class CreateHomeWorkAnswerMapsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +15,11 @@ class CreateTopicsTable extends Migration
      */
     public function up()
     {
-        Schema::create('topics', function (Blueprint $table) {
+        Schema::create('home_work_answer_maps', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            // $table->integer('subject_id');
-            // same as above
-            $table->foreignIdFor(Subject::class);
+            $table->foreignId(AssignedHomeWork::class);
+            $table->foreignId(AssignedHomeWorkStudent::class);
+            $table->string('image_path');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateTopicsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('topics');
+        Schema::dropIfExists('home_work_answer_maps');
     }
 }

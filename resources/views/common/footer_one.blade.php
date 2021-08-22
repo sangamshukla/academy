@@ -41,8 +41,9 @@
                                 <!-- msg -->
                                 <div class="field">
                                     
-                                    <input type="text" name="msg" id="msg"
-                                        placeholder="Write Message">
+                                        <textarea name="msg" id="msg"
+                                        placeholder="Write Message" rows="10">
+                                    </textarea>
                                     <label for="msg">Message</label>
                                 </div>
 

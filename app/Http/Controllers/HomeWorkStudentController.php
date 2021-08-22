@@ -92,8 +92,11 @@ class HomeWorkStudentController extends Controller
       if($have_submitted)
         {
           $homework_contents=$this->get_homework_content($student_id, $id);
+            // dd($homework_contents);
+
           $homework_content=$homework_contents->image_path;
           $homework_content='homeworks' . $id.'/'.$homework_content;
+        //   dd($homework_content); 
           $checked_pdfpaths=AssignedHomeWorkAnswerMap::where('id', $homework_contents->id)->select('checked_content')->get();
             if($checked_pdfpaths)
             {

@@ -77,12 +77,20 @@ class HomeWorkController extends Controller
             ->where('is_active', 1)->get();
         $images = TeacherProfile::where('user_id', $id)->select('teacher_profile_photo')->get();
         // dd($pdfFilesAll);
-        $homework_id=AssignedHomeWork::where('session_id', $id)->get();
-        foreach($homework_id as $homework_id)
+        $homework_ids=AssignedHomeWork::where('session_id', $id)->get();
+        if($homework_ids->isNotEmpty())
         {
-          $homework_id=$homework_id->id;
+            foreach($homework_ids as $homework_id)
+            {
+              $homework_id=$homework_id->id;
+            }
+            $assigned_homeworks=$this->getHomeWork($homework_id);
         }
-        $assigned_homeworks=$this->getHomeWork($homework_id);
+        else
+        {
+            $homework_id=NULL;  
+            $assigned_homeworks=NULL;
+        }
         return view('homework.start-session', compact('allSessions', 'assigned_homeworks' ,'session', 'students', 'pdfFilesAll', 'images'));
     }
     public function saveStartSession(Request $request)

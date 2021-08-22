@@ -110,11 +110,12 @@ class HomeController extends Controller
             // }
             $id = auth()->user()->id;
             // dd($id);
-            $status = DB::table('transactions')
-                ->join('order_payments', 'transactions.order_id', '=', 'order_payments.id')
-                ->select('transactions.*', 'order_payments.*')
-                ->where('order_payments.student_id', $id)
-                ->get();
+            // $status = DB::table('transactions')
+            //     ->join('order_payments', 'transactions.order_id', '=', 'order_payments.id')
+            //     ->select('transactions.*', 'order_payments.*')
+            //     ->where('order_payments.student_id', $id)
+            //     ->get();
+            $status=OrderPayment::where('student_id', auth()->user()->id)->exists();
             // dd($status);
             $paid_amount = DB::table('order_payments')->where('student_id','=', auth()->user()->id)->sum('paid_amount');
             $total_amount = DB::table('order_payments')->where('student_id','=', auth()->user()->id)->sum('order_amount');
@@ -153,13 +154,7 @@ class HomeController extends Controller
             ->join('assigned_homework_students','assigned_homework_students.assigned_home_work_id','=','assigned_home_works.id')
             ->where('assigned_homework_students.student_id',auth()->user()->id)
             ->get());
-                // dd($purchased_sessions);
-                // foreach($tomorrow as $batch)
-                // {
-                //     $s= $batch->topics_name;
-                //     dump($s);
-                // }
-                // // die();
+            
             $marks=$this->getScore(auth()->user()->id);
             return view('dashboard.student', compact(
                 'students',

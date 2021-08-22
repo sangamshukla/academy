@@ -46,16 +46,8 @@
 
                 <div class="mt-4">
                     <p class="mr-2 list_announce">
-                        <span>https://www.w3schools.com/cssref</span>
-                        <span>go</span>
+                        <span>No Annoucement for you. </span>
                     </p>
-                    <p class="mr-2 list_announce">
-                        <span>https://www.w3schools.com/cssref</span>
-                        <span>go</span>
-                    </p>
-                    <p class="mr-2 list_announce">
-                        <span>https://www.w3schools.com/cssref</span>
-                        <span>go</span>
                     </p>
                 </div>
             </div>

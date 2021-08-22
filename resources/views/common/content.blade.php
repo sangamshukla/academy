@@ -149,7 +149,7 @@
 
                 <div class="row mt-4">
                     @php $i=1 @endphp
-                    @foreach($batches as $batch)
+                    @foreach($relatedBatches as $batch)
                      <div style="cursor:pointer;" onClick="(function(){
                  
                                 

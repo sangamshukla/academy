@@ -57,7 +57,7 @@
 <!-- Content Row -->
 
 <!-- subject card Row -->
-<section style="background:#fff; padding: 20px;">
+<section style="background:#fff; padding: 20px;">   
     <div class="row">
         <div class="col-lg-12 mb-4">
             <div class="card mb-4">

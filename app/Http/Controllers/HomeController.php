@@ -128,7 +128,7 @@ class HomeController extends Controller
             $couseBatches = OrderSessionMap::whereIn('order_id', $courses)->pluck('batch_id');
             $batches = Batch::whereIn('id', $couseBatches)->latest()->get();
             // dd($couseBatches);
-            
+            $relatedBatches=Batch::all();
             // $today = Batch::whereIn('id', $couseBatches)->whereDate('batch_start_date', Carbon::today())->get();
             
             
@@ -154,7 +154,6 @@ class HomeController extends Controller
             ->join('assigned_homework_students','assigned_homework_students.assigned_home_work_id','=','assigned_home_works.id')
             ->where('assigned_homework_students.student_id',auth()->user()->id)
             ->get());
-            
             $marks=$this->getScore(auth()->user()->id);
             return view('dashboard.student', compact(
                 'students',
@@ -169,6 +168,7 @@ class HomeController extends Controller
                 'purchased_sessions',
                 'assigned_homework',
                 'marks',
+                'relatedBatches'
                 
             ));
         }

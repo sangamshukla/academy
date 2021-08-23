@@ -4,15 +4,18 @@ namespace Qoraiche\MailEclipse;
 
 use ErrorException;
 use Illuminate\Database\Eloquent\Factory as EloquentFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Mail\Markdown;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
+use Qoraiche\MailEclipse\Utils\Replacer;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use ReeceM\Mocker\Mocked;
@@ -25,7 +28,9 @@ use RegexIterator;
  */
 class MailEclipse
 {
-    public static $view_namespace = 'maileclipse';
+    public const VIEW_NAMESPACE = 'maileclipse';
+
+    public const VERSION = '3.4.0';
 
     /**
      * Default type examples for being passed to reflected classes.
@@ -38,6 +43,8 @@ class MailEclipse
         'bool' => false,
         'float' => 3.14159,
     ];
+
+    public static $traversed = 0;
 
     /**
      * @return array
@@ -73,7 +80,7 @@ class MailEclipse
                 return $value->template_slug === $template->template_slug;
             }));
 
-            $template_view = self::$view_namespace.'::templates.'.$templateSlug;
+            $template_view = self::VIEW_NAMESPACE.'::templates.'.$templateSlug;
             $template_plaintext_view = $template_view.'_plain_text';
 
             if (View::exists($template_view)) {
@@ -159,7 +166,7 @@ class MailEclipse
 
             self::saveTemplates(collect($newForm));
 
-            $template_view = self::$view_namespace.'::templates.'.$request->templateslug;
+            $template_view = self::VIEW_NAMESPACE.'::templates.'.$request->templateslug;
             $template_plaintext_view = $template_view.'_plain_text';
 
             if (View::exists($template_view)) {
@@ -191,7 +198,7 @@ class MailEclipse
         $template = self::getTemplates()->where('template_slug', $templateSlug)->first();
 
         if ($template !== null) {
-            $template_view = self::$view_namespace.'::templates.'.$template->template_slug;
+            $template_view = self::VIEW_NAMESPACE.'::templates.'.$template->template_slug;
             $template_plaintext_view = $template_view.'_plain_text';
 
             if (View::exists($template_view)) {
@@ -200,7 +207,7 @@ class MailEclipse
 
                 /** @var Collection $templateData */
                 $templateData = collect([
-                    'template' => self::templateComponentReplace(file_get_contents($viewPath), true),
+                    'template' => Replacer::toEditor(file_get_contents($viewPath)),
                     'plain_text' => View::exists($template_plaintext_view) ? file_get_contents($textViewPath) : '',
                     'slug' => $template->template_slug,
                     'name' => $template->template_name,
@@ -239,7 +246,7 @@ class MailEclipse
             ]);
         }
 
-        $view = self::$view_namespace.'::templates.'.$request->template_name;
+        $view = self::VIEW_NAMESPACE.'::templates.'.$request->template_name;
         $templateName = Str::camel(preg_replace('/\s+/', '_', $request->template_name));
 
         if (! view()->exists($view) && ! self::getTemplates()->contains('template_slug', '=', $templateName)) {
@@ -253,13 +260,13 @@ class MailEclipse
                     'template_skeleton' => $request->template_skeleton,
                 ]));
 
-            $dir = resource_path('views/vendor/'.self::$view_namespace.'/templates');
+            $dir = resource_path('views/vendor/'.self::VIEW_NAMESPACE.'/templates');
 
             if (! File::isDirectory($dir)) {
                 File::makeDirectory($dir, 0755, true);
             }
 
-            file_put_contents($dir."/{$templateName}.blade.php", self::templateComponentReplace($request->content));
+            file_put_contents($dir."/{$templateName}.blade.php", Replacer::toBlade($request->content));
 
             file_put_contents($dir."/{$templateName}_plain_text.blade.php", $request->plain_text);
 
@@ -277,110 +284,11 @@ class MailEclipse
         ]);
     }
 
-    /**
-     * @return Collection
-     */
-    public static function getTemplateSkeletons(): Collection
-    {
-        return collect(config('maileclipse.skeletons'));
-    }
-
-    /**
-     * @param $type
-     * @param $name
-     * @param $skeleton
-     * @return array
-     */
-    public static function getTemplateSkeleton($type, $name, $skeleton)
-    {
-        $skeletonView = self::$view_namespace."::skeletons.{$type}.{$name}.{$skeleton}";
-
-        if (view()->exists($skeletonView)) {
-            $skeletonViewPath = View($skeletonView)->getPath();
-            $templateContent = file_get_contents($skeletonViewPath);
-
-            return [
-                'type' => $type,
-                'name' => $name,
-                'skeleton' => $skeleton,
-                'template' => self::templateComponentReplace($templateContent, true),
-                'view' => $skeletonView,
-                'view_path' => $skeletonViewPath,
-            ];
-        }
-    }
-
-    /**
-     * @param $content
-     * @param bool $reverse
-     * @return string|string[]|null
-     */
-    protected static function templateComponentReplace($content, $reverse = false)
-    {
-        if ($reverse) {
-            $patterns = [
-                '/@component/i',
-                '/@endcomponent/i',
-                '/@yield/',
-                '/@section/',
-                '/@endsection/',
-                '/@extends/',
-                '/@parent/',
-                '/@slot/',
-                '/@endslot/',
-            ];
-
-            $replacements = [
-                '[component]: # ',
-                '[endcomponent]: # ',
-                '[yield]: # ',
-                '[section]: # ',
-                '[endsection]: # ',
-                '[extends]: # ',
-                '[parent]: # ',
-                '[slot]: # ',
-                '[endslot]: # ',
-            ];
-        } else {
-            $patterns = [
-                '/\[component]:\s?#\s?/i',
-                '/\[endcomponent]:\s?#\s?/i',
-                '/\[yield]:\s?#\s?/i',
-                '/\[section]:\s?#\s?/i',
-                '/\[endsection]:\s?#\s?/i',
-                '/\[extends]:\s?#\s?/i',
-                '/\[parent]:\s?#\s?/i',
-                '/\[slot]:\s?#\s?/i',
-                '/\[endslot]:\s?#\s?/i',
-            ];
-
-            $replacements = [
-                '@component',
-                '@endcomponent',
-                '@yield',
-                '@section',
-                '@endsection',
-                '@extends',
-                '@parent',
-                '@slot',
-                '@endslot',
-            ];
-        }
-
-        return preg_replace($patterns, $replacements, $content);
-    }
-
-    /**
-     * @param $viewPath
-     * @return string|string[]|null
-     */
     protected static function markdownedTemplate($viewPath)
     {
         $viewContent = file_get_contents($viewPath);
 
-        return self::templateComponentReplace($viewContent, true);
-
-        // return preg_replace($patterns, $replacements, $viewContent);
+        return Replacer::toEditor($viewContent);
     }
 
     /**
@@ -388,11 +296,11 @@ class MailEclipse
      */
     public static function markdownedTemplateToView($save = true, $content = '', $viewPath = '', $template = false)
     {
-        if ($template && View::exists(self::$view_namespace.'::templates.'.$viewPath)) {
-            $viewPath = View(self::$view_namespace.'::templates.'.$viewPath)->getPath();
+        if ($template && View::exists(self::VIEW_NAMESPACE.'::templates.'.$viewPath)) {
+            $viewPath = View(self::VIEW_NAMESPACE.'::templates.'.$viewPath)->getPath();
         }
 
-        $replaced = self::templateComponentReplace($content);
+        $replaced = Replacer::toBlade($content);
 
         if (! $save) {
             return $replaced;
@@ -427,7 +335,7 @@ class MailEclipse
                 $instance = new $namespace;
             }
 
-            return self::renderPreview($simpleview, self::$view_namespace.'::draft.'.$viewName, $template, $instance);
+            return self::renderPreview($simpleview, self::VIEW_NAMESPACE.'::draft.'.$viewName, $template, $instance);
         }
 
         return false;
@@ -684,7 +592,13 @@ class MailEclipse
                     if (isset($arg['is_instance'])) {
                         $model = $arg['instance'];
 
-                        $resolvedTypeHints = self::resolveFactory($eloquentFactory, $model, $resolvedTypeHints);
+                        self::$traversed = 0;
+
+                        $factoryModel = self::resolveFactory($eloquentFactory, $model);
+
+                        $resolvedTypeHints[] = $factoryModel
+                            ? self::hydrateRelations($eloquentFactory, $factoryModel)
+                            : $factoryModel;
                     } elseif (isset($arg['is_array'])) {
                         $resolvedTypeHints[] = [];
                     } else {
@@ -698,6 +612,8 @@ class MailEclipse
             $reflector = new ReflectionClass($mailable);
 
             if ($args->isNotEmpty()) {
+                $resolvedTypeHints = array_filter($resolvedTypeHints);
+
                 return $reflector->newInstanceArgs($resolvedTypeHints);
             }
 
@@ -955,16 +871,19 @@ class MailEclipse
         }
 
         // Avoid MailMail as a class name suffix
-        if (substr_compare(strtolower($input), 'mail', -4) === 0) {
-            $suffix = '';
-        }
+        $suffix = substr_compare($input, 'mail', -4, 4, true) === 0
+            ? ''
+            : $suffix;
 
         /**
          * - Suffix is needed to avoid usage of reserved word.
          * - Str::slug will remove all forbidden characters.
          */
-        $name = ucwords(Str::camel(Str::slug($input, '_'))).$suffix;
+        $name = Str::studly(Str::slug($input, '_')).$suffix;
 
+        /**
+         * Removal of reserved keywords.
+         */
         if (! preg_match('/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/', $name) ||
             substr_compare($name, $suffix, -strlen($suffix), strlen($suffix), true) !== 0
         ) {
@@ -975,30 +894,135 @@ class MailEclipse
     }
 
     /**
+     * Resolves the factory result for a model and returns the hydrated instance.
+     *
+     * @todo Allow the values for the Make command to be passed down by the pkg.
+     *
      * @param $eloquentFactory
      * @param $model
-     * @param array $resolvedTypeHints
-     * @return array
+     *
+     * @return null|object
      */
-    private static function resolveFactory($eloquentFactory, $model, array $resolvedTypeHints): array
+    private static function resolveFactory($eloquentFactory, $model): ?object
     {
-        if (config('maileclipse.factory')) {
-            // factory builder backwards compatibility
-            if (isset($eloquentFactory[$model])) {
-                $resolvedTypeHints[] = factory($model)->make();
-            }
-
-            /** @var array|false $modelHasFactory */
-            $modelHasFactory = class_uses($model);
-
-            if (isset($modelHasFactory['Illuminate\Database\Eloquent\Factories\HasFactory'])) {
-                $resolvedTypeHints[] = $model::factory()->make();
-            }
-        } else {
-            $resolvedTypeHints[] = app($model);
+        if (! config('maileclipse.factory')) {
+            return app($model);
         }
 
-        return $resolvedTypeHints;
+        // factory builder backwards compatibility
+        if (isset($eloquentFactory[$model]) && function_exists('factory')) {
+            return call_user_func_array('factory', [$model])->make();
+        }
+
+        /** @var array|false $modelHasFactory */
+        $modelHasFactory = class_uses($model);
+
+        if (isset($modelHasFactory['Illuminate\Database\Eloquent\Factories\HasFactory'])) {
+            return $model::factory()->make();
+        }
+
+        return null;
+    }
+
+    /**
+     * single level relation resolving for a model.
+     * It will load the relations or set to mocked class.
+     *
+     * @param mixed $eloquentFactory
+     * @param mixed $factoryModel
+     *
+     * @return null|object
+     */
+    private static function hydrateRelations($eloquentFactory, $factoryModel): ?object
+    {
+        if (config('maileclipse.relation_depth') === 0) {
+            return $factoryModel;
+        }
+
+        if (self::$traversed >= 5) {
+            Log::warning('[MailEclipse]: more than 5 calls to relation loader', ['last_model' => get_class($factoryModel) ?? null]);
+            self::$traversed = 6;
+
+            return $factoryModel;
+        }
+
+        $model = new ReflectionClass(Model::class);
+
+        self::$traversed += 1;
+
+        collect((new ReflectionClass($factoryModel))->getMethods())
+            ->pluck('name')
+            ->diff(collect($model->getMethods())->pluck('name'))
+            ->filter(function ($method) use ($factoryModel) {
+                return rescue(
+                    function () use ($factoryModel, $method) {
+                        $parents = class_parents($factoryModel->$method());
+
+                        return isset($parents["Illuminate\Database\Eloquent\Relations\Relation"]);
+                    },
+                    false,
+                    false
+                );
+            })
+            ->each(function ($relationName) use (&$factoryModel, $eloquentFactory) {
+                $factoryModel = self::loadRelations($relationName, $factoryModel, $eloquentFactory);
+            });
+
+        return $factoryModel;
+    }
+
+    /**
+     * Load the relations for the model and the relation.
+     *
+     * @todo Account for the many type relations, link back to parent model for belongsTo
+     *
+     * @param mixed $relationName
+     * @param mixed $factoryModel
+     * @param mixed|null $eloquentFactory
+     *
+     * @return null|object
+     */
+    public static function loadRelations($relationName, $factoryModel, $eloquentFactory = null): ?object
+    {
+        try {
+            $factoryModel->load($relationName);
+
+            $loadIfIterable = is_iterable($factoryModel->$relationName) && count($factoryModel->$relationName) <= 0;
+
+            if (is_null($factoryModel->$relationName) || $loadIfIterable) {
+                $related = $factoryModel->$relationName()->getRelated();
+                $relatedFactory = self::resolveFactory($eloquentFactory, get_class($related));
+
+                if (self::$traversed <= config('maileclipse.relation_depth')) {
+                    if (! $loadIfIterable) {
+                        $relatedFactory = self::hydrateRelations($eloquentFactory, $relatedFactory);
+                    } else {
+                        $models = collect();
+
+                        for ($loads = 0; $loads < 3; $loads++) {
+                            $models->push(self::hydrateRelations($eloquentFactory, $relatedFactory));
+                        }
+
+                        $relatedFactory = $models;
+                    }
+                }
+
+                $factoryModel->setRelation(
+                    $relationName,
+                    $relatedFactory
+                );
+            }
+        } catch (\Throwable $th) {
+            $factoryModel->setRelation(
+                $relationName,
+                new Mocked(
+                    'relation_is_null',
+                    \ReeceM\Mocker\Utils\VarStore::singleton()
+                )
+            );
+        } finally {
+            return $factoryModel;
+        }
     }
 
     /**
@@ -1022,7 +1046,7 @@ class MailEclipse
             return ($mailableInstance)->render();
         }
 
-        return view(self::$view_namespace.'::previewerror', ['errorMessage' => 'No template associated with this mailable.']);
+        return view(self::VIEW_NAMESPACE.'::previewerror', ['errorMessage' => 'No template associated with this mailable.']);
     }
 
     /**

@@ -34,6 +34,21 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Relationship loading depth
+    |--------------------------------------------------------------------------
+    |
+    | This configures how deep the package will search an load relations.
+    | If you set this to 0, relations will not be loaded.
+    |
+    | off = 0, min = 1, max = 5
+    |
+    | N.B. This does not configure how many many relationship types are loaded.
+    */
+
+    'relation_depth' => env('MAILECLIPSE_RELATION_DEPTH', 2),
+
+    /*
+    |--------------------------------------------------------------------------
     | Environment
     |--------------------------------------------------------------------------
     |
@@ -43,7 +58,7 @@ return [
     |
     */
 
-    'allowed_environments' => ['local', 'staging', 'testing'],
+    'allowed_environments' => ['local', 'development', 'staging', 'testing'],
 
     /*
     |--------------------------------------------------------------------------
@@ -62,6 +77,26 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Blade Methods
+    |--------------------------------------------------------------------------
+    |
+    | The list of blade methods that need to be replaced when moving between the
+    | editor and the blade file.
+    |
+    */
+    'components' => [
+        'extends',
+        'yield',
+        'parent',
+        'component',
+        'endcomponent',
+        'section',
+        'endsection',
+        'slot',
+        'endslot',
+    ],
+
+    /*
     | Test Mail
     |--------------------------------------------------------------------------
     |

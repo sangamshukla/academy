@@ -13,6 +13,7 @@ use Carbon\Exceptions\InvalidFormatException;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 class PaymentController extends Controller
 {
     public function payment($batchId)
@@ -78,27 +79,24 @@ class PaymentController extends Controller
 
     public function pay(Request $request)
     {
-         $s = 0;
-         $alreadyPurchased = false;
-          foreach (session()->get('cart') as $key => $cart) {
-           
-
+        $s = 0;
+        $alreadyPurchased = false;
+        foreach (session()->get('cart') as $key => $cart) {
             foreach ($cart['session_id'] as $singleSession) {
-                 if($this->havePurchased(auth()->user()->id,$singleSession)){
-                     $alreadyPurchased = true;
-                 };
+                if ($this->havePurchased(auth()->user()->id, $singleSession)) {
+                    $alreadyPurchased = true;
+                };
             }
         }
-        if($alreadyPurchased){
-             return redirect(route('buy.now'))->with('status', 'Session already purchased!');
+        if ($alreadyPurchased) {
+            return redirect(route('buy.now'))->with('status', 'Session already purchased!');
         }
         foreach (session()->get('cart') as $key => $cart) {
             $s++;
-          
         }
         $batchAmount = Batch::whereIn('id', array_keys(session()->get('cart') ?? []))
         ->sum('batch_price_per_session');
-           $amount = $s*$batchAmount;
+        $amount = $s*$batchAmount;
        
 
         $order = OrderPayment::create([
@@ -130,9 +128,9 @@ class PaymentController extends Controller
             'payment_status' => 'no'
         ]);
      
-         \Stripe\Stripe::setApiKey('sk_test_51JAvqVSBWoxgIfNeH50XuVJ06GJPhUNyB9jQJLgUQOtYmjTyVK7cLVhbLGOvgdMgsyIwX4jbUDcjokHQYaPcTaBv0018VNQaS7');
+        \Stripe\Stripe::setApiKey('sk_test_51JAvqVSBWoxgIfNeH50XuVJ06GJPhUNyB9jQJLgUQOtYmjTyVK7cLVhbLGOvgdMgsyIwX4jbUDcjokHQYaPcTaBv0018VNQaS7');
         header('Content-Type: application/json');
-        $YOUR_DOMAIN = 'academy.pariharz.com';
+        $YOUR_DOMAIN = env('PAYMENT_HOST', 'http://academy.pariharz.com');
         
         $checkout_session = \Stripe\Checkout\Session::create([
         'payment_method_types' => ['card'],
@@ -186,12 +184,11 @@ class PaymentController extends Controller
             ]
         ];
         session()->put('cart', $cart);
-         $s = 0;
+        $s = 0;
         foreach (session()->get('cart') as $key => $cart) {
-            
-             foreach ($cart['session_id'] as $singleSession) {
-                 $s = $s+1;
-             }
+            foreach ($cart['session_id'] as $singleSession) {
+                $s = $s+1;
+            }
         }
         //dd($s);
         $batchAmount = Batch::whereIn('id', array_keys(session()->get('cart') ?? []))
@@ -245,27 +242,24 @@ class PaymentController extends Controller
     }
     public function havePurchased($studentId, $sessionId)
     {
-        $order=DB::table('order_payments')->join('order_session_maps', 'order_payments.id', '=', 'order_session_maps.order_id')
+        $order=DB::table('order_payments')
+            ->join('order_session_maps', 'order_payments.id', '=', 'order_session_maps.order_id')
+            ->join('transactions', 'order_payments.id', '=', 'transactions.order_id')
         ->where('student_id', $studentId)
+        ->where('payment_status', 'yes')
         ->where('session_id', $sessionId)
         ->exists();
-        if($order)
-        {
+        if ($order) {
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
-     public function checkPurchased()
+    public function checkPurchased()
     {
-        if($this->havePurchased(10, 359))
-        {
+        if ($this->havePurchased(10, 359)) {
             dd("have purchased");
-        }
-        else
-        {
+        } else {
             dd('have not purchased');
         }
     }

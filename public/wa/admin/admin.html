@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Student dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+    <link
+      href="http://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Custom styles for this template-->
+    <link href="css/student-admin.css" rel="stylesheet" />
+    <link href="css/session.css" rel="stylesheet" />
+  </head>
+
+  <body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <ul
+        class="student_dashboard navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+        id="accordionSidebar"
+      >
+        <!-- Sidebar - Brand -->
+        <a
+          class="sidebar-brand d-flex align-items-center justify-content-center"
+          href="index.html"
+        >
+          <div class="sidebar-brand-icon">
+            <img src="img/logo.png" title="logo" alt="logo" />
+          </div>
+        </a>
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0" />
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+          <a class="nav-link" href="#">
+            <div class="nav_images"><img src="img/dasboard.svg" /></div>
+            <br />
+            <span>Dashboard</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#">
+            <div class="nav_images"><img src="img/teacher.svg" /></div>
+            <br />
+            <span>Teachers</span>
+          </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider" />
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="#">
+            <div class="nav_images"><img src="img/student-a.svg" /></div>
+            <br />
+            <span>Students</span>
+          </a>
+        </li>
+
+      
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <div class="nav_images"><img src="img/Online-b.svg" /></div>
+            <br />
+
+            <span>Classes</span></a
+          >
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+          <a class="nav-link" href="tables.html">
+            <div class="nav_images"><img src="img/online-a.svg" /></div>
+            <br />
+            <span>Payment</span></a
+          >
+        </li>
+         <!-- Nav Item - Pages Collapse Menu -->
+         <li class="nav-item">
+          <a class="nav-link collapsed text-center" href="#" data-toggle="collapse" data-target="#collapseTwo"
+              aria-expanded="true" aria-controls="collapseTwo">
+             
+              <div class="nav_images"><img src="img/iconfinder-a.svg" /></div>
+              <span class="manage_section">Manage</span>
+          </a>
+          <div id="collapseTwo" class="collapse side_bar" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded sub_menu">
+                  
+                  <a class="collapse-item sub_menu_block" href="buttons.html">Buttons</a>
+                  <a class="collapse-item sub_menu_block" href="cards.html">Cards</a>
+                  <a class="collapse-item sub_menu_block" href="cards.html">Cards</a>
+              </div>
+          </div>
+      </li>
+        <!-- Nav Item - Alerts -->
+        <li class="nav-item dropdown no-arrow mx-1 pl-5">
+          <a
+            class="dropdown-toggle"
+            href="#"
+            id="alertsDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i class="fas fa-bell fa-fw"></i>
+            <!-- Counter - Alerts -->
+            <span class="badge badge-danger badge-counter">3+</span>
+          </a>
+          <!-- Dropdown - Alerts -->
+          <div
+            class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+            aria-labelledby="alertsDropdown"
+          >
+            <h6 class="dropdown-header">Alerts Center</h6>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+              <div class="mr-3">
+                <div class="icon-circle bg-primary">
+                  <i class="fas fa-file-alt text-white"></i>
+                </div>
+              </div>
+              <div>
+                <div class="small text-gray-500">December 12, 2019</div>
+                <span class="font-weight-bold"
+                  >A new monthly report is ready to download!</span
+                >
+              </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+              <div class="mr-3">
+                <div class="icon-circle bg-success">
+                  <i class="fas fa-donate text-white"></i>
+                </div>
+              </div>
+              <div>
+                <div class="small text-gray-500">December 7, 2019</div>
+                $290.29 has been deposited into your account!
+              </div>
+            </a>
+            <a class="dropdown-item d-flex align-items-center" href="#">
+              <div class="mr-3">
+                <div class="icon-circle bg-warning">
+                  <i class="fas fa-exclamation-triangle text-white"></i>
+                </div>
+              </div>
+              <div>
+                <div class="small text-gray-500">December 2, 2019</div>
+                Spending Alert: We've noticed unusually high spending for your
+                account.
+              </div>
+            </a>
+            <a class="dropdown-item text-center small text-gray-500" href="#"
+              >Show All Alerts</a
+            >
+          </div>
+        </li>
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block" />
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+      </ul>
+
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Topbar -->
+          <nav
+            class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow"
+          >
+            <!-- Sidebar Toggle (Topbar) -->
+            <button
+              id="sidebarToggleTop"
+              class="btn btn-link d-md-none rounded-circle mr-3"
+            >
+              <i class="fa fa-bars"></i>
+            </button>
+            
+              <div><p class="dashboard-title">Dashboard</p></div>
+            <ul class="navbar-nav ml-auto">
+              <!-- Nav Item - Search Dropdown (Visible Only sm) -->
+              <li class="nav-item dropdown no-arrow d-sm-none">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="searchDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div
+                  class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                  aria-labelledby="searchDropdown"
+                >
+                  <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control bg-light border-0 small"
+                        placeholder="Type your search here"
+                        aria-label="Search"
+                        aria-describedby="basic-addon2"
+                      />
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                          <i class="fas fa-search fa-sm"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </li>
+
+              <div class="topbar-divider d-none d-sm-block"></div>
+
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow">
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-lg-6 ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                >
+                  <div class="d-flex">
+                    <div class="input-group search-input">
+                      <select class="form-control border-0">
+                        <optgroup>
+                          <option value="volvo">All</option>
+                          <option value="saab">all</option>
+                        </optgroup>
+                      </select>
+                      <input
+                        type="text"
+                        class="serch_block bg-white form-control bg-light border-0 small"
+                        placeholder="Type your search here."
+                        aria-label="Search"
+                        aria-describedby="basic-addon2"
+                      />
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                          <i class="fas fa-search fa-sm"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </li>
+            </ul>
+          </nav>
+          <!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            <!-- Page Heading -->
+           
+             <!-- subject card section start -->
+             <div class="row">
+              <div class="col-12">
+                <div class="card shadow mb-4">
+                  <div class="card-body">
+                    <p class="buy_card_pera">You would like to buy</p>
+                    <div class="row">
+                      <div class="col-xl-3 col-sm-12">
+                        <div class="card mb-3">
+                          <div class="card_body display_card_body card-1">
+                            <div class="d_teacher">
+                              <div><span class="d_title">Teachers</span></div>
+                              <div><img src="img/teacher1.svg"></div>
+                             </div>
+                             <p class="d_title_val">1445</p>
+                            <p>
+                              <span>Increased by 10% this Month</span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-12">
+                        <div class="card mb-3">
+                          <div class="card_body display_card_body card-2">
+                            <div class="d_teacher">
+                              <div><span class="d_title">Students</span></div>
+                              <div><img src="img/videoconference.svg"></div>
+                            </div>
+                            <p class="d_title_val">1445</p>
+                            <p>
+                              <span>Increased by 15% this Month</span>
+                            </p>
+                           
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-12">
+                        <div class="card mb-3">
+                          <div class="card_body display_card_body card-3">
+                            <div class="d_teacher">
+                               <div><span class="d_title">Classes</span></div>
+                               <div><img src="img/sales 1.svg"></div>
+                            </div>
+                            <p class="d_title_val">1445</p>
+                            <p>
+                              <span>IIncreased by 2% this Month</span>
+                            </p>
+                           
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-3 col-sm-12">
+                        <div class="card mb-3">
+                          <div class="card_body display_card_body card-4">
+                            <div class="d_teacher">
+                              <div><span class="d_title">Revenue</span></div>
+                              <div><img src="img/Online course.svg"></div>
+                            </div>
+                            <p class="d_title_val">1445</p>
+                            <p>
+                              <span>Increased by 3% this Month</span>
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- subject card section end -->
+            <!-- image block -->
+            <div class="row">
+              <!-- Content Column -->
+              <div class="col-xl-4 col-lg-4 mb-4 mt-4">
+                <div class="pop_val">
+                  <p>Popular Courses</p>
+                  <p><a href="#">View All</a></p>
+                </div>
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12">
+                    <div class="card mb-3">
+                      <div class="d_card_val">
+                        <div class="math_p">
+                          <p>Math Practice</p>
+                          <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
+                        </div>
+                        <div class="v_course">
+                            <p><a href="#">View Course</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-lg-12">
+                    <div class="card mb-3">
+                      <div class="d_card_val">
+                        <div class="math_p">
+                          <p>Math Practice</p>
+                          <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
+                        </div>
+                        <div class="v_course">
+                            <p><a href="#">View Course</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-lg-12">
+                    <div class="card mb-3">
+                      <div class="d_card_val">
+                        <div class="math_p">
+                          <p>Math Practice</p>
+                          <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
+                        </div>
+                        <div class="v_course">
+                            <p><a href="#">View Course</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-lg-12">
+                    <div class="card mb-3">
+                      <div class="d_card_val">
+                        <div class="math_p">
+                          <p>Math Practice</p>
+                          <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
+                        </div>
+                        <div class="v_course">
+                            <p><a href="#">View Course</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-lg-12">
+                    <div class="card mb-3">
+                      <div class="d_card_val">
+                        <div class="math_p">
+                          <p>Math Practice</p>
+                          <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
+                        </div>
+                        <div class="v_course">
+                            <p><a href="#">View Course</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 mb-4 mt-4">
+                <div class="crt_val">
+                  <p>Current Activity</p>
+                </div>
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12">
+                    <div class="card mostly_progress">
+                      <div class="title">Monthly Progress</div>
+                      <p> Four Months Improvement</p>
+                      <div><img class="chart_img" src="img/Capture.PNG" width="320" height="auto"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mt-5">
+                  <div class="col-xl-12 col-lg-12">
+                    <div class="cource_flex">
+                    <div class="card online_courses">
+                      <div class="title_no">42</div>
+                      <p> Online Courses</p>
+                    </div>
+                    <div class="card offline_courses">
+                      <div class="title_no">32</div>
+                      <p> Offline Courses</p>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-4 col-lg-4 mb-4 mt-4">
+                <div class="best_val">
+                  <p> Best Teacher</p>
+                  <p><a href="#">View All</a></p>
+                </div>
+                <div class="row">
+                  <div class="col-xl-12 col-lg-12">
+                    <div class="card mb-3">
+                      <div class="d_card_val">
+                        <div class="profile_icon_card"><img src="img/user.png"></div>
+                        <div class="profile_p">
+                          <p>Math Practice</p>
+                          <p><span>5 Cource</span></p>
+                        </div>
+                        <div class="v_course">
+                            <p><a href="#">View Course</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-lg-12">
+                    <div class="card mb-3">
+                      <div class="d_card_val">
+                        <div class="profile_icon_card"><img src="img/user.png"></div>
+                        <div class="profile_p">
+                          <p>Math Practice</p>
+                          <p><span>5 Cource</span></p>
+                        </div>
+                        <div class="v_course">
+                            <p><a href="#">View Course</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-lg-12">
+                    <div class="card mb-3">
+                      <div class="d_card_val">
+                        <div class="profile_icon_card"><img src="img/user.png"></div>
+                        <div class="profile_p">
+                          <p>Math Practice</p>
+                          <p><span>5 Cource</span></p>
+                        </div>
+                        <div class="v_course">
+                            <p><a href="#">View Course</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-lg-12">
+                    <div class="card mb-3">
+                      <div class="d_card_val">
+                        <div class="profile_icon_card"><img src="img/user.png"></div>
+                        <div class="profile_p">
+                          <p>Math Practice</p>
+                          <p><span>5 Cource</span></p>
+                        </div>
+                        <div class="v_course">
+                            <p><a href="#">View Course</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-12 col-lg-12">
+                    <div class="card mb-3">
+                      <div class="d_card_val">
+                        <div class="profile_icon_card"><img src="img/user.png"></div>
+                        <div class="profile_p">
+                          <p>Math Practice</p>
+                          <p><span>5 Cource</span></p>
+                        </div>
+                        <div class="v_course">
+                            <p><a href="#">View Course</a></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              </div>
+            </div>
+            <!-- Content Row -->
+          </div>
+
+          <!-- End of Main Content -->
+          <!-- Modal pop-up start -->
+          <!-- The Modal -->
+          <div class="modal" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Modal Heading</h4>
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">Modal body..</div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal Pop-up-end -->
+        <!-- Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>©Copyright 2021-2022 WA Academy. All Rights Reserved </span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/student.js"></script>
+    <!-- Page level plugins -->
+    <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
+
+    <!-- Page level custom scripts -->
+    <!-- <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script> -->
+  </body>
+</html>

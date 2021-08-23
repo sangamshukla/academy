@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BatchController;
@@ -59,7 +60,7 @@ Route::get('/', function () {
 //     return view('welcome', compact('batches'));
 // });
 
-Auth::routes(); 
+Auth::routes();
 
 Route::get('/admin-login', 'App\Http\Controllers\Auth\LoginController@adminLogin');
 Route::get('/login', 'App\Http\Controllers\Auth\LoginController@showLoginForm');
@@ -85,7 +86,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     // Route::get('/admin-dashboard', [HomeController::class, 'adminDashboard']);
-    Route::get('/admin-dashboard', [BatchController::class, 'adminDashboard']);
+    // Route::get('/admin-dashboard', [BatchController::class, 'adminDashboard']);
 
     Route::get('/admin-show', [HomeController::class, 'adminshow']);
     
@@ -220,7 +221,9 @@ Route::group(['middleware' => ['auth', 'student']], function () {
     //
       Route::group(['midddleware'=>['auth','teacheroperationadmin']], function () {
           
-        // new add class
+    // Route::get('/admin-dashboard', [HomeController::class, 'adminDashboard']);
+        //   Route::get('/admin-dashboard', [BatchController::class, 'adminDashboard']);
+          // new add class
           Route::get('create-classes', [BatchController::class, 'create'])->name('class.create');
           Route::post('create-classes', [BatchController::class, 'store'])->name('class.store');
           Route::get('manage-classes', [BatchController::class, 'manageClass'])->name('manage-classnew');
@@ -232,10 +235,11 @@ Route::group(['middleware' => ['auth', 'student']], function () {
       });
     
     Route::get('/payment-success/{id}', function ($id) {
-        Transaction::find($id)->update(['status'=> 'yes']);
+        Transaction::find($id)->update(['payment_status'=> 'yes']);
         session()->put('cart', []);
         return view('payment.success');
     });
+
     Route::get('/payment-failed/{id}', function ($id) {
         $tx = Transaction::find($id);
         OrderPayment::find($tx->order_id)->delete();
@@ -270,3 +274,5 @@ Route::get('get-score-sheet', [OperationController::class, 'scoreSheet']);
 Route::get('sessions-for-tomorrow', [HomeController::class, 'sessionForTomorrow']);
 Route::post('upload-answer-pdf', [HomeWorkController::class, 'upload_pdf'])->name('upload-answer-pdf');
 Route::get('get-id', [HomeWorkStudentController::class, 'get_assigned_homework_answer_map_id']);
+
+Route::get('admin-dashboard', [AdminController::class, 'adminDashboard']);

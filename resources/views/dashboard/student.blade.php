@@ -3,19 +3,19 @@
 @section('student-content')
 <!-- Page Heading -->
 @php
-    foreach($status as $st)
-    {
-        $status=$st->payment_status;
-    }
+    // foreach($status as $st)
+    // {
+    //     $status=$st->payment_status;
+    // }
 @endphp
-{{--  @if ($status=="yes") --}}
+ @if ($status=="yes")
     @include('dashboard.session-list')
     {{-- @include('dashboard.newsession-list') --}}
 
-    {{-- @else --}}
-    {{--  @include('dashboard.content') --}}
+    @else
+     @include('dashboard.content')
 
-    {{-- @endif --}}
+    @endif
 @endsection
 
 @section('style')

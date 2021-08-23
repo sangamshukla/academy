@@ -48,10 +48,10 @@ use App\Http\Controllers\StudyMaterialController;
 
 Route::get('about-us', [HomeController::class, 'aboutUs'])->name('about-us');
 Route::get('/', function () {
-    $batches = Batch::whereHas('batchSession', function ($query) {
+    $relatedBatches = Batch::whereHas('batchSession', function ($query) {
         $query->whereDate('start_date_time', '>=', Carbon::today());
     })->latest()->take(8)->get();
-    return view('welcome', compact('batches'));
+    return view('welcome', compact('relatedBatches'));
 })->name('/');
 // Route::get('/', function () {
 //     $batches = Batch::latest()->take(8)->get();
@@ -59,7 +59,7 @@ Route::get('/', function () {
 //     return view('welcome', compact('batches'));
 // });
 
-Auth::routes();
+Auth::routes(); 
 
 Route::get('/admin-login', 'App\Http\Controllers\Auth\LoginController@adminLogin');
 Route::get('/login', 'App\Http\Controllers\Auth\LoginController@showLoginForm');

@@ -516,7 +516,11 @@
                 <div class="profile">
                     <div class="profile_icon"><img src="{{asset('wa/dashboard/img/undraw_profile.svg')}}"></div>
                     <p class="name m-2">{{ Str::ucfirst(auth()->user()->name) }}</p>
-                    <p class="class_section"><span>{{ $batch->classmaster->name }}</span></p>
+
+                    @php
+                        // dd($batch);
+                    @endphp
+                    <p class="class_section"><span>{{ auth()->user()->student->classmaster->name }}</span></p>
                    
                     <a href="#" class="profile"><span>View Profile</span></a>
                     

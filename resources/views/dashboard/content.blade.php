@@ -46,16 +46,8 @@
 
                 <div class="mt-4">
                     <p class="mr-2 list_announce">
-                        <span>https://www.w3schools.com/cssref</span>
-                        <span>go</span>
+                        <span>No Annoucement for you. </span>
                     </p>
-                    <p class="mr-2 list_announce">
-                        <span>https://www.w3schools.com/cssref</span>
-                        <span>go</span>
-                    </p>
-                    <p class="mr-2 list_announce">
-                        <span>https://www.w3schools.com/cssref</span>
-                        <span>go</span>
                     </p>
                 </div>
             </div>
@@ -65,7 +57,7 @@
 <!-- Content Row -->
 
 <!-- subject card Row -->
-<section style="background:#fff; padding: 20px;">
+<section style="background:#fff; padding: 20px;">   
     <div class="row">
         <div class="col-lg-12 mb-4">
             <div class="card mb-4">

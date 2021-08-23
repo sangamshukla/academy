@@ -27,36 +27,7 @@ class TeacherDashboardController extends Controller
             ->select('batch_session.*')
             ->get()
             ->toArray();
-        // dd($session_data);
-
         $status = "active";
-
-        // $upcomingbatches = Batch::where('created_by', $id)
-        //     ->orWhere('name', $id)
-        //     ->get();
-        // dd($upcomingbatches);
-        // $id = 5;
-        // dd($id);
-        // dd($endweek);
-        // dd(auth()->id());
-        // $upcomingbatches = Batch::join('batch_session', 'batches.id', '=',  'batch_session.batch_id')
-        //     // ->where('batches.created_by', auth()->user()->id)
-        //     ->where('batches.name', auth()->id())
-        //     ->whereBetween('batch_session.start_date_time', [$startweek, $endweek])
-        //     ->select('batches.*', 'batch_session.*')
-        //     ->get();
-        // dd($upcomingbatches);
-        // foreach ($upcomingbatches as $ub) {
-        // dd($ub->assignTeacher->name);
-        // }
-        // $sessions = DB::table('batch_session')
-        //     ->join('batches', 'batch_session.batch_id', '=', 'batches.id')
-
-        //     ->select('batches.*', 'batch_session.*')
-        //     ->whereCreatedBy($id)
-        //     ->orWhere('batches.name', $id)
-        //     ->get();
-        // dd($sessions);
         $days_in_month = cal_days_in_month(CAL_GREGORIAN, date('m'), date('Y'));
         $session_yes = 1;
         return view('teacher.dashboard', compact('batches', 'startweek', 'endweek', 'days_in_month', 'session_yes', 'session_data'));

@@ -48,6 +48,7 @@
       <section class="">
         <div class="">
           <div class="row">
+            @if ($assigned_homeworks!=NULL)
             @foreach ($assigned_homeworks as $homework)
             <div class="col-sm-6 my-4">
               <div class="card" style="width: 18rem;">
@@ -83,6 +84,7 @@
               </div>
             </div>
             @endforeach
+            @endif
           </div>
         </div>
       </section>

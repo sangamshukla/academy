@@ -18,7 +18,7 @@
                         class="nav-link tab_title active"
                         href="#menu1"
                         data-toggle="tab"
-                        >today</a
+                        >Today</a
                       >
                     </li>
                     <li class="nav-item">
@@ -121,7 +121,7 @@
                             <div class="subject_practis">
                               <p class="sub_subject">Class Name</p>
                               <p class="subject">{{ \Illuminate\Support\Str::limit($batch->classSettings->name ,'30') }}</p>
-                              <p class="sub_subject">{{$session->name}}</p>
+                              <p class="sub_subject">{{$session->name}} - {{$session->singleTopic->topic->name}}</p>
                               <p class="time_pera">
                               </p>
                             </div>
@@ -159,7 +159,7 @@
                             <div class="subject_practis">
                               <p class="sub_subject">Class Name</p>
                               <p class="subject">{{ \Illuminate\Support\Str::limit($batch->classSettings->name ,'30') }}</p>
-                              <p class="sub_subject">{{$session->name}}</p>
+                              <p class="sub_subject">{{$session->name}} - {{$session->singleTopic->topic->name}}</p>
                               <p class="time_pera">
                               </p>
                             </div>
@@ -198,7 +198,7 @@
                             <div class="subject_practis">
                               <p class="sub_subject">Class Name</p>
                               <p class="subject">{{ \Illuminate\Support\Str::limit($batch->classSettings->name ,'30') }}</p>
-                              <p class="sub_subject">{{$session->name}}</p>
+                              <p class="sub_subject">{{$session->name}} - {{$session->singleTopic->topic->name}}</p>
                               <p class="time_pera">
                               </p>
                             </div>

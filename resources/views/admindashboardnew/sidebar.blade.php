@@ -40,12 +40,12 @@
     </div>
 </li><br>
 <li class="nav-item">
-  <a class="nav-link collapsed text-center" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+  <a class="nav-link collapsed text-center" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
      
       <div class="nav_images mb-2"><img src="{{asset('wa/admin/img/Online-b.svg')}}"></div>
       <span class="manage_section">Classes</span>
   </a>
-  <div id="collapseclasses" class="collapse side_bar" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+  <div id="collapseThree" class="collapse side_bar" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded sub_menu">
           
           <a class="collapse-item sub_menu_block" href="{{route('class.create')}}">Add Classes</a>

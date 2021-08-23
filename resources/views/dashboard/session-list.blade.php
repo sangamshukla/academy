@@ -343,11 +343,11 @@
                                                 <table class="table">
                                                     <tr>
                                                         <td>Class</td>
-                                                        <td>{{ $batch->classSettings->name }}</td>
+                                                        <td>{{ $session->batch->classSettings->name }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Teacher</td>
-                                                        <td>{{ $batch->teacher->name }}</td>
+                                                        <td>{{ $session->batch->teacher->name }}</td>
                                                     </tr>
 
                                                     <tr>

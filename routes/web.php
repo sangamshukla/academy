@@ -84,8 +84,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-    Route::get('/admin-dashboard', [HomeController::class, 'adminDashboard']);
+    // Route::get('/admin-dashboard', [HomeController::class, 'adminDashboard']);
+    Route::get('/admin-dashboard', [BatchController::class, 'adminDashboard']);
+
     Route::get('/admin-show', [HomeController::class, 'adminshow']);
+    
 
     Route::get('/teacher-new-dashboard', [HomeController::class, 'teacherDashboard']);
     // Route::get('/operation-dashboard', [HomeController::class, 'operationDashboard']);

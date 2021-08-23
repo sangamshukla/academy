@@ -1,4 +1,5 @@
-@extends('layouts.operation_dashboard')
+@extends('layouts.operation_dashboard');
+
 @section('content')
 <link href="{{asset('wa/operationdashboard/css/manage_classsession.css')}}" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

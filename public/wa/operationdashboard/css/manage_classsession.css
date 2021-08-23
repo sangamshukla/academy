@@ -59,7 +59,7 @@ button.btn.btn-primary.search_cta {
   width: calc(90vw - -31px);
   background: #fff;
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
 }
 
 .sidebar-brand-icon img {

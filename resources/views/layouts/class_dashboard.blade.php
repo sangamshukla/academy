@@ -13,7 +13,7 @@
     <title>Teacher dashboard</title>
 
     <!-- Custom fonts for this template-->
-    
+    <!-- @yield('admincss') -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link
       {{-- href="{{asset('wa/admindashboard/css/vendor/fontawesome-free/css/all.min.css')}}" --}}
@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="{{asset('wa/admindashboard/css/style.css')}}" />
     <!--  -->
  <!--date time picker -->
-<link rel="stylesheet" href="{{asset('assets/css/datepicker/jquery.datetimepicker.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('assets/css/datepicker/jquery.datetimepicker.min.css')}}" />
     <!-- Custom styles for this template-->
     <link href="{{ asset('wa/admindashboard/css/student-admin.css')}}" rel="stylesheet" />
     <link href="{{ asset('wa/admindashboard/css/session.css')}}" rel="stylesheet" />

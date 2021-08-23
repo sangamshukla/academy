@@ -446,4 +446,8 @@ class BatchController extends Controller
     {
       return $this->is_seat_full(10);
     }
+    // public function adminDashboard()
+    // {
+    //     return view('class.dashboard');
+    // }
 }

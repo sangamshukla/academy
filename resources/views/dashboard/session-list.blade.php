@@ -78,7 +78,7 @@
                                                     {{-- <div id="app"></div> --}}
 
                                                     <p class="card_subject_title2">
-                                                        <a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $session->id)  }}">Join now</a></p>
+                                                        <a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $batch->id)  }}">Join now</a></p>
                                                         <script>
                                                             window.onload = (event) => {
 
@@ -323,7 +323,7 @@
                                                         <p class="subject_card">Join Now</p>
                                                             {{-- <a style="text-decoration:none; font-size:15px; color: #0EA47E;" class="card_subject_title1" href="{{ url('zoom', $batch->id)  }}">Join now</a> --}}
                                                             <p class="card_subject_title2">
-                                                        <a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $batch->id)  }}">Join now</a></p>
+                                                        <a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $session->id)  }}">Join now</a></p>
                                                     </div>
                                                     <div class="border-left second_left_border"></div>
 

@@ -54,11 +54,6 @@ Route::get('/', function () {
     })->latest()->take(8)->get();
     return view('welcome', compact('relatedBatches'));
 })->name('/');
-// Route::get('/', function () {
-//     $batches = Batch::latest()->take(8)->get();
-
-//     return view('welcome', compact('batches'));
-// });
 
 Auth::routes();
 
@@ -83,19 +78,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
     Route::post('profile/save', [ProfileController::class, 'store'])->name('image-upload');
 
-
-
-    // Route::get('/admin-dashboard', [HomeController::class, 'adminDashboard']);
-    // Route::get('/admin-dashboard', [BatchController::class, 'adminDashboard']);
-
     Route::get('/admin-show', [HomeController::class, 'adminshow']);
     
 
     Route::get('/teacher-new-dashboard', [HomeController::class, 'teacherDashboard']);
-    // Route::get('/operation-dashboard', [HomeController::class, 'operationDashboard']);
 
     Route::get('/student-dashboard', [HomeController::class, 'studentDashboard'])->name('student-dashboard');
-    // Route::get('/student-dashboard', [HomeController::class, 'newStudentDashboard'])->name('student-dashboard');
     Route::get('/session-list', [HomeController::class, 'sessionList']);
     Route::get('zoom/{id}', [HomeController::class, 'zoom']);
     
@@ -113,20 +101,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('destroy-teacher/{id}', [TeacherController::class, 'destroy'])->name('destroy-teacher');
 
 
-
-
-    // Route::get('/packages-details', [BatchController::class, 'packagesDetails'])->name('packages.details');
-
-
     Route::get('add-product', [TeacherController::class, 'store'])->name('add-product');
     Route::post('add-product', [TeacherController::class, 'store'])->name('add-product');
 });
 
-// Route::get('add-to-cart/{batchId}', [PaymentController::class, 'payment'])->name('cart.add');
-
 Route::get('add-to-cart/{batchId}', [PaymentController::class, 'payment'])->name('cart.add');
 Route::get('remove-from-cart/{removeFromCart}', [PaymentController::class, 'removeFromCart'])->name('cart.remove');
-// Route::post('add-to-cart/{batchId}', [PaymentController::class, 'payment'])->name('cart.add');
 Route::get('terms-of-use', [FooterContentController::class, 'termsofuse'])->name('terms.of.use');
 Route::get('privacy-policy', [FooterContentController::class, 'privacyPolicy'])->name('privacy.policy');
 
@@ -199,13 +179,10 @@ Route::group(['middleware' => ['auth','teacher']], function () {
 
     Route::post('buy-now', [BatchController::class, 'buyNow'])->name('buy.now');
 Route::group(['middleware' => ['auth', 'student']], function () {
-    
-    // Route::post('buy-now', [BatchController::class, 'buyNow'])->name('buy.now');
 });
     Route::group(['middleware' => ['auth', 'operation']], function () {
         Route::get('get-operation', [OperationController::class, 'index']);
         Route::get('operation-dashboard', [OperationController::class, 'oprationDashboard']);
-        // Route::get('batch-list', [OperationController::class, 'batchListGet'])->name('batch-list');
         Route::post('batch-list', [OperationController::class, 'batchList'])->name('batch-list');
         Route::get('teacher-management', [OperationController::class, 'teacherManagement'])->name('teacher.management');
         Route::get('purchase-session/{id}', [OperationController::class, 'purchaseSession'])->name('purchase-session');
@@ -221,8 +198,6 @@ Route::group(['middleware' => ['auth', 'student']], function () {
     //
       Route::group(['midddleware'=>['auth','teacheroperationadmin']], function () {
           
-    // Route::get('/admin-dashboard', [HomeController::class, 'adminDashboard']);
-        //   Route::get('/admin-dashboard', [BatchController::class, 'adminDashboard']);
           // new add class
           Route::get('create-classes', [BatchController::class, 'create'])->name('class.create');
           Route::post('create-classes', [BatchController::class, 'store'])->name('class.store');
@@ -232,6 +207,7 @@ Route::group(['middleware' => ['auth', 'student']], function () {
           Route::post('edit-classes/{id}', [BatchController::class, 'update'])->name('update-class');
           Route::get('show-classes/{id}', [BatchController::class, 'show'])->name('show-class');
           Route::get('destroy-classes/{id}', [BatchController::class, 'destroy'])->name('destroy-class');
+          Route::get('admin-dashboard', [AdminController::class, 'adminDashboard']);
       });
     
     Route::get('/payment-success/{id}', function ($id) {
@@ -256,7 +232,6 @@ Route::group(['middleware' => ['auth', 'student']], function () {
     
 Route::get('have-purchased', [PaymentController::class, 'checkPurchased'])->name('have-purchased');
 Route::post('pay-due-amount', [HomeWorkController::class, 'payDueAmount'])->name('pay-due-amount');
-//Route::get('id-submission-status', [TeacherProfileController::class, 'id_submission_status'])->name('id-submission-status');
 Route::get('is-homework-assigned', [HomeWorkController::class, 'check']);
 
 // for sendmail on homepage
@@ -274,5 +249,3 @@ Route::get('get-score-sheet', [OperationController::class, 'scoreSheet']);
 Route::get('sessions-for-tomorrow', [HomeController::class, 'sessionForTomorrow']);
 Route::post('upload-answer-pdf', [HomeWorkController::class, 'upload_pdf'])->name('upload-answer-pdf');
 Route::get('get-id', [HomeWorkStudentController::class, 'get_assigned_homework_answer_map_id']);
-
-Route::get('admin-dashboard', [AdminController::class, 'adminDashboard']);

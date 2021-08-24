@@ -11,7 +11,11 @@
               <i class="fa fa-bars"></i>
             </button>
             <!-- Topbar Search -->
-            <div class="dashboard_title">My Dashboard</div>
+            <!-- <div class="dashboard_title">My Dashboard</div> -->
+            <!-- <h4 style="color: black;" class="dashboard_title">My Dashboard</h4> -->
+            <h4 class="dashboard_title"><a style="text-decoration: none; color: black;" href="{{route('admin-dashboard')}}">My Dashboard</a></h4>
+
+
             <form class="d-none d-sm-inline-block form-inline navbar-search">
               <div class="d-flex">
                 <div class="input-group">
@@ -24,7 +28,7 @@
                   <input
                     type="text"
                     class="serch_block bg-white form-control bg-light border-0 small"
-                    placeholder="Search for..."
+                    placeholder="Type Your Search here"
                     aria-label="Search"
                     aria-describedby="basic-addon2"
                   />

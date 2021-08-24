@@ -42,6 +42,7 @@
                             <li class="nav-item">
                                 <a class="filter-subject-button nav-link" data-filter="creativewriting" href="#">Creative Writing</a>
                             </li> 
+                              
                           </ul>
                     </div>
                    
@@ -60,7 +61,7 @@
         </div>
          <!-- for card class and subject wise -->
          <!-- <div class="container"> -->
-            <!-- <table>
+            <table>
                <div  class="row mt-4">
                   @php $i=1 @endphp
                   @foreach($batches as $batch)
@@ -102,7 +103,7 @@
                               <div class="card_info">
                                   
                    <p> {{ \Illuminate\Support\Str::limit($batch->classSettings->name ,'18') }}</p>
-                                  
+                                  <!--<p>{{ $batch->classSettings->name }}</p>-->
                                   <p>{{ $batch->subject->name }}</p>
                               </div>
                               <div class="card_details">
@@ -143,7 +144,7 @@
                   @php $i++ @endphp
                   @endforeach
                   <td colspan="3"></td>                               
-              </table> -->
+              </table>
               <!-- </div> -->
            <!--  -->
            
@@ -250,11 +251,11 @@
                                                 </div>
                                                 <div class="work_sheet">
                                                     <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/book.svg')}}" width="25" height="25"></p>
-                                                    <p class="wr_cn">Work Sheet</p>
+                                                    <p class="wr_cn">Questions</p>
                                                 </div>
                                                 <div class="work_vedio">
                                                     <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/vedio-icon.svg')}}" width="25" height="25"></p>
-                                                    <p class="vd_cn">Video</p>
+                                                    <p class="vd_cn">Questions</p>
                                                 </div>
                                             </div>
                                         </li>
@@ -266,11 +267,11 @@
                                                 </div>
                                                 <div class="work_sheet">
                                                     <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/book.svg')}}" width="25" height="25"></p>
-                                                    <p class="wr_cn">Work Sheet</p>
+                                                    <p class="wr_cn">Questions</p>
                                                 </div>
                                                 <div class="work_vedio">
                                                     <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/vedio-icon.svg')}}" width="25" height="25"></p>
-                                                    <p class="vd_cn">Video</p>
+                                                    <p class="vd_cn">Questions</p>
                                                 </div>
                                             </div>
                                         </li>
@@ -282,11 +283,11 @@
                                                 </div>
                                                 <div class="work_sheet">
                                                     <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/book.svg')}}" width="25" height="25"></p>
-                                                    <p class="wr_cn">Work Sheet</p>
+                                                    <p class="wr_cn">Questions</p>
                                                 </div>
                                                 <div class="work_vedio">
                                                     <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/vedio-icon.svg')}}" width="25" height="25"></p>
-                                                    <p class="vd_cn">Video</p>
+                                                    <p class="vd_cn">Questions</p>
                                                 </div>
                                             </div>
                                         </li>
@@ -298,11 +299,11 @@
                                                 </div>
                                                 <div class="work_sheet">
                                                     <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/book.svg')}}" width="25" height="25"></p>
-                                                    <p class="wr_cn">Work Sheet</p>
+                                                    <p class="wr_cn">Questions</p>
                                                 </div>
                                                 <div class="work_vedio">
                                                     <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/vedio-icon.svg')}}" width="25" height="25"></p>
-                                                    <p class="vd_cn">Video</p>
+                                                    <p class="vd_cn">Questions</p>
                                                 </div>
                                             </div>
                                         </li>
@@ -407,11 +408,11 @@
                                                     </div>
                                                     <div class="work_sheet">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/book.svg')}}" width="25" height="25"></p>
-                                                        <p class="wr_cn">Work Sheet</p>
+                                                        <p class="wr_cn">Questions</p>
                                                     </div>
                                                     <div class="work_vedio">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/vedio-icon.svg')}}" width="25" height="25"></p>
-                                                        <p class="vd_cn">Video</p>
+                                                        <p class="vd_cn">Questions</p>
                                                     </div>
                                                 </div>
                                             </li>
@@ -423,11 +424,11 @@
                                                     </div>
                                                     <div class="work_sheet">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/book.svg')}}" width="25" height="25"></p>
-                                                        <p class="wr_cn">Work Sheet</p>
+                                                        <p class="wr_cn">Questions</p>
                                                     </div>
                                                     <div class="work_vedio">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/vedio-icon.svg')}}" width="25" height="25"></p>
-                                                        <p class="vd_cn">Video</p>
+                                                        <p class="vd_cn">Questions</p>
                                                     </div>
                                                 </div>
                                             </li>
@@ -439,11 +440,11 @@
                                                     </div>
                                                     <div class="work_sheet">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/book.svg')}}" width="25" height="25"></p>
-                                                        <p class="wr_cn">Work Sheet</p>
+                                                        <p class="wr_cn">Questions</p>
                                                     </div>
                                                     <div class="work_vedio">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/vedio-icon.svg')}}" width="25" height="25"></p>
-                                                        <p class="vd_cn">Video</p>
+                                                        <p class="vd_cn">Questions</p>
                                                     </div>
                                                 </div>
                                             </li>
@@ -455,11 +456,11 @@
                                                     </div>
                                                     <div class="work_sheet">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/book.svg')}}" width="25" height="25"></p>
-                                                        <p class="wr_cn">Work Sheet</p>
+                                                        <p class="wr_cn">Questions</p>
                                                     </div>
                                                     <div class="work_vedio">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/vedio-icon.svg')}}" width="25" height="25"></p>
-                                                        <p class="vd_cn">Video</p>
+                                                        <p class="vd_cn">Questions</p>
                                                     </div>
                                                 </div>
                                             </li>
@@ -564,11 +565,11 @@
                                                     </div>
                                                     <div class="work_sheet">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/book.svg')}}" width="25" height="25"></p>
-                                                        <p class="wr_cn">Work Sheet</p>
+                                                        <p class="wr_cn">Questions</p>
                                                     </div>
                                                     <div class="work_vedio">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/vedio-icon.svg')}}" width="25" height="25"></p>
-                                                        <p class="vd_cn">Video</p>
+                                                        <p class="vd_cn">Questions</p>
                                                     </div>
                                                 </div>
                                             </li>
@@ -580,11 +581,11 @@
                                                     </div>
                                                     <div class="work_sheet">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/book.svg')}}" width="25" height="25"></p>
-                                                        <p class="wr_cn">Work Sheet</p>
+                                                        <p class="wr_cn">Questions</p>
                                                     </div>
                                                     <div class="work_vedio">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/vedio-icon.svg')}}" width="25" height="25"></p>
-                                                        <p class="vd_cn">Video</p>
+                                                        <p class="vd_cn">Questions</p>
                                                     </div>
                                                 </div>
                                             </li>
@@ -596,11 +597,11 @@
                                                     </div>
                                                     <div class="work_sheet">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/book.svg')}}" width="25" height="25"></p>
-                                                        <p class="wr_cn">Work Sheet</p>
+                                                        <p class="wr_cn">Questions</p>
                                                     </div>
                                                     <div class="work_vedio">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/vedio-icon.svg')}}" width="25" height="25"></p>
-                                                        <p class="vd_cn">Video</p>
+                                                        <p class="vd_cn">Questions</p>
                                                     </div>
                                                 </div>
                                             </li>
@@ -612,11 +613,11 @@
                                                     </div>
                                                     <div class="work_sheet">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/book.svg')}}" width="25" height="25"></p>
-                                                        <p class="wr_cn">Work Sheet</p>
+                                                        <p class="wr_cn">Questions</p>
                                                     </div>
                                                     <div class="work_vedio">
                                                         <p class="image_cn"><img src="{{asset('wa/studymaterial/assets/img/vedio-icon.svg')}}" width="25" height="25"></p>
-                                                        <p class="vd_cn">Video</p>
+                                                        <p class="vd_cn">Questions</p>
                                                     </div>
                                                 </div>
                                             </li>

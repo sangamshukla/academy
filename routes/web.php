@@ -207,7 +207,7 @@ Route::group(['middleware' => ['auth', 'student']], function () {
           Route::post('edit-classes/{id}', [BatchController::class, 'update'])->name('update-class');
           Route::get('show-classes/{id}', [BatchController::class, 'show'])->name('show-class');
           Route::get('destroy-classes/{id}', [BatchController::class, 'destroy'])->name('destroy-class');
-          Route::get('admin-dashboard', [AdminController::class, 'adminDashboard']);
+          Route::get('admin-dashboard', [AdminController::class, 'adminDashboard'])->name('admin-dashboard');
       });
     
     Route::get('/payment-success/{id}', function ($id) {

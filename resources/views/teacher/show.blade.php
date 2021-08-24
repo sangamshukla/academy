@@ -1,9 +1,9 @@
-@extends('layouts.app')
-
+@extends('layouts.admin_dashboard')
 @section('content')
 <!-- start page title -->
+<!-- <div class="container"> -->
 <div class="row">
-  <div class="col-12">
+  <!-- <div class="col-12">
       <div class="page-title-box">
           <div class="page-title-right">
               <ol class="breadcrumb m-0">
@@ -15,8 +15,10 @@
           <h4 class="page-title">Teacher Details</h4>
 
       </div>
-  </div>
-</div>     
+  </div> -->
+  <h4 style="margin: 10px;" class="page-title">Teacher's Details</h4>
+</div>  
+  
 <!-- end page title --> 
 
      <div class="content">
@@ -29,7 +31,7 @@
                 {{-- <form> --}}
                     <table id="myTable" class="table table-bordered">
                         {{-- <thead style="color:#2b58ace8"> --}}
-                        <thead style="background-color:#7DC234;color:#fff;">
+                            <thead style="background-color:#DEECFA;color:black;">
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
@@ -58,6 +60,7 @@
         </div>
       </div>
      </div>
+    <!-- </div>  -->
 @endsection
 
 @section('scripts')

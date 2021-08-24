@@ -70,5 +70,188 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <!-- Content Column -->
+  <div class="col-xl-4 col-lg-4 mb-4 mt-4">
+    <div class="pop_val">
+      <p>Popular Courses</p>
+      <p><a href="#">View All</a></p>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12">
+        <div class="card mb-3">
+          <div class="d_card_val">
+            <div class="math_p">
+              <p>Math Practice</p>
+              <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
+            </div>
+            <div class="v_course">
+                <p><a href="{{route('buy.now')}}">View Course</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12">
+        <div class="card mb-3">
+          <div class="d_card_val">
+            <div class="math_p">
+              <p>Math Practice</p>
+              <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
+            </div>
+            <div class="v_course">
+                <p><a href="{{route('buy.now')}}">View Course</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12">
+        <div class="card mb-3">
+          <div class="d_card_val">
+            <div class="math_p">
+              <p>Math Practice</p>
+              <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
+            </div>
+            <div class="v_course">
+                <p><a href="{{route('buy.now')}}">View Course</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12">
+        <div class="card mb-3">
+          <div class="d_card_val">
+            <div class="math_p">
+              <p>Math Practice</p>
+              <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
+            </div>
+            <div class="v_course">
+                <p><a href="{{route('buy.now')}}">View Course</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12">
+        <div class="card mb-3">
+          <div class="d_card_val">
+            <div class="math_p">
+              <p>Math Practice</p>
+              <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
+            </div>
+            <div class="v_course">
+                <p><a href="{{route('buy.now')}}">View Course</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+  <div class="col-xl-4 col-lg-4 mb-4 mt-4">
+    <div class="crt_val">
+      <p>Current Activity</p>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12">
+
+        <div class="card mostly_progress">
+          <div class="title">Monthly Progress</div>
+          <p> Four Months Improvement</p>
+          <div><img class="chart_img" src="{{asset('wa/admin/img/Capture.PNG')}}" width="320" height="auto"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-xl-12 col-lg-12">
+        <div class="cource_flex">
+        <div class="card online_courses">
+          <div class="title_no">42</div>
+          <p> Online Courses</p>
+        </div>
+        <div class="card offline_courses">
+          <div class="title_no">32</div>
+          <p> Offline Courses</p>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-lg-4 mb-4 mt-4">
+    <div class="best_val">
+      <p> Best Teacher</p>
+      <p><a href="#">View All</a></p>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12">
+        <div class="card mb-3">
+          <div class="d_card_val">
+            <div class="profile_icon_card"><img src="{{asset('wa/admin/img/user.png')}}"></div>
+            <div class="profile_p">
+              <p>Math Practice</p>
+              <p><span>5 Cource</span></p>
+            </div>
+            <div class="v_course">
+                <p><a href="{{route('teacher-profile')}}">View Course</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12">
+        <div class="card mb-3">
+          <div class="d_card_val">
+            <div class="profile_icon_card"><img src="{{asset('wa/admin/img/user.png')}}"></div>
+            <div class="profile_p">
+              <p>Math Practice</p>
+              <p><span>5 Cource</span></p>
+            </div>
+            <div class="v_course">
+                <p><a href="{{route('teacher-profile')}}">View Course</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12">
+        <div class="card mb-3">
+          <div class="d_card_val">
+            <div class="profile_icon_card"><img src="{{asset('wa/admin/img/user.png')}}"></div>
+            <div class="profile_p">
+              <p>Math Practice</p>
+              <p><span>5 Cource</span></p>
+            </div>
+            <div class="v_course">
+                <p><a href="{{route('teacher-profile')}}">View Course</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12">
+        <div class="card mb-3">
+          <div class="d_card_val">
+            <div class="profile_icon_card"><img src="{{asset('wa/admin/img/user.png')}}"></div>
+            <div class="profile_p">
+              <p>Math Practice</p>
+              <p><span>5 Cource</span></p>
+            </div>
+            <div class="v_course">
+                <p><a href="{{route('teacher-profile')}}">View Course</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12">
+        <div class="card mb-3">
+          <div class="d_card_val">
+            <div class="profile_icon_card"><img src="{{asset('wa/admin/img/user.png')}}"></div>
+            <div class="profile_p">
+              <p>Math Practice</p>
+              <p><span>5 Cource</span></p>
+            </div>
+            <div class="v_course">
+                <p><a href="{{route('teacher-profile')}}">View Course</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  </div>
+</div>
 @endsection
  

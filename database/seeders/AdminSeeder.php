@@ -36,6 +36,13 @@ class AdminSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+        DB::table('teachers')->insert([
+            'user_type' => 'Mike Canery',
+            'class_master_id' => '1',
+            'user_id' => '2',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
 
         DB::table('users')->insert([
             'name' => 'Chuck Larabee',
@@ -53,6 +60,17 @@ class AdminSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('wallington'),
             'role' => User::STUDENT,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('students')->insert([
+            'user_id' => '4',
+            'class_master_id' => '1',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        DB::table('teacher_profiles')->insert([
+            'user_id' => '2',
             'created_at' => now(),
             'updated_at' => now()
         ]);

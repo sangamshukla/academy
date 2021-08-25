@@ -479,7 +479,7 @@ class HomeWorkController extends Controller
             ],
             [
                 'checked_content'=>$path
-                ]);
+            ]);
             if($save_checked_homework)
             {
                 return back()->with('msg', 'Your checked home has been submitted');

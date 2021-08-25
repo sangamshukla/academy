@@ -261,8 +261,6 @@ Route::get('is-homework-assigned', [HomeWorkController::class, 'check']);
 
 // for sendmail on homepage
 Route::post('/contact-mail', [HomeController::class, 'contactMailSave'])->name('contact-mail');
-
-
 Route::get('is-seat-full', [BatchController::class, 'check_if_seat_is_full']);
 Route::post('upload-edit-homework', [HomeWorkController::class, 'upload_edit_homework'])->name('upload-edit-homework');
 Route::get('delete-homework/{homework_id}/{student_id}', [HomeWorkController::class, 'delete_homework'])->name('delete-homework');

@@ -1,18 +1,27 @@
-@extends('layouts.admin_dashboard')
+@extends('layouts.app')
+
 @section('content')
+<!-- start page title -->
+
+@include('layouts._partials.breadcrumb', 
+[ 'menuone'=> 'Home',
+  'menutwo' =>'Add Teacher',
+  'menuthree' => 'Manage Teacher',
+  'menutwourl' => '#',
+  'menuthreeurl'=>'/manage-teacher',
+   'title' => 'Add Classes'])
+<!-- end page title --> 
 
      <div class="content">
-
-  <h4 style="margin: 10px;" class="page-title">Add Teacher</h4>
       <div class="row">
         <div class="col-md-12">
           <form method="post" action="{{ route('add-teacher') }}" autocomplete="off" class="form-horizontal">
             @csrf
             <div class="card ">
-              <!-- <div class="card-header card-header-success">
+              <div class="card-header card-header-success">
                 <h4 class="card-title">Add New Teacher</h4>
                 <p class="card-category">Fill the required fields</p>
-              </div> -->
+              </div>
 
               <div class="card-body ">
                 @include('_form.success')

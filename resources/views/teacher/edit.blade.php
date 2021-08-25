@@ -1,10 +1,12 @@
-@extends('layouts.app')
-
+@extends('layouts.admin_dashboard')
 @section('content')
 <!-- start page title -->
+<!-- <div class="container"> -->
+
+  <h4 style="margin: 10px;" class="page-title">Update Teacher</h4>
 <div class="row">
   <div class="col-12">
-      <div class="page-title-box">
+      <!-- <div class="page-title-box">
           <div class="page-title-right">
               <ol class="breadcrumb m-0">
                   <li class="breadcrumb-item"><a href="javascript: void(0);">Home</a></li>
@@ -13,7 +15,7 @@
               </ol>
           </div>
           <h4 class="page-title">Add Teacher / Add Member</h4>
-      </div>
+      </div> -->
   </div>
 </div>     
 <!-- end page title --> 
@@ -24,10 +26,10 @@
           <form method="post" action="{{ route('edit-teacher', $teacher->id) }}" autocomplete="off" class="form-horizontal">
             @csrf
             <div class="card ">
-              <div class="card-header card-header-success">
+              <!-- <div class="card-header card-header-success">
                 <h4 class="card-title">Update Teacher</h4>
                 <p class="card-category">Fill the required fields</p>
-              </div>
+              </div> -->
 
               <div class="card-body ">
                 @include('_form.success')
@@ -102,7 +104,7 @@
                 
           </div>
         
-              <div class="card-footer ml-auto mr-auto">
+              <div style="margin-right: 30px;" class="card-footer ml-auto mr-auto">
                 @include('_form.button',['title'=>'Update Teacher'])
               </div>
             </div>
@@ -110,4 +112,5 @@
         </div>
       </div>
      </div>
+<!-- </div> -->
 @endsection

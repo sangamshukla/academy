@@ -15,7 +15,7 @@ class BatchSession extends Model
         'start_date_time' => 'datetime'
     ];
 
-      public function topics_name()
+    public function topics_name()
     {
         return  $this->belongsTo(BatchTopic::class, 'id');
     }

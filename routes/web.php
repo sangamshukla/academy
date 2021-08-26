@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddStudentController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\HomeWorkController;
 use App\Http\Controllers\HomeWorkStudentController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\OperationController;
+use App\Http\Controllers\StudentProfileController;
 use App\Models\User;
 use Symfony\Component\Console\Input\Input;
 use Illuminate\Http\Request;
@@ -99,7 +101,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('edit-teacher/{id}', [TeacherController::class, 'update'])->name('edit-teacher');
     Route::get('show-teacher/{id}', [TeacherController::class, 'show'])->name('show-teacher');
     Route::get('destroy-teacher/{id}', [TeacherController::class, 'destroy'])->name('destroy-teacher');
-
+    Route::get('add-student', [AddStudentController::class, 'createAddStudent'])->name('add-student');
+    Route::post('add-student', [AddStudentController::class, 'storeAddStudent'])->name('add-student');
 
     Route::get('add-product', [TeacherController::class, 'store'])->name('add-product');
     Route::post('add-product', [TeacherController::class, 'store'])->name('add-product');

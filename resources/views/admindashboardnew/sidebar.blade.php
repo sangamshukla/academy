@@ -52,7 +52,7 @@
   <!-- Divider -->
    <!-- <hr class="sidebar-divider"> -->
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#">
+    <a class="nav-link collapsed" href="{{route('add-student')}}">
       <div class="nav_images"><img src="{{asset('wa/admin/img/student-a.svg')}}"></div>
       <br>
       <span>Students</span>

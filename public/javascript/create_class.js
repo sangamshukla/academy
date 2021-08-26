@@ -79,11 +79,10 @@ $("#generate-session").on("click", function () {
     deletePlusButton();
 });
 
-
 function deletePlusButton() {
     var plusLength = $("#row-list").find($("select")).length;
-    if(plusLength == 0){
-        $('#generate-session').show();
+    if (plusLength == 0) {
+        $("#generate-session").show();
     }
     if (plusLength == 1) {
         $("#first_button").show();

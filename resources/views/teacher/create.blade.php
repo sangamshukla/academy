@@ -1,10 +1,11 @@
 @extends('layouts.admin_dashboard')
 @section('content')
-
-     <div class="content">
+<div class="card" style="border: none; height:700px;">
+  <div class="card-body" >
+  <!-- <div class="content"> -->
 
   <h4 style="margin: 10px;" class="page-title">Add Teacher</h4>
-      <div class="row">
+      <div class="row" >
         <div class="col-md-12">
           <form method="post" action="{{ route('add-teacher') }}" autocomplete="off" class="form-horizontal">
             @csrf
@@ -14,7 +15,7 @@
                 <p class="card-category">Fill the required fields</p>
               </div> -->
 
-              <div class="card-body ">
+              <div class="card-body " >
                 @include('_form.success')
 
                 {{-- <form> --}}
@@ -111,5 +112,7 @@
           </form>
         </div>
       </div>
-     </div>   
+     <!-- </div>    -->
+     </div>
+     </div>
 @endsection

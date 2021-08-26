@@ -20,6 +20,7 @@ use Database\Seeders\ClassSettings as SeedersClassSettings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+
 // use Illuminate\Pagination\LengthAwarePaginator;
 
 
@@ -37,7 +38,7 @@ class BatchController extends Controller
         $totnoofseats = Batch::count();
         // $batches = Batch::latest()->take(8)->get();
         // $batches = Batch::paginate
-         $batches = Batch::latest()->paginate(8);
+        $batches = Batch::latest()->paginate(8);
         
         // manage class
         $assignteachers = User::all();
@@ -104,7 +105,6 @@ class BatchController extends Controller
     }
     public function store(Request $request)
     {
-       
         if (auth()->user()->role == 'admin') {
             $validated=$request->validate([
                 'class_settings_id' => 'required',
@@ -150,10 +150,9 @@ class BatchController extends Controller
         } else {
             $class = $request->class_settings_id;
         }
-        if($validated)
-        {
-        if (auth()->user()->role == 'teacher') {
-            $batch = Batch::Create([
+        if ($validated) {
+            if (auth()->user()->role == 'teacher') {
+                $batch = Batch::Create([
                 'name' =>auth()->user()->id,
                 'batch_price_per_session' => $request->batch_price_per_session,
                 'batch_start_date' => $request->batch_start_date,
@@ -170,8 +169,8 @@ class BatchController extends Controller
                 'sell_each_session' => $request->sell_each_session,
                 'created_by' => auth()->user()->id
             ]);
-        } else {
-            $batch = Batch::Create([
+            } else {
+                $batch = Batch::Create([
                 'name' => $request->name,
                 'batch_price_per_session' => $request->batch_price_per_session,
                 'batch_start_date' => $request->batch_start_date,
@@ -188,42 +187,42 @@ class BatchController extends Controller
                 'sell_each_session' => $request->sell_each_session,
                 'created_by' => $request->teacher_name
             ]);
-        }
+            }
         
 
-        $index = 0;
-        $name = 1;
-        foreach ($request->session_name as $session_name) {
-            $d = $request->session_start_date[$index];
-            $comment = $request->comment[$index];
-            $batchSession = BatchSession::create([
+            $index = 0;
+            $name = 1;
+            foreach ($request->session_name as $session_name) {
+                $d = $request->session_start_date[$index];
+                $comment = $request->comment[$index];
+                $batchSession = BatchSession::create([
                 'batch_id' => $batch->id ?? '1',
                 'name' => $session_name,
                 'start_date_time' => $d,
                 'comment' => $comment
             ]);
-            BatchTopic::create([
+                BatchTopic::create([
                 'batch_session_id' => $batchSession->id,
                 'topic_id' => $request->topic_id[$index]
             ]);
 
-            // make event
-            $topicname = Topic::find($request->topic_id[$index]);
-            Event::create([
+                // make event
+                $topicname = Topic::find($request->topic_id[$index]);
+                Event::create([
                 'batch_id' => $batch->id,
                 'title' => $d . '' . $batch->classSettings->name . ' ' . $session_name . ' ' . $topicname->name . '',
                 'start' => Carbon::parse($d)->format('Y-m-d h:i:s'),
                 'end' => Carbon::parse($d)->format('Y-m-d h:i:s'),
             ]);
-            $index++;
-            $name++;
-        }
+                $index++;
+                $name++;
+            }
             
-        MakeZoomMeeting::dispatch($batch->id);
-        session()->flash('status', 'Class Added Successfully');
-        // return redirect(route('manage-classes'))->with('status', 'Class Added Successfully');
-        return response()->json(['data'=>'Class Added Successfully']);
-    }
+            MakeZoomMeeting::dispatch($batch->id);
+            session()->flash('status', 'Class Added Successfully');
+            // return redirect(route('manage-classes'))->with('status', 'Class Added Successfully');
+            return response()->json(['data'=>'Class Added Successfully']);
+        }
     }
 
     /**
@@ -246,13 +245,26 @@ class BatchController extends Controller
      */
     public function edit($id)
     {
-        $class = Batch::find($id);
+        $class = Batch::with('batchSession')->find($id);
+        $editclass = Batch::with('batchSession')->find($id);
         $assignteachers = User::all();
         $classes = ClassMaster::all();
         $subjects = Subject::all();
         $classsettings = ClassSettings::all();
-        $batches = Batch::latest()->take(8)->get();
-        return view('class.edit', compact('class', 'batches', 'classes', 'subjects', 'assignteachers', 'classsettings'));
+        $topics = Topic::where('subject_id', $editclass->subject_id)->get();
+        // $batches = Batch::latest()->take(8)->get();
+        $batches = Batch::latest()->paginate(8);
+        // dd($class);
+        return view('class.edit', compact(
+            'class',
+            'editclass',
+            'topics',
+            'batches',
+            'classes',
+            'subjects',
+            'assignteachers',
+            'classsettings'
+        ));
     }
 
     /**
@@ -338,22 +350,18 @@ class BatchController extends Controller
 
     public function studentDetails(Request $request, $id)
     {
-        if(isset($id))
-        {
-                   $batch = Batch::find($id);
-        // dd($batch);
-        $allBatches = Batch::where('class_master_id', $batch->class_master_id)
+        if (isset($id)) {
+            $batch = Batch::find($id);
+            // dd($batch);
+            $allBatches = Batch::where('class_master_id', $batch->class_master_id)
             ->where('id', '!=', $id)
             // session end date
             ->whereDate('batch_end_date', '>=', Carbon::today())
             ->get();
-        return view('class.student_details', compact('batch', 'allBatches'));
-        }
-        else
-        {
+            return view('class.student_details', compact('batch', 'allBatches'));
+        } else {
             return back()->withMessage('Batch Not found');
         }
- 
     }
     public function availableCourses(Request $request)
     {
@@ -430,21 +438,19 @@ class BatchController extends Controller
         $relatedBatches = Batch::whereIn('id', array_keys(session()->get('cart')))->get();
         return view('class.buy_now', compact('relatedBatches', 'totalPrice'));
     }
-      public function is_seat_full($batch_id)
+    public function is_seat_full($batch_id)
     {
-      $session=BatchSession::find($session_id);
-      $enrolled_student_count=OrderSessionMap::where('session_id', $session_id)->count();
-      if((int)$session->batch->no_of_seats>$enrolled_student_count)
-      {
-        return true;
-      }
-      else{
-        return false;
-      }
+        $session=BatchSession::find($session_id);
+        $enrolled_student_count=OrderSessionMap::where('session_id', $session_id)->count();
+        if ((int)$session->batch->no_of_seats>$enrolled_student_count) {
+            return true;
+        } else {
+            return false;
+        }
     }
     public function check_if_seat_is_full()
     {
-      return $this->is_seat_full(10);
+        return $this->is_seat_full(10);
     }
     // public function adminDashboard()
     // {

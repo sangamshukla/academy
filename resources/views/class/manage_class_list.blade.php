@@ -115,7 +115,7 @@
       @php $i++ @endphp
     @endforeach
     
-                       <div style="margin-top: 2rem; float:right;  border-color: coral;">{{ $batches->links() }}</div>
+    <div style="margin-top: 2rem; float:right;  border-color: coral;">{{ $batches->links() }}</div> 
     <!--<p style="margin-left: 2000px;">{{ $batches->links() }}</p>-->
      <!--<div class="row">-->
      <!--               <div class="col-md-12">-->

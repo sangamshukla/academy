@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeWorkController;
 use App\Http\Controllers\HomeWorkStudentController;
 use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\OfflineController;
 use App\Http\Controllers\OperationController;
 use App\Http\Controllers\StudentProfileController;
 use App\Models\User;
@@ -253,4 +254,6 @@ Route::post('upload-answer-pdf', [HomeWorkController::class, 'upload_pdf'])->nam
 Route::get('get-id', [HomeWorkStudentController::class, 'get_assigned_homework_answer_map_id']);
 
 // for offline scoresheet
-// Route::get('student-enrollment', '')
+Route::get('student-enrollment', [OfflineController::class, 'studentEnrollment'])->name('student-enrollment');
+Route::get('full-marks', [OfflineController::class, 'fullMarks'])->name('full-marks');
+

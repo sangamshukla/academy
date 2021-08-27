@@ -119,6 +119,15 @@
         </div>
     </div>
 </li> 
+<!-- offline scoresheet -->
+<li class="nav-item">
+  <a class="nav-link collapsed" href="{{route('student-enrollment')}}">
+    <div class="nav_images"><img src="{{asset('wa/admin/img/student-a.svg')}}"></div>
+    <br>
+    <span>Score Sheet</span>
+  </a>
+</li> 
+<!-- end offlin scoresheet -->
   <!-- Nav Item - Alerts -->
    <li class="nav-item dropdown no-arrow mx-1 pl-5">
     <a class="dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

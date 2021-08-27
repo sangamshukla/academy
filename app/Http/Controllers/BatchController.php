@@ -301,6 +301,7 @@ class BatchController extends Controller
         );
         $index = 0;
         $name = 1;
+        BatchSession::where('batch_id', $batch->id)->delete();
         foreach ($request->session_name as $session_name) {
             $d = $request->session_start_date[$index];
             $comment = $request->comment[$index];
@@ -312,11 +313,17 @@ class BatchController extends Controller
             ]);
             BatchTopic::create([
                 'batch_session_id' => $batchSession->id,
-                'topic_id' => $request->topic_id['Session-' . $name]
+                'topic_id' => $request->topic_id[$index]
             ]);
 
             // make event
-            $topicname = Topic::find($request->topic_id['Session-' . $name]);
+            $topicname = Topic::find($request->topic_id[$index]);
+            Event::create([
+                'batch_id' => $batch->id,
+                'title' => $d . '' . $batch->classSettings->name . ' ' . $session_name . ' ' . $topicname->name . '',
+                'start' => Carbon::parse($d)->format('Y-m-d h:i:s'),
+                'end' => Carbon::parse($d)->format('Y-m-d h:i:s'),
+            ]);
             Event::create([
                 'batch_id' => $batch->id,
                 'title' => $d . '' . $batch->classSettings->name . ' ' . $session_name . ' ' . $topicname->name . '',
@@ -326,7 +333,9 @@ class BatchController extends Controller
             $index++;
             $name++;
         }
-        return redirect(route('manage-classnew'))->with('status', 'Class Updated Successfully');
+        session()->flash('status', 'Class Updated Successfully');
+        // return redirect(route('manage-classes'))->with('status', 'Class Updated Successfully');
+        return response()->json(['data'=>'Class Updated Successfully']);
     }
 
     /**

@@ -90,6 +90,7 @@ class="d-sm-flex align-items-center justify-content-between mb-4"
      <div>
        <div>
          <form class="form_block" method="post" id="ajexForm" >
+           <input type="hidden" id="update_vals" value="{{ $editclass->id }}" />
           @csrf
           <!-- Select Class -->
         <div class="row">
@@ -177,9 +178,9 @@ class="d-sm-flex align-items-center justify-content-between mb-4"
             <div class="">
               <select  class="form-control small_width" name="duration_per_sessions_id"  id="duration_per_sessions_id" value="{{ old('duration_per_sessions_id')}}">
                 <option selected>... Select Duration Per Session ...</option>
-                <option value="30">30m</option>
-                <option value="60">60m</option>
-                <option value="90">90m</option> 
+                <option @if($editclass->duration_per_session == 30) selected  @endif value="30">30m</option>
+                <option @if($editclass->duration_per_session == 60) selected  @endif value="60">60m</option>
+                <option @if($editclass->duration_per_session == 90) selected  @endif value="90">90m</option> 
               </select> 
               <span id="duration_per_sessions_validation" class="text-danger"></span>
             </div>
@@ -261,7 +262,7 @@ class="d-sm-flex align-items-center justify-content-between mb-4"
 <!-- Add Class + -->
 <div class="row">
   <div class="col-md-12 col-lg-12">
-   <button id="generate-session" class="add_class_plus">Add Class +</button>
+   <button id="generate-session" style="display:none;"  class="add_class_plus">Add Class +</button>
   </div>
 </div>
 
@@ -305,8 +306,8 @@ class="d-sm-flex align-items-center justify-content-between mb-4"
         </div>
         <div class="form-group">
             <div class="col-md-12">
-              @if($loop->count > 1)
-                <button id="first_button" class="btn btn-success generate-session" style="margin-top: 28px; display: none;" onclick="addRow()" type="button">+</button>
+              @if($loop->count == 1)
+                <button id="first_button" class="btn btn-success generate-session" style="margin-top: 28px; display: block;" onclick="addRow()" type="button">+</button>
               @endif  
             </div>
         </div>
@@ -378,7 +379,7 @@ class="d-sm-flex align-items-center justify-content-between mb-4"
 </div>
 @endsection
 @section('scripts')
-<script src="{{ asset('javascript/create_class.js') }}"></script>
+<script src="{{ asset('javascript/update_class.js') }}"></script>
 
 @if($editclass->status == 0)
 <script>

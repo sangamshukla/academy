@@ -246,9 +246,11 @@ Route::post('upload-edit-homework', [HomeWorkController::class, 'upload_edit_hom
 Route::get('delete-homework/{homework_id}/{student_id}', [HomeWorkController::class, 'delete_homework'])->name('delete-homework');
 
 Route::get('/find/teacher/{teacherId}/{datetime}/{duration?}', [ApiController::class, 'getAvailableTeacher']);
-
 Route::get('get_teacher_who_has_session', [OperationController::class, 'get_teacher_who_has_session']);
 Route::get('get-score-sheet', [OperationController::class, 'scoreSheet']);
 Route::get('sessions-for-tomorrow', [HomeController::class, 'sessionForTomorrow']);
 Route::post('upload-answer-pdf', [HomeWorkController::class, 'upload_pdf'])->name('upload-answer-pdf');
 Route::get('get-id', [HomeWorkStudentController::class, 'get_assigned_homework_answer_map_id']);
+
+// for offline scoresheet
+// Route::get('student-enrollment', '')

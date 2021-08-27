@@ -158,7 +158,7 @@
                     <label class="control-label" for="class">Assign Teacher</label>  
                     <div class="">
                       <select class="js-example-basic-single" name="name" id="class_name" value="{{ old('name')}}"> 
-                         
+                        <option value="" selected>... Assign Teacher ...</option>
                         @foreach($assignteachers as $assignteacher)
                         <option value="{{ $assignteacher->id }}">{{ $assignteacher->name }}</option>
                          @endforeach 

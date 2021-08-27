@@ -589,7 +589,7 @@ $(document).ready(function () {
 
             valid = false;
         }
-        // alert(isInt($("#no_of_seats").val()));
+        alert(isInt($("#no_of_seats").val()));
         if ($("#no_of_seats").val() != "" && $("#no_of_seats").val() < 3) {
             $("#no_of_seats_validation").html(
                 "No of seats must be integer and greater than 3"

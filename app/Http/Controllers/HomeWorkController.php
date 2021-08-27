@@ -78,20 +78,16 @@ class HomeWorkController extends Controller
         $images = TeacherProfile::where('user_id', $id)->select('teacher_profile_photo')->get();
         // dd($pdfFilesAll);
         $homework_ids=AssignedHomeWork::where('session_id', $id)->get();
-        if($homework_ids->isNotEmpty())
-        {
-            foreach($homework_ids as $homework_id)
-            {
-              $homework_id=$homework_id->id;
+        if ($homework_ids->isNotEmpty()) {
+            foreach ($homework_ids as $homework_id) {
+                $homework_id=$homework_id->id;
             }
             $assigned_homeworks=$this->getHomeWork($homework_id);
+        } else {
+            $homework_id=null;
+            $assigned_homeworks=null;
         }
-        else
-        {
-            $homework_id=NULL;  
-            $assigned_homeworks=NULL;
-        }
-        return view('homework.start-session', compact('allSessions', 'assigned_homeworks' ,'session', 'students', 'pdfFilesAll', 'images'));
+        return view('homework.start-session', compact('allSessions', 'assigned_homeworks', 'session', 'students', 'pdfFilesAll', 'images'));
     }
     public function saveStartSession(Request $request)
     {
@@ -176,7 +172,7 @@ class HomeWorkController extends Controller
 
     public function viewhomeworkdetails($id)
     {
-       $submittedHomework = AssignedHomeWorkAnswer::find($id);
+        $submittedHomework = AssignedHomeWorkAnswer::find($id);
         $student = AssignedHomeWorkStudent::where('student_id', $submittedHomework->student_id)
             ->where('assigned_home_work_id', $submittedHomework->assigned_home_work_id)->first();
         $homeworkContent = AssignedHomeWorkAnswerMap::where(
@@ -211,7 +207,7 @@ class HomeWorkController extends Controller
     
     public function makeMarkSheet(Request $request)
     {
-         $getYear1Students = User::with('student');
+        $getYear1Students = User::with('student');
         if ($request->batchId) {
             $batches = OrderItems::where('batch_id', $request->batchId)->pluck('order_payment_id')->toArray();
             $allStudents = OrderPayment::whereIN('id', $batches)->pluck('student_id')->toArray();
@@ -229,10 +225,10 @@ class HomeWorkController extends Controller
         }
 
         $getYear1Students = $getYear1Students->get();
-        $getYear1Students->transform(function ($student) use($request) {
-            $student->maths_marks = $this->getMathsMarks($student->id,$request->sessionId,$request->batchId);
-            $student->english_marks = $this->getEnglishMarks($student->id,$request->sessionId,$request->batchId);
-            $student->essay_marks = $this->getEssayMarks($student->id, $request->sessionId,$request->batchId);
+        $getYear1Students->transform(function ($student) use ($request) {
+            $student->maths_marks = $this->getMathsMarks($student->id, $request->sessionId, $request->batchId);
+            $student->english_marks = $this->getEnglishMarks($student->id, $request->sessionId, $request->batchId);
+            $student->essay_marks = $this->getEssayMarks($student->id, $request->sessionId, $request->batchId);
 
             $student->obtd_marks = $student->maths_marks[1] + $student->english_marks[1] +  $student->essay_marks[1];
             $student->maths_marks_total = $student->maths_marks[0];
@@ -273,21 +269,21 @@ class HomeWorkController extends Controller
     public function getMathsMarks($studentId, $sessionId = null, $batchId = null)
     {
         // maths id = 2
-       // dd($sessionId);
+        // dd($sessionId);
         $mathsBatches = Batch::where('subject_id', 2);
-        if($batchId){
+        if ($batchId) {
             $mathsBatches = $mathsBatches->where('id', $batchId);
         }
         $mathsBatches = $mathsBatches->latest()->get();
-       // dd($mathsBatches);
+        // dd($mathsBatches);
         // ->latest()->get()
         $m = $mathsBatches->filter(function ($batch) use ($studentId, $sessionId) {
             $a = false;
             foreach ($batch->batchSession as $session) {
                 $assignedHomeworks =  AssignedHomeWork::query();
-                if($sessionId){
-                      $assignedHomeworks = $assignedHomeworks->where('session_id', $sessionId);
-                }else{
+                if ($sessionId) {
+                    $assignedHomeworks = $assignedHomeworks->where('session_id', $sessionId);
+                } else {
                     $assignedHomeworks = $assignedHomeworks->where('session_id', $session->id);
                 }
                 
@@ -318,18 +314,18 @@ class HomeWorkController extends Controller
     {
         // english subject_id =2
         $englishBatches = Batch::where('subject_id', 1);
-        if($batchId){
+        if ($batchId) {
             $englishBatches = $englishBatches->where('id', $batchId);
         }
         $englishBatches = $englishBatches->latest()->get();
-       // dd($englishBatches);
-        $m = $englishBatches->filter(function ($batch) use ($studentId,$sessionId) {
+        // dd($englishBatches);
+        $m = $englishBatches->filter(function ($batch) use ($studentId, $sessionId) {
             $a = false;
             foreach ($batch->batchSession as $session) {
                 $assignedHomeworks =  AssignedHomeWork::query();
-                if($sessionId){
-                      $assignedHomeworks = $assignedHomeworks->where('session_id', $sessionId);
-                }else{
+                if ($sessionId) {
+                    $assignedHomeworks = $assignedHomeworks->where('session_id', $sessionId);
+                } else {
                     $assignedHomeworks = $assignedHomeworks->where('session_id', $session->id);
                 }
                 $assignedHomeworks = $assignedHomeworks->get();
@@ -358,17 +354,17 @@ class HomeWorkController extends Controller
     {
         // essay subject _id = 3
         $essayBatches = Batch::where('subject_id', 3);
-        if($batchId){
+        if ($batchId) {
             $essayBatches = $essayBatches->where('id', $batchId);
         }
         $essayBatches = $essayBatches->latest()->get();
-        $m = $essayBatches->filter(function ($batch) use ($studentId,$sessionId) {
+        $m = $essayBatches->filter(function ($batch) use ($studentId, $sessionId) {
             $a = false;
             foreach ($batch->batchSession as $session) {
                 $assignedHomeworks =  AssignedHomeWork::query();
-                if($sessionId){
-                      $assignedHomeworks = $assignedHomeworks->where('session_id', $sessionId);
-                }else{
+                if ($sessionId) {
+                    $assignedHomeworks = $assignedHomeworks->where('session_id', $sessionId);
+                } else {
                     $assignedHomeworks = $assignedHomeworks->where('session_id', $session->id);
                 }
                 
@@ -395,24 +391,22 @@ class HomeWorkController extends Controller
         return [0,0];
     }
     
-     public function payDueAmount(Request $request)
+    public function payDueAmount(Request $request)
     {
         $payment_amount=$request->payment_amount;
         $order_id=$request->order_id;
         $update_due=OrderPayment::updateOrCreate(
-        [
+            [
             'id'=>$order_id
         ],
-        [
+            [
             'paid_amount'=>$payment_amount
-        ]);
-        if($update_due)
-        {
+        ]
+        );
+        if ($update_due) {
             return response($update_due);
             return response('payment updated successfully')->with('msg', 'Payment has been updated. ');
-        }
-        else
-        {
+        } else {
             return response('there is some error');
         }
     }
@@ -424,48 +418,38 @@ class HomeWorkController extends Controller
     {
         $this->is_homework_assigned();
     }
-     public static function getHomeWork($homework_id)
+    public static function getHomeWork($homework_id)
     {
-      $assigned_homeworks=AssignedHomeWorkStudent::where('assigned_home_work_id', $homework_id)->get();
-      return $assigned_homeworks;
+        $assigned_homeworks=AssignedHomeWorkStudent::where('assigned_home_work_id', $homework_id)->get();
+        return $assigned_homeworks;
     }
-        public function upload_edit_homework(Request $request)
+    public function upload_edit_homework(Request $request)
     {
-
-      $homeworks_to_be_edited=AssignedHomeWorkStudent::where('assigned_home_work_id', $request->homework_id)->where('student_id', $request->student_id)->get();
-      if($request->hasFile('homework_file'))
-      {
-        foreach($homeworks_to_be_edited as $homework_to_be_edited)
-        {
-          $success=$request->file('homework_file')->store('public/pdfs', ['disk'=>'public_uploads']);
-          if($success)
-          {
-            $homework_to_be_edited->assigned_content=$success;
-            $updated_database=$homework_to_be_edited->save();
-            if($updated_database)
-            {
-              return back()->with('msg', 'homework has been uploaded');
+        $homeworks_to_be_edited=AssignedHomeWorkStudent::where('assigned_home_work_id', $request->homework_id)->where('student_id', $request->student_id)->get();
+        if ($request->hasFile('homework_file')) {
+            foreach ($homeworks_to_be_edited as $homework_to_be_edited) {
+                $success=$request->file('homework_file')->store('public/pdfs', ['disk'=>'public_uploads']);
+                if ($success) {
+                    $homework_to_be_edited->assigned_content=$success;
+                    $updated_database=$homework_to_be_edited->save();
+                    if ($updated_database) {
+                        return back()->with('msg', 'homework has been uploaded');
+                    }
+                }
             }
-          }
-
+        } else {
+            return back()->with('msg', 'please choose file');
         }
-      }
-      else
-      {
-        return back()->with('msg','please choose file');
-      }
     }
     public function delete_homework($homework_id, $student_id)
     {
-      $homeworks_to_be_deleted=AssignedHomeWorkStudent::where('assigned_home_work_id', $homework_id)->where('student_id', $student_id)->get();
-      foreach($homeworks_to_be_deleted as $homework_to_be_deleted)
-      {
-        $deleted=$homework_to_be_deleted->delete();
-        if($deleted)
-        {
-          return back()->with('msg', 'Homework has been been deleted');
+        $homeworks_to_be_deleted=AssignedHomeWorkStudent::where('assigned_home_work_id', $homework_id)->where('student_id', $student_id)->get();
+        foreach ($homeworks_to_be_deleted as $homework_to_be_deleted) {
+            $deleted=$homework_to_be_deleted->delete();
+            if ($deleted) {
+                return back()->with('msg', 'Homework has been been deleted');
+            }
         }
-      }
     }
     public function upload_pdf(Request $request)
     {
@@ -479,14 +463,12 @@ class HomeWorkController extends Controller
             ],
             [
                 'checked_content'=>$path
-                ]);
-            if($save_checked_homework)
-            {
-                return back()->with('msg', 'Your checked home has been submitted');
-            }
-            else{
-                
-                return back()->with('msg', 'There was some error');
-            }
+                ]
+        );
+        if ($save_checked_homework) {
+            return back()->with('msg', 'Your checked home has been submitted');
+        } else {
+            return back()->with('msg', 'There was some error');
+        }
     }
 }

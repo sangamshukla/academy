@@ -138,6 +138,8 @@ class HomeController extends Controller
             $today = Batch::whereIn('id', $batchSessionsToday)->get();
             
             $tomorrow = BatchSession::whereIn('batch_id', $couseBatches)->whereDate('start_date_time', Carbon::tomorrow())->get();
+            $allsessions=BatchSession::whereIn('batch_id', $couseBatches)->latest()->get();
+            // dd($allsession);
             // dd($tomorrow);
             $twos = Batch::whereIn('id', $couseBatches)->latest()->take(2)->get();
             $three = Batch::whereIn('id', $couseBatches)->oldest()->take(3)->get();
@@ -168,7 +170,8 @@ class HomeController extends Controller
                 'purchased_sessions',
                 'assigned_homework',
                 'marks',
-                'relatedBatches'
+                'relatedBatches',
+                'allsessions'
                 
             ));
         }

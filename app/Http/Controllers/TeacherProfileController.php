@@ -318,7 +318,6 @@ class TeacherProfileController extends Controller
     public function storePrice(Request $request)
     {
         $user_id = auth()->user()->id;
-        // dd($user_id);
         TeacherPricing::updateOrCreate(
             [
                 'user_id' => $user_id,
@@ -333,7 +332,10 @@ class TeacherProfileController extends Controller
     }
     public function is_id_submitted($teacherId)
     {
+        // dd($teacherId);
         $status=TeacherProfile::firstWhere('user_id', $teacherId)->get();
+        if($status)
+        {
         foreach($status as $photo)
         {
            if($photo->teacher_id_proof_image!=null)
@@ -345,6 +347,7 @@ class TeacherProfileController extends Controller
                return false;
            }
         }
+    }
         if($teacherId==1)
         {
             return true;

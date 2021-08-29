@@ -240,8 +240,6 @@ Route::get('is-homework-assigned', [HomeWorkController::class, 'check']);
 
 // for sendmail on homepage
 Route::post('/contact-mail', [HomeController::class, 'contactMailSave'])->name('contact-mail');
-
-
 Route::get('is-seat-full', [BatchController::class, 'check_if_seat_is_full']);
 Route::post('upload-edit-homework', [HomeWorkController::class, 'upload_edit_homework'])->name('upload-edit-homework');
 Route::get('delete-homework/{homework_id}/{student_id}', [HomeWorkController::class, 'delete_homework'])->name('delete-homework');
@@ -255,5 +253,6 @@ Route::get('get-id', [HomeWorkStudentController::class, 'get_assigned_homework_a
 
 // for offline scoresheet
 Route::get('student-enrollment', [OfflineController::class, 'studentEnrollment'])->name('student-enrollment');
+Route::post('student-enrollment', [OfflineController::class, 'studentEnrollmentSave'])->name('student-enrollment');
+Route::get('student-enrollment', [OfflineController::class, 'studentEnrollmentIndex'])->name('student-enrollment-index');
 Route::get('full-marks', [OfflineController::class, 'fullMarks'])->name('full-marks');
-

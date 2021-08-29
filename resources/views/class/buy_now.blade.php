@@ -34,19 +34,6 @@
                         })();return false;" class="single-district card{{ $i }}">
                         {{-- @php $i =1 @endphp --}}
                           <div class="card_img mb-3">
-                              <!--@if($relatedBatch->subject->name == 'English')-->
-                              <!--    <img src="{{ asset('frontend/assets/English/English.jpg') }}" alt="">-->
-                              <!--@endif-->
-                              <!--@if($relatedBatch->subject->name == 'Maths')-->
-                              <!--    {{-- <img src="{{ asset('frontend/assets/Maths/Maths.jpg') }}" alt=""> --}}-->
-                              <!--    <img src="{{ asset('frontend/assets/Maths/Math.jpg') }}" alt="">-->
-                              <!--@endif-->
-                              <!--@if($relatedBatch->subject->name == 'Physics')-->
-                              <!--    <img src="{{ asset('frontend/assets/Physics/Physics.jpg') }}" alt="">-->
-                              <!--@endif-->
-                              <!--@if($relatedBatch->subject->name == 'Chemistry')-->
-                              <!--    <img src="{{ asset('frontend/assets/card-cover.png') }}" alt="">-->
-                              <!--@endif-->
                               
                                 @if($relatedBatch->subject->name == 'English')
                                 

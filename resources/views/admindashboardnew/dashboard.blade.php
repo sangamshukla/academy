@@ -86,7 +86,7 @@
               <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
             </div>
             <div class="v_course">
-                <p><a href="{{route('buy.now')}}">View Course</a></p>
+                <p><a href="#">View Course</a></p>
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@
               <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
             </div>
             <div class="v_course">
-                <p><a href="{{route('buy.now')}}">View Course</a></p>
+                <p><a href="#">View Course</a></p>
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@
               <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
             </div>
             <div class="v_course">
-                <p><a href="{{route('buy.now')}}">View Course</a></p>
+                <p><a href="#">View Course</a></p>
             </div>
           </div>
         </div>
@@ -125,7 +125,7 @@
               <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
             </div>
             <div class="v_course">
-                <p><a href="{{route('buy.now')}}">View Course</a></p>
+                <p><a href="#">View Course</a></p>
             </div>
           </div>
         </div>
@@ -138,7 +138,7 @@
               <p><span>23 Jan,</span><span>04:00pm - 05:00pm</span></p>
             </div>
             <div class="v_course">
-                <p><a href="{{route('buy.now')}}">View Course</a></p>
+                <p><a href="#">View Course</a></p>
             </div>
           </div>
         </div>
@@ -189,7 +189,7 @@
               <p><span>5 Cource</span></p>
             </div>
             <div class="v_course">
-                <p><a href="{{route('teacher-profile')}}">View Course</a></p>
+                <p><a href="#">View Course</a></p>
             </div>
           </div>
         </div>
@@ -203,7 +203,7 @@
               <p><span>5 Cource</span></p>
             </div>
             <div class="v_course">
-                <p><a href="{{route('teacher-profile')}}">View Course</a></p>
+                <p><a href="#">View Course</a></p>
             </div>
           </div>
         </div>
@@ -217,7 +217,7 @@
               <p><span>5 Cource</span></p>
             </div>
             <div class="v_course">
-                <p><a href="{{route('teacher-profile')}}">View Course</a></p>
+                <p><a href="#">View Course</a></p>
             </div>
           </div>
         </div>
@@ -231,7 +231,7 @@
               <p><span>5 Cource</span></p>
             </div>
             <div class="v_course">
-                <p><a href="{{route('teacher-profile')}}">View Course</a></p>
+                <p><a href="#">View Course</a></p>
             </div>
           </div>
         </div>
@@ -245,7 +245,7 @@
               <p><span>5 Cource</span></p>
             </div>
             <div class="v_course">
-                <p><a href="{{route('teacher-profile')}}">View Course</a></p>
+                <p><a href="#">View Course</a></p>
             </div>
           </div>
         </div>

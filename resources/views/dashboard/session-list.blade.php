@@ -78,7 +78,7 @@
                                                     {{-- <div id="app"></div> --}}
 
                                                     <p class="card_subject_title2">
-                                                        <a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $batch->id)  }}">Join now</a></p>
+                                                        {{-- <a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $batch->id)  }}">Join now</a></p> --}}
                                                         <script>
                                                             window.onload = (event) => {
 
@@ -231,7 +231,7 @@
                                                     <div>
                                                         <p class="subject_card">Join Now</p>
 
-                                                        <p><a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $batch->id)  }}">join now</a></p>
+                                                        {{-- <p><a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $batch->id)  }}">join now</a></p> --}}
 
                                                     </div>
                                                     <div class="border-left second_left_border"></div>
@@ -294,49 +294,36 @@
                             <div id="accordion" >
                                 <div class="card mb-3">
                                     <div class="card-header" id="headingThree">
-                                        @foreach($batches as $batch)
-                                        @foreach($batch->batchSession as $session)
+                                        @foreach($allsessions as $session)
+                                      
                                         <div class="card-header" id="headingOne">
                                             <h5 class="mb-0">
                                                 <div class="d-flex justify-content-around">
                                                     <div class="card_img" style="width:38%">
-                                                                             @if($batch->subject->name == 'English')
-                                
-                                  <img style="width:100%;" src="{{ asset('frontend/assets/English/English.jpg') }}" alt="">
-                                
-                                @elseif($batch->subject->name == 'Maths')
-                                
-                                    <img  style="width:100%;" src="{{ asset('frontend/assets/Maths/Math.jpg') }}" alt="">
-                                
-                                @elseif($batch->subject->name == 'Physics')
-                                
-                                    <img  style="width:100%;" src="{{ asset('frontend/assets/Physics/Physics.jpg') }}" alt="">
-                                
-                                @elseif($batch->subject->name == 'Chemistry')
-                                
-                                    <img style="width:100%" src="{{ asset('frontend/assets/card-cover.png') }}" alt="">
-                                
-                                @elseif($batch->subject->name == 'Essay')
-                                
-                                    <img  style="width:100%" src="{{ asset('frontend/assets/Essay/Essay.jpg') }}" alt="">
-                                
-                                @else
-                                
-                                <img style="width:100%" src="{{ asset('frontend/assets/English/English.jpg')}}" alt="">
-                                
-                                @endif
-
+                                                        @if($session->batch->subject->name == 'English')
+                                                            <img style="width:100%;" src="{{ asset('frontend/assets/English/English.jpg') }}" alt="">
+                                                            @elseif($session->batch->subject->name == 'Maths')  
+                                                                <img  style="width:100%;" src="{{ asset('frontend/assets/Maths/Math.jpg') }}" alt="">
+                                                            @elseif($session->batch->subject->name == 'Physics')
+                                                                <img  style="width:100%;" src="{{ asset('frontend/assets/Physics/Physics.jpg') }}" alt="">
+                                                            @elseif($session->batch->subject->name == 'Chemistry')
+                                                                <img style="width:100%" src="{{ asset('frontend/assets/card-cover.png') }}" alt="">
+                                                            @elseif($session->batch->subject->name == 'Essay')
+                                                                <img  style="width:100%" src="{{ asset('frontend/assets/Essay/Essay.jpg') }}" alt="">
+                                                            @else
+                                                                <img style="width:100%" src="{{ asset('frontend/assets/English/English.jpg')}}" alt="">
+                                                            @endif
                                                     </div>
                                                     <div>
                                                         <p class="subject_card">Subject</p>
-                                                        <p style="font-size:15px;" class="card_subject_title1">{{$batch->subject->name}}</p>
+                                                        <p style="font-size:15px;" class="card_subject_title1">{{$session->batch->subject->name}}</p>
                                                     </div>
                                                     <div class="border-left first_left_border"></div>
                                                     <div>
                                                         <p class="subject_card">Join Now</p>
                                                             {{-- <a style="text-decoration:none; font-size:15px; color: #0EA47E;" class="card_subject_title1" href="{{ url('zoom', $batch->id)  }}">Join now</a> --}}
                                                             <p class="card_subject_title2">
-                                                        <a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $batch->id)  }}">Join now</a></p>
+                                                        {{-- <a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $session->id)  }}">Join now</a></p> --}}
                                                     </div>
                                                     <div class="border-left second_left_border"></div>
 
@@ -350,25 +337,21 @@
                                             </h5>
                                         </div>
 
-                                        <div id="collapse{{$session->id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div id="collapse{{$session->id}}" class="collapse" aria-labelledby="headingOne" data-parent="#headingOne">
                                             <div class="card-body">
 
                                                 <table class="table">
                                                     <tr>
                                                         <td>Class</td>
-                                                        <td>{{ $batch->classSettings->name }}</td>
+                                                        <td>{{ $session->batch->classSettings->name }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Teacher</td>
-                                                        <td>{{ $batch->teacher->name }}</td>
+                                                        <td>{{ $session->batch->teacher->name }}</td>
                                                     </tr>
 
                                                     <tr>
                                                         <td>Topics</td>
-                                                        {{-- <td> @foreach($session->topics as $t)
-                                                            {{ $session->name }} - {{ $t->topic->name }}
-                                                        </td>
-                                                        @endforeach --}}
                                                         <td>{{$session->name}}-
                                                         @if(isset($session->topics_name->topic->name))
                                                         {{$session->topics_name->topic->name}}
@@ -381,20 +364,9 @@
                                                     <tr>
                                                         <td colspan="2"><a href="{{route('home-work', ['id'=>$session->id])}}">View Homework</a></td>
                                                     </tr>
-                                                   {{-- <tr>
-                                                    <td>Due Amount</td>
-                                                    <td>
-                                                        @php
-                                                        $items = $batch->items->pluck('order_payment_id');
-                                                        $payments = App\Models\OrderPayment::whereIn('id', $items)->where('student_id', auth()->id())->first();
-                                                        @endphp
-                                                        &euro; {{ $payments->order_amount - $payments->paid_amount }}
-                                                    </td>
-                                                </tr>--}}
                                                 </table>
                                             </div>
                                         </div>
-                                        @endforeach
                                         @endforeach
                                     </div>
                                 </div>
@@ -618,7 +590,12 @@
                                         {{ $session->name }} - {{ $t->topic->name }}
                                     </td>
                                  @endforeach --}}
-                                 <td>{{$session->topics_name->topic->name}}</td>
+                                 <td>@if(isset($session->topics_name->topic->name))
+                                    {{$session->topics_name->topic->name}}
+                                    
+                                    @else
+                                        Error in Topic
+                                    @endif</td>
 
                             </tr>
                                 <!--  <td>-->

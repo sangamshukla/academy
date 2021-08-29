@@ -32,7 +32,7 @@
     <link href="{{asset('wa/admin/css/session.css')}}" rel="stylesheet" />
     <link href="{{asset('wa/admin/css/custom.css')}}" rel="stylesheet" />
 
-   
+    @yield('css')
   </head>
 
   <body id="page-top">

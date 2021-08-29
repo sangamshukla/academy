@@ -14,15 +14,20 @@
             <h6 style="margin-top: 30px; margin-left:20px; position:relative;">Select week for score card list</h6>
         </div>
     </div>
-    
+    @include('_form.success')
+    <form method="POST" action="">
+      @csrf
+    {{--  @foreach($weeks as $week)
+      @php(dd($weeks))
+      @endforeach --}}
     <div class="row">
         <div class="col-md-4">
             <div class="input-group mb-3">
-                <select style="margin-left:20px; position:relative;" class="custom-select" id="inputGroupSelect02">
+                <select style="margin-left:20px; position:relative;" name="week_name" class="custom-select" id="inputGroupSelect02">
                   <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  @foreach($weeks as $week)
+                  <option value="{{ $week->id }}">{{ $week->week_name }}</option>
+                  @endforeach
                 </select>
                 <div class="input-group-append">
                     <!-- <button class="btn btn-outline-secondary" type="button">Button</button> -->
@@ -47,51 +52,32 @@
                   </tr>
                 </thead>
                 <tbody>
+                   @foreach($students as $student)                 
                   <tr style="background-color: white;">
-                    <th><label style="margin-left: 20px;" class="custom-control-label" for="customCheck2"></label></th>
-                    <th scope="row">1</th>
-                    <td>Student1</td>
-                  </tr>
-                  <tr style="background-color: white;">
-                    <th><label style="margin-left: 20px;" class="custom-control-label" for="customCheck2"></label></th>
-                    <th scope="row">1</th>
-                    <td>Student1</td>
-                  </tr>
-                  <tr style="background-color: white;">
-                    <th><label style="margin-left: 20px;" class="custom-control-label" for="customCheck2"></label></th>
-                    <th scope="row">1</th>
-                    <td>Student1</td>
-                  </tr>
-                  <tr style="background-color: white;">
-                    <th><label style="margin-left: 20px;" class="custom-control-label" for="customCheck2"></label></th>
-                    <th scope="row">1</th>
-                    <td>Student1</td>
-                  </tr>
-                  <tr style="background-color: white;">
-                    <th><label style="margin-left: 20px;" class="custom-control-label" for="customCheck2"></label></th>
-                    <th scope="row">1</th>
-                    <td>Student1</td>
-                  </tr>
-                  <tr style="background-color: white;">
-                    <th><label style="margin-left: 20px;" class="custom-control-label" for="customCheck2"></label></th>
-                    <th scope="row">1</th>
-                    <td>Student1</td>
-                  </tr>
-                  <tr style="background-color: white;">
-                    <th><label style="margin-left: 20px;" class="custom-control-label" for="customCheck2"></label></th>
-                    <th scope="row">1</th>
-                    <td>Student1</td>
-                  </tr>
-                  <tr style="background-color: white;">
-                    <th><label style="margin-left: 20px;" class="custom-control-label" for="customCheck2"></label></th>
-                    <th scope="row">1</th>
-                    <td>Student1</td>
-                  </tr>
+                    <th class="custom-checkbox"><input name="student_id[]" value="{{ $student->id }}" type="checkbox"></th>
+                    <!-- <th scope="row">{{ $loop->iteration }}</th> -->
+                    <th scope="row">{{ $loop->index+1 }}</th>
+                    <td>{{$student->name}}</td>
+                  </tr>                 
+                   @endforeach 
+                  
                 </tbody>
               </table>
+              <div >
+              <!-- <button class="submit"  type="button">Submit</button> -->
+              <input class="submit" type="submit" value="submit">
+              </div>
         </div>
     </div>
+    </form>
 </div>
 
  
+@endsection
+
+@section('css')
+<style>
+  /** do not delete */
+</style>
+
 @endsection

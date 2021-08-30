@@ -1,7 +1,6 @@
 <!-- fullmarks -->
 @extends('layouts.admin_dashboard')
 @section('content')
-<link href="{{asset('wa/admin/css/custom.css')}}" rel="stylesheet" />
 <div class="inner-container" style="overflow-y: scroll;">
     <div class="row">
         <div class="col-md-12">
@@ -16,19 +15,18 @@
             <h6 style="margin-top: 30px; margin-left:20px; position:relative;">Select week for score card list</h6>
         </div>
     </div>
-    
-    <form method="POST" action="{{route('full-marks')}}" >
+  
+    <form method="POST" action="{{ route('full-marks-edit', $subject->id) }}" >
       @csrf
     <div class="row">
         <div class="col-md-4">
           <div class="input-group mb-3">
-            @include('_form.success')
-            <select style="margin-left:20px; position:relative;" name="week_id" class="custom-select" id="inputGroupSelect02">
+             <select style="margin-left:20px; position:relative;" name="week_id" class="custom-select" id="inputGroupSelect02">
               <option selected>Choose...</option>
               @foreach($weeks as $week)
               <option value="{{ $week->id }}">{{ $week->week_name }}</option>
               @endforeach
-            </select>
+            </select> 
             <div class="input-group-append">
                 <!-- <button class="btn btn-outline-secondary" type="button">Button</button> -->
              <button class="btn btn-outline-secondary" type="button" style="background-color: #1D6771;">
@@ -58,8 +56,7 @@
                     <td>{{ $subject->name }} <input type="hidden" value="{{ $subject->id }}" name="sub_id[]" /></td>
                     <td><input name="sub_marks[]" value="0" class="form-control" /></td>
                     <td>
-                    <!-- <th scope="row">{{ $subject->id}}</th> -->
-                    <a href="{{ url('full-marks-edit', $subject->id) }}" class="action-icon"> <i style="color:#858796"class="fa fa-edit"></i></a>
+                    <a href="{{ url('edit-full-marks', $subject->id) }}" class="action-icon"> <i style="color:#858796"class="fa fa-edit"></i></a>
                   </td>
                   </tr>
                   @endforeach

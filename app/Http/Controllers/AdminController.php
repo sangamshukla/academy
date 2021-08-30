@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function offline_scoresheet()
     {
         return view('admindashboardnew.scoresheet');
-    }   
+    }
     public function offline_scoresheet_pdf()
     {
         return view('admindashboardnew.scoresheetpdf');

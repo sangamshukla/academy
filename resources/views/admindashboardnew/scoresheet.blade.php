@@ -1,5 +1,6 @@
 @extends('layouts.admin_dashboard')
 @section('content')
+<link rel="stylesheet" href="{{asset('wa/admin/css/scoresheet.css')}}">
    <div class="container">
        <div class="inner-container">
            <p class="para">Week 36 Score Sheet</p class="para">
@@ -10,29 +11,39 @@
                </div>
            </div>
            <div>
+               @php
+               $subjects=['Maths', 'English', 'Content', 'Physics', 'Science'];
+               @endphp
             <table class="table table-hover table-bordered mt-4 m-1">
                 <thead class="table-head">
                   <tr>
                     <th scope="col">Sr. No</th>
                     <th scope="col">List Of Students</th>
-                    <th scope="col">Maths</th>
-                    <th scope="col">Science</th>
-                    <th scope="col">Creative Writing</th>
+                    @foreach ($subjects as $subject)
+                        <th scope="col">{{$subjects[$loop->index]}}</th>
+                    @endforeach
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                 @php
-
-                $i=[10, 20, 30, 40, 50];
+                $students=
+                [
+                    'Mathew',
+                    'Lynn',
+                    'Submir',
+                    'Mark',
+                    'Otson',
+                    'Brad'
+                ];
                 @endphp
-                @forelse($i as $j)
+                @forelse($students as $j)
                     <tr>
-                      <th scope="row">{{$loop->index+1}}</th>
-                      <td>Mathew Lynn</td>
-                      <td> <div>00<input type="number" name="" id="" max="2" style="width: 80px;" class="input1" value="00"> </div></td>
-                      <td> <div>00<input type="number" name="" id="" style="width: 80px;" class="input1" value="00"></div></td>
-                      <td> <div>00<input type="number" name="" id="" style="width: 80px;" class="input1" value="00"></div></td>
+                      <th scope="row">{{$loop->iteration}}</th>
+                      <td>{{$students[$loop->index]}}</td>
+                      @foreach ($subjects as $subject)
+                        <td> <div>00<input type="number" name="" id="" max="2" style="width: 80px;" class="input1" value="00"> </div></td>
+                        @endforeach
                       <td>
                           <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg" onclick="submitmark()" class="submitmark1">
                               <path d="M17.6607 3.28275C17.3959 3.0175 16.9662 3.01704 16.7014 3.28162L8.563 11.3986L5.62668 8.20944C5.37296 7.93403 4.94398 7.91617 4.66811 8.16985C4.39245 8.42358 4.3748 8.85276 4.62852 9.12842L8.04311 12.8367C8.16816 12.9727 8.34317 13.0516 8.5277 13.0554C8.53266 13.0556 8.53744 13.0556 8.54219 13.0556C8.72152 13.0556 8.89403 12.9844 9.02112 12.8578L17.6593 4.2422C17.9248 3.97765 17.9253 3.548 17.6607 3.28275Z" fill="#999999"/>
@@ -59,7 +70,7 @@
                                       <rect width="24" height="24" fill="white" transform="translate(0.5)"/>
                                       </clipPath>
                                       </defs>
-                                  </svg>                     
+                            </svg>                     
                       </td>
                     </tr>
                     

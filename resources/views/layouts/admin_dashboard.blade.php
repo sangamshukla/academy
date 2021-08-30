@@ -30,10 +30,10 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('wa/admin/css/student-admin.css')}}" rel="stylesheet" />
     <link href="{{asset('wa/admin/css/session.css')}}" rel="stylesheet" />
-    <link href="{{asset('wa/admin/css/custom.css')}}" rel="stylesheet" />
+  
 
     @yield('css')
-    <link rel="stylesheet" href="{{asset('wa/admin/css/scoresheet.css')}}">
+   
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 

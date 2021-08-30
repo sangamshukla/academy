@@ -18,19 +18,6 @@
     <div class="row">
         <div class="col-md-4">
             <div class="input-group mb-3">
-                <select style="margin-left:20px; position:relative;" class="custom-select" id="inputGroupSelect02">
-                  <option selected>Choose...</option>
-                  @foreach($weeks as $week)
-                  <option value="{{ $week->id }}">{{ $week->week_name }}</option>
-                  @endforeach
-                </select>
-                <div class="input-group-append">
-                    <!-- <button class="btn btn-outline-secondary" type="button">Button</button> -->
-                 <button class="btn btn-outline-secondary" type="button" style="background-color: #1D6771;">
-                     <img src="{{asset('wa/admin/img/vector.svg')}}" alt="" style="margin-left: 0px; margin:-10px;"  class="search-img">
-                </button>
-                  <!-- <label class="" for="inputGroupSelect02"></label> -->
-                </div>
             </div>
         </div>
     </div>

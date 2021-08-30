@@ -22,7 +22,7 @@ class WeekFactory extends Factory
     public function definition()
     {
         return [
-            'week_name' => $this->faker->numberBetween(1, 52)
+            'week_name' => 'week'.$this->faker->numberBetween(1, 52)
         ];
     }
 }

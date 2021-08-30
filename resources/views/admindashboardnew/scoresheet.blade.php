@@ -29,7 +29,7 @@
                 @forelse($i as $j)
                     <tr>
                       <th scope="row">{{$loop->index+1}}</th>
-                      <td>Mathew</td>
+                      <td>Mathew Lynn</td>
                       <td> <div>00<input type="number" name="" id="" max="2" style="width: 80px;" class="input1" value="00"> </div></td>
                       <td> <div>00<input type="number" name="" id="" style="width: 80px;" class="input1" value="00"></div></td>
                       <td> <div>00<input type="number" name="" id="" style="width: 80px;" class="input1" value="00"></div></td>

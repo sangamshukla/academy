@@ -30,6 +30,8 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('wa/admin/css/student-admin.css')}}" rel="stylesheet" />
     <link href="{{asset('wa/admin/css/session.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('wa/admin/css/scoresheet.css')}}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
   <body id="page-top">
@@ -106,6 +108,8 @@
     <script src="{{asset('wa/admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{asset('wa/admin/js/student.js')}}"></script>
+    
+
     <!-- Page level plugins -->
     <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
 

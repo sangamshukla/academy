@@ -50,6 +50,7 @@
           <div class="row">
             @if ($assigned_homeworks!=NULL)
             @foreach ($assigned_homeworks as $homework)
+            {{$homework}}
             <div class="col-sm-6 my-4">
               <div class="card" style="width: 18rem;">
                 <iframe

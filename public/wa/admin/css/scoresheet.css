@@ -1,0 +1,84 @@
+.container-div
+{
+    margin-bottom: 10px;
+    margin-top: 22px;
+    padding: 10px;
+    min-height: 686px;
+    background: rgba(255, 255, 255, 1);
+    height: 686px;
+    margin-left: 9px;
+    border-radius: 8px;
+}
+.inner-container
+{
+    margin: 20px;
+}
+.para
+{
+font-family: Roboto;
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: 21px;
+letter-spacing: 0px;
+text-align: left;
+margin-top: 10px;
+}
+.search-box
+{
+    border: 1px solid #E4E4E4;
+    box-sizing: border-box;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 1);
+    height: 44px;
+    width: 493px;
+    left: 157px;
+    top: 103px;
+}
+.search-img
+{
+    background: #1D6771;
+    box-shadow: 0px 5px 10px rgba(29, 125, 234, 0.2);
+    border-radius: 4px;
+    padding: 10px;
+    margin-left: -48px;
+}
+.table-head
+{
+    background: rgba(139, 202, 255, 0.2);
+    font-family: Nunito;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+align-items: center;
+
+color: #333333;
+}
+.student-info
+{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+}
+.custom-head
+{
+
+    background:rgba(139, 202, 255, 0.6); 
+    border:1px solid #DDDDDD;
+}
+.header-para
+{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    align-items: center;
+    color:#333333;
+}
+.table-td{
+    background: rgba(139, 202, 255, 0.05);
+    border: 1px solid #DDDDDD;
+}

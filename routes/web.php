@@ -247,3 +247,5 @@ Route::get('get-score-sheet', [OperationController::class, 'scoreSheet']);
 Route::get('sessions-for-tomorrow', [HomeController::class, 'sessionForTomorrow']);
 Route::post('upload-answer-pdf', [HomeWorkController::class, 'upload_pdf'])->name('upload-answer-pdf');
 Route::get('get-id', [HomeWorkStudentController::class, 'get_assigned_homework_answer_map_id']);
+Route::get('offline-scoresheet', [AdminController::class, 'offline_scoresheet'])->name('offline-scoresheet');
+Route::get('offline-scoresheet-pdf', [AdminController::class, 'offline_scoresheet_pdf'])->name('offline-scoresheet-pdf');

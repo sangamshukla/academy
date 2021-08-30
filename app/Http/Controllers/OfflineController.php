@@ -50,11 +50,12 @@ class OfflineController extends Controller
         foreach ($request->sub_id as $singleSubjectId) {
             SubjectFullMarks::updateOrCreate(
                 [
-                    'subject_id' => $singleSubjectId,
-                    // 'week_id'=>$request->week_id
+                    // 'subject_id' => $singleSubjectId,
+                    'week_id'=>$request->week_id
                 ],
                 [
                     'full_marks'=>$request->sub_marks[$i]
+                    'subject_id' => $singleSubjectId,
                 ]
             );
             $i++;

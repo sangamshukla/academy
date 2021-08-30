@@ -19,17 +19,15 @@ class OfflineController extends Controller
 
     public function studentEnrollmentSave(Request $request)
     {
-        //dd($request->all());
         foreach ($request->student_id as $row) {
-            OfflineEnrolledStudent::create([
-                'week_id' => $request->week_name,
+            OfflineEnrolledStudent::updateOrCreate([
+                'week_id' => $request->week_name], [
                 'student_id' => $row
-            ]);
+                ]);
         }
         $weeks = Week::all();
         $subjects = Subject::all();
         return view('offlinescoresheet.full-marks', compact('weeks', 'subjects'));
-        // return redirect(route('full-marks', compact('student')));
     }
     public function studentEnrollmentIndex()
     {

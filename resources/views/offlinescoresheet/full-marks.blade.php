@@ -34,7 +34,8 @@
             </div>
         </div>
     </div>
-            
+            <form method="POST" >
+              @csrf
     <div class="row">
         <div class="col-md-4 col-xs-12">
             <table style="width:100%; margin-left:20px;" class="table table-bordered">
@@ -60,6 +61,7 @@
               </div>
         </div>
     </div>
+    </form>
 </div>
 
  

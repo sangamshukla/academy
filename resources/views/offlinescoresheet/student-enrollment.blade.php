@@ -15,7 +15,7 @@
         </div>
     </div>
     @include('_form.success')
-    <form method="POST" action="">
+    <form method="POST" action="{{route('student-enrollment')}}">
       @csrf
     {{--  @foreach($weeks as $week)
       @php(dd($weeks))

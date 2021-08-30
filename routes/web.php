@@ -252,11 +252,17 @@ Route::post('upload-answer-pdf', [HomeWorkController::class, 'upload_pdf'])->nam
 Route::get('get-id', [HomeWorkStudentController::class, 'get_assigned_homework_answer_map_id']);
 
 // for offline scoresheet
+Route::get('full-marks', [OfflineController::class, 'fullMarks'])->name('full-marks');
+Route::post('full-marks', [OfflineController::class, 'fullMarksSave'])->name('full-marks');
+
+
 Route::get('student-enrollment', [OfflineController::class, 'studentEnrollment'])->name('student-enrollment');
 Route::post('student-enrollment', [OfflineController::class, 'studentEnrollmentSave'])->name('student-enrollment');
-Route::get('student-enrollment', [OfflineController::class, 'studentEnrollmentIndex'])->name('student-enrollment-index');
-Route::get('full-marks', [OfflineController::class, 'fullMarks'])->name('full-marks');
+
 
 
 Route::get('offline-scoresheet', [OfflineController::class, 'offline_scoresheet'])->name('offline-scoresheet');
 Route::get('offline-scoresheet-pdf', [OfflineController::class, 'offline_scoresheet_pdf'])->name('offline-scoresheet-pdf');
+
+// Route::get('offline-scoresheet', [AdminController::class, 'offline_scoresheet'])->name('offline-scoresheet');
+// Route::get('offline-scoresheet-pdf', [AdminController::class, 'offline_scoresheet_pdf'])->name('offline-scoresheet-pdf');

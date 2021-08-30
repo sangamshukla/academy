@@ -1,3 +1,4 @@
+<!-- fullmarks -->
 @extends('layouts.admin_dashboard')
 @section('content')
 <div class="inner-container" style="overflow-y: scroll;">
@@ -15,14 +16,27 @@
         </div>
     </div>
     
+    <form method="POST" action="{{route('full-marks')}}" >
+      @csrf
     <div class="row">
         <div class="col-md-4">
-            <div class="input-group mb-3">
+          <div class="input-group mb-3">
+            <select style="margin-left:20px; position:relative;" name="week_id" class="custom-select" id="inputGroupSelect02">
+              <option selected>Choose...</option>
+              @foreach($weeks as $week)
+              <option value="{{ $week->id }}">{{ $week->week_name }}</option>
+              @endforeach
+            </select>
+            <div class="input-group-append">
+                <!-- <button class="btn btn-outline-secondary" type="button">Button</button> -->
+             <button class="btn btn-outline-secondary" type="button" style="background-color: #1D6771;">
+                 <img src="{{asset('wa/admin/img/vector.svg')}}" alt="" style="margin-left: 0px; margin:-10px;"  class="search-img">
+            </button>
+              <!-- <label class="" for="inputGroupSelect02"></label> -->
             </div>
         </div>
+        </div>
     </div>
-            <form method="POST" >
-              @csrf
     <div class="row">
         <div class="col-md-4 col-xs-12">
             <table style="width:100%; margin-left:20px;" class="table table-bordered">
@@ -37,19 +51,18 @@
                   @foreach($subjects as $subject)
                   <tr style="background-color: white;">
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $subject->name }}</td>
-                    <td><input class="form-control" /></td>
+                    <td>{{ $subject->name }} <input type="hidden" value="{{ $subject->id }}" name="sub_id[]" /></td>
+                    <td><input name="sub_marks[]" value="0" class="form-control" /></td>
                   </tr>
                   @endforeach
                 </tbody>
               </table>
               <div >
-                <button class="submit"  type="button">Submit</button>
+                <button class="submit"  type="submit">Submit</button>
               </div>
         </div>
     </div>
     </form>
 </div>
-
  
 @endsection

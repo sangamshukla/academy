@@ -254,6 +254,9 @@ Route::get('get-id', [HomeWorkStudentController::class, 'get_assigned_homework_a
 // for offline scoresheet
 Route::get('full-marks', [OfflineController::class, 'fullMarks'])->name('full-marks');
 Route::post('full-marks', [OfflineController::class, 'fullMarksSave'])->name('full-marks');
+Route::get('full-marks-edit/{id}', [OfflineController::class, 'fullMarksEdit'])->name('full-marks-edit');
+Route::post('full-marks-edit/{id}', [OfflineController::class, 'fullMarksUpdate'])->name('full-marks-edit');
+
 
 
 Route::get('student-enrollment', [OfflineController::class, 'studentEnrollment'])->name('student-enrollment');

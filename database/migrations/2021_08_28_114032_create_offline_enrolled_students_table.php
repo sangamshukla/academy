@@ -15,7 +15,7 @@ class CreateOfflineEnrolledStudentsTable extends Migration
     {
         Schema::create('offline_enrolled_students', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('week_id');
+            $table->unsignedBigInteger('week_id')->nullable();
             $table->unsignedBigInteger('student_id');
             $table->timestamps();
 

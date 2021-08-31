@@ -20,7 +20,7 @@
     {{--  @foreach($weeks as $week)
       @php(dd($weeks))
       @endforeach --}}
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-4">
             <div class="input-group mb-3">
                 <select style="margin-left:20px; position:relative;" name="week_name" class="custom-select" id="inputGroupSelect02">
@@ -30,15 +30,14 @@
                   @endforeach
                 </select>
                 <div class="input-group-append">
-                    <!-- <button class="btn btn-outline-secondary" type="button">Button</button> -->
                  <button class="btn btn-outline-secondary" type="button" style="background-color: #1D6771;">
                      <img src="{{asset('wa/admin/img/vector.svg')}}" alt="" style="margin-left: 0px; margin:-10px;"  class="search-img">
                 </button>
-                  <!-- <label class="" for="inputGroupSelect02"></label> -->
+                
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
             
     <div class="row">
         <div class="col-md-4 col-xs-12">
@@ -52,6 +51,7 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <input type="hidden" value="{{ $weekId ?? null }}" name="weekId" />
                    @foreach($students as $student)                 
                   <tr style="background-color: white;">
                     <th class="custom-checkbox"><input name="student_id[]" value="{{ $student->id }}" type="checkbox"></th>

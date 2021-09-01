@@ -23,10 +23,10 @@
         <div class="col-md-4">
           <div class="input-group mb-3">
             @include('_form.success')
-            <select style="margin-left:20px; position:relative;" name="week_id" class="custom-select" id="inputGroupSelect02">
+            <select style="margin-left:20px; position:relative;" id="weekid" name="week_id" class="custom-select" onchange="rerender()" >
               <option selected>Choose...</option>
               @foreach($weeks as $week)
-              <option value="{{ $week->id }}">{{ $week->week_name }}</option>
+              <option value="{{ $week->id }}" @if(request('weekId') == $week->id) selected @endif>{{ $week->week_name }}</option>
               @endforeach
             </select>
             <div class="input-group-append">
@@ -47,7 +47,9 @@
                     <th style="width:20%" scope="col">S. No</th>
                     <th style="width:50%" scope="col">Subject</th>
                     <th style="width:30%" scope="col">Marks</th>
-                    <!-- <th style="width:30%" scope="col">Edit</th> -->
+                    @if($hasValue)
+                    <th style="width:30%" scope="col">Edit</th>
+                    @endif
 
                   </tr>
                 </thead>
@@ -56,10 +58,12 @@
                   <tr style="background-color: white;">
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $subject->name }} <input type="hidden" value="{{ $subject->id }}" name="sub_id[]" /></td>
-                    <td><input name="sub_marks[]" value="0" class="form-control" /></td>
-                    <!-- <td>
-                    <a href="{{ url('full-marks-edit', $subject->id) }}" class="action-icon"> <i style="color:#858796"class="fa fa-edit"></i></a>
-                  </td> -->
+                    <td><input name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}" class="form-control" /></td>
+                    @if($hasValue)
+                    <td>
+                      <a href="#" onclick="rerenderEdit()" class="action-icon"> <i style="color:#858796"class="fa fa-edit"></i></a>
+                    </td>
+                    @endif
                   </tr>
                   @endforeach
                 </tbody>
@@ -72,4 +76,17 @@
     </form>
 </div>
  
+@endsection
+@section('scripts')
+<script>
+  function rerender(){
+    var wid = $('#weekid').val();
+    window.location.href="/full-marks?weekId="+wid
+  }
+  function rerenderEdit(){
+    var wid = $('#weekid').val();
+    window.location.href="/full-marks?weekId="+wid+"&edit=true"
+  }
+</script>
+
 @endsection

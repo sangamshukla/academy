@@ -14,11 +14,20 @@ use Illuminate\Http\Request;
 
 class OfflineController extends Controller
 {
-    public function fullMarks()
+    public function fullMarks(Request $request)
     {
         $subjects = Subject::all();
         $weeks = Week::all();
-        return view('offlinescoresheet.full-marks', compact('subjects', 'weeks'));
+        $hasValue = false;
+        if ($request->has('weekId')) {
+            $fullMarks = SubjectFullMarks::where('week_id', $request->weekId)->get();
+            if ($fullMarks->count() > 0) {
+                $hasValue = true;
+            }
+        } else {
+            $fullMarks = new SubjectFullMarks();
+        }
+        return view('offlinescoresheet.full-marks', compact('subjects', 'hasValue', 'weeks', 'fullMarks'));
     }
     public function fullMarksSave(Request $request)
     {

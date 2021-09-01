@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\OfflineEnrolledStudent;
+use App\Models\Student;
 use App\Models\Subject;
 use App\Models\SubjectFullMarks;
 use App\Models\OfflineScoreSheet;
@@ -36,18 +37,37 @@ class OfflineController extends Controller
         }
         $weeks = Week::all();
         $subjects = Subject::all();
-        $students = User::with('student')->orWhere('role', 'student')->get();
+        $students = User::with('student')->orWhere('role', 'student')->paginate(10);
         $weekId = $request->week_id;
-        return view('offlinescoresheet.student-enrollment', compact('weeks', 'students', 'subjects', 'weekId'));
+        $success = "Saved Successfully!";
+        $students->withPath(route('student-enrollment_load', $weekId));
+        return view('offlinescoresheet.student-enrollment', compact(
+            'weeks',
+            'students',
+            'subjects',
+            'weekId',
+            'success'
+        ));
         // return redirect(route('student-enrollment', compact('weeks', 'students', 'subjects')))->with('status', 'Created FullMarks Successfully');
     }
-    public function fullMarksEdit(Request $request, $id)
+    
+    public function studentEnrollmentSave(Request $request)
     {
-        $subject = Subject::find($id);
-        return view('offlinescoresheet.fullmarks-edit', compact('subject'));
+        // dd($request->all());
+        foreach ($request->student_id as $row) {
+            OfflineEnrolledStudent::updateOrCreate([
+                'week_id' => $request->weekId,
+                'student_id' => $row
+            ]);
+        }
+        $weeks = Week::all();
+        $subjects = Subject::latest()->paginate(4);
+        return view('offlinescoresheet.scoresheetmarks', compact('weeks', 'subjects'));
     }
-    public function fullMarksUpdate(Request $request, $id)
+    public function studentEnrollmentEdit($id)
     {
+        $students = OfflineEnrolledStudent::find($id);
+        return view('offlinescoresheet.student-enrollment-edit', compact('students'));
         $i=0;
         foreach ($request->sub_id as $singleSubjectId) {
             SubjectFullMarks::updateOrCreate(
@@ -62,13 +82,11 @@ class OfflineController extends Controller
             $i++;
         }
         // $weeks = Week::all();
-        $weekId = $request->week_id;
         $subjects = Subject::all();
         $students = User::with('student')->orWhere('role', 'student')->get();
-        return view('offlinescoresheet.student-enrollment', compact('weeks', 'students', 'subjects', 'weekId'));
+        return view('offlinescoresheet.student-enrollment', compact('weeks', 'students', 'subjects'));
     }
-
-    public function studentEnrollmentSave(Request $request)
+    public function studentEnrollmentUpdate(Request $request, $id)
     {
         // dd($request->all());
         foreach ($request->student_id as $row) {
@@ -78,10 +96,11 @@ class OfflineController extends Controller
             ]);
         }
         $weeks = Week::all();
+        $subjects = Subject::latest()->paginate(4);
+        return view('offlinescoresheet.student-enrollment-edit', compact('weeks', 'subjects'));
         $subjects = Subject::all();
         return redirect('offline-scoresheet', compact('weeks', 'subjects'));
     }
- 
     public function adminDashboard()
     {
         return view('offlinescoresheet.dashboard');
@@ -90,8 +109,10 @@ class OfflineController extends Controller
     {
         // dd($request->all());
         // dd($request->session()->has('subjects'));
-        $subject_full_marks=SubjectFullMarks::where('week_id', 2)->get();
+        $subject_full_marks=SubjectFullMarks::where('week_id', 10)->get();
+        // dd($subject_full_marks);
         $students=User::where('role', 'student')->get();
+
         // dd($students);
         // dd($marks);
         return view('offlinescoresheet.scoresheetmarks', compact('subject_full_marks', 'students'));
@@ -99,8 +120,25 @@ class OfflineController extends Controller
     public function offline_scoresheet_pdf($student_id, $subject_full_mark_id)
     {
         $scores=OfflineScoreSheet::where('student_id', $student_id)->get();
-        dd($scores);
+        // dd($scores);
         return view('offlinescoresheet.scoresheetpdf');
+    }
+
+    public function studentEnrollMent(Request $request, $weekId)
+    {
+        $weeks = Week::all();
+        $subjects = Subject::all();
+        $students = User::with('student')->orWhere('role', 'student')->paginate(10);
+        $students->withPath(route('student-enrollment_load', $weekId));
+        $weekId = $request->week_id;
+        $success = "Saved Successfully!";
+        return view('offlinescoresheet.student-enrollment', compact(
+            'weeks',
+            'students',
+            'subjects',
+            'weekId',
+            'success'
+        ));
     }
     public function submit_score(Request $request)
     {
@@ -114,7 +152,6 @@ class OfflineController extends Controller
             }
         }
         return redirect()->back();
-
     }
     public static function is_mark_submitted($student_id, $subject_full_mark_id)
     {
@@ -124,10 +161,8 @@ class OfflineController extends Controller
     public static function obtained_mark($student_id, $subject_full_mark_id)
     {
         $obtained_marks=OfflineScoreSheet::where('student_id', $student_id)->where('subject_full_mark_id', $subject_full_mark_id)->get();
-        foreach($obtained_marks as $obtained_mark)
-        {
+        foreach ($obtained_marks as $obtained_mark) {
             return $obtained_mark;
         }
     }
-
 }

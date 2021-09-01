@@ -71,8 +71,20 @@
               </table>
               <div >
               <!-- <button class="submit"  type="button">Submit</button> -->
-              <input class="submit" type="submit" value="submit">
-              <a href="{{route('full-marks')}}"><input style="margin-left:180px;" class="submit" type="button" value="Back"></a>
+              <div class="row">
+                <div class="col-4">
+                  <input class="submit" type="submit" value="submit">
+                </div>
+                <div class="col-4">
+                  <a href="{{route('full-marks')}}"><input class="submit" type="button" value="Back"></a>
+                </div>
+                <div class="col-4">
+                  <a href="{{route('full-marks')}}"><input class="submit" type="button" value="Next"></a>
+                </div>
+              </div>
+              
+              
+              
               </div>
         </div>
     </div>

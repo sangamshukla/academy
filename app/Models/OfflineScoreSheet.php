@@ -11,6 +11,11 @@ class OfflineScoreSheet extends Model
     protected $fillable=[
         'subject_full_mark_id',
         'obtained_marks',
-        'student_id'
+        'student_id',
+        'week_id'
     ];
+    public function student()
+    {
+        return $this->belongsTo(User::class, 'id');
+    }
 }

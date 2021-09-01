@@ -4,7 +4,7 @@
 <div>
        <div class="container">
               <div class="inner-container">
-                  <p class="para">Week 36 Score Sheet</p class="para">
+                  <p class="para">Week {{$week_id}} Score Sheet</p class="para">
                   <div>
                       <div class="search-div">
                       <input type="text" name="" id="" class="search-box">
@@ -42,6 +42,7 @@
                                               {{$obtained_mark->obtained_marks}}
                                           @else
                                           <input type="number" name="scoresheet[{{ $student->id }}][{{ $subject_full_mark->id }}]" id="" style="width: 80px;" class="input{{$students[$loop->index]}}" required>
+                                          <input type="hidden" name="week_id" value="{{$week_id}}"/>
                                           @endif
                                    </div>
                                </td>         

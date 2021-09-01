@@ -109,19 +109,22 @@ class OfflineController extends Controller
     {
         // dd($request->all());
         // dd($request->session()->has('subjects'));
-        $subject_full_marks=SubjectFullMarks::where('week_id', 10)->get();
+        $week_id=2;
+        $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();
         // dd($subject_full_marks);
         $students=User::where('role', 'student')->get();
 
         // dd($students);
         // dd($marks);
-        return view('offlinescoresheet.scoresheetmarks', compact('subject_full_marks', 'students'));
+        return view('offlinescoresheet.scoresheetmarks', compact('subject_full_marks', 'students', 'week_id'));
     }
     public function offline_scoresheet_pdf($student_id, $subject_full_mark_id)
     {
-        $scores=OfflineScoreSheet::where('student_id', $student_id)->get();
-        // dd($scores);
-        return view('offlinescoresheet.scoresheetpdf');
+        $week_id=2;
+        $weeks=OfflineEnrolledStudent::where('week_id', $week_id)->where('student_id', $student_id)->get();
+        $scores=OfflineScoreSheet::where('student_id', $student_id)->where('week_id', 2)->get();
+        $avg_weekly_score=OfflineScoreSheet::select('obtained_marks')->where('week_id', 2)->avg('obtained_marks');
+        return view('offlinescoresheet.scoresheetpdf', compact('scores', 'weeks', 'avg_weekly_score'));
     }
 
     public function studentEnrollMent(Request $request, $weekId)
@@ -148,6 +151,7 @@ class OfflineController extends Controller
                     'subject_full_mark_id'=>$newkey,
                     'obtained_marks'=>$newvalue,
                     'student_id'=>$key,
+                    'week_id'=>$request->week_id
                 ]);
             }
         }

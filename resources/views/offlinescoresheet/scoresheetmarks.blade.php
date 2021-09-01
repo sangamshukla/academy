@@ -18,7 +18,7 @@
                            <th scope="col">Sr. No</th>
                            <th scope="col">List Of Students</th>
                            @foreach ($subject_full_marks as $subject_full_mark)
-                               <th scope="col">{{$subject_full_mark->subject->name}}</th>
+                               <th scope="col">{{$subject_full_mark->subject->name.'('.$subject_full_mark->full_marks.')'}}</th>
                            @endforeach
                            <th scope="col">Action</th>
                          </tr> 
@@ -29,13 +29,14 @@
                          <th scope="row">
                            {{$loop->iteration}}
                          </th>
-                         <td>{{$student->name}}</td>
+                         <td>{{$student->student->name}}</td>
                          <form method="POST" action="{{url('submit-scores')}}">
                          @foreach ($subject_full_marks as $subject_full_mark)
                          @php
                              $submitted=App\Http\Controllers\OfflineController::is_mark_submitted($student->id, $subject_full_mark->id);
+                            //  dd($submitted);
                              $obtained_mark=App\Http\Controllers\OfflineController::obtained_mark($student->id, $subject_full_mark->id);
-                         @endphp
+                             @endphp
                                    <td>
                                    <div>
                                           @if ($submitted)
@@ -49,7 +50,7 @@
                              @endforeach
                              <td>
                                    @if ($submitted)
-                                       <a href="{{route('offline-scoresheet-pdf', [$obtained_mark->student_id, $obtained_mark->subject_full_mark_id])}}"><svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                       <a href="{{route('offline-scoresheet-pdf')}}"><svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                            <path d="M20.3202 11.7877C20.1773 11.5922 16.7715 7 12.4218 7C8.07207 7 4.66619 11.5922 4.52341 11.7875C4.38803 11.973 4.38803 12.2246 4.52341 12.4101C4.66619 12.6056 8.07207 17.1978 12.4218 17.1978C16.7715 17.1978 20.1773 12.6056 20.3202 12.4103C20.4558 12.2248 20.4558 11.973 20.3202 11.7877ZM12.4218 16.1429C9.21776 16.1429 6.44272 13.095 5.62125 12.0985C6.44166 11.1013 9.21089 8.05494 12.4218 8.05494C15.6257 8.05494 18.4005 11.1023 19.2224 12.0993C18.4019 13.0965 15.6327 16.1429 12.4218 16.1429Z" fill="#666666"/>
                                            <path d="M12.4202 8.93506C10.6752 8.93506 9.25537 10.3548 9.25537 12.0999C9.25537 13.845 10.6752 15.2648 12.4202 15.2648C14.1653 15.2648 15.5851 13.845 15.5851 12.0999C15.5851 10.3548 14.1653 8.93506 12.4202 8.93506ZM12.4202 14.2098C11.2568 14.2098 10.3103 13.2633 10.3103 12.0999C10.3103 10.9365 11.2568 9.99003 12.4202 9.99003C13.5836 9.99003 14.5301 10.9365 14.5301 12.0999C14.5301 13.2633 13.5837 14.2098 12.4202 14.2098Z" fill="#666666"/>
                                        </svg>  </a>

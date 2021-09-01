@@ -120,26 +120,28 @@ class OfflineController extends Controller
     {
         return view('offlinescoresheet.dashboard');
     }
-    public function offline_scoresheet(Request $request)
+    public function offline_scoresheet(Request $request, $id)
     {
+
         // dd($request->all());
         // dd($request->session()->has('subjects'));
-        $week_id=2;
+        $week_id=$id;
         $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();
         // dd($subject_full_marks);
-        $students=User::where('role', 'student')->get();
+        $students=OfflineEnrolledStudent::where('week_id', $week_id)->get();
 
         // dd($students);
         // dd($marks);
         return view('offlinescoresheet.scoresheetmarks', compact('subject_full_marks', 'students', 'week_id'));
     }
-    public function offline_scoresheet_pdf($student_id, $subject_full_mark_id)
+    public function offline_scoresheet_pdf()
     {
-        $week_id=2;
-        $weeks=OfflineEnrolledStudent::where('week_id', $week_id)->where('student_id', $student_id)->get();
-        $scores=OfflineScoreSheet::where('student_id', $student_id)->where('week_id', 2)->get();
-        $avg_weekly_score=OfflineScoreSheet::select('obtained_marks')->where('week_id', 2)->avg('obtained_marks');
-        return view('offlinescoresheet.scoresheetpdf', compact('scores', 'weeks', 'avg_weekly_score'));
+        // $week_id=2;
+        // $weeks=OfflineEnrolledStudent::where('week_id', $week_id)->where('student_id', $student_id)->get();
+        // $scores=OfflineScoreSheet::where('student_id', $student_id)->where('week_id', 2)->get();
+        // $avg_weekly_score=OfflineScoreSheet::select('obtained_marks')->where('week_id', 2)->avg('obtained_marks');
+        // return view('offlinescoresheet.scoresheetpdf', compact('scores', 'weeks', 'avg_weekly_score'));
+        return view('offlinescoresheet.scoresheetpdf');
     }
 
     public function studentEnrollMent(Request $request, $weekId)
@@ -179,9 +181,9 @@ class OfflineController extends Controller
     }
     public static function obtained_mark($student_id, $subject_full_mark_id)
     {
-        $obtained_marks=OfflineScoreSheet::where('student_id', $student_id)->where('subject_full_mark_id', $subject_full_mark_id)->get();
-        foreach ($obtained_marks as $obtained_mark) {
+        $obtained_mark=OfflineScoreSheet::where('student_id', $student_id)->where('subject_full_mark_id', $subject_full_mark_id)->first();
+        
             return $obtained_mark;
-        }
+        
     }
 }

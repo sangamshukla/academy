@@ -72,7 +72,9 @@
               <div >
               <!-- <button class="submit"  type="button">Submit</button> -->
               <input class="submit" type="submit" value="submit">
-              <a href="{{route('full-marks')}}"><input style="margin-left:180px;" class="submit" type="button" value="Back"></a>
+              <a href="{{route('offline-scoresheet', $weekId)}}"><input class="submit" type="button" value="Next"></a>
+
+              <a href="{{route('full-marks')}}"><input class="submit" type="button" value="Back"></a>
               </div>
         </div>
     </div>

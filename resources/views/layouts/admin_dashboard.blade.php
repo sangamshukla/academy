@@ -34,7 +34,7 @@
     @yield('css')
    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    @livewireStyles
+    <!-- @livewireStyles -->
   </head>
 
   <body id="page-top">

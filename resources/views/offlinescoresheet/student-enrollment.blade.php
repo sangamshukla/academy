@@ -2,10 +2,18 @@
 @section('content')
 <link href="{{asset('wa/admin/css/custom.css')}}" rel="stylesheet" />
 <div class="inner-container" style="overflow-y: scroll;">
-    <div class="row">
-        <div class="col-md-12">
+  
+    <div class="row">      
+        <div class="col-md-12"><br>         
             <div>
+              @include('_form.success')
                 <p style="margin-top: 30px; margin-left:20px; position:relative;" class="p-text">Score Sheet</p>
+                <div>
+                  <div style="margin-left:15px;"class="search-div">
+                  <input type="text" name="" id="" class="search-box">
+                      <img src="{{asset('wa/admin/img/search.svg')}}" alt="" class="search-img">
+                  </div>
+              </div>
             </div>
         </div>
     </div>
@@ -15,7 +23,7 @@
             <h6 style="margin-top: 30px; margin-left:20px; position:relative;">Select week for score card list</h6>
         </div>
     </div>
-    @include('_form.success')
+    <!-- @include('_form.success') -->
 
     <form method="POST" action="{{route('student-enrollment')}}">
       @csrf
@@ -71,20 +79,10 @@
               </table>
               <div >
               <!-- <button class="submit"  type="button">Submit</button> -->
-              <div class="row">
-                <div class="col-4">
-                  <input class="submit" type="submit" value="submit">
-                </div>
-                <div class="col-4">
-                  <a href="{{route('full-marks')}}"><input class="submit" type="button" value="Back"></a>
-                </div>
-                <div class="col-4">
-                  <a href="{{route('offline-scoresheet')}}"><input class="submit" type="button" value="Next"></a>
-                </div>
-              </div>
-              
-              
-              
+              <input class="submit" type="submit" value="submit">
+              <a  href="{{route('offline-scoresheet', $weekId)}}"><input  class="submit" type="button" value="Next"></a>
+
+              <a  style="margin-left:35px;" href="{{route('full-marks')}}"><input class="submit" type="button" value="Back"></a>
               </div>
         </div>
     </div>

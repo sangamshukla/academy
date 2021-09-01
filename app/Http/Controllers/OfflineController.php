@@ -63,15 +63,21 @@ class OfflineController extends Controller
     public function studentEnrollmentSave(Request $request)
     {
         // dd($request->all());
+     
         foreach ($request->student_id as $row) {
             OfflineEnrolledStudent::updateOrCreate([
                 'week_id' => $request->weekId,
                 'student_id' => $row
             ]);
         }
+        $subject_full_marks = SubjectFullMarks::all();
         $weeks = Week::all();
+        $weekId = $request->weekId;
         $subjects = Subject::latest()->paginate(4);
-        return view('offlinescoresheet.scoresheetmarks', compact('weeks', 'subjects'));
+        $students = User::with('student')->orWhere('role', 'student')->paginate(10);
+        $students->withPath(route('student-enrollment_load', $weekId));
+        $success = "Saved Successfully!";
+        return view('offlinescoresheet.student-enrollment', compact('weeks', 'subjects', 'subject_full_marks', 'students', 'weekId', 'success'));
     }
     public function studentEnrollmentEdit($id)
     {

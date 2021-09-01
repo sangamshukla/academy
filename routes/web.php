@@ -265,7 +265,8 @@ Route::post('student-enrollment', [OfflineController::class, 'studentEnrollmentS
 
 
 Route::get('offline-scoresheet', [OfflineController::class, 'offline_scoresheet'])->name('offline-scoresheet');
-Route::get('offline-scoresheet-pdf', [OfflineController::class, 'offline_scoresheet_pdf'])->name('offline-scoresheet-pdf');
+Route::get('offline-scoresheet-pdf/{id}/{subject_full_mark_id}', [OfflineController::class, 'offline_scoresheet_pdf'])->name('offline-scoresheet-pdf');
+Route::post('submit-scores', [OfflineController::class, 'submit_score']);
 
 // Route::get('offline-scoresheet', [AdminController::class, 'offline_scoresheet'])->name('offline-scoresheet');
 // Route::get('offline-scoresheet-pdf', [AdminController::class, 'offline_scoresheet_pdf'])->name('offline-scoresheet-pdf');

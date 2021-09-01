@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(ClassSettings::class);
         // $this->call(DurationPerSession::class);
         // $this->call(AdminSeeder::class);
-        // \App\Models\User::factory(10)->create();
-        \App\Models\Week::factory(52)->create();
+        \App\Models\User::factory(20)->create();
+        // \App\Models\Week::factory(52)->create();
     }
 }

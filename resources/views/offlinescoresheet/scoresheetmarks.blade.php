@@ -4,7 +4,7 @@
 <div>
        <div class="container">
               <div class="inner-container">
-                  <p class="para">Week {{$week_id}} Score Sheet</p class="para">
+                  <p class="para">Week 1 Score Sheet</p class="para">
                   <div>
                       <div class="search-div">
                       <input type="text" name="" id="" class="search-box">

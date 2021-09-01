@@ -79,7 +79,7 @@
                   <a href="{{route('full-marks')}}"><input class="submit" type="button" value="Back"></a>
                 </div>
                 <div class="col-4">
-                  <a href="{{route('full-marks')}}"><input class="submit" type="button" value="Next"></a>
+                  <a href="{{route('offline-scoresheet')}}"><input class="submit" type="button" value="Next"></a>
                 </div>
               </div>
               

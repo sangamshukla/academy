@@ -15,6 +15,7 @@
         </div>
     </div>
     @include('_form.success')
+
     <form method="POST" action="{{route('student-enrollment')}}">
       @csrf
     {{--  @foreach($weeks as $week)
@@ -47,6 +48,8 @@
                     <th style="width:20%" scope="col"></th>
                     <th style="width:20%" scope="col">S. No</th>
                     <th style="width:50%" scope="col">List Of Student</th>
+                    <!-- <th style="width:50%" scope="col">Edit</th> -->
+
                     
                   </tr>
                 </thead>
@@ -56,8 +59,9 @@
                   <tr style="background-color: white;">
                     <th class="custom-checkbox"><input name="student_id[]" value="{{ $student->id }}" type="checkbox"></th>
                     <!-- <th scope="row">{{ $loop->iteration }}</th> -->
-                    <th scope="row">{{ $loop->index+1 }}</th>
+                    <th scope="row">{{ (($students->currentPage() -1) * 10) + $loop->index+1 }}</th>
                     <td>{{$student->name}}</td>
+                    <!-- <td></td> -->
                   </tr>                 
                    @endforeach 
                   
@@ -66,13 +70,15 @@
               <div >
               <!-- <button class="submit"  type="button">Submit</button> -->
               <input class="submit" type="submit" value="submit">
+              <a href="{{route('full-marks')}}"><input style="margin-left:180px;" class="submit" type="button" value="Back"></a>
               </div>
         </div>
     </div>
     </form>
 </div>
 
- 
+ <!-- student-enrollment_load -->
+<div style="margin-top: 2rem; float:right;  border-color: coral;">{{ $students->links() }}</div> 
 @endsection
 
 @section('css')

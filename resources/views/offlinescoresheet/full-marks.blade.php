@@ -46,7 +46,7 @@
                     <th style="width:20%" scope="col">S. No</th>
                     <th style="width:50%" scope="col">Subject</th>
                     <th style="width:30%" scope="col">Marks</th>
-                    <th style="width:30%" scope="col">Edit</th>
+                    <!-- <th style="width:30%" scope="col">Edit</th> -->
 
                   </tr>
                 </thead>
@@ -56,10 +56,9 @@
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $subject->name }} <input type="hidden" value="{{ $subject->id }}" name="sub_id[]" /></td>
                     <td><input name="sub_marks[]" value="0" class="form-control" /></td>
-                    <td>
-                    <!-- <th scope="row">{{ $subject->id}}</th> -->
+                    <!-- <td>
                     <a href="{{ url('full-marks-edit', $subject->id) }}" class="action-icon"> <i style="color:#858796"class="fa fa-edit"></i></a>
-                  </td>
+                  </td> -->
                   </tr>
                   @endforeach
                 </tbody>

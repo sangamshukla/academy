@@ -1,6 +1,7 @@
 <!-- fullmarks -->
 @extends('layouts.admin_dashboard')
 @section('content')
+<link href="{{asset('wa/admin/css/custom.css')}}" rel="stylesheet" />
 <div class="inner-container" style="overflow-y: scroll;">
     <div class="row">
         <div class="col-md-12">

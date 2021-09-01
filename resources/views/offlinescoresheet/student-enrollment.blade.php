@@ -1,5 +1,6 @@
 @extends('layouts.admin_dashboard')
 @section('content')
+<link href="{{asset('wa/admin/css/custom.css')}}" rel="stylesheet" />
 <div class="inner-container" style="overflow-y: scroll;">
     <div class="row">
         <div class="col-md-12">
@@ -30,6 +31,7 @@
                   <option value="{{ $week->id }}">{{ $week->week_name }}</option>
                   @endforeach
                 </select>
+                
                 <div class="input-group-append">
                  <button class="btn btn-outline-secondary" type="button" style="background-color: #1D6771;">
                      <img src="{{asset('wa/admin/img/vector.svg')}}" alt="" style="margin-left: 0px; margin:-10px;"  class="search-img">

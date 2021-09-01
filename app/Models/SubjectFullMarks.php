@@ -13,4 +13,8 @@ class SubjectFullMarks extends Model
         'full_marks',
         'week_id',
     ];
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
+    }
 }

@@ -1,0 +1,30 @@
+ <script>
+      $( document ).ready(function() {
+                 $('.edit1').hide();
+                 $('.view1').hide();
+                 $('.delete1').hide();
+            });
+       function deletemark()
+       {
+           alert('delete');
+       }
+       function edit()
+       {
+           $('.input1').show();
+           $('.submitmark1').show();
+           $('.edit1').hide();  
+       }
+       function view()
+       {
+           alert('view');
+       }
+       function submitmark()
+       {
+        $('.edit1').show();
+                 $('.view1').show();
+                 $('.delete1').show();
+                 $('.submitmark{{$students[$loop->index]}}').hide();
+                 $('.input1').hide();
+
+       }
+   </script>

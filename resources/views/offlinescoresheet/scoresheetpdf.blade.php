@@ -89,10 +89,10 @@
                 <thead class="custom-head" >
                   <tr>
                     <th scope="col" class="header-para">Sr. No</th>
-                    <th scope="col" class="header-para">Maths (100)</th>
-                    <th scope="col" class="header-para">English(50)</th>
-                    <th scope="col" class="header-para">Comprehension(50)</th>
-                    <th scope="col" class="header-para">Total(200)</th>
+                    <th scope="col" class="header-para">Class Average</th>
+                    <th scope="col" class="header-para">Class Highest</th>
+                    <th scope="col" class="header-para">Class Lowest</th>
+                    <th scope="col" class="header-para">Rank</th>
                     <th scope="col" class="header-para">Percentage</th>
                   </tr>
                 </thead>
@@ -100,7 +100,7 @@
                     
                     <tr class="table-td">
                       <th scope="row" class="header-para" class="header-para">1</th>
-                      <td class="header-para">Class Average</td>
+                      <td class="header-para"></td>
                       <td class="header-para">450</td>
                       <td class="header-para"> 42</td>
                       <td class="header-para">154 </td>
@@ -109,7 +109,7 @@
                     
                     <tr>
                       <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Class Highest</td>
+                      <td class="header-para"></td>
                       <td class="header-para"> 78</td>
                       <td class="header-para"> 42</td>
                       <td class="header-para">154 </td>
@@ -117,7 +117,7 @@
                     </tr>
                     <tr>
                       <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Class Lowest</td>
+                      <td class="header-para"></td>
                       <td class="header-para"> 78</td>
                       <td class="header-para"> 42</td>
                       <td class="header-para">154 </td>
@@ -125,7 +125,7 @@
                     </tr>
                     <tr>
                       <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Rank</td>
+                      <td class="header-para"></td>
                       <td class="header-para"> 78</td>
                       <td class="header-para"> 42</td>
                       <td class="header-para">154 </td>
@@ -139,7 +139,7 @@
         <div class="mt-4">
             <div class="row">
             <div class="col-4">
-                <p class="header-para" style="font-size:16px;">Overall Week Result</p> 
+                <p class="header-para" style="font-size:16px;">Overall Maths Result</p> 
             </div>
             </div>    
             <div class="row">
@@ -147,10 +147,10 @@
                 <thead class="custom-head">
                   <tr>
                     <th scope="col" class="header-para" class="header-para">Sr. No</th>
-                    <th scope="col" class="header-para">Maths (100)</th>
-                    <th scope="col" class="header-para">English(50)</th>
-                    <th scope="col" class="header-para">Comprehension(50)</th>
-                    <th scope="col" class="header-para">Total(200)</th>
+                    <th scope="col" class="header-para">Class Average</th>
+                    <th scope="col" class="header-para">Class Highest</th>
+                    <th scope="col" class="header-para">Class Lowest</th>
+                    <th scope="col" class="header-para">Your Score</th>
                     <th scope="col" class="header-para">Percentage</th>
                   </tr>
                 </thead>
@@ -253,10 +253,21 @@
             </div>
         </div>
         </div>
-        <div class="container m-4">
-            <canvas id="score-chart">
-
-            </canvas>
+        <div class="row">
+          <div class="col-6">
+            <div class="container m-4">
+              <canvas id="score-chart">
+  
+              </canvas>
+          </div>
+          </div>
+          <div class="col-6">
+            <div class="container m-4">
+              <canvas id="math-chart">
+  
+              </canvas>
+          </div>
+          </div>
         </div>
     </div>
     <script>
@@ -278,13 +289,41 @@ const data = {
   }]
 };
 const config = {
-  type: 'line',
+  type: 'bar',
   data: data,
   options: {}
 };
 var myChart = new Chart(
     document.getElementById('score-chart'),
     config
+  );
+    </script>
+    <script>
+     
+const sub_labels = [
+  'Maths',
+  'English',
+  'Comprehension',
+  'Essay',
+  'May',
+];
+const sub_data = {
+  labels: sub_labels,
+  datasets: [{
+    label: 'Your Weekly Progress',
+    backgroundColor: ['green', 'red', 'orange', ],
+    borderColor: 'rgb(255, 99, 132)',
+    data: [50, 20, 35, 2, 20],
+  }]
+};
+const subconfig = {
+  type: 'bar',
+  data: sub_data,
+  options: {}
+};
+var mathChart = new Chart(
+    document.getElementById('math-chart'),
+    subconfig
   );
     </script>
 @endsection

@@ -12,7 +12,7 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testBasicTest()
+    public function test_a_user_can_visit_home_page()
     {
         $response = $this->get('/');
 

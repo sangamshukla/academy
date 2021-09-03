@@ -1,7 +1,6 @@
 <!-- fullmarks -->
 @extends('layouts.admin_dashboard')
 @section('content')
-<link href="{{asset('wa/admin/css/custom.css')}}" rel="stylesheet" />
 <div class="inner-container" style="overflow-y: scroll;">
     <div class="row">
         <div class="col-md-12">
@@ -10,35 +9,22 @@
             </div>
         </div>
     </div>
-    
-    <!-- validation -->
-         <!-- @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif  -->
-    <!-- validation -->
 
     <div class="row">
         <div class="col-md-12">
             <h6 style="margin-top: 30px; margin-left:20px; position:relative;">Select week for score card list</h6>
         </div>
     </div>
-    @include('_form.success')
-    <form method="POST" action="{{route('full-marks')}}" >
+  
+     <form method="POST" action="{{ route('full-marks-edit', $subject->id) }}" > 
       @csrf
     <div class="row">
         <div class="col-md-4">
           <div class="input-group mb-3">
-           
-            <select  style="margin-left:20px; position:relative;" id="weekid" name="week_id" class="custom-select" onchange="rerender()">
-              <option selected></option>
+            <select style="margin-left:20px; position:relative;" name="week_id" class="custom-select" id="inputGroupSelect02">
+              <option selected>Choose...</option>
               @foreach($weeks as $week)
-              <option value="{{ $week->id }}" @if(request('weekId') == $week->id) selected @endif>{{ $week->week_name }}</option>
+              <option value="{{ $week->id }}">{{ $week->week_name }}</option>
               @endforeach
             </select>
             <div class="input-group-append">
@@ -59,9 +45,7 @@
                     <th style="width:20%" scope="col">S. No</th>
                     <th style="width:50%" scope="col">Subject</th>
                     <th style="width:30%" scope="col">Marks</th>
-                    @if($hasValue)
                     <th style="width:30%" scope="col">Edit</th>
-                    @endif
 
                   </tr>
                 </thead>
@@ -70,12 +54,10 @@
                   <tr style="background-color: white;">
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $subject->name }} <input type="hidden" value="{{ $subject->id }}" name="sub_id[]" /></td>
-                    <td><input name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}" class="form-control" /></td>
-                    @if($hasValue)
+                    <td><input name="sub_marks[]" value="0" class="form-control" /></td>
                     <td>
-                      <a href="#" onclick="rerenderEdit()" class="action-icon"> <i style="color:#858796"class="fa fa-edit"></i></a>
-                    </td>
-                    @endif
+                    <a href="{{ url('edit-full-marks', $subject->id) }}" class="action-icon"> <i style="color:#858796"class="fa fa-edit"></i></a>
+                  </td>
                   </tr>
                   @endforeach
                 </tbody>
@@ -88,17 +70,4 @@
     </form>
 </div>
  
-@endsection
-@section('scripts')
-<script>
-  function rerender(){
-    var wid = $('#weekid').val();
-    window.location.href="/full-marks?weekId="+wid
-  }
-  function rerenderEdit(){
-    var wid = $('#weekid').val();
-    window.location.href="/full-marks?weekId="+wid+"&edit=true"
-  }
-</script>
-
 @endsection

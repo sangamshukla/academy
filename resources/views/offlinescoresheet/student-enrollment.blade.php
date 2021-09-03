@@ -1,18 +1,22 @@
 @extends('layouts.admin_dashboard')
 @section('content')
 <link href="{{asset('wa/admin/css/custom.css')}}" rel="stylesheet" />
-<div class="inner-container" style="overflow-y: scroll;">
-  
+
+<div class="inner-container" style="overflow-y: scroll;"><br>
+  <div>
+    @include('_form.success')
+  </div>
     <div class="row">      
-        <div class="col-md-12"><br>         
+        <div class="col-md-12">       
             <div>
-              @include('_form.success')
                 <p style="margin-top: 30px; margin-left:20px; position:relative;" class="p-text">Score Sheet</p>
                 <div>
                   <div style="margin-left:15px;"class="search-div">
-                  <input type="text" name="" id="" class="search-box">
+                <form method="GET" action="{{ url('student-enrollment') }}/{{ $weekId }}">
+                  <input type="text" name="student_name" id="" class="search-box" value="{{ request('student_name') }}">
                       <img src="{{asset('wa/admin/img/search.svg')}}" alt="" class="search-img">
                   </div>
+                </form>
               </div>
             </div>
         </div>
@@ -23,7 +27,6 @@
             <h6 style="margin-top: 30px; margin-left:20px; position:relative;">Select week for score card list</h6>
         </div>
     </div>
-    <!-- @include('_form.success') -->
 
     <form method="POST" action="{{route('student-enrollment')}}">
       @csrf
@@ -55,7 +58,7 @@
             <table style="width:100%; margin-left:20px;" class="table table-bordered">
                 <thead>
                   <tr>
-                    <th style="width:20%" scope="col"></th>
+                    <th style="width:20%" scope="col">Select Student</th>
                     <th style="width:20%" scope="col">S. No</th>
                     <th style="width:50%" scope="col">List Of Student</th>
                     <!-- <th style="width:50%" scope="col">Edit</th> -->
@@ -91,7 +94,7 @@
 </div>
 
  <!-- student-enrollment_load -->
-<div style="margin-top: 2rem; float:right;  border-color: coral;">{{ $students->links() }}</div> 
+<div style="margin-top: 2rem; float:right;  border-color: coral;">{{ $students->withQueryString()->links() }}</div> 
 @endsection
 
 @section('css')

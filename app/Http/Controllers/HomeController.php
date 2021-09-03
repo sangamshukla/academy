@@ -172,7 +172,6 @@ class HomeController extends Controller
                 'marks',
                 'relatedBatches',
                 'allsessions'
-                
             ));
         }
     }

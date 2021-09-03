@@ -31,17 +31,25 @@ class OfflineController extends Controller
     }
     public function fullMarksSave(Request $request)
     {
+        //if()
+        $week = $request->validate([
+            'week_id'=>'required',
+        ]);
+
         $i=0;
         foreach ($request->sub_id as $singleSubjectId) {
-            SubjectFullMarks::updateOrCreate(
-                [
-                    'subject_id' => $singleSubjectId,
-                    'week_id'=>$request->week_id
-                ],
-                [
-                    'full_marks'=>$request->sub_marks[$i]
-                ]
-            );
+            if ($request->sub_marks[$i] != '') {
+                SubjectFullMarks::updateOrCreate(
+                    [
+                        'subject_id' => $singleSubjectId,
+                        'week_id'=>$request->week_id
+                    ],
+                    [
+                        'full_marks'=>$request->sub_marks[$i]
+                    ]
+                );
+            }
+            
             $i++;
         }
         $weeks = Week::all();
@@ -77,29 +85,29 @@ class OfflineController extends Controller
         $students = User::with('student')->orWhere('role', 'student')->paginate(10);
         $students->withPath(route('student-enrollment_load', $weekId));
         $success = "Saved Successfully!";
-        return view('offlinescoresheet.student-enrollment', compact('weeks', 'subjects', 'subject_full_marks', 'students', 'weekId', 'success'));
+        return view('offlinescoresheet.student-enrollment', compact('weeks', 'subjects', 'subject_full_marks', 'students', 'weekId', 'success', 'value'));
     }
     public function studentEnrollmentEdit($id)
     {
-        $students = OfflineEnrolledStudent::find($id);
-        return view('offlinescoresheet.student-enrollment-edit', compact('students'));
-        $i=0;
-        foreach ($request->sub_id as $singleSubjectId) {
-            SubjectFullMarks::updateOrCreate(
-                [
-                    'week_id'=>$request->week_id
-                ],
-                [
-                    'subject_id' => $singleSubjectId,
-                    'full_marks'=>$request->sub_marks[$i]
-                ]
-            );
-            $i++;
-        }
-        // $weeks = Week::all();
-        $subjects = Subject::all();
-        $students = User::with('student')->orWhere('role', 'student')->get();
-        return view('offlinescoresheet.student-enrollment', compact('weeks', 'students', 'subjects'));
+        // $students = OfflineEnrolledStudent::find($id);
+        // return view('offlinescoresheet.student-enrollment-edit', compact('students'));
+        // $i=0;
+        // foreach ($request->sub_id as $singleSubjectId) {
+        //     SubjectFullMarks::updateOrCreate(
+        //         [
+        //             'week_id'=>$request->week_id
+        //         ],
+        //         [
+        //             'subject_id' => $singleSubjectId,
+        //             'full_marks'=>$request->sub_marks[$i]
+        //         ]
+        //     );
+        //     $i++;
+        // }
+        // // $weeks = Week::all();
+        // $subjects = Subject::all();
+        // $students = User::with('student')->orWhere('role', 'student')->get();
+        // return view('offlinescoresheet.student-enrollment', compact('weeks', 'students', 'subjects'));
     }
     public function studentEnrollmentUpdate(Request $request, $id)
     {
@@ -144,8 +152,12 @@ class OfflineController extends Controller
         $weeks = Week::all();
         $subjects = Subject::all();
         $students = User::with('student')->orWhere('role', 'student')->paginate(10);
+        if ($request->student_name) {
+            $students = User::with('student')->orWhere('role', 'student')
+                ->where('name', 'like', '%'.$request->student_name.'%')
+                ->paginate(10);
+        }
         $students->withPath(route('student-enrollment_load', $weekId));
-        $weekId = $request->week_id;
         $success = "Saved Successfully!";
         return view('offlinescoresheet.student-enrollment', compact(
             'weeks',

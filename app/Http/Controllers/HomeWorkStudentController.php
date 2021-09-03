@@ -17,8 +17,7 @@ use Illuminate\Support\Facades\DB;
 class HomeWorkStudentController extends Controller
 {
     public function index($id)
-    {   
-        
+    {
         $user_id = auth()->user()->id;
         $sessionDetails = BatchSession::where('id', $id)->get();
         $homework_id=$this->homework($id);

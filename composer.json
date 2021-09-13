@@ -9,6 +9,10 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "barryvdh/laravel-dompdf": "^0.9.0",
+        "barryvdh/laravel-snappy": "^0.4.8",
+        "carlos-meneses/laravel-mpdf": "^2.1",
+        "dompdf/dompdf": "^1.0",
         "fideloper/proxy": "^4.4",
         "firebase/php-jwt": "^5.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -17,8 +21,10 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "livewire/livewire": "^2.5",
+        "mpdf/mpdf": "^8.0",
         "qoraiche/laravel-mail-editor": "^3.2",
-        "stripe/stripe-php": "^7.87"
+        "stripe/stripe-php": "^7.87",
+        "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

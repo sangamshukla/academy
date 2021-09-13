@@ -30,9 +30,7 @@
 
     <form method="POST" action="{{route('student-enrollment')}}">
       @csrf
-    {{--  @foreach($weeks as $week)
-      @php(dd($weeks))
-      @endforeach --}}
+    
     <!-- <div class="row">
         <div class="col-md-4">
             <div class="input-group mb-3">
@@ -68,9 +66,21 @@
                 </thead>
                 <tbody>
                   <input type="hidden" value="{{ $weekId ?? null }}" name="weekId" />
-                   @foreach($students as $student)                 
+                   @foreach($students as $student)
+                   @php
+                       $enrolled=\App\Http\Controllers\OfflineController::is_enrolled($student->id, $weekId);
+                      if($enrolled)
+                      {
+                        $status="checked";
+                      }
+                      else {
+                        $status="";
+                      }
+                   @endphp
                   <tr style="background-color: white;">
-                    <th class="custom-checkbox"><input name="student_id[]" value="{{ $student->id }}" type="checkbox"></th>
+                    <th class="custom-checkbox">
+                      <input name="student_id[]" value="{{ $student->id }}" type="checkbox" {{$status}}>
+                    </th>
                     <!-- <th scope="row">{{ $loop->iteration }}</th> -->
                     <th scope="row">{{ (($students->currentPage() -1) * 10) + $loop->index+1 }}</th>
                     <td>{{$student->name}}</td>

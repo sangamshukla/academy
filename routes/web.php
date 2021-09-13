@@ -253,10 +253,13 @@ Route::get('get-id', [HomeWorkStudentController::class, 'get_assigned_homework_a
 
 // for offline scoresheet
 Route::get('full-marks', [OfflineController::class, 'fullMarks'])->name('full-marks');
+// Route::post('full-marks', [OfflineController::class, 'fullMarksSave'])->name('full-marks');
 Route::post('full-marks', [OfflineController::class, 'fullMarksSave'])->name('full-marks');
+Route::get('pdf/{studentId}/{weekId}', [OfflineController::class, 'pdf'])->name('pdf');
 
 
-Route::get('student-enrollment', [OfflineController::class, 'studentEnrollment'])->name('student-enrollment');
+
+Route::get('student-enrollment/{weekId}', [OfflineController::class, 'studentEnrollment'])->name('student-enrollment');
 Route::post('student-enrollment', [OfflineController::class, 'studentEnrollmentSave'])->name('student-enrollment');
 Route::get('student-enrollment/{weekId}', [OfflineController::class, 'studentEnrollMent'])->name('student-enrollment_load');
 Route::get('student-enrollment-edit/{id}', [OfflineController::class, 'studentEnrollmentEdit'])->name('student-enrollment-edit');
@@ -264,8 +267,14 @@ Route::get('student-enrollment-edit/{id}', [OfflineController::class, 'studentEn
 
 
 Route::get('offline-scoresheet/{id}', [OfflineController::class, 'offline_scoresheet'])->name('offline-scoresheet');
-Route::get('offline-scoresheet-pdf', [OfflineController::class, 'offline_scoresheet_pdf'])->name('offline-scoresheet-pdf');
+Route::get('offline-scoresheet-pdf/{studentId}/{weekId}', [OfflineController::class, 'new_offline_scoresheet_pdf'])->name('offline-scoresheet-pdf');
+Route::get('offlinescoresheet-pdf', [OfflineController::class, 'new_offlinescoresheet_pdf'])->name('offlinescoresheet-pdf');
 Route::post('submit-scores', [OfflineController::class, 'submit_score']);
 
 // Route::get('offline-scoresheet', [AdminController::class, 'offline_scoresheet'])->name('offline-scoresheet');
 // Route::get('offline-scoresheet-pdf', [AdminController::class, 'offline_scoresheet_pdf'])->name('offline-scoresheet-pdf');
+Route::post('my-scoresheet', [OfflineController::class, 'myScoresheet'])->name('my-scoresheet');
+Route::get('select-week', [OfflineController::class, 'selectWeek'])->name('select-week');
+Route::get('admin-scoresheet', [OfflineController::class, 'admin_scoresheet'])->name('admin-scoresheet');
+Route::get('any-data', [OfflineController::class, 'anyData'])->name('any-data');
+

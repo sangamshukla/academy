@@ -17,4 +17,8 @@ class SubjectFullMarks extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+    public function marks()
+    {
+        return $this->hasMany(OfflineScoreSheet::class, 'subject_full_mark_id');
+    }
 }

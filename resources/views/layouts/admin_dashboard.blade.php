@@ -30,11 +30,13 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('wa/admin/css/student-admin.css')}}" rel="stylesheet" />
     <link href="{{asset('wa/admin/css/session.css')}}" rel="stylesheet" />
+    {{-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> --}}
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
     @yield('css')
    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- @livewireStyles -->
+   
   </head>
 
   <body id="page-top">
@@ -105,21 +107,24 @@
     <!-- End of Page Wrapper -->
      <!-- End of Page Wrapper -->
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('wa/admin/vendor/jquery/jquery.min.js')}}"></script>
+    {{-- <script src="{{asset('wa/admin/vendor/jquery/jquery.min.js')}}"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{asset('wa/admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- Core plugin JavaScript-->
-    <script src="{{asset('wa/admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    {{-- <script src="{{asset('wa/admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script> --}}
     <!-- Custom scripts for all pages-->
     <script src="{{asset('wa/admin/js/student.js')}}"></script>
     
-
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> --}}
     <!-- Page level plugins -->
     <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
 
     <!-- Page level custom scripts -->
     <!-- <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
     @yield('scripts')
-    <!-- @livewireScripts -->
+    @stack('scripts')
   </body>
 </html>

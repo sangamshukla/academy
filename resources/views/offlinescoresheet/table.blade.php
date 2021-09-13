@@ -1,22 +1,8 @@
-@extends('layouts.admin_dashboard')
-@section('content')
-<link rel="stylesheet" href="{{asset('wa/admin/css/scoresheet.css')}}">
-<div>
-       <div class="container">
-              <div class="inner-container">
-                  <p class="para">{{\App\Models\Week::find($week_id)->week_name}} Score Sheet</p class="para">
-                  <div>
-                      <div class="search-div">
-                      <input type="text" name="" id="" class="search-box">
-                          <img src="{{asset('wa/admin/img/search.svg')}}" alt="" class="search-img">
-                      </div>
-                  </div>
-                  <div>
-                   <table class="table table-hover table-bordered mt-4 m-1">
+<table class="table table-hover table-bordered mt-4 m-1">
                        <thead class="table-head">
                          <tr>
                            <th scope="col">Sr. No</th>
-                           <th scope="col"> List Of Students</th>
+                           <th scope="col">List Of Students</th>
                            @foreach ($subject_full_marks as $subject_full_mark)
                                <th scope="col">{{$subject_full_mark->subject->name.'('.$subject_full_mark->full_marks.')'}}</th>
                            @endforeach
@@ -97,10 +83,3 @@
                           @endforelse
                        </tbody>
                      </table>
-                  </div>
-              </div>
-          </div>
-       </div>
-         
-       <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-@endsection

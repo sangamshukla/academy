@@ -52,8 +52,18 @@
     </div> -->
             
     <div class="row">
-        <div class="col-md-8 col-xs-12 ml-4">
-            {{-- <table style="width:100%; margin-left:20px;" class="table table-bordered">
+        <div class="col-12">
+            <table class="table table-bordered" id="student-table">
+                <thead>
+                    <tr>
+                        <th>Select Student</th>
+                        <th>S. No</th>
+                        <th>Class</th>
+
+                    </tr>
+                </thead>
+            </table>
+            {{--<table style="width:100%; margin-left:20px;" class="table table-bordered">
                 <thead>
                   <tr>
                     <th style="width:20%" scope="col">Select Student</th>
@@ -89,20 +99,10 @@
                    @endforeach 
                   
                 </tbody>
-              </table> --}}
-              <table class="table table-bordered" id="student-table">
-                <thead>
-                    <tr>
-                        <th>Select Student</th>
-                        <th>S. No</th>
-                        <th>Class</th>
+              </table>--}}
 
-                    </tr>
-                </thead>
-            </table>
               <div >
               <!-- <button class="submit"  type="button">Submit</button> -->
-              <input type="hidden" name="weekId" value={{$weekId}}>
               <input class="submit" type="submit" value="submit">
               
               <a  style="margin-left:25px;" href="{{route('offline-scoresheet', $weekId)}}"><input  class="submit" type="button" value="Next"></a>
@@ -122,7 +122,8 @@
 <style>
   /** do not delete */
 </style>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+@push('scripts')
+
 <script>
 $(function() {
     $('#student-table').DataTable({
@@ -137,4 +138,5 @@ $(function() {
     });
 });
 </script>
+@endpush
 @endsection

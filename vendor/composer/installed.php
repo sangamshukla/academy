@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'fe75b08686f9580ba930450ac4712feea4d3c996',
+        'reference' => 'da6c3231887871f382d9063dc761fd286b3d2cf3',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -448,6 +448,15 @@
                 0 => '*',
             ),
         ),
+        'kyslik/column-sortable' => array(
+            'pretty_version' => '6.4.1',
+            'version' => '6.4.1.0',
+            'type' => 'package',
+            'install_path' => __DIR__ . '/../kyslik/column-sortable',
+            'aliases' => array(),
+            'reference' => '44f9da98acd31b2e871d0074bd638998990888b1',
+            'dev_requirement' => false,
+        ),
         'laravel/framework' => array(
             'pretty_version' => 'v8.58.0',
             'version' => '8.58.0.0',
@@ -463,7 +472,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'fe75b08686f9580ba930450ac4712feea4d3c996',
+            'reference' => 'da6c3231887871f382d9063dc761fd286b3d2cf3',
             'dev_requirement' => false,
         ),
         'laravel/legacy-factories' => array(

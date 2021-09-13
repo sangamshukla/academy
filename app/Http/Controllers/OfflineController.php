@@ -87,8 +87,8 @@ class OfflineController extends Controller
         $weeks = Week::all();
         $weekId = $request->weekId;
         $subjects = Subject::latest()->paginate(4);
-        $students = User::with('student')->orWhere('role', 'student')->paginate(10);
-        $students->withPath(route('student-enrollment_load', $weekId));
+        $students = User::with('student')->orWhere('role', 'student')->get();
+        // $students->withPath(route('student-enrollment_load', $weekId));
         $success = "Saved Successfully!";
         return view('offlinescoresheet.student-enrollment', compact('weeks', 'subjects', 'subject_full_marks', 'students', 'weekId', 'success'));
     }
@@ -139,9 +139,9 @@ class OfflineController extends Controller
         // dd($request->all());
         // dd($request->session()->has('subjects'));
         $week_id=$id;
-        $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();
+        $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->sortable()->get();
         // dd($subject_full_marks);
-        $students=OfflineEnrolledStudent::where('week_id', $week_id)->get();
+        $students=OfflineEnrolledStudent::where('week_id', $week_id)->sortable()->get();
 
         // dd($students);
         // dd($marks);
@@ -204,6 +204,28 @@ class OfflineController extends Controller
             'weekId',
             'success'
         ));
+    }
+    public function get_student()
+    {
+        
+        $users=User::where('role', 'student')->get();
+        return Datatables::of($users)
+                                ->addColumn('checkbox', function ($user) {
+                                    $weekId=3;
+                                    $enrolled=$this->is_enrolled($user->id, $weekId);
+                                    if($enrolled)
+                                    {
+                                      $status="checked";
+                                    }
+                                    else {
+                                      $status="";
+                                    }
+                                    return '<input type="checkbox" value="'.$user->id. '" name="student_id[]" '.$status.'/>';
+                                })
+                                ->addColumn('email', function ($user) {
+                                    return $user->student->classmaster->name??'none';
+                                })
+                        ->make(true);
     }
     public function submit_score(Request $request)
     {
@@ -360,12 +382,6 @@ class OfflineController extends Controller
     }
     public function admin_scoresheet()
     {
-        $scores=OfflineScoreSheet::join('users', 'users.id', '=', 'offline_score_sheets.student_id')
-                ->join('subject_full_marks', 'subject_full_marks.id', '=', 'offline_score_sheets.subject_full_mark_id')
-                ->join('subjects', 'subjects.id', '=', 'subject_full_marks.subject_id')
-                ->select('users.name AS name', 'subjects.name AS subject')
-                ->get();
-                // dd($scores);
         return view('admindashboardnew.admin-scoresheet');
     }
 

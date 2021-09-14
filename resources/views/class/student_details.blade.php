@@ -5,7 +5,7 @@
     <!-- cart icon -->
  @section('carticon')
  @endsection
-@section('content')  
+@section('content')
 <section class="math_booster">
     <form id="buynowform" method="POST" action="{{ route('buy.now') }}">
         @csrf
@@ -18,29 +18,29 @@
                 <div class="math_csc d-flex flex-sm-row flex-column justify-content-between mt-5">
                     <div class="subject_card">
                          @if($batch->subject->name == 'English')
-                                
+
                                   <img style="width:100%;" src="{{ asset('frontend/assets/English/English.jpg') }}" alt="">
-                                
+
                                 @elseif($batch->subject->name == 'Maths')
-                                
+
                                     <img  style="width:100%;" src="{{ asset('frontend/assets/Maths/Math.jpg') }}" alt="">
-                                
+
                                 @elseif($batch->subject->name == 'Physics')
-                                
+
                                     <img  style="width:100%;" src="{{ asset('frontend/assets/Physics/Physics.jpg') }}" alt="">
-                                
+
                                 @elseif($batch->subject->name == 'Chemistry')
-                                
+
                                     <img style="width:100%" src="{{ asset('frontend/assets/card-cover.png') }}" alt="">
-                                
+
                                 @elseif($batch->subject->name == 'Essay')
-                                
+
                                     <img  style="width:100%" src="{{ asset('frontend/assets/Essay/Essay.jpg') }}" alt="">
-                                
+
                                 @else
-                                
+
                                 <img style="width:100%" src="{{ asset('frontend/assets/English/English.jpg')}}" alt="">
-                                
+
                                 @endif
                     </div>
                     <div class="left_block">
@@ -48,8 +48,8 @@
                         <p class="name_section">{{ Str::ucfirst($batch->assignteacher->name) }} &nbsp;&nbsp;&nbsp;&nbsp;
                         {{ $batch->status != 1 ? 'Location : '.$batch->location : '' }}
                         </p></a>
-                        
-                          
+
+
                         <div class="card_details">
                             <div class="subject_detail pr-3">
                                 <p>No Of Seats</p>
@@ -59,7 +59,7 @@
                             <div class="subject_detail pr-3">
                                 <p>No Of Sessions</p>
                                 <p class="blue_cr">{{ $batch->batchSession->where('start_date_time', '>=', \Carbon\Carbon::today() )->count() }}</p>
-        
+
                             </div>
                             <div class="border_left pl-3 "></div>
                             <div class="subject_detail pr-3">
@@ -76,13 +76,13 @@
                         @endforeach
                        <div class="d-flex flex-sm-row flex-column mt-3"><p class="doler_text">£ <span id="pricec">{{ $batch->sell_each_session == 1 ? 0 : ($batch->batch_price_per_session * $i) }}</span></p><div class="buy_cta m-3">
                            {{-- href="{{ route('cart.add', $batch->id) }}" --}}
-                        <a id="addToCart"  class="btn btn_block text-capitalize add_cart_section my-2 my-sm-0">Add to Cart</a>            
+                        <a id="addToCart"  class="btn btn_block text-capitalize add_cart_section my-2 my-sm-0">Add to Cart</a>
                                 <a href="#" id="buyNow"><button class="btn btn_block text-capitalize my-2 my-sm-0" type="button"
                                     id="register">Buy Now</button></a><br><br>
-                                                
+
                                 {{-- for success msg --}}
                                 @include('_form.success')
-                               
+
                                 <div class="alert alert-danger" id="showErrorMessage">
                                     Please Select At least 1 Session
                                 </div>
@@ -100,7 +100,7 @@
                                 <span class="ml-3"><a href="#"><img src="{{ asset('wa/assets/img/shareml.svg') }}"></a></span>
                                 <span class="ml-3"><a href="#"><img src="{{ asset('wa/assets/img/sharewh.svg') }}"></a></span>
                                 <span class="ml-3"><a href="#"><img src="{{ asset('wa/assets/img/sharetr.svg') }}"></a></span>
-                        </div>          
+                        </div>
                     </div>
                 </div>
                 <div class="session_section d-flex flex-sm-row flex-column justify-content-between">
@@ -113,17 +113,17 @@
                             @if($batch->sell_each_session == 1)
                             <div class="card_time">Action</div>
                             @endif
-                            
+
                         </div>
                         <?php $i=1; ?>
                         @foreach($batch->batchSession as $session)
                         {{-- session start date --}}
-                        @if($session->start_date_time >= \Carbon\Carbon::today())
+                        {{-- @if($session->start_date_time >= \Carbon\Carbon::today()) --}}
                             <div class="session_card">
                                 <div class="session_no">{{ $session->name }}</div>
                                 <div class="session_no">
                                     @if(isset($session->singleTopic->topic->name))
-                                        {{$session->singleTopic->topic->name}} 
+                                        {{$session->singleTopic->topic->name}}
                                     @else
                                         Erorr Findnig Topic
                                     @endif
@@ -137,6 +137,7 @@
                                 {{-- <div><input type="checkbox" style="width:40px;" class="form-control" name="session_id[]" value="{{ $session->id }}" /></div> --}}
                                 @if($batch->sell_each_session == 1)
                                 <div class="session_date">
+                                    @if($session->start_date_time >= \Carbon\Carbon::today())
                                     <div class="check_form">
                                       <div class="form-group">
                                         <input name="session_id[]" onchange="markChecked()" value="{{ $session->id }}"  type="checkbox" id="html<?php echo $i; ?>">
@@ -144,9 +145,13 @@
                                         border: none;"></label>
                                       </div>
                                     </div>
+                                    @else
+                                        Session Over
+                                    @endif
                                 </div>
                                 @else
                                 <div class="session_date" style="display: none">
+                                    @if($session->start_date_time >= \Carbon\Carbon::today())
                                     <div class="check_form">
                                       <div class="form-group">
                                         <input checked name="session_id[]" onchange="markChecked()" value="{{ $session->id }}"  type="checkbox" id="html<?php echo $i; ?>">
@@ -154,17 +159,20 @@
                                         border: none;"></label>
                                       </div>
                                     </div>
+                                    @else
+
+                                    @endif
                                 </div>
                                 @endif
                             </div>
-                        @endif  
+                        {{-- @endif --}}
                         <?php $i++; ?>
                         @endforeach
 
                     </div>
                     <div class="right_section mt-5">
                         <p class="learn_heading">What You Will Learn</p>
-                        
+
                         @foreach($batch->batchSession as $session)
                         @if($session->start_date_time >= \Carbon\Carbon::today())
                           <div class="card-link-block">
@@ -172,8 +180,8 @@
                         </div>
                         @endif
                     @endforeach
-                     
-                        
+
+
                     {{-- <button class="btn btn_block text-capitalize my-2 my-sm-0" type="button" id="login"><a href="{{ url('/home') }}">Welcome {!! strlen(auth()->user()->name) > 6 ? auth()->user()->name : auth()->user()->name.'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' !!}</a></button> --}}
 
                     </div>
@@ -187,7 +195,7 @@
                             <div style="cursor:pointer;" onClick="(function(){
                                 window.location.href = '/student-details/{{ $relatedBatch->id }}';
                             })();return false;" class="swiper-slide card">
-                                <div class="single-district card{{ $i }} slid_card"> 
+                                <div class="single-district card{{ $i }} slid_card">
                                     <div class="card_img mb-3">
                                         @if($relatedBatch->subject->name == 'English')
                                             <img style="width:100%;" src="{{ asset('frontend/assets/English/English.jpg') }}" alt="">
@@ -230,7 +238,7 @@
                                                 {{ $batch->status == 1 ? 'Online' : 'Offline' }}
                                                 </span>
                                                 {{-- for color  --}}
-                                                <span class="dot{{ $batch->status == 1 ? '' : '-prime' }}"></span></div>   
+                                                <span class="dot{{ $batch->status == 1 ? '' : '-prime' }}"></span></div>
                                             </div>
                                         </div>
                                     <div class="view_detail_block pb-3">
@@ -253,7 +261,7 @@
                          <div class="swiper-button-prev"></div>
                       </div>
                 </div>
-               
+
             </div>
         </div>
     </div>
@@ -268,13 +276,13 @@
  @endphp
 @if(isset($cart[$batch->id]))
 <script>
- $("#buyNow").click(function(){   
+ $("#buyNow").click(function(){
     window.location.href="/buy-now";
  });
 </script>
 @else
 <script>
-    $("#buyNow").click(function(){   
+    $("#buyNow").click(function(){
        var checked = $("input[name='session_id[]']:checked").length;
        if(checked <= 0){
            $('#showErrorMessage').show();
@@ -290,7 +298,7 @@
     <script>
         $(document).ready(function(){
             $('#showErrorMessage').hide();
-           
+
 
             $("#addToCart").click(function(){
                 var checked = $("input[name='session_id[]']:checked").length;
@@ -305,7 +313,7 @@
                     window.location.href = "/add-to-cart/{{ $batch->id }}/?session_id="+checked
                 }
             });
-            
+
         });
         function markChecked()
         {
@@ -326,7 +334,7 @@
         $(document).ready(function(){
             $('#showErrorMessage').hide();
             $("#addToCart").click(function(){
-               
+
                     $('#showErrorMessage').hide();
                     var checked = '';
                     $('input[name="session_id[]"]:checked').each(function() {
@@ -334,12 +342,12 @@
                     });
                     window.location.href = "/add-to-cart/{{ $batch->id }}/?session_id="+checked
             });
-            
+
         });
         // pricec
     </script>
 
     @endif
-   
+
 @endsection
-      
+

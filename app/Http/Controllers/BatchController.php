@@ -365,7 +365,7 @@ class BatchController extends Controller
             $allBatches = Batch::where('class_master_id', $batch->class_master_id)
             ->where('id', '!=', $id)
             // session end date
-            ->whereDate('batch_end_date', '>=', Carbon::today())
+            // ->whereDate('batch_end_date', '>=', Carbon::today())
             ->get();
             return view('class.student_details', compact('batch', 'allBatches'));
         } else {

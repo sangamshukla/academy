@@ -300,15 +300,15 @@
                                             <h5 class="mb-0">
                                                 <div class="d-flex justify-content-around">
                                                     <div class="card_img" style="width:38%">
-                                                        @if($session->batch->subject->name == 'English')
+                                                        @if(isset($session->batch->subject->name) == 'English')
                                                             <img style="width:100%;" src="{{ asset('frontend/assets/English/English.jpg') }}" alt="">
-                                                            @elseif($session->batch->subject->name == 'Maths')  
+                                                            @elseif(isset($session->batch->subject->name) == 'Maths')  
                                                                 <img  style="width:100%;" src="{{ asset('frontend/assets/Maths/Math.jpg') }}" alt="">
-                                                            @elseif($session->batch->subject->name == 'Physics')
+                                                            @elseif(isset($session->batch->subject->name) == 'Physics')
                                                                 <img  style="width:100%;" src="{{ asset('frontend/assets/Physics/Physics.jpg') }}" alt="">
-                                                            @elseif($session->batch->subject->name == 'Chemistry')
+                                                            @elseif(isset($session->batch->subject->name) == 'Chemistry')
                                                                 <img style="width:100%" src="{{ asset('frontend/assets/card-cover.png') }}" alt="">
-                                                            @elseif($session->batch->subject->name == 'Essay')
+                                                            @elseif(isset($session->batch->subject->name) == 'Essay')
                                                                 <img  style="width:100%" src="{{ asset('frontend/assets/Essay/Essay.jpg') }}" alt="">
                                                             @else
                                                                 <img style="width:100%" src="{{ asset('frontend/assets/English/English.jpg')}}" alt="">

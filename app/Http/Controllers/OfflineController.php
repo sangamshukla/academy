@@ -343,28 +343,29 @@ class OfflineController extends Controller
     }
     public static function get_class_highest($week_id)
     {
-        // $class_highest=DB::table('offline_enrolled_students AS oes')
-        //                     ->join('offline_score_sheets AS oss', 'oss.week_id', 'oes.week_id')
-        //                     ->where('oes.week_id', $week_id)
-        //                     ->select(DB::raw('SUM(oss.obtained_marks) AS highest'))
-        //                     ->first();
-
-        // return $class_highest->highest;
-        // dd($class_highest);
+        $all_students=OfflineScoreSheet::where('week_id', $week_id)->pluck('student_id')->toArray();
+        // dd($all_students);
+        $students=collect($all_students);
+        $marks=[];
+        foreach ($students as $student) {
+            $total_marks=OfflineScoreSheet::where('student_id', $student)->where('week_id', $week_id)->sum('obtained_marks');
+            array_push($marks, $total_marks);
+        }
+        return $marks;
+        
+         
     }
-    public static function get_your_total($week_id, $student_id)
+    public static function get_your_total($week_id, $student)
     {
-    
-        // $class_highest=OfflineScoreSheet::where('week_id', $week_id)
-                        // ->avg('obtained_marks');
-                        // ->get();
-        // return $class_highest;
-        // dd($class_highest);      
+        
+            $total_marks=OfflineScoreSheet::where('student_id', $student)->where('week_id', $week_id)->sum('obtained_marks');
+            return $total_marks;   
     }
     public function myScoresheet(Request $request)
     {  
         $name=auth()->user()->name;
         $week_id=$request->week_number;
+        // dd($week_id);
         $week=Week::where('id', $week_id)->first();
         $student_id=auth()->user()->id;
         $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();

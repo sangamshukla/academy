@@ -31,8 +31,18 @@
                 <tr class="table-td">
                   <th scope="row" class="header-para" class="header-para">1</th>
                   <td class="header-para">{{ $class_average_marks }}</td>
-                  <td class="header-para">{{$class_highest_marks}}</td>
-                  <td class="header-para">85</td>
+                  <td class="header-para">
+                    @php
+                        $maximum=max($class_highest_marks);
+                        echo $maximum;
+                    @endphp
+                  </td>
+                  <td class="header-para">
+                    @php
+                        $maximum=min($class_highest_marks);
+                        echo $maximum;
+                    @endphp
+                  </td>
                   <td class="header-para">12</td>
                   <td class="header-para">77% </td>
                   <td class="header-para">{{$student_marks}}</td>

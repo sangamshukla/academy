@@ -16,7 +16,8 @@
     <script type="text/javascript">
         $("#get-scoresheet").click(function(e){
                                     e.preventDefault();
-                                    var week_number=1;
+                                    var week_number=$('#select-week').val();
+                                    // alert(week_number)
                                    $.ajax({
                                             type: 'post',
                                             url: '{{route("my-scoresheet")}}',

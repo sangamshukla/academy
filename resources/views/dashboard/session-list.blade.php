@@ -299,7 +299,7 @@
                                         <div class="card-header" id="headingOne">
                                             <h5 class="mb-0">
                                                 <div class="d-flex justify-content-around">
-                                                    <div class="card_img" style="width:38%">
+                                                    <div class="card_img" style="width:38%;">
                                                         @if(isset($session->batch->subject->name) == 'English')
                                                             <img style="width:100%;" src="{{ asset('frontend/assets/English/English.jpg') }}" alt="">
                                                             @elseif(isset($session->batch->subject->name) == 'Maths')  
@@ -316,13 +316,17 @@
                                                     </div>
                                                     <div>
                                                         <p class="subject_card">Subject</p>
-                                                        <p style="font-size:15px;" class="card_subject_title1">{{isset($session->batch->subject->name)}}</p>
+                                                        <p style="font-size:15px;" class="card_subject_title1">
+                                                            @if(isset($session->batch->subject->name))
+                                                            {{$session->batch->subject->name}}
+                                                            @endif
+                                                        </p>
                                                     </div>
                                                     <div class="border-left first_left_border"></div>
                                                     <div>
                                                         <p class="subject_card">Join Now</p>
                                                             {{-- <a style="text-decoration:none; font-size:15px; color: #0EA47E;" class="card_subject_title1" href="{{ url('zoom', $batch->id)  }}">Join now</a> --}}
-                                                            <p class="card_subject_title2">
+                                                            {{-- <p class="card_subject_title2"> --}}
                                                         {{-- <a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $session->id)  }}">Join now</a></p> --}}
                                                     </div>
                                                     <div class="border-left second_left_border"></div>
@@ -353,8 +357,8 @@
                                                     <tr>
                                                         <td>Topics</td>
                                                         <td>{{$session->name}}-
-                                                        @if(isset($session->topics_name->topic->name))
-                                                        {{$session->topics_name->topic->name}}
+                                                        @if(isset($$session->singleTopic->topic->name))
+                                                        {{$session->singleTopic->topic->name}}
                                                         
                                                         @else
                                                             Error in Topic
@@ -516,8 +520,8 @@
                                     <div class="profile_icon_card col-3 pr-3">
 
                                     {{-- subject wise img --}}
-                                    <div class="card_img">
-                                                          @if($batch->subject->name == 'English')
+                            <div class="card_img">
+                                @if($batch->subject->name == 'English')
                                 
                                   <img style="width:100%;" src="{{ asset('frontend/assets/English/English.jpg') }}" alt="">
                                 
@@ -590,8 +594,8 @@
                                         {{ $session->name }} - {{ $t->topic->name }}
                                     </td>
                                  @endforeach --}}
-                                 <td>@if(isset($session->topics_name->topic->name))
-                                    {{$session->topics_name->topic->name}}
+                                 <td>@if(isset($session->singleTopic->topic->name))
+                                    {{$session->singleTopic->topic->name}}
                                     
                                     @else
                                         Error in Topic

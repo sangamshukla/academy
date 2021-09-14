@@ -57,6 +57,21 @@
                       </div>
                     </div>
                     <div class="row pt-3">
+                      <div class="col-xl-6 col-sm-6">
+                        <p class="Session_pera">Mode</p>
+                        <p class="Session_date">
+                          @if ($session->batch->status)
+                            Online
+                        @else
+                            Offline
+                        @endif </p>
+                      </div>
+                      <div class="col-xl-6 col-sm-6">
+                        <p class="Session_pera">Topic</p>
+                        <p class="Session_date">{{$session->singleTopic->topic->name}}</p>
+                      </div>
+                    </div>
+                    <div class="row pt-3">
                       <div class="col-12">
                         <p class="msg_title">Teachers Message</p>
                         @forelse ($homeworks as $homework)

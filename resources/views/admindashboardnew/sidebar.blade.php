@@ -127,6 +127,13 @@
     <span>Score Sheet</span>
   </a>
 </li> 
+<li class="nav-item">
+  <a class="nav-link collapsed" href="{{route('admin-scoresheet')}}">
+    <div class="nav_images"><img src="{{asset('wa/admin/img/student-a.svg')}}"></div>
+    <br>
+    <span>View Scores</span>
+  </a>
+</li> 
 <!-- end offlin scoresheet -->
   <!-- Nav Item - Alerts -->
    <li class="nav-item dropdown no-arrow mx-1 pl-5">

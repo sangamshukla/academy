@@ -17,6 +17,7 @@ use PDF;
 
 class OfflineController extends Controller
 {
+
     public function fullMarks(Request $request)
     {
         $subjects = Subject::all();
@@ -205,13 +206,12 @@ class OfflineController extends Controller
             'success'
         ));
     }
-    public function get_student()
+    public function get_student($weekId)
     {
-        
+        // $weekId=collect($weekId);
         $users=User::where('role', 'student')->get();
         return Datatables::of($users)
-                                ->addColumn('checkbox', function ($user) {
-                                    $weekId=3;
+                                ->addColumn('checkbox', function ($user) use ($weekId){
                                     $enrolled=$this->is_enrolled($user->id, $weekId);
                                     if($enrolled)
                                     {

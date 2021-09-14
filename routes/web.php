@@ -277,5 +277,5 @@ Route::post('my-scoresheet', [OfflineController::class, 'myScoresheet'])->name('
 Route::get('select-week', [OfflineController::class, 'selectWeek'])->name('select-week');
 Route::get('admin-scoresheet', [OfflineController::class, 'admin_scoresheet'])->name('admin-scoresheet');
 Route::get('any-data', [OfflineController::class, 'anyData'])->name('any-data');
-Route::get('get-student', [OfflineController::class, 'get_student'])->name('get-student');
+Route::get('get-student/{weekId}', [OfflineController::class, 'get_student'])->name('get-student');
 Route::get('get-students-marks/{id}', [OfflineController::class, 'get_students_marks'])->name('get-students-marks');

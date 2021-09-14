@@ -449,7 +449,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
+                {{-- <div class="card-body">
                     <div class="row">
                         <div class="col-6">
                             <div class="card text-center mb-2">
@@ -480,7 +480,7 @@
                             <a href="#" class="circle_link">Lorem Ipsum</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="col-xl-4 col-lg-4 mb-4 ">

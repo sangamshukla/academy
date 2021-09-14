@@ -470,7 +470,7 @@ class HomeWorkController extends Controller
         } else {
             return back()->with('msg', 'There was some error');
         }
-            ]);
+            
             if($save_checked_homework)
             {
                 return back()->with('msg', 'Your checked home has been submitted');

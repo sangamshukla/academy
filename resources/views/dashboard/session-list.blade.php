@@ -316,7 +316,7 @@
                                                     </div>
                                                     <div>
                                                         <p class="subject_card">Subject</p>
-                                                        <p style="font-size:15px;" class="card_subject_title1">{{$session->batch->subject->name}}</p>
+                                                        <p style="font-size:15px;" class="card_subject_title1">{{isset($session->batch->subject->name)}}</p>
                                                     </div>
                                                     <div class="border-left first_left_border"></div>
                                                     <div>

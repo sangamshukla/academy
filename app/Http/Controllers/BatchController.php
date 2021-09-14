@@ -39,7 +39,7 @@ class BatchController extends Controller
         // $batches = Batch::latest()->take(8)->get();
         // $batches = Batch::paginate
         $batches = Batch::latest()->paginate(8);
-        
+
         // manage class
         $assignteachers = User::all();
         $classes = ClassMaster::all();
@@ -56,7 +56,7 @@ class BatchController extends Controller
             'classsettings',
         ));
     }
-   
+
 
     // public function index()
     // {
@@ -188,7 +188,7 @@ class BatchController extends Controller
                 'created_by' => $request->teacher_name
             ]);
             }
-        
+
 
             $index = 0;
             $name = 1;
@@ -217,7 +217,7 @@ class BatchController extends Controller
                 $index++;
                 $name++;
             }
-            
+
             MakeZoomMeeting::dispatch($batch->id);
             session()->flash('status', 'Class Added Successfully');
             // return redirect(route('manage-classes'))->with('status', 'Class Added Successfully');
@@ -387,7 +387,7 @@ class BatchController extends Controller
         ]);
         return redirect('/student')->with('success', 'Class Booked Successfully');
     }
-    
+
 
     public function buyNow(Request $request)
     {

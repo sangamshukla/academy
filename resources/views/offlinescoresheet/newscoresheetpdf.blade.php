@@ -134,8 +134,6 @@
                     <td class="header-para">{{ $class_average_marks }}</td>
                     <td class="header-para">
                       @php
-
-                        dd($class_highest_marks);
                           $maximum=max($class_highest_marks);
                           echo $maximum;
                       @endphp

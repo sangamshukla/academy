@@ -229,13 +229,17 @@
         <script>
      
           const labels = [
-
+            'Maths',
+            'English',
+            'Comprehension',
+            'Essay',
+            'May',
           ];
           const data = {
             labels: labels,
             datasets: [{
               label: 'Your Weekly Progress',
-              backgroundColor: ['green', 'red', 'orange', ],
+              backgroundColor: ['green', 'red', 'orange', 'yellow', 'purple'],
               borderColor: 'rgb(255, 99, 132)',
               data: [50, 20, 35, 2, 20],
             }]

@@ -347,17 +347,26 @@
                                                 <table class="table">
                                                     <tr>
                                                         <td>Class</td>
-                                                        <td>{{ isset($session->batch->classSettings->name) }}</td>
+                                                        <td>
+                                                            @if (isset($session->batch->classSettings->name))
+                                                            {{$session->batch->classSettings->name}}
+                                                            @endif
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Teacher</td>
-                                                        <td>{{ isset($session->batch->teacher->name) }}</td>
+                                                        <td>
+                                                            @if (isset($session->batch->classSettings->name))
+                                                            
+                                                            {{ $session->batch->teacher->name}}
+                                                        </td>
+                                                            @endif
                                                     </tr>
 
                                                     <tr>
                                                         <td>Topics</td>
                                                         <td>{{$session->name}}-
-                                                        @if(isset($$session->singleTopic->topic->name))
+                                                        @if(isset($session))
                                                         {{$session->singleTopic->topic->name}}
                                                         
                                                         @else

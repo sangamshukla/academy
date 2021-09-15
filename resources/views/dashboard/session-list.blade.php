@@ -377,11 +377,15 @@
                                                     <tr>
                                                         <td>Mode</td>
                                                         <td> <p class="Session_date">
+                                                            @isset($session->batch->status)
+                                                                
                                                             @if ($session->batch->status)
                                                               Online
-                                                          @else
+                                                              @else
                                                               Offline
-                                                          @endif </p>
+                                                              @endif
+                                                              @endisset
+                                                             </p>
                                                         </td>
                                                     </tr>
                                                     <tr>

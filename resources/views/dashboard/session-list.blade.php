@@ -366,7 +366,7 @@
                                                     <tr>
                                                         <td>Topics</td>
                                                         <td>{{$session->name}}-
-                                                        @if(isset($session))
+                                                        @if(isset($session->singleTopic->topic->name))
                                                         {{$session->singleTopic->topic->name}}
                                                         
                                                         @else

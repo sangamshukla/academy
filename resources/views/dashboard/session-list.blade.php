@@ -375,6 +375,16 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
+                                                        <td>Mode</td>
+                                                        <td> <p class="Session_date">
+                                                            @if ($session->batch->status)
+                                                              Online
+                                                          @else
+                                                              Offline
+                                                          @endif </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
                                                         <td colspan="2"><a href="{{route('home-work', ['id'=>$session->id])}}">View Homework</a></td>
                                                     </tr>
                                                 </table>

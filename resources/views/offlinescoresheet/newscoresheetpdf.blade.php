@@ -118,7 +118,7 @@
                     <th scope="col" class="header-para">Class Average</th>
                     <th scope="col" class="header-para">Class Highest</th>
                     <th scope="col" class="header-para">Class Lowest</th>
-                    <th scope="col" class="header-para">Rank</th>
+                    {{-- <th scope="col" class="header-para">Rank</th> --}}
                     <th scope="col" class="header-para">Percentage</th>
                     <th scope="col" class="header-para">Your Total Score</th>
                   </tr>
@@ -129,12 +129,24 @@
                      $class_highest_marks=\App\Http\Controllers\OfflineController::get_class_highest($week_id);
                      $student_marks=\App\Http\Controllers\OfflineController::get_your_total($week_id, $student_id);
                   @endphp
-                  <tr class="table-td">
+                   <tr class="table-td">
                     <th scope="row" class="header-para" class="header-para">1</th>
                     <td class="header-para">{{ $class_average_marks }}</td>
-                    <td class="header-para">{{$class_highest_marks}}</td>
-                    <td class="header-para">85</td>
-                    <td class="header-para">12</td>
+                    <td class="header-para">
+                      @php
+
+                        dd($class_highest_marks);
+                          $maximum=max($class_highest_marks);
+                          echo $maximum;
+                      @endphp
+                    </td>
+                    <td class="header-para">
+                      @php
+                          $maximum=min($class_highest_marks);
+                          echo $maximum;
+                      @endphp
+                    </td>
+                    {{-- <td class="header-para">12</td> --}}
                     <td class="header-para">77% </td>
                     <td class="header-para">{{$student_marks}}</td>
                   </tr>
@@ -159,7 +171,7 @@
                   <th scope="col" class="header-para">Class Highest</th>
                   <th scope="col" class="header-para">Class Lowest</th>
                   <th scope="col" class="header-para">Your Score</th>
-                  <th scope="col" class="header-para">Rank</th>
+                  {{-- <th scope="col" class="header-para">Rank</th> --}}
                   <th scope="col" class="header-para">Percentage</th>
                 </tr>
               </thead>
@@ -182,7 +194,7 @@
                     </td>
                     <td class="header-para"> {{$class_lowest_marks}}</td>
                     <td class="header-para">{{$student_marks->obtained_marks}}/{{$student_marks->full_marks}}</td>
-                    <td class="header-para">2/10</td>
+                    {{-- <td class="header-para">2/10</td> --}}
                     <td class="header-para">{{$student_percentage}}%</td>
                   </tr>
                   

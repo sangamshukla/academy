@@ -17,8 +17,8 @@
                   <th scope="col" class="header-para">Class Average</th>
                   <th scope="col" class="header-para">Class Highest</th>
                   <th scope="col" class="header-para">Class Lowest</th>
-                  <th scope="col" class="header-para">Rank</th>
-                  <th scope="col" class="header-para">Percentage</th>
+                  {{-- <th scope="col" class="header-para">Rank</th> --}}
+                  {{-- <th scope="col" class="header-para">Percentage</th> --}}
                   <th scope="col" class="header-para">Your Total Score</th>
                 </tr>
               </thead>
@@ -43,8 +43,8 @@
                         echo $maximum;
                     @endphp
                   </td>
-                  <td class="header-para">12</td>
-                  <td class="header-para">77% </td>
+                  {{-- <td class="header-para">12</td> --}}
+                  {{-- <td class="header-para">77% </td> --}}
                   <td class="header-para">{{$student_marks}}</td>
                 </tr>
               </tbody>
@@ -68,7 +68,7 @@
                 <th scope="col" class="header-para">Class Highest</th>
                 <th scope="col" class="header-para">Class Lowest</th>
                 <th scope="col" class="header-para">Your Score</th>
-                <th scope="col" class="header-para">Rank</th>
+                {{-- <th scope="col" class="header-para">Rank</th> --}}
                 <th scope="col" class="header-para">Percentage</th>
               </tr>
             </thead>
@@ -91,7 +91,7 @@
                   </td>
                   <td class="header-para"> {{$class_lowest_marks}}</td>
                   <td class="header-para">{{$student_marks->obtained_marks}}/{{$student_marks->full_marks}}</td>
-                  <td class="header-para">2/10</td>
+                  {{-- <td class="header-para">2/10</td> --}}
                   <td class="header-para">{{$student_percentage}}%</td>
                 </tr>
                 

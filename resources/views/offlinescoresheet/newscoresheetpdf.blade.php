@@ -135,7 +135,7 @@
                     <td class="header-para">
                       @php
                           $maximum=max($class_highest_marks);
-                          echo $maximum;
+                          echo number_format($maximum);
                       @endphp
                     </td>
                     <td class="header-para">

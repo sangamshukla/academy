@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
+use App\Http\Models\Weeks;
 class SubjectFullMarks extends Model
 {
     use HasFactory;
@@ -26,5 +27,9 @@ class SubjectFullMarks extends Model
     public function marks()
     {
         return $this->hasMany(OfflineScoreSheet::class, 'subject_full_mark_id');
+    }
+    public function week_name()
+    {
+        return $this->belongsTo(Week::class, 'week_id');
     }
 }

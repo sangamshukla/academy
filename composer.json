@@ -25,6 +25,7 @@
         "mpdf/mpdf": "^8.0",
         "qoraiche/laravel-mail-editor": "^3.2",
         "stripe/stripe-php": "^7.87",
+        "yajra/laravel-datatables-fractal": "^1.6",
         "yajra/laravel-datatables-oracle": "^9.18"
     },
     "require-dev": {

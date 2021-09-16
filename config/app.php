@@ -179,6 +179,7 @@ return [
         Meneses\LaravelMpdf\LaravelMpdfServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
+        Yajra\DataTables\FractalServiceProvider::class,
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
 
 

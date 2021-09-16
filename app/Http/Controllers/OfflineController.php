@@ -369,7 +369,37 @@ class OfflineController extends Controller
         $week=Week::where('id', $week_id)->first();
         $student_id=auth()->user()->id;
         $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();
-        return view('dashboard.student-scoresheet', compact('name', 'week', 'student_id', 'week_id', 'subject_full_marks'));
+        $all_weeks=$this->get_weeks();
+        // dd($all_weeks);
+        return view('dashboard.student-scoresheet', compact('all_weeks', 'name', 'week', 'student_id', 'week_id', 'subject_full_marks'));
+    }
+    public function get_weeks()
+    {
+        $all_weeks=SubjectFullMarks::select('week_id')->distinct()->orderBy('week_id', 'desc')->get();
+        $week_names=collect([]);
+        foreach ($all_weeks as $all_week => $week_id) {
+            $week_names->push($week_id->week_name);
+        }
+        return response()->json($week_names);
+    }
+    public function get_week_marks()
+    {
+        $marks=OfflineScoreSheet::all();
+        $all_marks=collect([]);
+        foreach($marks as $mark =>$obtained_markss)
+        {
+            $all_marks->push($obtained_markss->obtained_marks);
+        }
+        return response()->json($all_marks);
+    }
+    public function get_week_data()
+    {
+        $all_weeks=SubjectFullMarks::select('week_id')->distinct()->orderBy('week_id', 'desc')->get();
+        $week_names=collect([]);
+        foreach ($all_weeks as $all_week => $week_id) {
+            $week_names->push($week_id->week_name);
+        }
+        return $week_names;
     }
     public function selectWeek()
     {
@@ -381,9 +411,18 @@ class OfflineController extends Controller
         $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();
         return view('dashboard.select-week', compact('name', 'week', 'student_id', 'week_id', 'subject_full_marks', 'week_alls'));
     }
-    public function admin_scoresheet()
+    public function admin_score()
     {
-        return view('admindashboardnew.admin-scoresheet');
+        $week_id=2;
+        $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();
+        // foreach ($subject_full_marks as $subject_full_mark) {
+        //     dump($subject_full_mark);
+        // }
+        $weeks=$this->get_week_data();
+        $enrolled_students=OfflineEnrolledStudent::join('users', 'users.id', '=', 'offline_enrolled_students.student_id')
+                            ->where('week_id', $week_id)->get();
+                            // dd($enrolled_students);
+        return view('admindashboardnew.admin-score', compact('subject_full_marks', 'weeks'));
     }
 
     /**
@@ -391,15 +430,235 @@ class OfflineController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function anyData()
+    public function admin_score_data1()
     {
-        $scores=OfflineScoreSheet::join('users', 'users.id', '=', 'offline_score_sheets.student_id')
-                ->join('subject_full_marks', 'subject_full_marks.id', '=', 'offline_score_sheets.subject_full_mark_id')
-                ->join('subjects', 'subjects.id', '=', 'subject_full_marks.subject_id')
-                ->join('weeks', 'weeks.id', '=', 'offline_score_sheets.week_id')
-                ->select('users.name AS name', 'subjects.name AS subject', 'offline_score_sheets.obtained_marks as marks', 'weeks.week_name AS week')
-                ->get();
+        $week_id=1;
+        $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get()->toArray();
+        $count=count($subject_full_marks);
+        // $subjects=Subject::get();
+        $enrolled_students=OfflineEnrolledStudent::join('subject_full_marks', 'subject_full_marks.week_id', '=', 'offline_enrolled_students.week_id')
+                                                // ->join('subjects', 'subject_full_marks.subject_id', '=', 'subjects.id')
+                                                ->join('offline_score_sheets', 'offline_score_sheets.subject_full_mark_id', '=', 'subject_full_marks.id')
+                                            ->join('users', 'users.id', '=', 'offline_enrolled_students.student_id')
+                                                    ->where('subject_full_marks.week_id', $week_id)->get();
         // dd($scores);
-        return Datatables::of($scores)->make(true);
+        
+        return Datatables::of($enrolled_students)
+                            ->editColumn('english_marks'  , function($enrolled_student)
+                            {
+                                if($enrolled_student->subject_id==1)
+                                {
+                                    if($enrolled_student->week_id==1)
+                                    {
+                                        return $enrolled_student->obtained_marks;
+                                    }
+                                }
+                            })
+                            ->editColumn('maths', function($enrolled_student)
+                            {
+                                $new_score=OfflineScoreSheet::where('student_id', $enrolled_student->id)
+                                ->where('week_id', $enrolled_student->week_id)
+                                ->where('subject_full_mark_id', $enrolled_student->subject_full_mark_id)
+                                ->first();
+                                if(isset($new_score->obtained_marks))
+                                {
+                                    return $new_score->obtained_marks;
+                                }
+                            })
+                            ->toJson();
     }
+    public function admin_score_data($week_id)
+    {
+        // $week_id=;
+        $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get()->toArray();
+        $count=count($subject_full_marks);
+        // $subjects=Subject::get();
+        $enrolled_students=OfflineEnrolledStudent::join('users', 'users.id', '=', 'offline_enrolled_students.student_id')
+                                                    ->where('offline_enrolled_students.week_id', $week_id)->get();
+        // dd($scores);
+        
+        return Datatables::of($enrolled_students)
+                        ->setTransformer(function($enrolled_student)use($week_id){
+                            $student_id=$enrolled_student->student_id;
+                            $subjects=Subject::all()->toArray();
+                            $english_marks=DB::table('offline_score_sheets AS oss')
+                                            ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
+                                            ->where("oss.week_id", $week_id)
+                                            ->where('oss.student_id', $student_id)
+                                            ->where('sfm.subject_id' , 1)
+                                            ->select('obtained_marks')
+                                            ->get();
+                            $maths_marks=DB::table('offline_score_sheets AS oss')
+                                            ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
+                                            ->where("oss.week_id", $week_id)
+                                            ->where('oss.student_id', $student_id)
+                                            ->where('sfm.subject_id' , 2)
+                                            ->select('obtained_marks')
+                                            ->get();
+                            $physics_marks=DB::table('offline_score_sheets AS oss')
+                                            ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
+                                            ->where("oss.week_id", $week_id)
+                                            ->where('oss.student_id', $student_id)
+                                            ->where('sfm.subject_id' , 3)
+                                            ->select('obtained_marks')
+                                            ->get();
+                            $science_marks=DB::table('offline_score_sheets AS oss')
+                                            ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
+                                            ->where("oss.week_id", $week_id)
+                                            ->where('oss.student_id', $student_id)
+                                            ->where('sfm.subject_id' , 4)
+                                            ->select('obtained_marks')
+                                            ->get();
+                            return [
+                                'name'=>$enrolled_student->name,
+                                'english'     => $english_marks->map(function($english_mark)
+                                                {
+                                                    return $english_mark->obtained_marks;
+                                                }),
+                                'maths'       => $maths_marks->map(function($math_mark)
+                                                {
+                                                    return $math_mark->obtained_marks;
+                                                }),
+                                'physics'     => $physics_marks->map(function($physics_mark)
+                                                {
+                                                    return $physics_mark->obtained_marks;
+                                                }),
+                                'science'     => $science_marks->map(function($science_mark)
+                                                {
+                                                    return $science_mark->obtained_marks;
+                                                }),
+                            ];
+                        })
+                            ->make(true);
+    }
+    public function admin_score_data_save(Request $request)
+    {
+        $week_id=$request->week_number;
+        $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get()->toArray();
+        $count=count($subject_full_marks);
+        // $subjects=Subject::get();
+        $enrolled_students=OfflineEnrolledStudent::join('users', 'users.id', '=', 'offline_enrolled_students.student_id')
+                                                    ->where('offline_enrolled_students.week_id', $week_id)->get();
+        // dd($scores);
+        
+        return Datatables::of($enrolled_students)
+                        ->setTransformer(function($enrolled_student)use($week_id){
+                            $student_id=$enrolled_student->student_id;
+                            $subjects=Subject::all()->toArray();
+                            $english_marks=DB::table('offline_score_sheets AS oss')
+                                            ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
+                                            ->where("oss.week_id", $week_id)
+                                            ->where('oss.student_id', $student_id)
+                                            ->where('sfm.subject_id' , 1)
+                                            ->select('obtained_marks')
+                                            ->get();
+                            $maths_marks=DB::table('offline_score_sheets AS oss')
+                                            ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
+                                            ->where("oss.week_id", $week_id)
+                                            ->where('oss.student_id', $student_id)
+                                            ->where('sfm.subject_id' , 2)
+                                            ->select('obtained_marks')
+                                            ->get();
+                            $physics_marks=DB::table('offline_score_sheets AS oss')
+                                            ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
+                                            ->where("oss.week_id", $week_id)
+                                            ->where('oss.student_id', $student_id)
+                                            ->where('sfm.subject_id' , 3)
+                                            ->select('obtained_marks')
+                                            ->get();
+                            $science_marks=DB::table('offline_score_sheets AS oss')
+                                            ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
+                                            ->where("oss.week_id", $week_id)
+                                            ->where('oss.student_id', $student_id)
+                                            ->where('sfm.subject_id' , 4)
+                                            ->select('obtained_marks')
+                                            ->get();
+                            return [
+                                'name'=>$enrolled_student->name,
+                                'english'     => $english_marks->map(function($english_mark)
+                                                {
+                                                    return $english_mark->obtained_marks;
+                                                }),
+                                'maths'       => $maths_marks->map(function($math_mark)
+                                                {
+                                                    return $math_mark->obtained_marks;
+                                                }),
+                                'physics'     => $physics_marks->map(function($physics_mark)
+                                                {
+                                                    return $physics_mark->obtained_marks;
+                                                }),
+                                'science'     => $science_marks->map(function($science_mark)
+                                                {
+                                                    return $science_mark->obtained_marks;
+                                                }),
+                            ];
+                        })
+                            ->make(true);
+    }
+    public function get_graph_math()
+    {
+        $student_id=auth()->user()->id;
+        $subject_id=1;
+        $score_graph_math=DB::table('offline_score_sheets AS oss')
+                    ->join("subject_full_marks AS sfm", "sfm.id","=","oss.subject_full_mark_id")
+                    ->join('weeks AS w','w.id', '=', 'oss.week_id' )
+                    ->join('subjects AS sb', 'sb.id', '=', 'sfm.subject_id')
+                    ->where('student_id', "=", $student_id)
+                    ->where('sfm.subject_id', "=", $subject_id)
+                    ->select('oss.obtained_marks', "w.week_name", 'sb.name')
+                    ->get();
+        return response()->json($score_graph_math);
+        // dd("graph data");
+        // select oss.obtained_marks, oss.week_id from offline_score_sheets oss inner join subject_full_marks sfm on sfm.id=oss.subject_full_mark_id where student_id=4 and sfm.subject_id =1
+    }
+    public function get_graph_english()
+    {
+        $student_id=auth()->user()->id;
+        $subject_id=2;
+        $score_graph_english=DB::table('offline_score_sheets AS oss')
+                    ->join("subject_full_marks AS sfm", "sfm.id","=","oss.subject_full_mark_id")
+                    ->join('weeks AS w','w.id', '=', 'oss.week_id' )
+                    ->join('subjects AS sb', 'sb.id', '=', 'sfm.subject_id')
+                    ->where('student_id', "=", $student_id)
+                    ->where('sfm.subject_id', "=", $subject_id)
+                    ->select('oss.obtained_marks', "w.week_name", 'sb.name')
+                    ->get();
+        return response()->json($score_graph_english);
+        // dd("graph data");
+        // select oss.obtained_marks, oss.week_id from offline_score_sheets oss inner join subject_full_marks sfm on sfm.id=oss.subject_full_mark_id where student_id=4 and sfm.subject_id =1
+    }
+    public function get_graph_physics()
+    {
+        $student_id=auth()->user()->id;
+        $subject_id=3;
+        $score_graph_physics=DB::table('offline_score_sheets AS oss')
+                    ->join("subject_full_marks AS sfm", "sfm.id","=","oss.subject_full_mark_id")
+                    ->join('weeks AS w','w.id', '=', 'oss.week_id' )
+                    ->join('subjects AS sb', 'sb.id', '=', 'sfm.subject_id')
+                    ->where('student_id', "=", $student_id)
+                    ->where('sfm.subject_id', "=", $subject_id)
+                    ->select('oss.obtained_marks', "w.week_name", 'sb.name')
+                    ->get();
+        return response()->json($score_graph_physics);
+        // dd("graph data");
+        // select oss.obtained_marks, oss.week_id from offline_score_sheets oss inner join subject_full_marks sfm on sfm.id=oss.subject_full_mark_id where student_id=4 and sfm.subject_id =1
+    }
+    public function get_graph4()
+    {
+        $student_id=auth()->user()->id;
+        $subject_id=4;
+        $score_graph4=DB::table('offline_score_sheets AS oss')
+                    ->join("subject_full_marks AS sfm", "sfm.id","=","oss.subject_full_mark_id")
+                    ->join('weeks AS w','w.id', '=', 'oss.week_id' )
+                    ->join('subjects AS sb', 'sb.id', '=', 'sfm.subject_id')
+                    ->where('student_id', "=", $student_id)
+                    ->where('sfm.subject_id', "=", $subject_id)
+                    ->select('oss.obtained_marks', "w.week_name", 'sb.name')
+                    ->get();
+        return response()->json($score_graph4);
+        // dd("graph data");
+        // select oss.obtained_marks, oss.week_id from offline_score_sheets oss inner join subject_full_marks sfm on sfm.id=oss.subject_full_mark_id where student_id=4 and sfm.subject_id =1
+    }
+  
+
 }

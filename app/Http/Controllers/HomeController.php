@@ -104,6 +104,7 @@ class HomeController extends Controller
             $student = User::where('id', auth()->user()->id)->first();
             // dd($student);
             $students = Batch::where('class_master_id', $student->class_master_id)->latest()->take(8)->get();
+
             // buy now || orders table
             // if(Orders::where('user_id', auth()->user()->id)->exists()){
             // return redirect('/session-list');
@@ -138,8 +139,10 @@ class HomeController extends Controller
             $today = Batch::whereIn('id', $batchSessionsToday)->get();
 
             $tomorrow = BatchSession::whereIn('batch_id', $couseBatches)->whereDate('start_date_time', Carbon::tomorrow())->get();
-            $allsessions=BatchSession::whereIn('batch_id', $couseBatches)->latest()->get();
-            // dd($allsession);
+            // $allsessions=BatchSession::whereIn('batch_id', $couseBatches)->latest()->get();
+            $allsessions=BatchSession::whereIn('batch_id', $couseBatches)->latest()->paginate(1);
+
+            // dd($allsessions);
             // dd($tomorrow);
             $twos = Batch::whereIn('id', $couseBatches)->latest()->take(2)->get();
             $three = Batch::whereIn('id', $couseBatches)->oldest()->take(3)->get();

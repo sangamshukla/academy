@@ -43,29 +43,29 @@
                                             <div class="d-flex justify-content-around">
                                                 <div class="card_img" style="width:38%;">
                                                     @if($batch->subject->name == 'English')
-                                
+
                                   <img style="width:100%;" src="{{ asset('frontend/assets/English/English.jpg') }}" alt="">
-                                
+
                                 @elseif($batch->subject->name == 'Maths')
-                                
+
                                     <img  style="width:100%;" src="{{ asset('frontend/assets/Maths/Math.jpg') }}" alt="">
-                                
+
                                 @elseif($batch->subject->name == 'Physics')
-                                
+
                                     <img  style="width:100%;" src="{{ asset('frontend/assets/Physics/Physics.jpg') }}" alt="">
-                                
+
                                 @elseif($batch->subject->name == 'Chemistry')
-                                
+
                                     <img style="width:100%" src="{{ asset('frontend/assets/card-cover.png') }}" alt="">
-                                
+
                                 @elseif($batch->subject->name == 'Essay')
-                                
+
                                     <img  style="width:100%" src="{{ asset('frontend/assets/Essay/Essay.jpg') }}" alt="">
-                                
+
                                 @else
-                                
+
                                 <img style="width:100%" src="{{ asset('frontend/assets/English/English.jpg')}}" alt="">
-                                
+
                                 @endif
                                                 </div>
                                                 <div>
@@ -74,8 +74,8 @@
                                                 </div>
                                                 <div class="border-left first_left_border"></div>
                                                 <div>
-                                                    <p class="subject_card">Join Now</p>
-                                                    {{-- <div id="app"></div> --}}
+                                                    <p class="subject_card">View</p>
+                                                    <p class="subject_card"><a style="text-decoration:none; color: #0EA47E;" href="{{url('home-work/{id}')}}">HomeWork</a></p>
 
                                                     <p class="card_subject_title2">
                                                         {{-- <a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $batch->id)  }}">Join now</a></p> --}}
@@ -149,7 +149,7 @@
                                                     <td>Topics</td>
                                                     <td>
                                                         @if(isset($session->singleTopic->topic->name))
-                                                        
+
                                                         {{$session->singleTopic->topic->name}}
                                                         @else
                                                             Error in Topic
@@ -187,41 +187,41 @@
                                         <h6 style = "text-align:center; color:green;">No sessions for tomorrow <h6>
                                     @endif
                                         @foreach($tomorrow as $batch)
-                                        
+
                                         <div class="card-header" id="headingOne">
                                             <h5 class="mb-0">
                                                 <div class="d-flex justify-content-around">
                                                     <div class="card_img" style="width:38%">
-                        
-                               
+
+
                                 @if($batch->batch->subject->name == 'English')
-                                
+
                                   <img style="width:100%;" src="{{ asset('frontend/assets/English/English.jpg') }}" alt="">
-                                
+
                                 @elseif($batch->batch->subject->name == 'Maths')
-                                    
+
                                     <img  style="width:100%;" src="{{ asset('frontend/assets/Maths/Math.jpg') }}" alt="">
-                                
+
                                 @elseif($batch->batch->subject->name == 'Physics')
-                                
+
 
                                     <img  style="width:100%;" src="{{ asset('frontend/assets/Physics/Physics.jpg') }}" alt="">
-                                
+
                                 @elseif($batch->batch->subject->name == 'Chemistry')
-                                
+
                                     <img style="width:100%" src="{{ asset('frontend/assets/card-cover.png') }}" alt="">
-                                
+
                                 @elseif($batch->batch->subject->name == 'Essay')
-                                
+
                                     <img  style="width:100%" src="{{ asset('frontend/assets/Essay/Essay.jpg') }}" alt="">
-                                
+
                                 @else
-                                
+
                                 <img style="width:100%" src="{{ asset('frontend/assets/English/English.jpg')}}" alt="">
-                                
+
                                 @endif
-                               
-                              
+
+
                                      </div>
                                                     <div>
                                                         <p class="subject_card">Subject</p>
@@ -229,9 +229,8 @@
                                                     </div>
                                                     <div class="border-left first_left_border"></div>
                                                     <div>
-                                                        <p class="subject_card">Join Now</p>
-
-                                                        {{-- <p><a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $batch->id)  }}">join now</a></p> --}}
+                                                        <p class="subject_card">View</p>
+                                                        <p class="subject_card"><a style="text-decoration:none; color: #0EA47E;" href="{{url('home-work/{id}')}}">HomeWork</a></p>
 
                                                     </div>
                                                     <div class="border-left second_left_border"></div>
@@ -249,8 +248,8 @@
                                         <div id="collapse{{$batch->id}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                             <div class="card-body">
                                                 <table class="table">
-                                                    
-                                                    
+
+
                                                     @if (\Carbon\Carbon::parse($batch->start_date_time)->format('d')===\Carbon\Carbon::tomorrow()->format('d'))
                                                     <tr>
                                                         <td>Class Name</td>
@@ -264,6 +263,11 @@
                                                     <tr>
                                                         <td>Topics</td>
                                                         <td>{{$batch->singleTopic->topic->name}}</td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Class</td>
+                                                        <td>{{$batch->status == 1 ? 'Online' : 'Offline'}}</td>
                                                     </tr>
                                                     {{--<tr>
                                                     <td>Due Amount</td>
@@ -285,7 +289,7 @@
                                             </div>
                                         </div>
                                         @endforeach
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -295,14 +299,14 @@
                                 <div class="card mb-3">
                                     <div class="card-header" id="headingThree">
                                         @foreach($allsessions as $session)
-                                      
+
                                         <div class="card-header" id="headingOne">
                                             <h5 class="mb-0">
                                                 <div class="d-flex justify-content-around">
                                                     <div class="card_img" style="width:38%">
                                                         @if($session->batch->subject->name == 'English')
                                                             <img style="width:100%;" src="{{ asset('frontend/assets/English/English.jpg') }}" alt="">
-                                                            @elseif($session->batch->subject->name == 'Maths')  
+                                                            @elseif($session->batch->subject->name == 'Maths')
                                                                 <img  style="width:100%;" src="{{ asset('frontend/assets/Maths/Math.jpg') }}" alt="">
                                                             @elseif($session->batch->subject->name == 'Physics')
                                                                 <img  style="width:100%;" src="{{ asset('frontend/assets/Physics/Physics.jpg') }}" alt="">
@@ -320,8 +324,9 @@
                                                     </div>
                                                     <div class="border-left first_left_border"></div>
                                                     <div>
-                                                        <p class="subject_card">Join Now</p>
-                                                            {{-- <a style="text-decoration:none; font-size:15px; color: #0EA47E;" class="card_subject_title1" href="{{ url('zoom', $batch->id)  }}">Join now</a> --}}
+                                                        <p class="subject_card">View</p>
+                                                        <p class="subject_card"><a style="text-decoration:none; color: #0EA47E;" href="{{url('home-work/{id}')}}">HomeWork</a></p>
+
                                                             <p class="card_subject_title2">
                                                         {{-- <a style="text-decoration:none; font-size:15px; color: #0EA47E;" href="{{ url('zoom', $session->id)  }}">Join now</a></p> --}}
                                                     </div>
@@ -355,7 +360,7 @@
                                                         <td>{{$session->name}}-
                                                         @if(isset($session->topics_name->topic->name))
                                                         {{$session->topics_name->topic->name}}
-                                                        
+
                                                         @else
                                                             Error in Topic
                                                         @endif
@@ -369,6 +374,8 @@
                                         </div>
                                         @endforeach
                                     </div>
+
+                                    {{$allsessions->links()}}
                                 </div>
                             </div>
                         </div>
@@ -390,7 +397,7 @@
                             @isset($mark->given_marks)
                             <p class="mr-2 list_announce">
                                 <span>You got {{$mark->given_marks}} in  <b>Session: </b>{{$mark->homeWork->session->name}}</span>
-                                
+
                             </p>
                             @endisset
                         @endforeach
@@ -493,9 +500,9 @@
                         // dd($batch);
                     @endphp
                     <p class="class_section"><span>{{ auth()->user()->student->classmaster->name }}</span></p>
-                   
+
                     <a href="#" class="profile"><span>View Profile</span></a>
-                    
+
                     <div class="profile">
                         <p>Due Amount : &pound;{{$due_amount}}</p>
                     </div>
@@ -518,29 +525,29 @@
                                     {{-- subject wise img --}}
                                     <div class="card_img">
                                                           @if($batch->subject->name == 'English')
-                                
+
                                   <img style="width:100%;" src="{{ asset('frontend/assets/English/English.jpg') }}" alt="">
-                                
+
                                 @elseif($batch->subject->name == 'Maths')
-                                
+
                                     <img  style="width:100%;" src="{{ asset('frontend/assets/Maths/Math.jpg') }}" alt="">
-                                
+
                                 @elseif($batch->subject->name == 'Physics')
-                                
+
                                     <img  style="width:100%;" src="{{ asset('frontend/assets/Physics/Physics.jpg') }}" alt="">
-                                
+
                                 @elseif($batch->subject->name == 'Chemistry')
-                                
+
                                     <img style="width:100%" src="{{ asset('frontend/assets/card-cover.png') }}" alt="">
-                                
+
                                 @elseif($batch->subject->name == 'Essay')
-                                
+
                                     <img  style="width:100%" src="{{ asset('frontend/assets/Essay/Essay.jpg') }}" alt="">
-                                
+
                                 @else
-                                
+
                                 <img style="width:100%" src="{{ asset('frontend/assets/English/English.jpg')}}" alt="">
-                                
+
                                 @endif
                                     </div>
                                     </div>
@@ -592,7 +599,7 @@
                                  @endforeach --}}
                                  <td>@if(isset($session->topics_name->topic->name))
                                     {{$session->topics_name->topic->name}}
-                                    
+
                                     @else
                                         Error in Topic
                                     @endif</td>

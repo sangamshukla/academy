@@ -173,6 +173,7 @@
                                                 @endif
                                                 @endforeach
                                             </table>
+
                                         </div>
                                     </div>
                                     @endforeach
@@ -292,6 +293,8 @@
 
                                     </div>
                                 </div>
+
+                               {{-- <div style=" float:right;  border-color: coral; ">{{$tomorrow->links()}}</div> --}}
                             </div>
                         </div>
                         <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
@@ -373,10 +376,9 @@
                                             </div>
                                         </div>
                                         @endforeach
-                                    </div>
-
-                                    {{$allsessions->links()}}
+                                        </div>
                                 </div>
+                             <div style=" float:right;  border-color: coral; ">{{$allsessions->links()}}</div>
                             </div>
                         </div>
                     </div>

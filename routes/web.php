@@ -284,7 +284,7 @@ Route::get('get-students-marks/{id}', [OfflineController::class, 'get_students_m
 Route::get('admin-score', [OfflineController::class, 'admin_score'])->name('admin-score');
 Route::get('admin-score-data/{week_id}', [OfflineController::class, 'admin_score_data'])->name('admin-score-data');
 Route::post('admin-score-data-week', [OfflineController::class, 'admin_score_data_save'])->name('admin-score-data-week');
-Route::get('get-graph-math', [OfflineController::class, 'get_graph_math'])->name('get-graph');
-Route::get('get-graph-english', [OfflineController::class, 'get_graph_english'])->name('get-graph-english');
-Route::get('get-graph-physics', [OfflineController::class, 'get_graph_physics'])->name('get-graph-physics');
-Route::get('get-graph-4', [OfflineController::class, 'get_graph4'])->name('get-graph-4');
+Route::get('get-graph-math/{student_id}', [OfflineController::class, 'get_graph_math'])->name('get-graph');
+Route::get('get-graph-english/{student_id}', [OfflineController::class, 'get_graph_english'])->name('get-graph-english');
+Route::get('get-graph-physics/{student_id}', [OfflineController::class, 'get_graph_physics'])->name('get-graph-physics');
+Route::get('get-graph-4/{student_id}', [OfflineController::class, 'get_graph4'])->name('get-graph-4');

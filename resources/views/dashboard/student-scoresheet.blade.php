@@ -145,7 +145,7 @@
   </div>  
   
       <script>
-                var url = "{{url('get-graph-math')}}";
+                var url = "{{url('get-graph-math/'.auth()->user()->id)}}";
                 var Weeks = new Array();
                 var Marks = new Array();
                 var subject;
@@ -182,7 +182,7 @@
 
         {{-- english graph start --}}
         <script>
-          var url1 = "{{url('get-graph-english')}}";
+          var url1 = "{{url('get-graph-english/'.auth()->user()->id)}}";
           var Weeks_English = new Array();
           var Marks_english = new Array();
           var subject_english;
@@ -219,7 +219,7 @@
 
         {{-- physics graph --}}
         <script>
-          var url2 = "{{url('get-graph-physics')}}";
+          var url2 = "{{url('get-graph-physics/'.auth()->user()->id)}}";
           var Weeks2 = new Array();
           var Marks2 = new Array();
           var subject2;
@@ -256,7 +256,7 @@
 
         {{-- Subject 4 --}}
         <script>
-          var url4 = "{{url('get-graph-4')}}";
+          var url4 = "{{url('get-graph-4/'.auth()->user()->id)}}";
           var Weeks4 = new Array();
           var Marks4 = new Array();
           var subject4;

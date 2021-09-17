@@ -171,19 +171,28 @@ class OfflineController extends Controller
         // $scores=OfflineScoreSheet::where('student_id', $student_id)->where('week_id', 2)->get();
         // $avg_weekly_score=OfflineScoreSheet::select('obtained_marks')->where('week_id', 2)->avg('obtained_marks');
         // return view('offlinescoresheet.scoresheetpdf', compact('scores', 'weeks', 'avg_weekly_score'));
-        $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();
+        // $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();
       
-        $subject_full_mark_id=OfflineScoreSheet::where('week_id', $week_id)->where('student_id', $student_id)->get();
+        // $subject_full_mark_id=OfflineScoreSheet::where('week_id', $week_id)->where('student_id', $student_id)->get();
         $name=User::find($student_id)->name;
         // $class_highest=OfflineScoreSheet::groupBy('student_id')->get();
-        $week=Week::find($week_id);
-        $class_lowest=OfflineScoreSheet::where('week_id', $week_id)->min('obtained_marks');
-        $class_avg=OfflineScoreSheet::where('week_id', $week_id)->avg('obtained_marks');
-        $student_obtained_marks=OfflineScoreSheet::where('week_id', $week_id)->where('student_id', $student_id)->get();
+        // $week=Week::find($week_id);
+        // $class_lowest=OfflineScoreSheet::where('week_id', $week_id)->min('obtained_marks');
+        // $class_avg=OfflineScoreSheet::where('week_id', $week_id)->avg('obtained_marks');
+        // $student_obtained_marks=OfflineScoreSheet::where('week_id', $week_id)->where('student_id', $student_id)->get();
         // dd($student_obtained_marks);
         // dd($class_highest);
+        // $name=auth()->user()->name;
+        $week_id=$week_id;
+        // dd($week_id);
+        $week=Week::where('id', $week_id)->first();
+        $student_id=$student_id;
+        $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();
+        $all_weeks=$this->get_weeks();
+        // dd($all_weeks);
+        // return view('dashboard.student-scoresheet', compact('all_weeks', 'name', 'week', 'student_id', 'week_id', 'subject_full_marks'));
 
-        return view('offlinescoresheet.newscoresheetpdf', compact( 'week','name', 'class_lowest', 'class_avg', 'student_obtained_marks', 'student_id', 'week_id', 'subject_full_marks'));
+        return view('offlinescoresheet.newscoresheetpdf', compact( 'all_weeks', 'name', 'week', 'student_id', 'week_id', 'subject_full_marks'));
     }
 
     public function studentEnrollMent(Request $request, $weekId)
@@ -595,9 +604,10 @@ class OfflineController extends Controller
                         })
                             ->make(true);
     }
-    public function get_graph_math()
+    public function get_graph_math($student_id)
     {
-        $student_id=auth()->user()->id;
+        // $student_id=auth()->user()->id;
+        $student_id=$student_id;
         $subject_id=1;
         $score_graph_math=DB::table('offline_score_sheets AS oss')
                     ->join("subject_full_marks AS sfm", "sfm.id","=","oss.subject_full_mark_id")
@@ -611,9 +621,9 @@ class OfflineController extends Controller
         // dd("graph data");
         // select oss.obtained_marks, oss.week_id from offline_score_sheets oss inner join subject_full_marks sfm on sfm.id=oss.subject_full_mark_id where student_id=4 and sfm.subject_id =1
     }
-    public function get_graph_english()
+    public function get_graph_english($student_id)
     {
-        $student_id=auth()->user()->id;
+        $student_id=$student_id;
         $subject_id=2;
         $score_graph_english=DB::table('offline_score_sheets AS oss')
                     ->join("subject_full_marks AS sfm", "sfm.id","=","oss.subject_full_mark_id")
@@ -627,9 +637,9 @@ class OfflineController extends Controller
         // dd("graph data");
         // select oss.obtained_marks, oss.week_id from offline_score_sheets oss inner join subject_full_marks sfm on sfm.id=oss.subject_full_mark_id where student_id=4 and sfm.subject_id =1
     }
-    public function get_graph_physics()
+    public function get_graph_physics($student_id)
     {
-        $student_id=auth()->user()->id;
+        $student_id=$student_id;
         $subject_id=3;
         $score_graph_physics=DB::table('offline_score_sheets AS oss')
                     ->join("subject_full_marks AS sfm", "sfm.id","=","oss.subject_full_mark_id")
@@ -643,9 +653,9 @@ class OfflineController extends Controller
         // dd("graph data");
         // select oss.obtained_marks, oss.week_id from offline_score_sheets oss inner join subject_full_marks sfm on sfm.id=oss.subject_full_mark_id where student_id=4 and sfm.subject_id =1
     }
-    public function get_graph4()
+    public function get_graph4($student_id)
     {
-        $student_id=auth()->user()->id;
+        $student_id=$student_id;
         $subject_id=4;
         $score_graph4=DB::table('offline_score_sheets AS oss')
                     ->join("subject_full_marks AS sfm", "sfm.id","=","oss.subject_full_mark_id")

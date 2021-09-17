@@ -169,7 +169,7 @@
                 <th scope="col" class="header-para">Class Highest</th>
                 <th scope="col" class="header-para">Class Lowest</th>
                 <th scope="col" class="header-para">Your Score</th>
-                {{-- <th scope="col" class="header-para">Rank</th> --}}
+                <th scope="col" class="header-para">Rank</th>
                 <th scope="col" class="header-para">Percentage</th>
               </tr>
             </thead>
@@ -181,6 +181,8 @@
                         $class_highest_marks=\App\Http\Controllers\OfflineController::get_subject_highest_marks($week_id, $subject_id);
                         $class_lowest_marks=\App\Http\Controllers\OfflineController::get_subject_lowest_marks($week_id, $subject_id);
                         $class_average_marks=\App\Http\Controllers\OfflineController::get_subject_average_marks($week_id, $subject_id);
+                         $rankings=\App\Http\Controllers\OfflineController::getRanking($week_id, $subject_id, $student_id);
+                         $total_student=\App\Http\Controllers\OfflineController::getTotalStudents($week_id);
                         $student_marks=\App\Http\Controllers\OfflineController::get_student_marks($week_id, $subject_id, $student_id);
                         $student_percentage=\App\Http\Controllers\OfflineController::get_student_percentage($week_id, $subject_id, $student_id);
                     @endphp
@@ -192,7 +194,13 @@
                   </td>
                   <td class="header-para"> {{$class_lowest_marks}}</td>
                   <td class="header-para">{{$student_marks->obtained_marks}}/{{$student_marks->full_marks}}</td>
-                  {{-- <td class="header-para">2/10</td> --}}
+                  <td class="header-para">
+                    @foreach ($rankings as $ranking)
+                      @if ($ranking->student_id==$student_id)
+                      {{$ranking->stu_rank}}
+                      @endif
+                    @endforeach
+                    /{{$total_student}}</td>
                   <td class="header-para">{{$student_percentage}}%</td>
                 </tr>
                 

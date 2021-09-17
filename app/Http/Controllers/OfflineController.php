@@ -669,6 +669,31 @@ class OfflineController extends Controller
         // dd("graph data");
         // select oss.obtained_marks, oss.week_id from offline_score_sheets oss inner join subject_full_marks sfm on sfm.id=oss.subject_full_mark_id where student_id=4 and sfm.subject_id =1
     }
+    public static function getRanking($week_id, $subject_id, $student_id)
+    {
+        $ranking=DB::table('offline_score_sheets AS oss')
+                    ->selectRaw('oss.obtained_marks, oss.student_id, oss.week_id, sfm.subject_id, RANK() OVER ( ORDER BY oss.obtained_marks) "stu_rank"')
+                    ->join('subject_full_marks AS sfm',  'sfm.id', '=', 'oss.subject_full_mark_id' )
+                    ->where('oss.week_id', $week_id)
+                    ->where('sfm.subject_id', $subject_id)
+                    // ->where('oss.student_id', 4)
+                    ->get();
+        // $ranking=10;
+        $ranking=$ranking->map(function ($item, $key) {
+                return $item;
+        });
+       return $ranking;
+
+//select oss.obtained_marks, oss.student_id, oss.week_id, sfm.subject_id, 
+// RANK() OVER ( ORDER BY obtained_marks) stu_rank FROM offline_score_sheets oss 
+// inner join subject_full_marks sfm on sfm.id =oss.subject_full_mark_id 
+// WHERE oss.week_id = 1
+// AND sfm.subject_id =1
+    }
+    public static function getTotalStudents($week_id)
+    {
+        return OfflineEnrolledStudent::where('week_id', $week_id)->get()->count('student_id');
+    }
   
 
 }

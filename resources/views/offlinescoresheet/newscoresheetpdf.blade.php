@@ -196,9 +196,9 @@
                   <td class="header-para">{{$student_marks->obtained_marks}}/{{$student_marks->full_marks}}</td>
                   <td class="header-para">
                     @foreach ($rankings as $ranking)
-                      @if ($ranking->student_id==$student_id)
-                      {{$ranking->stu_rank}}
-                      @endif
+                    @if ($ranking->student_id==$student_id)
+                      {{$loop->index+1}}
+                    @endif
                     @endforeach
                     /{{$total_student}}</td>
                   <td class="header-para">{{$student_percentage}}%</td>
@@ -277,7 +277,7 @@ data: Marks,
 }]
 };
 const config = {
-type: 'bar',
+type: 'line',
 data: data,
 options: {}
 };
@@ -314,7 +314,7 @@ data: Marks_english,
 }]
 };
 const config = {
-type: 'bar',
+type: 'line',
 data: data1 ,
 options: {}
 };
@@ -351,7 +351,7 @@ data: Marks2,
 }]
 };
 const config = {
-type: 'bar',
+type: 'line',
 data: data2 ,
 options: {}
 };
@@ -388,7 +388,7 @@ data: Marks4,
 }]
 };
 const config = {
-type: 'bar',
+type: 'line',
 data: data4 ,
 options: {}
 };

@@ -672,16 +672,17 @@ class OfflineController extends Controller
     public static function getRanking($week_id, $subject_id, $student_id)
     {
         $ranking=DB::table('offline_score_sheets AS oss')
-                    ->selectRaw('oss.obtained_marks, oss.student_id, oss.week_id, sfm.subject_id, RANK() OVER ( ORDER BY oss.obtained_marks) "stu_rank"')
                     ->join('subject_full_marks AS sfm',  'sfm.id', '=', 'oss.subject_full_mark_id' )
                     ->where('oss.week_id', $week_id)
                     ->where('sfm.subject_id', $subject_id)
+                    ->select('oss.obtained_marks', 'oss.student_id', 'oss.week_id', 'sfm.subject_id')
+                    ->orderBy('oss.obtained_marks', 'DESC')
                     // ->where('oss.student_id', 4)
                     ->get();
         // $ranking=10;
-        $ranking=$ranking->map(function ($item, $key) {
-                return $item;
-        });
+        // $ranking=$ranking->map(function ($item, $key) {
+        //         return $item;
+        // });
        return $ranking;
 
 //select oss.obtained_marks, oss.student_id, oss.week_id, sfm.subject_id, 

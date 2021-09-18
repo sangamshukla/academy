@@ -306,16 +306,16 @@
                                         <div class="card-header" id="headingOne">
                                             <h5 class="mb-0">
                                                 <div class="d-flex justify-content-around">
-                                                    <div class="card_img" style="width:38%">
-                                                        @if($session->batch->subject->name == 'English')
+                                                    <div class="card_img" style="width:38%;">
+                                                        @if(isset($session->batch->subject->name) == 'English')
                                                             <img style="width:100%;" src="{{ asset('frontend/assets/English/English.jpg') }}" alt="">
-                                                            @elseif($session->batch->subject->name == 'Maths')
+                                                            @elseif(isset($session->batch->subject->name) == 'Maths')
                                                                 <img  style="width:100%;" src="{{ asset('frontend/assets/Maths/Math.jpg') }}" alt="">
-                                                            @elseif($session->batch->subject->name == 'Physics')
+                                                            @elseif(isset($session->batch->subject->name) == 'Physics')
                                                                 <img  style="width:100%;" src="{{ asset('frontend/assets/Physics/Physics.jpg') }}" alt="">
-                                                            @elseif($session->batch->subject->name == 'Chemistry')
+                                                            @elseif(isset($session->batch->subject->name) == 'Chemistry')
                                                                 <img style="width:100%" src="{{ asset('frontend/assets/card-cover.png') }}" alt="">
-                                                            @elseif($session->batch->subject->name == 'Essay')
+                                                            @elseif(isset($session->batch->subject->name) == 'Essay')
                                                                 <img  style="width:100%" src="{{ asset('frontend/assets/Essay/Essay.jpg') }}" alt="">
                                                             @else
                                                                 <img style="width:100%" src="{{ asset('frontend/assets/English/English.jpg')}}" alt="">
@@ -323,7 +323,11 @@
                                                     </div>
                                                     <div>
                                                         <p class="subject_card">Subject</p>
-                                                        <p style="font-size:15px;" class="card_subject_title1">{{$session->batch->subject->name}}</p>
+                                                        <p style="font-size:15px;" class="card_subject_title1">
+                                                            @if(isset($session->batch->subject->name))
+                                                            {{$session->batch->subject->name}}
+                                                            @endif
+                                                        </p>
                                                     </div>
                                                     <div class="border-left first_left_border"></div>
                                                     <div>
@@ -351,22 +355,45 @@
                                                 <table class="table">
                                                     <tr>
                                                         <td>Class</td>
-                                                        <td>{{ $session->batch->classSettings->name }}</td>
+                                                        <td>
+                                                            @if (isset($session->batch->classSettings->name))
+                                                            {{$session->batch->classSettings->name}}
+                                                            @endif
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Teacher</td>
-                                                        <td>{{ $session->batch->teacher->name }}</td>
+                                                        <td>
+                                                            @if (isset($session->batch->classSettings->name))
+
+                                                            {{ $session->batch->teacher->name}}
+                                                        </td>
+                                                            @endif
                                                     </tr>
 
                                                     <tr>
                                                         <td>Topics</td>
                                                         <td>{{$session->name}}-
-                                                        @if(isset($session->topics_name->topic->name))
-                                                        {{$session->topics_name->topic->name}}
+                                                        @if(isset($session->singleTopic->topic->name))
+                                                        {{$session->singleTopic->topic->name}}
 
                                                         @else
                                                             Error in Topic
                                                         @endif
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mode</td>
+                                                        <td> <p class="Session_date">
+                                                            @isset($session->batch->status)
+
+                                                            @if ($session->batch->status)
+                                                              Online
+                                                              @else
+                                                              Offline
+                                                              @endif
+                                                              @endisset
+                                                             </p>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -458,7 +485,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
+                {{-- <div class="card-body">
                     <div class="row">
                         <div class="col-6">
                             <div class="card text-center mb-2">
@@ -489,7 +516,7 @@
                             <a href="#" class="circle_link">Lorem Ipsum</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <div class="col-xl-4 col-lg-4 mb-4 ">
@@ -599,8 +626,8 @@
                                         {{ $session->name }} - {{ $t->topic->name }}
                                     </td>
                                  @endforeach --}}
-                                 <td>@if(isset($session->topics_name->topic->name))
-                                    {{$session->topics_name->topic->name}}
+                                 <td>@if(isset($session->singleTopic->topic->name))
+                                    {{$session->singleTopic->topic->name}}
 
                                     @else
                                         Error in Topic

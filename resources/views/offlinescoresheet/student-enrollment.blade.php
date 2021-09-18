@@ -24,15 +24,13 @@
 
     <div class="row">
         <div class="col-md-12">
-            <h6 style="margin-top: 30px; margin-left:20px; position:relative;">Select week for score card list</h6>
+            <h6 style="margin-top: 30px; margin-left:20px; position:relative;">Select Students who appeared for this week</h6>
         </div>
     </div>
 
     <form method="POST" action="{{route('student-enrollment')}}">
       @csrf
-    {{--  @foreach($weeks as $week)
-      @php(dd($weeks))
-      @endforeach --}}
+    
     <!-- <div class="row">
         <div class="col-md-4">
             <div class="input-group mb-3">
@@ -54,8 +52,8 @@
     </div> -->
             
     <div class="row">
-        <div class="col-md-4 col-xs-12">
-            <table style="width:100%; margin-left:20px;" class="table table-bordered">
+        <div class="col-md-8 col-xs-12 ml-4">
+            {{-- <table style="width:100%; margin-left:20px;" class="table table-bordered">
                 <thead>
                   <tr>
                     <th style="width:20%" scope="col">Select Student</th>
@@ -68,9 +66,21 @@
                 </thead>
                 <tbody>
                   <input type="hidden" value="{{ $weekId ?? null }}" name="weekId" />
-                   @foreach($students as $student)                 
+                   @foreach($students as $student)
+                   @php
+                       $enrolled=\App\Http\Controllers\OfflineController::is_enrolled($student->id, $weekId);
+                      if($enrolled)
+                      {
+                        $status="checked";
+                      }
+                      else {
+                        $status="";
+                      }
+                   @endphp
                   <tr style="background-color: white;">
-                    <th class="custom-checkbox"><input name="student_id[]" value="{{ $student->id }}" type="checkbox"></th>
+                    <th class="custom-checkbox">
+                      <input name="student_id[]" value="{{ $student->id }}" type="checkbox" {{$status}}>
+                    </th>
                     <!-- <th scope="row">{{ $loop->iteration }}</th> -->
                     <th scope="row">{{ (($students->currentPage() -1) * 10) + $loop->index+1 }}</th>
                     <td>{{$student->name}}</td>
@@ -79,9 +89,20 @@
                    @endforeach 
                   
                 </tbody>
-              </table>
+              </table> --}}
+              <table class="table table-bordered" id="student-table">
+                <thead>
+                    <tr>
+                        <th>Select Student</th>
+                        <th>S. No</th>
+                        <th>Class</th>
+
+                    </tr>
+                </thead>
+            </table>
               <div >
               <!-- <button class="submit"  type="button">Submit</button> -->
+              <input type="hidden" name="weekId" value={{$weekId}}>
               <input class="submit" type="submit" value="submit">
               
               <a  style="margin-left:25px;" href="{{route('offline-scoresheet', $weekId)}}"><input  class="submit" type="button" value="Next"></a>
@@ -94,12 +115,26 @@
 </div>
 
  <!-- student-enrollment_load -->
-<div style="margin-top: 2rem; float:right;  border-color: coral;">{{ $students->withQueryString()->links() }}</div> 
+{{-- <div style="margin-top: 2rem; float:right;  border-color: coral;">{{ $students->withQueryString()->links() }}</div>  --}}
 @endsection
 
 @section('css')
 <style>
   /** do not delete */
 </style>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+$(function() {
+    $('#student-table').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: '{{route("get-student", $weekId) }}',
+        columns: [
+            {data: 'checkbox', name: 'student_id[]', orderable: false, searchable: false},
+            { data: 'name', name: 'name' },
+            { data: 'email', name: 'email' },
+        ]
+    });
+});
+</script>
 @endsection

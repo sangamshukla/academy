@@ -1,9 +1,171 @@
-@extends('layouts.admin_dashboard')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Score Sheet</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+    body
+    {
+        margin: 0;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #858796;
+    text-align: left;
+    background-color: #fff;
+    }
+    .mt-4, .my-4 {
+    margin-top: 1.5rem !important;
+}
+.m-1 {
+    margin: 0.25rem !important;
+}
+.table-bordered {
+    border: 1px solid #e3e6f0;
+}
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #858796;
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #858796;
+}
+table {
+    border-collapse: collapse;
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: grey;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -0.75rem;
+    margin-left: -0.75rem;
+}
+    *, *::before, *::after {
+    box-sizing: border-box;
+}
+        div {
+    display: block;
+}
+        .container-div
+{
+    margin-bottom: 10px;
+    margin-top: 22px;
+    padding: 10px;
+    min-height: 686px;
+    background: rgba(255, 255, 255, 1);
+    height: 686px;
+    margin-left: 9px;
+    border-radius: 8px;
+}
+.inner-container
+{
+    margin: 20px;
+}
+.para
+{
+font-family: Roboto;
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: 21px;
+letter-spacing: 0px;
+text-align: left;
+margin-top: 10px;
+}
+.search-box
+{
+    border: 1px solid #E4E4E4;
+    box-sizing: border-box;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 1);
+    height: 44px;
+    width: 493px;
+    left: 157px;
+    top: 103px;
+}
+.search-img
+{
+    background: #1D6771;
+    box-shadow: 0px 5px 10px rgba(29, 125, 234, 0.2);
+    border-radius: 4px;
+    padding: 10px;
+    margin-left: -48px;
+}
+.table-head
+{
+    background: rgba(139, 202, 255, 0.2);
+    font-family: Nunito;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+align-items: center;
 
-@section('content')
+color: #333333;
+}
+.table-bordered th, .table-bordered td {
+    border: 1px solid #e3e6f0;
+}
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #e3e6f0;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+}
+.student-info
+{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+}
+.custom-head
+{
 
-    <div class="container m-2">
-        <div><svg width="146" height="96" viewBox="0 0 146 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+    background:rgba(139, 202, 255, 0.6); 
+    border:1px solid #DDDDDD;
+}
+.header-para
+{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    align-items: center;
+    color:#333333;
+}
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+.table-td{
+    background: rgba(139, 202, 255, 0.05);
+    border: 1px solid #DDDDDD;
+}   
+.printable
+{
+    margin:auto;
+}
+    </style>
+</head>
+<body style="margin-left:2rem;">
+  <div style="margin-left:3rem;" class="container m-2">
+      <div><svg width="146" height="96" viewBox="0 0 146 96" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M18.092 67.4731C18.1503 67.3154 18.2377 67.1971 18.3543 67.1183C18.4708 67.0394 18.6019 67 18.7476 67C18.9321 67 19.0924 67.0641 19.2283 67.1922C19.374 67.3105 19.4468 67.4682 19.4468 67.6653C19.4468 67.7737 19.4274 67.8722 19.3886 67.9609L16.1691 77.0973C16.1011 77.2649 15.9943 77.393 15.8486 77.4817C15.7029 77.5704 15.5427 77.6148 15.3679 77.6148C15.2028 77.6148 15.0474 77.5704 14.9017 77.4817C14.756 77.393 14.6541 77.2649 14.5958 77.0973L11.9445 69.4689L9.2349 77.0973C9.17663 77.2649 9.07466 77.393 8.92898 77.4817C8.7833 77.5704 8.62791 77.6148 8.46281 77.6148C8.288 77.6148 8.12776 77.5704 7.98208 77.4817C7.84612 77.393 7.74414 77.2649 7.67616 77.0973L4.45671 67.9609C4.41786 67.8722 4.39844 67.7737 4.39844 67.6653C4.39844 67.4682 4.47128 67.3105 4.61695 67.1922C4.76263 67.0641 4.93744 67 5.14139 67C5.28706 67 5.41817 67.0394 5.53472 67.1183C5.66097 67.1971 5.75323 67.3154 5.8115 67.4731L8.50652 75.3381L11.2452 67.547C11.3035 67.3795 11.3958 67.2513 11.522 67.1626C11.658 67.0739 11.8037 67.0296 11.9591 67.0296C12.1144 67.0296 12.2553 67.0788 12.3815 67.1774C12.5078 67.2661 12.6049 67.3942 12.6729 67.5618L15.3533 75.412L18.092 67.4731Z" fill="black"/>
 <path d="M23.1591 70.1194C24.1011 70.1194 24.8004 70.3609 25.2568 70.8438C25.723 71.3267 25.9561 72.061 25.9561 73.0466V76.8756C25.9561 77.1023 25.8929 77.2797 25.7667 77.4078C25.6404 77.5261 25.4656 77.5852 25.2423 77.5852C25.0286 77.5852 24.8586 77.5211 24.7324 77.393C24.6061 77.2649 24.543 77.0924 24.543 76.8756V76.3286C24.3585 76.7425 24.0817 77.0628 23.7127 77.2895C23.3533 77.5064 22.9309 77.6148 22.4453 77.6148C21.9791 77.6148 21.5518 77.5211 21.1633 77.3339C20.7845 77.1368 20.4835 76.8707 20.2601 76.5356C20.0367 76.2005 19.9251 75.821 19.9251 75.3972C19.9153 74.865 20.0465 74.451 20.3184 74.1554C20.5903 73.8498 21.0322 73.633 21.644 73.5049C22.2559 73.3669 23.1057 73.2979 24.1934 73.2979H24.5284V72.8692C24.5284 72.3172 24.4168 71.9181 24.1934 71.6717C23.97 71.4253 23.6107 71.3021 23.1154 71.3021C22.7755 71.3021 22.455 71.3464 22.1539 71.4351C21.8528 71.5238 21.5226 71.652 21.1633 71.8195C20.9011 71.9674 20.7166 72.0413 20.6097 72.0413C20.4641 72.0413 20.3427 71.9871 20.2455 71.8787C20.1581 71.7702 20.1144 71.6323 20.1144 71.4647C20.1144 71.3169 20.1533 71.1887 20.231 71.0803C20.3184 70.9621 20.4544 70.8487 20.6389 70.7403C20.9788 70.553 21.377 70.4052 21.8334 70.2968C22.2899 70.1785 22.7318 70.1194 23.1591 70.1194ZM22.7075 76.506C23.2416 76.506 23.6787 76.3237 24.0186 75.959C24.3585 75.5845 24.5284 75.1065 24.5284 74.525V74.1406H24.2662C23.5087 74.1406 22.926 74.1751 22.5181 74.2441C22.1102 74.3131 21.8189 74.4313 21.644 74.5989C21.4692 74.7566 21.3818 74.9882 21.3818 75.2937C21.3818 75.6485 21.5081 75.9393 21.7606 76.166C22.0131 76.3926 22.3287 76.506 22.7075 76.506Z" fill="black"/>
 <path d="M28.7116 77.5852C28.498 77.5852 28.3183 77.5261 28.1726 77.4078C28.0367 77.2895 27.9687 77.1121 27.9687 76.8756V67.7392C27.9687 67.5026 28.0367 67.3252 28.1726 67.207C28.3183 67.0788 28.498 67.0148 28.7116 67.0148C28.9253 67.0148 29.1001 67.0788 29.2361 67.207C29.372 67.3252 29.44 67.5026 29.44 67.7392V76.8756C29.44 77.1121 29.372 77.2895 29.2361 77.4078C29.1001 77.5261 28.9253 77.5852 28.7116 77.5852Z" fill="black"/>
@@ -54,236 +216,245 @@
 <path d="M74.1969 27.5244C74.1969 27.8113 74.1404 28.0953 74.0306 28.3603C73.9208 28.6254 73.7599 28.8662 73.5571 29.069C73.3543 29.2718 73.1135 29.4327 72.8484 29.5425C72.5834 29.6523 72.2994 29.7088 72.0125 29.7088C71.7257 29.7088 71.4416 29.6523 71.1766 29.5425C70.9116 29.4327 70.6708 29.2718 70.4679 29.069C70.2651 28.8662 70.1042 28.6254 69.9944 28.3603C69.8846 28.0953 69.8281 27.8113 69.8281 27.5244V21.3744C69.8269 21.0868 69.8825 20.8017 69.9917 20.5356C70.1009 20.2695 70.2616 20.0276 70.4646 19.8238C70.6676 19.6199 70.9088 19.4582 71.1744 19.3478C71.44 19.2375 71.7249 19.1807 72.0125 19.1807C72.3002 19.1807 72.585 19.2375 72.8506 19.3478C73.1162 19.4582 73.3575 19.6199 73.5604 19.8238C73.7634 20.0276 73.9241 20.2695 74.0333 20.5356C74.1425 20.8017 74.1981 21.0868 74.1969 21.3744V27.5244Z" fill="black"/>
 <path d="M71.3209 15.7022C70.8545 15.2958 70.4759 14.7985 70.2083 14.2407C69.9407 13.683 69.7897 13.0765 69.7646 12.4584C69.7954 11.7365 69.9783 11.0293 70.3014 10.383C70.6245 9.73677 71.0806 9.16609 71.6396 8.7084C72.1461 8.26414 72.5532 7.71807 72.8342 7.10582C73.1153 6.49358 73.2641 5.82893 73.2709 5.15528C73.2466 4.13227 72.9627 3.1322 72.4459 2.24902L72.3053 2.0334C72.2469 1.95408 72.209 1.86162 72.1949 1.76418C72.1807 1.66674 72.1907 1.56731 72.2241 1.47467C72.2574 1.38203 72.3131 1.29901 72.3861 1.23296C72.4591 1.1669 72.5473 1.11983 72.6428 1.0959C72.8515 0.99347 73.0908 0.972234 73.3143 1.03633C73.5378 1.10043 73.7295 1.24529 73.8522 1.44277C74.594 2.55524 75.0037 3.85596 75.0334 5.19277C75.0232 6.02671 74.8377 6.84918 74.4888 7.6067C74.1399 8.36422 73.6355 9.03985 73.0084 9.58965C72.5687 9.93638 72.207 10.3719 71.9469 10.8678C71.6869 11.3637 71.5342 11.9089 71.499 12.4678C71.5371 13.3474 71.9213 14.1763 72.5678 14.774C72.6432 14.8267 72.7048 14.8969 72.7473 14.9785C72.7899 15.0601 72.8121 15.1507 72.8121 15.2428C72.8121 15.3348 72.7899 15.4255 72.7473 15.5071C72.7048 15.5887 72.6432 15.6588 72.5678 15.7115C72.3974 15.8302 72.1941 15.8925 71.9865 15.8896C71.759 15.8995 71.5358 15.8261 71.3584 15.6834L71.3209 15.7022Z" fill="black"/>
 </svg></div>
-        <div class="my-4">
-            <span class="header-para" style="font-size:24px;"> Mock Examination Repoart for Week 26</span>
-        </div>
-        <div classs="row">
-            <div class="col-4">
-                <div class="row">
-                    <div class="col-6">Name</div>
-                    <div class="col-6">Mathew</div>
-                </div>
-                <div class="row">
-                    <div class="col-6">Date Of Birth</div>
-                    <div class="col-6">17-9-1911</div>
-                </div>
-                <div class="row">
-                    <div class="col-6">Username</div>
-                    <div class="col-6">Mathew001</div>
-                </div>
-                <div class="row">
-                    <div class="col-6">User ID</div>
-                    <div class="col-6">0001</div>
-                </div>
-            </div>
-        </div>
-        <div class="mt-4">
-            <div class="row">
-            <div class="col-4">
-               <p class="header-para" style="font-size:16px;">Overall Week Result</p> 
-            </div>
-            </div>    
-            <div class="row">
-            <table class="table table-hover table-bordered m-1">
-                <thead class="custom-head" >
-                  <tr>
-                    <th scope="col" class="header-para">Sr. No</th>
-                    <th scope="col" class="header-para">Maths (100)</th>
-                    <th scope="col" class="header-para">English(50)</th>
-                    <th scope="col" class="header-para">Comprehension(50)</th>
-                    <th scope="col" class="header-para">Total(200)</th>
-                    <th scope="col" class="header-para">Percentage</th>
+
+  <div class="my-4">
+          <span class="header-para" style="font-size:24px;"> Mock Examination Report for {{$week->week_name}} for {{$name}}</span>
+      </div>
+      <div classs="row">
+          <div class="col-4">
+            <table>
+              <tr>
+                <td>Name</td>
+                <td>{{$name}}</td>
+              </tr>
+              <tr>
+                <td>User ID</td>
+                <td>4</td>
+              </tr>
+            </table>
+          </div>
+      </div>
+      <div class="mt-4">
+          <div class="row">
+          <div class="col-4">
+             <p class="header-para" style="font-size:16px;">Overall Week Result</p> 
+          </div>
+          </div>    
+          <div class="row">
+          <table class="table table-hover table-bordered m-1">
+              <thead class="custom-head" >
+                <tr>
+                  <th scope="col" class="header-para">Sr. No</th>
+                  <th scope="col" class="header-para">Class Average</th>
+                  <th scope="col" class="header-para">Class Highest</th>
+                  <th scope="col" class="header-para">Class Lowest</th>
+                  <th scope="col" class="header-para">Rank</th>
+                  <th scope="col" class="header-para">Percentage</th>
+                  <th scope="col" class="header-para">Your Total Score</th>
+                </tr>
+              </thead>
+              <tbody>
+                  
+                  <tr class="table-td">
+                    <th scope="row" class="header-para" class="header-para">1</th>
+                    <td class="header-para">180</td>
+                    <td class="header-para">122</td>
+                    <td class="header-para">85</td>
+                    <td class="header-para">12</td>
+                    <td class="header-para">77% </td>
+                    <td class="header-para">150 </td>
                   </tr>
-                </thead>
-                <tbody>
-                    
-                    <tr class="table-td">
-                      <th scope="row" class="header-para" class="header-para">1</th>
-                      <td class="header-para">Class Average</td>
-                      <td class="header-para"> 78</td>
-                      <td class="header-para"> 42</td>
-                      <td class="header-para">154 </td>
-                      <td class="header-para">77% </td>
-                    </tr>
-                    
-                    <tr>
-                      <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Class Highest</td>
-                      <td class="header-para"> 78</td>
-                      <td class="header-para"> 42</td>
-                      <td class="header-para">154 </td>
-                      <td class="header-para">77% </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Class Lowest</td>
-                      <td class="header-para"> 78</td>
-                      <td class="header-para"> 42</td>
-                      <td class="header-para">154 </td>
-                      <td class="header-para">77% </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Rank</td>
-                      <td class="header-para"> 78</td>
-                      <td class="header-para"> 42</td>
-                      <td class="header-para">154 </td>
-                      <td class="header-para">77% </td>
-                    </tr>
-                </tbody>
-              </table>
-            </div>
-        </div>
-        <div>
-        <div class="mt-4">
-            <div class="row">
-            <div class="col-4">
-                <p class="header-para" style="font-size:16px;">Overall Week Result</p> 
-            </div>
-            </div>    
-            <div class="row">
-            <table class="table table-hover table-bordered m-1">
-                <thead class="custom-head">
-                  <tr>
-                    <th scope="col" class="header-para" class="header-para">Sr. No</th>
-                    <th scope="col" class="header-para">Maths (100)</th>
-                    <th scope="col" class="header-para">English(50)</th>
-                    <th scope="col" class="header-para">Comprehension(50)</th>
-                    <th scope="col" class="header-para">Total(200)</th>
-                    <th scope="col" class="header-para">Percentage</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    
-                    <tr>
-                      <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Class Average</td>
-                      <td class="header-para"> 78</td>
-                      <td class="header-para"> 42</td>
-                      <td class="header-para">154 </td>
-                      <td class="header-para">77% </td>
-                    </tr>
-                    
-                    <tr>
-                      <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Class Highest</td>
-                      <td class="header-para"> 78</td>
-                      <td class="header-para"> 42</td>
-                      <td class="header-para">154 </td>
-                      <td class="header-para">77% </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Class Lowest</td>
-                      <td class="header-para"> 78</td>
-                      <td class="header-para"> 42</td>
-                      <td class="header-para">154 </td>
-                      <td class="header-para">77% </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Rank</td>
-                      <td class="header-para"> 78</td>
-                      <td class="header-para"> 42</td>
-                      <td class="header-para">154 </td>
-                      <td class="header-para">77% </td>
-                    </tr>
-                </tbody>
-              </table>
-            </div>
-        </div>
-        </div>
-        <div>
-        <div class="mt-4">
-            <div class="row">
-            <div class="col-4">
-                <p class="header-para" style="font-size:16px;">Overall Week Result</p> 
-            </div>
-            </div>    
-            <div class="row">
-            <table class="table table-hover table-bordered m-1">
-                <thead class="custom-head">
-                  <tr>
-                    <th scope="col" class="header-para">Sr. No</th>
-                    <th scope="col" class="header-para">Maths (100)</th>
-                    <th scope="col" class="header-para">English(50)</th>
-                    <th scope="col" class="header-para">Comprehension(50)</th>
-                    <th scope="col" class="header-para">Total(200)</th>
-                    <th scope="col" class="header-para">Percentage</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    
-                    <tr>
-                      <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Class Average</td>
-                      <td class="header-para"> 78</td>
-                      <td class="header-para"> 42</td>
-                      <td class="header-para">154 </td>
-                      <td class="header-para">77% </td>
-                    </tr>
-                    
-                    <tr>
-                      <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Class Highest</td>
-                      <td class="header-para"> 78</td>
-                      <td class="header-para"> 42</td>
-                      <td class="header-para">154 </td>
-                      <td class="header-para">77% </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Class Lowest</td>
-                      <td class="header-para"> 78</td>
-                      <td class="header-para"> 42</td>
-                      <td class="header-para">154 </td>
-                      <td class="header-para">77% </td>
-                    </tr>
-                    <tr>
-                      <th scope="row" class="header-para">1</th>
-                      <td class="header-para">Rank</td>
-                      <td class="header-para"> 78</td>
-                      <td class="header-para"> 42</td>
-                      <td class="header-para">154 </td>
-                      <td class="header-para">77% </td>
-                    </tr>
-                </tbody>
-              </table>
-            </div>
-        </div>
-        </div>
-        <div class="container m-4">
+              </tbody>
+            </table>
+          </div>
+      </div>
+      <div>
+      <div class="mt-4">
+          <div class="row">
+          <div class="col-4">
+              <p class="header-para" style="font-size:16px;">Overall Maths Result</p> 
+          </div>
+          </div>    
+          <div class="row">
+          <table class="table table-hover table-bordered m-1">
+            <thead class="custom-head" >
+              <tr>
+                <th scope="col" class="header-para">Sr. No</th>
+                <th scope="col" class="header-para">Class Average</th>
+                <th scope="col" class="header-para">Class Highest</th>
+                <th scope="col" class="header-para">Class Lowest</th>
+                <th scope="col" class="header-para">Rank</th>
+                <th scope="col" class="header-para">Percentage</th>
+                <th scope="col" class="header-para">Your Total Score</th>
+              </tr>
+            </thead>
+            <tbody>
+                
+                <tr class="table-td">
+                  <th scope="row" class="header-para" class="header-para">1</th>
+                  <td class="header-para">180</td>
+                  <td class="header-para">122</td>
+                  <td class="header-para">85</td>
+                  <td class="header-para">12</td>
+                  <td class="header-para">77% </td>
+                  <td class="header-para">150 </td>
+                </tr>
+            </tbody>
+            </table>
+          </div>
+      </div>
+      </div>
+      <div>
+      <div class="mt-4">
+          <div class="row">
+          <div class="col-4">
+              <p class="header-para" style="font-size:16px;">Overall English Result</p> 
+          </div>
+          </div>    
+          <div class="row">
+          <table class="table table-hover table-bordered m-1">
+            <thead class="custom-head" >
+              <tr>
+                <th scope="col" class="header-para">Sr. No</th>
+                <th scope="col" class="header-para">Class Average</th>
+                <th scope="col" class="header-para">Class Highest</th>
+                <th scope="col" class="header-para">Class Lowest</th>
+                <th scope="col" class="header-para">Rank</th>
+                <th scope="col" class="header-para">Percentage</th>
+                <th scope="col" class="header-para">Your Total Score</th>
+              </tr>
+            </thead>
+            <tbody>
+                
+                <tr class="table-td">
+                  <th scope="row" class="header-para" class="header-para">1</th>
+                  <td class="header-para">180</td>
+                  <td class="header-para">122</td>
+                  <td class="header-para">85</td>
+                  <td class="header-para">12</td>
+                  <td class="header-para">77% </td>
+                  <td class="header-para">150 </td>
+                </tr>
+            </tbody>
+            </table>
+          </div>
+      </div>
+      </div>
+      <div>
+      <div class="mt-4">
+          <div class="row">
+          <div class="col-4">
+              <p class="header-para" style="font-size:16px;">Overall Comprehension Result</p> 
+          </div>
+          </div>    
+          <div class="row">
+          <table class="table table-hover table-bordered m-1">
+            <thead class="custom-head" >
+              <tr>
+                <th scope="col" class="header-para">Sr. No</th>
+                <th scope="col" class="header-para">Class Average</th>
+                <th scope="col" class="header-para">Class Highest</th>
+                <th scope="col" class="header-para">Class Lowest</th>
+                <th scope="col" class="header-para">Rank</th>
+                <th scope="col" class="header-para">Percentage</th>
+                <th scope="col" class="header-para">Your Total Score</th>
+              </tr>
+            </thead>
+            <tbody>
+                
+                <tr class="table-td">
+                  <th scope="row" class="header-para" class="header-para">1</th>
+                  <td class="header-para">180</td>
+                  <td class="header-para">122</td>
+                  <td class="header-para">85</td>
+                  <td class="header-para">12</td>
+                  <td class="header-para">77% </td>
+                  <td class="header-para">150 </td>
+                </tr>
+            </tbody>
+            </table>
+          </div>
+      </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="container m-4">
             <canvas id="score-chart">
 
             </canvas>
         </div>
-    </div>
-    <script>
-     
-const labels = [
-  'Maths',
-  'English',
-  'Comprehension',
-  'Essay',
-  'May',
-];
-const data = {
-  labels: labels,
-  datasets: [{
-    label: 'Your Weekly Progress',
-    backgroundColor: ['green', 'red', 'orange', ],
-    borderColor: 'rgb(255, 99, 132)',
-    data: [50, 20, 35, 2, 20],
-  }]
-};
-const config = {
-  type: 'line',
-  data: data,
-  options: {}
-};
-var myChart = new Chart(
-    document.getElementById('score-chart'),
-    config
-  );
-    </script>
-@endsection
+        </div>
+        <div class="col-6">
+          <div class="container m-4">
+            <canvas id="math-chart">
+
+            </canvas>
+        </div>
+        </div>
+      </div>
+  </div>
+      <!-- Bootstrap core JavaScript-->
+      <script src="{{asset('wa/admin/vendor/jquery/jquery.min.js')}}"></script>
+      <script src="{{asset('wa/admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+      <!-- Core plugin JavaScript-->
+      <script src="{{asset('wa/admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="{{asset('wa/admin/js/student.js')}}"></script>
+      <script>
+   
+        const labels = [
+          'Maths',
+          'English',
+          'Comprehension',
+          'Essay',
+          'May',
+        ];
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'Your Weekly Progress',
+            backgroundColor: ['green', 'red', 'orange', ],
+            borderColor: 'rgb(255, 99, 132)',
+            data: [50, 20, 35, 2, 20],
+          }]
+        };
+        const config = {
+          type: 'line',
+          data: data,
+          options: {}
+        };
+        var myChart = new Chart(
+            document.getElementById('score-chart'),
+            config
+          );
+            </script>
+            <script>
+             
+        const sub_labels = [
+          'Maths',
+          'English',
+          'Comprehension',
+          'Essay',
+          'May',
+        ];
+        const sub_data = {
+          labels: sub_labels,
+          datasets: [{
+            label: 'Your Weekly Progress',
+            backgroundColor: ['green', 'red', 'orange', ],
+            borderColor: 'rgb(255, 99, 132)',
+            data: [50, 20, 35, 2, 20],
+          }]
+        };
+        const subconfig = {
+          type: 'bar',
+          data: sub_data,
+          options: {}
+        };
+        var mathChart = new Chart(
+            document.getElementById('math-chart'),
+            subconfig
+          );
+            </script>
+</body>
+</html>

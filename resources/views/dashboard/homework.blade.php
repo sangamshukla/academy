@@ -57,6 +57,21 @@
                       </div>
                     </div>
                     <div class="row pt-3">
+                      <div class="col-xl-6 col-sm-6">
+                        <p class="Session_pera">Mode</p>
+                        <p class="Session_date">
+                          @if ($session->batch->status)
+                            Online
+                        @else
+                            Offline
+                        @endif </p>
+                      </div>
+                      <div class="col-xl-6 col-sm-6">
+                        <p class="Session_pera">Topic</p>
+                        <p class="Session_date">{{$session->singleTopic->topic->name}}</p>
+                      </div>
+                    </div>
+                    <div class="row pt-3">
                       <div class="col-12">
                         <p class="msg_title">Teachers Message</p>
                         @forelse ($homeworks as $homework)
@@ -88,9 +103,9 @@
                               placeholder="Add your query here"
                             />
                           </div> --}}
-                          <div class="pt-3">
+                          {{-- <div class="pt-3">
                             <button class="btn submit_text">Join Now</button>
-                          </div>
+                          </div> --}}
                         {{-- </form> --}}
                       </div>
                     </div>
@@ -230,51 +245,20 @@
                           </div>
                         </div>
                       </div>
-                      {{-- <div class="col-xl-6 col-sm-12">
+                      <div class="col-xl-6 col-sm-12">
                         <div class="card p-3 mb-3">
                           <div clas="card_body card_border p-5">
-                             <p class="assien_title">Submission Status</p>
+                             <p class="assien_title">Feedback</p>
                             <div class="row">
-                                @forelse ($homeworks as $homework)
-                                <div class="col-xl-6 col-sm-6 p-1">
-                                    @foreach ($homework->homeworkstatus as $homeworkstatus)
-                                        @if ($homeworkstatus->is_submitted==1 && $homeworkstatus->student_id==auth()->user()->id)
-                                            <p>submitted</p>
-                                            @else
-                                            {{-- <p>not submitted</p>
-                                        @endif
-                                        {{-- {{$homeworkstatus->is_submitted}}
-                                        {{$homeworkstatus->student_id}}
-                                    @endforeach
+                                <div class="col-xl-12 col-sm-12 p-1">
+                                    Feedback will be shown here
                                 </div>
 
-                                @empty
-                                <div class="col-xl-6 col-sm-6 p-1">
-                                    Sumission Status Not Found
-                                </div>
-
-                                @endforelse
-                              {{-- <div class="col-xl-6 col-sm-6 p-1 text-right">
-                                <i
-                                  class="fa fa-download"
-                                  aria-hidden="true"
-                                ></i>
-                              </div>
-                            </div>
-                            {{-- <div class="row">
-                              <div class="col-xl-6 col-sm-6 p-1">
-                                Home Work1
-                              </div>
-                              <div class="col-xl-6 col-sm-6 p-1 text-right">
-                                <i
-                                  class="fa fa-download"
-                                  aria-hidden="true"
-                                ></i>
-                              </div>
+                               
                             </div>
                           </div>
                         </div>
-                      </div> --}}
+                      </div> 
                     </div>
                     <!-- upload file section -->
                     <div class="row">
@@ -358,7 +342,7 @@
             <!-- Content Row -->
             <!-- /.container-fluid -->
             <!-- subject card section start -->
-            <div class="row">
+            {{-- <div class="row">
               <div class="col-12">
                 <div class="card shadow mb-4">
                   <div class="card-body">
@@ -444,7 +428,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --}}
             <!-- subject card section end -->
           </div>
 

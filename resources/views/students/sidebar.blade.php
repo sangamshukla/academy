@@ -60,6 +60,13 @@
           >
         </li>
         <!-- Nav Item - Alerts -->
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="{{route('select-week')}}">
+            <div class="nav_images"><img src="{{asset('wa/admin/img/student-a.svg')}}"></div>
+            <br>
+            <span>My ScoreSheet</span>
+          </a>
+        </li> 
         <li class="nav-item dropdown no-arrow mx-1 pl-5">
           <a
             class="dropdown-toggle"

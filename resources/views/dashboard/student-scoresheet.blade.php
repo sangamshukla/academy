@@ -30,22 +30,22 @@
                 @endphp
                 <tr class="table-td">
                   <th scope="row" class="header-para" class="header-para">1</th>
-                  <td class="header-para">{{ $class_average_marks }}</td>
+                  <td class="header-para">{{ round($class_average_marks) }}</td>
                   <td class="header-para">
                     @php
                         $maximum=max($class_highest_marks);
-                        echo $maximum;
+                        echo round($maximum);
                     @endphp
                   </td>
                   <td class="header-para">
                     @php
                         $maximum=min($class_highest_marks);
-                        echo $maximum;
+                        echo round($maximum);
                     @endphp
                   </td>
                   {{-- <td class="header-para">12</td> --}}
                   {{-- <td class="header-para">77% </td> --}}
-                  <td class="header-para">{{$student_marks}}</td>
+                  <td class="header-para">{{round($student_marks)}}</td>
                 </tr>
               </tbody>
             </table>
@@ -87,12 +87,12 @@
                     @endphp
                 <tr>
                   <th scope="row" class="header-para">1</th>
-                  <td class="header-para">{{$class_average_marks}}</td>
+                  <td class="header-para">{{round($class_average_marks)}}</td>
                   <td class="header-para">
-                        {{$class_highest_marks}}
+                        {{round($class_highest_marks)}}
                   </td>
-                  <td class="header-para"> {{$class_lowest_marks}}</td>
-                  <td class="header-para">{{$student_marks->obtained_marks}}/{{$student_marks->full_marks}}</td>
+                  <td class="header-para"> {{round($class_lowest_marks)}}</td>
+                  <td class="header-para">{{round($student_marks->obtained_marks)}}/{{round($student_marks->full_marks)}}</td>
                   <td class="header-para">
                     @foreach ($rankings as $ranking)
                     @if ($ranking->student_id==$student_id)
@@ -101,7 +101,7 @@
                     @endif
                     @endforeach
                     /{{$total_student}}</td>
-                  <td class="header-para">{{$student_percentage}}%</td>
+                  <td class="header-para">{{round($student_percentage)}}%</td>
                 </tr>
                 
               </tbody>

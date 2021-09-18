@@ -422,7 +422,7 @@ class OfflineController extends Controller
     }
     public function admin_score()
     {
-        $week_id=2;
+        $week_id=1;
         $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();
         // foreach ($subject_full_marks as $subject_full_mark) {
         //     dump($subject_full_mark);
@@ -494,14 +494,14 @@ class OfflineController extends Controller
                                             ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
                                             ->where("oss.week_id", $week_id)
                                             ->where('oss.student_id', $student_id)
-                                            ->where('sfm.subject_id' , 1)
+                                            ->where('sfm.subject_id' , 2)
                                             ->select('obtained_marks')
                                             ->get();
                             $maths_marks=DB::table('offline_score_sheets AS oss')
                                             ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
                                             ->where("oss.week_id", $week_id)
                                             ->where('oss.student_id', $student_id)
-                                            ->where('sfm.subject_id' , 2)
+                                            ->where('sfm.subject_id' , 1)
                                             ->select('obtained_marks')
                                             ->get();
                             $physics_marks=DB::table('offline_score_sheets AS oss')
@@ -522,20 +522,21 @@ class OfflineController extends Controller
                                 'name'=>$enrolled_student->name,
                                 'english'     => $english_marks->map(function($english_mark)
                                                 {
-                                                    return $english_mark->obtained_marks;
+                                                    return round($english_mark->obtained_marks);
                                                 }),
                                 'maths'       => $maths_marks->map(function($math_mark)
                                                 {
-                                                    return $math_mark->obtained_marks;
+                                                    return round($math_mark->obtained_marks);
                                                 }),
                                 'physics'     => $physics_marks->map(function($physics_mark)
                                                 {
-                                                    return $physics_mark->obtained_marks;
+                                                    return round($physics_mark->obtained_marks);
                                                 }),
                                 'science'     => $science_marks->map(function($science_mark)
                                                 {
-                                                    return $science_mark->obtained_marks;
+                                                    return round($science_mark->obtained_marks);
                                                 }),
+                                // 'rank'        =>$this->getRanking($week_id, "1", $student_id),
                             ];
                         })
                             ->make(true);
@@ -600,6 +601,7 @@ class OfflineController extends Controller
                                                 {
                                                     return $science_mark->obtained_marks;
                                                 }),
+                                'rank'=>"1",
                             ];
                         })
                             ->make(true);

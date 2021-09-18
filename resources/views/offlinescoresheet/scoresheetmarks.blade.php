@@ -39,7 +39,7 @@
                              $obtained_mark=App\Http\Controllers\OfflineController::obtained_mark($student->student->id, $subject_full_mark->id);
                              @endphp
                                           @if ($submitted)
-                                              {{$obtained_mark->obtained_marks}}
+                                              {{round($obtained_mark->obtained_marks)}}
                                           @else
                                           <input type="number" name="scoresheet[{{ $student->student->id }}][{{ $subject_full_mark->id }}]" id="" style="width: 80px;" class="input{{$students[$loop->index]}}" required max="{{$subject_full_mark->full_marks}}">
                                           <input type="hidden" name="week_id" value="{{$week_id}}"/>

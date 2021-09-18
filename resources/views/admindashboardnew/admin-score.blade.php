@@ -17,7 +17,7 @@
             <tr>
                 <th>Student</th>
                 @foreach ($subject_full_marks as $subject_full_mark)
-                                   <th scope="col">{{$subject_full_mark->subject->name.'('.$subject_full_mark->full_marks.')'}}</th>
+                                   <th scope="col">{{$subject_full_mark->subject->name.'('.round($subject_full_mark->full_marks).')'}}</th>
                                @endforeach
             </tr>
         </thead>

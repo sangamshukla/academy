@@ -188,12 +188,12 @@
                     @endphp
                 <tr>
                   <th scope="row" class="header-para">1</th>
-                  <td class="header-para">{{$class_average_marks}}</td>
+                  <td class="header-para">{{round($class_average_marks)}}</td>
                   <td class="header-para">
-                        {{$class_highest_marks}}
+                        {{round($class_highest_marks)}}
                   </td>
-                  <td class="header-para"> {{$class_lowest_marks}}</td>
-                  <td class="header-para">{{$student_marks->obtained_marks}}/{{$student_marks->full_marks}}</td>
+                  <td class="header-para"> {{round($class_lowest_marks)}}</td>
+                  <td class="header-para">{{round($student_marks->obtained_marks)}}/{{round($student_marks->full_marks)}}</td>
                   <td class="header-para">
                     @foreach ($rankings as $ranking)
                     @if ($ranking->student_id==$student_id)
@@ -201,7 +201,7 @@
                     @endif
                     @endforeach
                     /{{$total_student}}</td>
-                  <td class="header-para">{{$student_percentage}}%</td>
+                  <td class="header-para">{{round($student_percentage)}}%</td>
                 </tr>
                 
               </tbody>

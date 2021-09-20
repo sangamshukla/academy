@@ -12,20 +12,22 @@
 </div>
 </div>
 
-<!-- validation -->
-<div>
+<!-- success msg -->
+ <!--   -->
+ <div>
     @include('_form.success')
   </div>
-<!-- validation -->
+
+
+<!-- success-->
 
 <div class="row">
 {{-- <div class="col-md-12">
     <h6 style="margin-top: 30px; margin-left:20px; position:relative;">Select week for score card list</h6>
 </div> --}}
 </div>
-{{-- <form method="POST" action="http://walocal.test/full-marks"> --}}
-<form method="POST" action="http://walocal.test/manage-yearedit">
-
+<form method="POST" action="{{ route('add-manage-year') }}">
+    @csrf
 <input type="hidden" name="_token" value="M9UsCe0hWJUvFMFCc7lArf6CFcOsJDUPeccxFNN8">    <div class="row">
 <div class="col-md-4">
   <div class="input-group mb-3">
@@ -38,36 +40,31 @@
         <thead>
           <tr>
             <th style="width:20%" scope="col">S. No</th>
-            <th style="width:50%" scope="col">Subject</th>
+            <th style="width:50%" scope="col">Year</th>
             <th style="width:30%" scope="col">Action</th>
 
           </tr>
         </thead>
         <tbody>
-            @foreach($subjects as $subject)
+            {{-- @foreach($years as $year) --}}
          <tr style="background-color: white;">
-            <th scope="row">{{$loop->iteration}}</th>
-            <td> <input type="text" value="{{ $subject->name }}" readonly disabled></td>
+            <th scope="row">1</th>
+            <td><input type="text" name="name" /></td>
             <td>
-                <a href="{{route('add-manage-subject', $subject->id)}}" class="action-icon"><i style="color:#858796" class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
-                </a>
-                <a href="{{route('manage-subject-edit', $subject->id)}}" class="action-icon"> <i style="color:#858796" class="fa fa-edit"></i></a>
+                <button type="submit">Submit</button>
+                {{-- <a href="{{route('manage-yearedit', $year->id)}}" onclick="rerenderEdit()" class="action-icon"> <i style="color:#858796"class="fa fa-edit"></i></a> --}}
               </td>
             {{-- <td><input name="sub_marks[]" value="0" class="form-control"></td> --}}
          </tr>
-         @endforeach
+         {{-- @endforeach --}}
          </tbody>
       </table>
-
+      {{-- <div>
+        <button class="submit" type="submit">Submit</button>
+      </div> --}}
 </div>
 </div>
 </form>
 </div>
-
-
-    <!-- subject card section end -->
-    <!-- image block -->
-
-    <!-- Content Row -->
   </div>
 @endsection

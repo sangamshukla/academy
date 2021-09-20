@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- validation -->
          <!-- @if ($errors->any())
         <div class="alert alert-danger">
@@ -34,7 +34,7 @@
     <div class="row">
         <div class="col-md-4">
           <div class="input-group mb-3">
-           
+
             <select  style="margin-left:20px; position:relative;" id="weekid" name="week_id" class="custom-select" onchange="rerender()">
               <option selected></option>
               @foreach($weeks as $week)
@@ -48,11 +48,33 @@
             </button>
               <!-- <label class="" for="inputGroupSelect02"></label> -->
             </div>
+
         </div>
+
         </div>
+
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+              <select style="margin-left:20px; position:relative;" id="classId" name="class_master_id" class="custom-select" onchange="rerender()">
+                <option selected=""></option>
+                @foreach ($classes as $class)
+                    <option @if(request('yid') == $class->id) selected @endif value="{{$class->id}}">{{ $class->name }}</option>
+                    {{-- <option value="{{$class->id}}" @if(request('name') == $class->id) selected @endif> {{ $class->name }} </option> --}}
+                @endforeach
+             </select>
+              <div class="input-group-append">
+                  <!-- <button class="btn btn-outline-secondary" type="button">Button</button> -->
+
+               <button class="btn btn-outline-secondary" type="button" style="background-color: #1D6771;">
+                   <img src="http://walocal.test/wa/admin/img/vector.svg" alt="" style="margin-left: 0px; margin:-10px;" class="search-img">
+              </button>
+                <!-- <label class="" for="inputGroupSelect02"></label> -->
+              </div>
+          </div>
+          </div>
     </div>
     <div class="row">
-        <div class="col-md-4 col-xs-12">
+        <div class="col-md-8 col-xs-12">
             <table style="width:100%; margin-left:20px;" class="table table-bordered">
                 <thead>
                   <tr>
@@ -87,17 +109,19 @@
     </div>
     </form>
 </div>
- 
+
 @endsection
 @section('scripts')
 <script>
   function rerender(){
     var wid = $('#weekid').val();
-    window.location.href="/full-marks?weekId="+wid
+    var yid = $('#classId').val();
+    window.location.href="/full-marks?weekId="+wid+'&yid='+yid
   }
   function rerenderEdit(){
     var wid = $('#weekid').val();
-    window.location.href="/full-marks?weekId="+wid+"&edit=true"
+    var yid = $('#classId').val();
+    window.location.href="/full-marks?weekId="+wid+'&yid='+yid+"&edit=true"
   }
 </script>
 

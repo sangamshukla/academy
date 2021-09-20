@@ -28,15 +28,18 @@ class OfflineController extends Controller
         $subjects = Subject::all();
         $weeks = Week::all();
         $hasValue = false;
-        if ($request->has('weekId')) {
+        $classes = ClassMaster::all();
+
+        if ($request->has('weekId', 'classId')) {
             $fullMarks = SubjectFullMarks::where('week_id', $request->weekId)->get();
+
             if ($fullMarks->count() > 0) {
                 $hasValue = true;
             }
         } else {
             $fullMarks = new SubjectFullMarks();
         }
-        return view('offlinescoresheet.full-marks', compact('subjects', 'hasValue', 'weeks', 'fullMarks'));
+        return view('offlinescoresheet.full-marks', compact('subjects','classes' ,'hasValue', 'weeks', 'fullMarks'));
     }
     public function fullMarksSave(Request $request)
     {
@@ -52,7 +55,8 @@ class OfflineController extends Controller
                 SubjectFullMarks::updateOrCreate(
                     [
                         'subject_id' => $singleSubjectId,
-                        'week_id'=>$request->week_id
+                        'week_id'=>$request->week_id,
+                        'class_master_id'=>$request->class_master_id,
                     ],
                     [
                         'full_marks'=>$request->sub_marks[$i]
@@ -78,13 +82,22 @@ class OfflineController extends Controller
         // return redirect(route('student-enrollment', compact('weeks', 'students', 'subjects')))->with('status', 'Created FullMarks Successfully');
     }
 
+    public function ShowClass(Request $request)
+    {
+        //dd('j');
+        // $classes = ClassMaster::all();
+        // return view('offlinescoresheet.full-marks', compact('classes'));
+    }
 
     public function studentEnrollmentSave(Request $request)
     {
         // dd($request->all());
     //
+         OfflineEnrolledStudent::where('week_id',$request->weekId)->delete();
         foreach ($request->student_id as $row) {
-            OfflineEnrolledStudent::updateOrCreate([
+
+
+            OfflineEnrolledStudent::create([
                 'week_id' => $request->weekId,
                 'student_id' => $row
             ]);
@@ -611,11 +624,25 @@ class OfflineController extends Controller
                         })
                             ->make(true);
     }
-
-    public function ManageYear(Request $request)
+    public function ManageYearIndex(Request $request)
     {
         $years = ClassMaster::all();
         return view('offlinescoresheet.manage-year', compact('years'));
+    }
+
+    public function manageYear(Request $request)
+    {
+        return view('offlinescoresheet.add-manage-year');
+    }
+
+    public function manageYearSave(Request $request)
+    {
+        $year = ClassMaster::create([
+            'name' => $request->name
+        ]);
+        // return view('offlinescoresheet.add-manage-year', compact('year'));
+        return redirect(route('manage-year'))->with('status', 'Year Added Successfully!');
+
     }
     public function manageYearEdit(Request $request, $id)
     {
@@ -638,11 +665,26 @@ class OfflineController extends Controller
         // return redirect('manage-year')->with('success', 'Year Updated Successfully');
     }
 
-    public function ManageSubject(Request $request)
+
+    public function ManageSubjectIndex(Request $request)
     {
         $subjects = Subject::all();
         return view('offlinescoresheet.manage-subject', compact('subjects'));
     }
+    public function manageSubject(Request $request)
+    {
+        return view('offlinescoresheet.add-manage-subject');
+    }
+    public function manageSubjectSave(Request $request)
+    {
+        $subjects = Subject::create([
+            'name' => $request->name,
+            'class_master_id' => 1
+        ]);
+        return redirect(route('manage-subject'))->with('status', 'Subject Added Successfully!');
+
+    }
+
     public function ManageSubjectEdit(Request $request, $id)
     {
         $subject = Subject::find($id);
@@ -662,26 +704,27 @@ class OfflineController extends Controller
     }
     public function manageTopic(Request $request)
     {
-        $topics = Topic::all();
-        return view('offlinescoresheet.manage-topic', compact('topics'));
+        // $topics = Topic::all();
+        $subjects = Subject::all();
+
+        return view('offlinescoresheet.manage-topic', compact('subjects'));
     }
     public function manageTopicSave(Request $request, $id)
     {
         if($request->has('sub_topic_name')){
         // dd($request->all());
 
-            $topic = SubTopic::Create([
-                'topic_id' => $id,
-                'sub_topic_name'=>$request->sub_topic_name,
-                'is_active' => 1
+            $topic = Topic::Create([
+                'subject_id' => $id,
+                'name'=>$request->sub_topic_name,
             ]);
             return redirect(route('manage-topic'))->with('status', 'Topic Added Successfully');
         }
 
 
-        $topics = Topic::find($id);
-        $topic = Topic::find($id);
-        return view('offlinescoresheet.manage-topic-save', compact('topics', 'topic'));
+        $subjects = Subject::find($id);
+        $subject = Subject::find($id);
+        return view('offlinescoresheet.manage-topic-save', compact('subjects', 'subject'));
     }
 
     public function get_graph_math($student_id)

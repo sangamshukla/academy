@@ -253,7 +253,7 @@ Route::get('get-id', [HomeWorkStudentController::class, 'get_assigned_homework_a
 
 // for offline scoresheet
 Route::get('full-marks', [OfflineController::class, 'fullMarks'])->name('full-marks');
-// Route::post('full-marks', [OfflineController::class, 'fullMarksSave'])->name('full-marks');
+// Route::post('show-class', [OfflineController::class, 'ShowClass'])->name('show-class');
 Route::post('full-marks', [OfflineController::class, 'fullMarksSave'])->name('full-marks');
 Route::get('pdf/{studentId}/{weekId}', [OfflineController::class, 'pdf'])->name('pdf');
 
@@ -282,12 +282,16 @@ Route::get('get-week-marks', [OfflineController::class, 'get_week_marks'])->name
 Route::get('get-student/{weekId}', [OfflineController::class, 'get_student'])->name('get-student');
 Route::get('get-students-marks/{id}', [OfflineController::class, 'get_students_marks'])->name('get-students-marks');
 
-Route::get('manage-year', [OfflineController::class, 'manageYear'])->name('manage-year');
+Route::get('manage-year', [OfflineController::class, 'manageYearIndex'])->name('manage-year');
+Route::get('add-manage-year', [OfflineController::class, 'manageYear'])->name('add-manage-year');
+Route::post('add-manage-year', [OfflineController::class, 'manageYearSave'])->name('add-manage-year');
 Route::get('manage-year-edit/{id}', [OfflineController::class, 'manageYearEdit'])->name('manage-year-edit');
 Route::post('manage-year-edit/{id}', [OfflineController::class, 'manageYearUpdate'])->name('manage-year-edit');
 
 
-Route::get('manage-subject', [OfflineController::class, 'manageSubject'])->name('manage-subject');
+Route::get('manage-subject', [OfflineController::class, 'manageSubjectIndex'])->name('manage-subject');
+Route::get('add-manage-subject', [OfflineController::class, 'manageSubject'])->name('add-manage-subject');
+Route::post('add-manage-subject', [OfflineController::class, 'manageSubjectSave'])->name('add-manage-subject');
 Route::get('manage-subject-edit/{id}', [OfflineController::class, 'manageSubjectEdit'])->name('manage-subject-edit');
 Route::post('manage-subject-edit/{id}', [OfflineController::class, 'manageSubjectUpdate'])->name('manage-subject-edit');
 

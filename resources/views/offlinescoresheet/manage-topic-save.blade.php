@@ -1,12 +1,12 @@
 @extends('layouts.admin_dashboard')
 @section('content')
-<form method="POST" action="{{ route('manage-topic-save', $topic->id) }}">
+<form method="POST" action="{{ route('manage-topic-save', $subject->id) }}">
     @csrf
 <div class="row" >
     <div class="col-md-4" style="margin-bottom:20px">
         <div class="card" style="width: 18rem;">
             <div class="card-header">
-                {{ $topic->name }}
+                {{ $subject->name }}
             </div>
             <ul class="list-group list-group-flush">
                     {{-- <li class="list-group-item">{{ $st->sub_topic_name }}</li> --}}

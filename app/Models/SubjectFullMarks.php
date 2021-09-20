@@ -14,11 +14,13 @@ class SubjectFullMarks extends Model
         'subject_id',
         'full_marks',
         'week_id',
+        'class_master_id',
     ];
     protected $sortable = [
         'subject_id',
         'full_marks',
         'week_id',
+        'class_master_id',
     ];
     public function subject()
     {

@@ -51,7 +51,9 @@
             <th scope="row">{{$loop->iteration}}</th>
             <td> <input type="text" value="{{ $year->name }}" readonly disabled></td>
             <td>
+                <a href="{{route('add-manage-year', $year->id)}}" class="action-icon"><i style="color:#858796" class="fa fa-plus-circle" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
                 <a href="{{route('manage-year-edit', $year->id)}}" class="action-icon"> <i style="color:#858796"class="fa fa-edit"></i></a>
+
               </td>
             {{-- <td><input name="sub_marks[]" value="0" class="form-control"></td> --}}
          </tr>

@@ -128,7 +128,7 @@
   </a>
 </li>
 <li class="nav-item">
-  <a class="nav-link collapsed" href="{{route('admin-scoresheet')}}">
+  <a class="nav-link collapsed" href="{{route('admin-score')}}">
     <div class="nav_images"><img src="{{asset('wa/admin/img/student-a.svg')}}"></div>
     <br>
     <span>View Scores</span>

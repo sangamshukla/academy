@@ -23,29 +23,29 @@
                 </tr>
               </thead>
               <tbody>
-                @php
+                @php  
                    $class_average_marks=\App\Http\Controllers\OfflineController::get_class_average($week_id);
                    $class_highest_marks=\App\Http\Controllers\OfflineController::get_class_highest($week_id);
                    $student_marks=\App\Http\Controllers\OfflineController::get_your_total($week_id, $student_id);
                 @endphp
                 <tr class="table-td">
                   <th scope="row" class="header-para" class="header-para">1</th>
-                  <td class="header-para">{{ $class_average_marks }}</td>
+                  <td class="header-para">{{ round($class_average_marks) }}</td>
                   <td class="header-para">
                     @php
                         $maximum=max($class_highest_marks);
-                        echo $maximum;
+                        echo round($maximum);
                     @endphp
                   </td>
                   <td class="header-para">
                     @php
                         $maximum=min($class_highest_marks);
-                        echo $maximum;
+                        echo round($maximum);
                     @endphp
                   </td>
                   {{-- <td class="header-para">12</td> --}}
                   {{-- <td class="header-para">77% </td> --}}
-                  <td class="header-para">{{$student_marks}}</td>
+                  <td class="header-para">{{round($student_marks)}}</td>
                 </tr>
               </tbody>
             </table>
@@ -68,7 +68,7 @@
                 <th scope="col" class="header-para">Class Highest</th>
                 <th scope="col" class="header-para">Class Lowest</th>
                 <th scope="col" class="header-para">Your Score</th>
-                {{-- <th scope="col" class="header-para">Rank</th> --}}
+                <th scope="col" class="header-para">Rank</th>
                 <th scope="col" class="header-para">Percentage</th>
               </tr>
             </thead>
@@ -80,19 +80,28 @@
                         $class_highest_marks=\App\Http\Controllers\OfflineController::get_subject_highest_marks($week_id, $subject_id);
                         $class_lowest_marks=\App\Http\Controllers\OfflineController::get_subject_lowest_marks($week_id, $subject_id);
                         $class_average_marks=\App\Http\Controllers\OfflineController::get_subject_average_marks($week_id, $subject_id);
+                        $rankings=\App\Http\Controllers\OfflineController::getRanking($week_id, $subject_id, $student_id);
+                        $total_student=\App\Http\Controllers\OfflineController::getTotalStudents($week_id);
                         $student_marks=\App\Http\Controllers\OfflineController::get_student_marks($week_id, $subject_id, $student_id);
                         $student_percentage=\App\Http\Controllers\OfflineController::get_student_percentage($week_id, $subject_id, $student_id);
                     @endphp
                 <tr>
                   <th scope="row" class="header-para">1</th>
-                  <td class="header-para">{{$class_average_marks}}</td>
+                  <td class="header-para">{{round($class_average_marks)}}</td>
                   <td class="header-para">
-                        {{$class_highest_marks}}
+                        {{round($class_highest_marks)}}
                   </td>
-                  <td class="header-para"> {{$class_lowest_marks}}</td>
-                  <td class="header-para">{{$student_marks->obtained_marks}}/{{$student_marks->full_marks}}</td>
-                  {{-- <td class="header-para">2/10</td> --}}
-                  <td class="header-para">{{$student_percentage}}%</td>
+                  <td class="header-para"> {{round($class_lowest_marks)}}</td>
+                  <td class="header-para">{{round($student_marks->obtained_marks)}}/{{round($student_marks->full_marks)}}</td>
+                  <td class="header-para">
+                    @foreach ($rankings as $ranking)
+                    @if ($ranking->student_id==$student_id)
+                        
+                    {{$loop->index+1}}
+                    @endif
+                    @endforeach
+                    /{{$total_student}}</td>
+                  <td class="header-para">{{round($student_percentage)}}%</td>
                 </tr>
                 
               </tbody>
@@ -117,19 +126,53 @@
         </div>
         </div>
       </div>
-  </div>
-      <script>
-   
-        const labels = [
+      <div class="row">
+        <div class="col-6">
+          <div class="container m-4">
+            <canvas id="physics-chart">
 
-        ];
-        const data = {
-          labels: labels,
+            </canvas>
+        </div>
+        </div>
+        <div class="col-6">
+          <div class="container m-4">
+            <canvas id="chart-4">
+
+            </canvas>
+        </div>
+        </div>
+      </div>
+      {{-- @php
+          $subjects=[];
+          foreach($subject_full_marks as $subject_marks)
+          {
+            $subjects=$subjects.append($subject_marks);
+            echo $subjects;
+          }
+          
+      @endphp --}}
+  </div>  
+  
+      <script>
+                var url = "{{url('get-graph-math/'.auth()->user()->id)}}";
+                var Weeks = new Array();
+                var Marks = new Array();
+                var subject;
+                $(document).ready(function(){
+                  $.get(url, function(response){
+            response.forEach(function(data){
+              Weeks.push(data.week_name)
+              Marks.push(data.obtained_marks)
+              subject=data.name
+            //  console.log(data.week_name)
+            });
+          const data = {
+          labels: Weeks,
           datasets: [{
-            label: 'Your Weekly Progress',
-            backgroundColor: ['green', 'red', 'orange', ],
+            label: 'Your '+subject+' Progress',
+            backgroundColor: ['green', 'red', 'orange', 'purple' ],
             borderColor: 'rgb(255, 99, 132)',
-            data: [50, 20, 35, 2, 20],
+            data: Marks,
           }]
         };
         const config = {
@@ -141,32 +184,118 @@
             document.getElementById('score-chart'),
             config
           );
+                  });
+                });
             </script>
-          
-    <script>
-    const sub_labels = [
-          'Maths',
-          'English',
-          'Comprehension',
-          'Essay',
-          'May',
-        ];
-        const sub_data = {
-          labels: sub_labels,
-          datasets: [{
-            label: 'Your Math Progress',
-            backgroundColor: ['green', 'red', 'orange', ],
-            borderColor: 'rgb(255, 99, 132)',
-            data: [50, 20, 35, 2, 20],
-          }]
-        };
-        const subconfig = {
-          type: 'line',
-          data: sub_data,
-          options: {}
-        };
-        var mathChart = new Chart(
-            document.getElementById('math-chart'),
-            subconfig
-          );
-            </script>
+
+
+        {{-- english graph start --}}
+        <script>
+          var url1 = "{{url('get-graph-english/'.auth()->user()->id)}}";
+          var Weeks_English = new Array();
+          var Marks_english = new Array();
+          var subject_english;
+          $(document).ready(function(){
+            $.get(url1, function(response){
+      response.forEach(function(data1){
+        Weeks_English.push(data1.week_name)
+        Marks_english.push(data1.obtained_marks)
+        subject_english=data1.name
+       console.log(data1)
+      });
+    const data1 = {
+    labels: Weeks_English,
+    datasets: [{
+      label: 'Your '+subject_english +' Progress',
+      backgroundColor: ['green', 'red', 'orange', 'purple' ],
+      borderColor: 'rgb(255, 99, 132)',
+      data: Marks_english,
+    }]
+  };
+  const config = {
+    type: 'line',
+    data: data1 ,
+    options: {}
+  };
+  var myChart = new Chart(
+      document.getElementById('math-chart'),
+      config
+    );
+            });
+          });
+      </script>
+        {{-- end english graph --}}
+
+        {{-- physics graph --}}
+        <script>
+          var url2 = "{{url('get-graph-physics/'.auth()->user()->id)}}";
+          var Weeks2 = new Array();
+          var Marks2 = new Array();
+          var subject2;
+          $(document).ready(function(){
+            $.get(url2, function(response){
+      response.forEach(function(data2){
+        Weeks2.push(data2.week_name)
+        Marks2.push(data2.obtained_marks)
+        subject2=data2.name
+       console.log(data2)
+      });
+    const data2 = {
+    labels: Weeks2,
+    datasets: [{
+      label: 'Your '+subject2 +' Progress',
+      backgroundColor: ['green', 'red', 'orange', 'purple' ],
+      borderColor: 'rgb(255, 99, 132)',
+      data: Marks2,
+    }]
+  };
+  const config = {
+    type: 'line',
+    data: data2 ,
+    options: {}
+  };
+  var myChart = new Chart(
+      document.getElementById('physics-chart'),
+      config
+    );
+            });
+          });
+      </script>
+        {{-- eng physics graph --}}
+
+        {{-- Subject 4 --}}
+        <script>
+          var url4 = "{{url('get-graph-4/'.auth()->user()->id)}}";
+          var Weeks4 = new Array();
+          var Marks4 = new Array();
+          var subject4;
+          $(document).ready(function(){
+            $.get(url4, function(response){
+      response.forEach(function(data4){
+        Weeks4.push(data4.week_name)
+        Marks4.push(data4.obtained_marks)
+        subject4=data4.name
+       console.log(data4)
+      });
+    const data4 = {
+    labels: Weeks4,
+    datasets: [{
+      label: 'Your '+subject4 +' Progress',
+      backgroundColor: ['green', 'red', 'orange', 'purple' ],
+      borderColor: 'rgb(255, 99, 132)',
+      data: Marks4,
+    }]
+  };
+  const config = {
+    type: 'line',
+    data: data4 ,
+    options: {}
+  };
+  var myChart = new Chart(
+      document.getElementById('chart-4'),
+      config
+    );
+            });
+          });
+      </script>
+        {{-- End Subject 4 --}}

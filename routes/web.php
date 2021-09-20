@@ -277,6 +277,8 @@ Route::post('my-scoresheet', [OfflineController::class, 'myScoresheet'])->name('
 Route::get('select-week', [OfflineController::class, 'selectWeek'])->name('select-week');
 Route::get('admin-scoresheet', [OfflineController::class, 'admin_scoresheet'])->name('admin-scoresheet');
 Route::get('any-data', [OfflineController::class, 'anyData'])->name('any-data');
+Route::get('get-week', [OfflineController::class, 'get_weeks'])->name('get-week');
+Route::get('get-week-marks', [OfflineController::class, 'get_week_marks'])->name('get-week-marks');
 Route::get('get-student/{weekId}', [OfflineController::class, 'get_student'])->name('get-student');
 Route::get('get-students-marks/{id}', [OfflineController::class, 'get_students_marks'])->name('get-students-marks');
 
@@ -296,3 +298,10 @@ Route::post('manage-topic-save/{id}', [OfflineController::class, 'manageTopicSav
 
 
 
+Route::get('admin-score', [OfflineController::class, 'admin_score'])->name('admin-score');
+Route::get('admin-score-data/{week_id}', [OfflineController::class, 'admin_score_data'])->name('admin-score-data');
+Route::post('admin-score-data-week', [OfflineController::class, 'admin_score_data_save'])->name('admin-score-data-week');
+Route::get('get-graph-math/{student_id}', [OfflineController::class, 'get_graph_math'])->name('get-graph');
+Route::get('get-graph-english/{student_id}', [OfflineController::class, 'get_graph_english'])->name('get-graph-english');
+Route::get('get-graph-physics/{student_id}', [OfflineController::class, 'get_graph_physics'])->name('get-graph-physics');
+Route::get('get-graph-4/{student_id}', [OfflineController::class, 'get_graph4'])->name('get-graph-4');

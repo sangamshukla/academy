@@ -370,7 +370,6 @@
                                                         </td>
                                                             @endif
                                                     </tr>
-
                                                     <tr>
                                                         <td>Topics</td>
                                                         <td>{{$session->name}}-

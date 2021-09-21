@@ -230,8 +230,8 @@ class ComposerStaticInit040be194a9cadfcf12c9f9fd8759f842
         ),
         'Yajra\\DataTables\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
-            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-fractal/src',
+            0 => __DIR__ . '/..' . '/yajra/laravel-datatables-fractal/src',
+            1 => __DIR__ . '/..' . '/yajra/laravel-datatables-oracle/src',
         ),
         'Whoops\\' => 
         array (

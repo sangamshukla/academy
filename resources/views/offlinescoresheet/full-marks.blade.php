@@ -34,7 +34,6 @@
     <div class="row">
         <div class="col-md-4">
           <div class="input-group mb-3">
-           
             <select  style="margin-left:20px; position:relative;" id="weekid" name="week_id" class="custom-select" onchange="rerender()">
               <option selected></option>
               @foreach($weeks as $week)
@@ -50,6 +49,7 @@
             </div>
         </div>
         </div>
+        
     </div>
     <div class="row">
         <div class="col-md-4 col-xs-12">

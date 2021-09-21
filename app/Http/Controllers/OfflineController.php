@@ -238,7 +238,14 @@ class OfflineController extends Controller
     }
     public function submit_score(Request $request)
     {
+        if ($request->is_allowed=="on") {
+            $is_allowed=true;
+        }
+        else {
+            $is_allowed=false;
+        }
         foreach ($request->scoresheet as $key => $value) {
+            // dd([$key, $request->is_allowed, $request->week_id]);
             foreach ($value as $newkey => $newvalue) {
                 OfflineScoreSheet::create([
                     'subject_full_mark_id'=>$newkey,
@@ -247,8 +254,24 @@ class OfflineController extends Controller
                     'week_id'=>$request->week_id
                 ]);
             }
+            $column_to_update=OfflineEnrolledStudent::where(['student_id'=>$key,'week_id'=>$request->week_id])->firstOrFail();
+            $column_to_update->is_allowed=$is_allowed;
+            $column_to_update->save();
+            // dd($allowed);
+            
         }
         return redirect()->back();
+    }
+    public static function is_allowed($student_id, $week_id)
+    {
+        $allowed=OfflineEnrolledStudent::where('student_id', $student_id)->where('week_id', $week_id)->first();
+        if($allowed->is_allowed)
+        {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     public static function is_mark_submitted($student_id, $subject_full_mark_id)
     {
@@ -373,14 +396,23 @@ class OfflineController extends Controller
     public function myScoresheet(Request $request)
     {  
         $name=auth()->user()->name;
+        $student_id=auth()->user()->id;
         $week_id=$request->week_number;
+        $is_allowed=$this->is_allowed($student_id, $week_id);
+        // dd($is_allowed);
         // dd($week_id);
         $week=Week::where('id', $week_id)->first();
         $student_id=auth()->user()->id;
         $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();
         $all_weeks=$this->get_weeks();
         // dd($all_weeks);
-        return view('dashboard.student-scoresheet', compact('all_weeks', 'name', 'week', 'student_id', 'week_id', 'subject_full_marks'));
+        if ($is_allowed) {
+            # code...
+            return view('dashboard.student-scoresheet', compact('all_weeks', 'name', 'week', 'student_id', 'week_id', 'subject_full_marks'));
+        }
+        else {
+            return "Not allowed, Please ask administrator first";
+        }
     }
     public function get_weeks()
     {
@@ -412,8 +444,9 @@ class OfflineController extends Controller
     }
     public function selectWeek()
     {
+        $is_allowed=true;
         $name=auth()->user()->name;
-        $week_id=5;
+        $week_id=1;
         $week_alls=Week::all();
         $week=Week::where('id', $week_id)->first();
         $student_id=auth()->user()->id;
@@ -494,14 +527,26 @@ class OfflineController extends Controller
                                             ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
                                             ->where("oss.week_id", $week_id)
                                             ->where('oss.student_id', $student_id)
-                                            ->where('sfm.subject_id' , 2)
+                                            ->where('sfm.subject_id' , 1)
                                             ->select('obtained_marks')
                                             ->get();
+                            $english_rank=$this->getRanking($week_id, 1, $student_id);
+                            $english_rank_no=$this->get_rank_no($english_rank, $student_id);
+
+                            $math_rank=$this->getRanking($week_id, 2, $student_id);
+                            $math_rank_no=$this->get_rank_no($math_rank, $student_id);
+
+                            $physics_rank=$this->getRanking($week_id, 3, $student_id);
+                            $physics_rank_no=$this->get_rank_no($physics_rank, $student_id);
+                            
+                            $science_rank=$this->getRanking($week_id, 4, $student_id);
+                            $science_rank_no=$this->get_rank_no($science_rank, $student_id);
+                            
                             $maths_marks=DB::table('offline_score_sheets AS oss')
                                             ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
                                             ->where("oss.week_id", $week_id)
                                             ->where('oss.student_id', $student_id)
-                                            ->where('sfm.subject_id' , 1)
+                                            ->where('sfm.subject_id' , 2)
                                             ->select('obtained_marks')
                                             ->get();
                             $physics_marks=DB::table('offline_score_sheets AS oss')
@@ -524,22 +569,47 @@ class OfflineController extends Controller
                                                 {
                                                     return round($english_mark->obtained_marks);
                                                 }),
+                                'english_rank'=> $english_rank_no,
                                 'maths'       => $maths_marks->map(function($math_mark)
                                                 {
                                                     return round($math_mark->obtained_marks);
                                                 }),
+                                'math_rank'=> $math_rank_no,
                                 'physics'     => $physics_marks->map(function($physics_mark)
                                                 {
                                                     return round($physics_mark->obtained_marks);
                                                 }),
+                                'physics_rank'=>$physics_rank_no,
                                 'science'     => $science_marks->map(function($science_mark)
                                                 {
                                                     return round($science_mark->obtained_marks);
                                                 }),
-                                // 'rank'        =>$this->getRanking($week_id, "1", $student_id),
+                                'science_rank'=>$science_rank_no,
                             ];
                         })
                             ->make(true);
+    }
+    public function get_rank_no($rank, $student_id)
+    {
+        $i=0;
+        $last_score=NULL;
+        foreach ($rank as $r) {
+            if($r->student_id==$student_id)
+            {
+                // dump($r);
+                // dump($last_score);
+                if($last_score!=$r->obtained_marks)
+                {
+                    return $i+1;
+                }
+                else {
+                    return $i;
+                }
+                // return $i;
+            }
+            $last_score=$r->obtained_marks;
+            $i=$i+1;
+        }
     }
     public function admin_score_data_save(Request $request)
     {
@@ -561,7 +631,7 @@ class OfflineController extends Controller
                                             ->where('oss.student_id', $student_id)
                                             ->where('sfm.subject_id' , 1)
                                             ->select('obtained_marks')
-                                            ->get();
+                                            ->first();
                             $maths_marks=DB::table('offline_score_sheets AS oss')
                                             ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
                                             ->where("oss.week_id", $week_id)

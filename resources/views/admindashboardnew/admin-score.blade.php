@@ -10,6 +10,9 @@
         <input type="button" value="Get Scoresheet" id="get-admin-score" onclick="get_score();">
     </div>
     <br>
+    @if (count($weeks)>1)
+        
+    
     <div id="admin-score-table">
         {{-- @include('admindashboardnew.admin-score-table') --}}
         <table class="table table-bordered" id="users-table">
@@ -27,6 +30,9 @@
         </table>
 
     </div>
+    @else
+        <p>No exam has been held so far</p>
+    @endif
 @stop
 @push('scripts')
     <script>

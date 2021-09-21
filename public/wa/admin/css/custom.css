@@ -1,6 +1,6 @@
 /* for destop  */
 .inner-container {
-    height: 686px;
+    /* height: 686px; */
     margin: 10px;
     background: #ffffff;
     /* Box Shadow */
@@ -48,9 +48,9 @@
 }
 .submit{
     background: #1D6771;
-    color: #FFFFFF; 
-    border:none; 
-    margin:24px; 
+    color: #FFFFFF;
+    border:none;
+    margin:24px;
     height:40px;
      width:70px;
 }

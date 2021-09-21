@@ -44,7 +44,7 @@
             <div class="input-group-append">
                 <!-- <button class="btn btn-outline-secondary" type="button">Button</button> -->
              <button class="btn btn-outline-secondary" type="button" style="background-color: #1D6771;">
-                 <img src="{{asset('wa/admin/img/vector.svg')}}" alt="" style="margin-left: 0px; margin:-10px;"  class="search-img">
+                 <img src="{{asset('wa/admin/img/vector.svg')}}" alt="" style="margin-left: 0px; margin:-10px;"  class="search-img" >
             </button>
               <!-- <label class="" for="inputGroupSelect02"></label> -->
             </div>
@@ -66,7 +66,7 @@
                   <!-- <button class="btn btn-outline-secondary" type="button">Button</button> -->
 
                <button class="btn btn-outline-secondary" type="button" style="background-color: #1D6771;">
-                   <img src="http://walocal.test/wa/admin/img/vector.svg" alt="" style="margin-left: 0px; margin:-10px;" class="search-img">
+                   <img src="http://walocal.test/wa/admin/img/vector.svg" alt="" style="margin-left: 0px; margin:-10px;" class="search-img" re>
               </button>
                 <!-- <label class="" for="inputGroupSelect02"></label> -->
               </div>

@@ -13,11 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(ClassMaster::class);
-        // $this->call(ClassSettings::class);
-        // $this->call(DurationPerSession::class);
-        // $this->call(AdminSeeder::class);
-        // \App\Models\User::factory(20)->create();
-        // \App\Models\Week::factory(52)->create();
+        $this->call(ClassMaster::class);
+        $this->call(ClassSettings::class);
+        $this->call(DurationPerSession::class);
+        $this->call(AdminSeeder::class);
+        \App\Models\User::factory(20)->create();
+        \App\Models\Week::factory(52)->create();
     }
 }

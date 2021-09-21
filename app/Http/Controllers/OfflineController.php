@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClassMaster;
 use App\Models\OfflineEnrolledStudent;
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
@@ -9,10 +10,14 @@ use App\Models\Student;
 use App\Models\Subject;
 use App\Models\SubjectFullMarks;
 use App\Models\OfflineScoreSheet;
+use App\Models\SubTopic;
+use App\Models\Topic;
 use App\Models\User;
 use App\Models\Week;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+
 use PDF;
 
 class OfflineController extends Controller
@@ -23,15 +28,18 @@ class OfflineController extends Controller
         $subjects = Subject::all();
         $weeks = Week::all();
         $hasValue = false;
-        if ($request->has('weekId')) {
+        $classes = ClassMaster::all();
+
+        if ($request->has('weekId', 'classId')) {
             $fullMarks = SubjectFullMarks::where('week_id', $request->weekId)->get();
+
             if ($fullMarks->count() > 0) {
                 $hasValue = true;
             }
         } else {
             $fullMarks = new SubjectFullMarks();
         }
-        return view('offlinescoresheet.full-marks', compact('subjects', 'hasValue', 'weeks', 'fullMarks'));
+        return view('offlinescoresheet.full-marks', compact('subjects','classes' ,'hasValue', 'weeks', 'fullMarks'));
     }
     public function fullMarksSave(Request $request)
     {
@@ -47,14 +55,15 @@ class OfflineController extends Controller
                 SubjectFullMarks::updateOrCreate(
                     [
                         'subject_id' => $singleSubjectId,
-                        'week_id'=>$request->week_id
+                        'week_id'=>$request->week_id,
+                        'class_master_id'=>$request->class_master_id,
                     ],
                     [
                         'full_marks'=>$request->sub_marks[$i]
                     ]
                 );
             }
-            
+
             $i++;
         }
         $weeks = Week::all();
@@ -72,14 +81,23 @@ class OfflineController extends Controller
         ));
         // return redirect(route('student-enrollment', compact('weeks', 'students', 'subjects')))->with('status', 'Created FullMarks Successfully');
     }
-   
-    
+
+    public function ShowClass(Request $request)
+    {
+        //dd('j');
+        // $classes = ClassMaster::all();
+        // return view('offlinescoresheet.full-marks', compact('classes'));
+    }
+
     public function studentEnrollmentSave(Request $request)
     {
         // dd($request->all());
-    //  
+    //
+         OfflineEnrolledStudent::where('week_id',$request->weekId)->delete();
         foreach ($request->student_id as $row) {
-            OfflineEnrolledStudent::updateOrCreate([
+
+
+            OfflineEnrolledStudent::create([
                 'week_id' => $request->weekId,
                 'student_id' => $row
             ]);
@@ -172,7 +190,7 @@ class OfflineController extends Controller
         // $avg_weekly_score=OfflineScoreSheet::select('obtained_marks')->where('week_id', 2)->avg('obtained_marks');
         // return view('offlinescoresheet.scoresheetpdf', compact('scores', 'weeks', 'avg_weekly_score'));
         // $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();
-      
+
         // $subject_full_mark_id=OfflineScoreSheet::where('week_id', $week_id)->where('student_id', $student_id)->get();
         $name=User::find($student_id)->name;
         // $class_highest=OfflineScoreSheet::groupBy('student_id')->get();
@@ -344,7 +362,7 @@ class OfflineController extends Controller
         ->where('sfm.subject_id', $subject_id)
         ->where('oss.student_id', $student_id)
         ->first();
-       
+
             return $student_marks;
     }
     public static function get_student_percentage($week_id, $subject_id, $student_id)
@@ -358,7 +376,7 @@ class OfflineController extends Controller
         if($student_perc->full_marks!=0)
         {
             return (($student_perc->obtained_marks/$student_perc->full_marks)*100);
-        }     
+        }
     }
     public static function get_class_average($week_id)
     {
@@ -384,17 +402,17 @@ class OfflineController extends Controller
             array_push($marks, $total_marks);
         }
         return $marks;
-        
-         
+
+
     }
     public static function get_your_total($week_id, $student)
     {
-        
+
             $total_marks=OfflineScoreSheet::where('student_id', $student)->where('week_id', $week_id)->sum('obtained_marks');
-            return $total_marks;   
+            return $total_marks;
     }
     public function myScoresheet(Request $request)
-    {  
+    {
         $name=auth()->user()->name;
         $student_id=auth()->user()->id;
         $week_id=$request->week_number;
@@ -484,7 +502,7 @@ class OfflineController extends Controller
                                             ->join('users', 'users.id', '=', 'offline_enrolled_students.student_id')
                                                     ->where('subject_full_marks.week_id', $week_id)->get();
         // dd($scores);
-        
+
         return Datatables::of($enrolled_students)
                             ->editColumn('english_marks'  , function($enrolled_student)
                             {
@@ -518,7 +536,7 @@ class OfflineController extends Controller
         $enrolled_students=OfflineEnrolledStudent::join('users', 'users.id', '=', 'offline_enrolled_students.student_id')
                                                     ->where('offline_enrolled_students.week_id', $week_id)->get();
         // dd($scores);
-        
+
         return Datatables::of($enrolled_students)
                         ->setTransformer(function($enrolled_student)use($week_id){
                             $student_id=$enrolled_student->student_id;
@@ -620,7 +638,7 @@ class OfflineController extends Controller
         $enrolled_students=OfflineEnrolledStudent::join('users', 'users.id', '=', 'offline_enrolled_students.student_id')
                                                     ->where('offline_enrolled_students.week_id', $week_id)->get();
         // dd($scores);
-        
+
         return Datatables::of($enrolled_students)
                         ->setTransformer(function($enrolled_student)use($week_id){
                             $student_id=$enrolled_student->student_id;
@@ -676,6 +694,109 @@ class OfflineController extends Controller
                         })
                             ->make(true);
     }
+    public function ManageYearIndex(Request $request)
+    {
+        $years = ClassMaster::all();
+        return view('offlinescoresheet.manage-year', compact('years'));
+    }
+
+    public function manageYear(Request $request)
+    {
+        return view('offlinescoresheet.add-manage-year');
+    }
+
+    public function manageYearSave(Request $request)
+    {
+        $year = ClassMaster::create([
+            'name' => $request->name
+        ]);
+        // return view('offlinescoresheet.add-manage-year', compact('year'));
+        return redirect(route('manage-year'))->with('status', 'Year Added Successfully!');
+
+    }
+    public function manageYearEdit(Request $request, $id)
+    {
+        $year = ClassMaster::find($id);
+
+        // dd($years);
+        return view('offlinescoresheet.manage-year-edit', compact('year'));
+    }
+    public function manageYearUpdate(Request $request, $id)
+    {
+        $year = ClassMaster::updateOrCreate(
+            [
+                'id' => $request->id
+            ],
+            [
+            'name'=>$request->name,
+        ]);
+
+        return redirect(route('manage-year'))->with('status', 'Year Updated Successfully!');
+        // return redirect('manage-year')->with('success', 'Year Updated Successfully');
+    }
+
+
+    public function ManageSubjectIndex(Request $request)
+    {
+        $subjects = Subject::all();
+        return view('offlinescoresheet.manage-subject', compact('subjects'));
+    }
+    public function manageSubject(Request $request)
+    {
+        return view('offlinescoresheet.add-manage-subject');
+    }
+    public function manageSubjectSave(Request $request)
+    {
+        $subjects = Subject::create([
+            'name' => $request->name,
+            'class_master_id' => 1
+        ]);
+        return redirect(route('manage-subject'))->with('status', 'Subject Added Successfully!');
+
+    }
+
+    public function ManageSubjectEdit(Request $request, $id)
+    {
+        $subject = Subject::find($id);
+        return view('offlinescoresheet.manage-subject-edit', compact('subject'));
+    }
+    public function ManageSubjectUpdate(Request $request, $id)
+    {
+        $subject = Subject::updateOrCreate(
+            [
+                'id' => $request->id
+            ],
+            [
+                'name' => $request->name,
+            ]);
+
+            return redirect(route('manage-subject'))->with('status', 'Subject Updated Successfully!');
+    }
+    public function manageTopic(Request $request)
+    {
+        // $topics = Topic::all();
+        $subjects = Subject::all();
+
+        return view('offlinescoresheet.manage-topic', compact('subjects'));
+    }
+    public function manageTopicSave(Request $request, $id)
+    {
+        if($request->has('sub_topic_name')){
+        // dd($request->all());
+
+            $topic = Topic::Create([
+                'subject_id' => $id,
+                'name'=>$request->sub_topic_name,
+            ]);
+            return redirect(route('manage-topic'))->with('status', 'Topic Added Successfully');
+        }
+
+
+        $subjects = Subject::find($id);
+        $subject = Subject::find($id);
+        return view('offlinescoresheet.manage-topic-save', compact('subjects', 'subject'));
+    }
+
     public function get_graph_math($student_id)
     {
         // $student_id=auth()->user()->id;
@@ -757,9 +878,9 @@ class OfflineController extends Controller
         // });
        return $ranking;
 
-//select oss.obtained_marks, oss.student_id, oss.week_id, sfm.subject_id, 
-// RANK() OVER ( ORDER BY obtained_marks) stu_rank FROM offline_score_sheets oss 
-// inner join subject_full_marks sfm on sfm.id =oss.subject_full_mark_id 
+//select oss.obtained_marks, oss.student_id, oss.week_id, sfm.subject_id,
+// RANK() OVER ( ORDER BY obtained_marks) stu_rank FROM offline_score_sheets oss
+// inner join subject_full_marks sfm on sfm.id =oss.subject_full_mark_id
 // WHERE oss.week_id = 1
 // AND sfm.subject_id =1
     }
@@ -767,6 +888,4 @@ class OfflineController extends Controller
     {
         return OfflineEnrolledStudent::where('week_id', $week_id)->get()->count('student_id');
     }
-  
-
 }

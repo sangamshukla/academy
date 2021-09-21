@@ -6,8 +6,8 @@
   <div>
     @include('_form.success')
   </div>
-    <div class="row">      
-        <div class="col-md-12">       
+    <div class="row">
+        <div class="col-md-12">
             <div>
                 <p style="margin-top: 30px; margin-left:20px; position:relative;" class="p-text">Score Sheet</p>
                 <div>
@@ -30,7 +30,7 @@
 
     <form method="POST" action="{{route('student-enrollment')}}">
       @csrf
-    
+
     <!-- <div class="row">
         <div class="col-md-4">
             <div class="input-group mb-3">
@@ -40,17 +40,17 @@
                   <option value="{{ $week->id }}">{{ $week->week_name }}</option>
                   @endforeach
                 </select>
-                
+
                 <div class="input-group-append">
                  <button class="btn btn-outline-secondary" type="button" style="background-color: #1D6771;">
                      <img src="{{asset('wa/admin/img/vector.svg')}}" alt="" style="margin-left: 0px; margin:-10px;"  class="search-img">
                 </button>
-                
+
                 </div>
             </div>
         </div>
     </div> -->
-            
+
     <div class="row">
         <div class="col-md-8 col-xs-12 ml-4">
             {{-- <table style="width:100%; margin-left:20px;" class="table table-bordered">
@@ -61,7 +61,7 @@
                     <th style="width:50%" scope="col">List Of Student</th>
                     <!-- <th style="width:50%" scope="col">Edit</th> -->
 
-                    
+
                   </tr>
                 </thead>
                 <tbody>
@@ -85,16 +85,16 @@
                     <th scope="row">{{ (($students->currentPage() -1) * 10) + $loop->index+1 }}</th>
                     <td>{{$student->name}}</td>
                     <!-- <td></td> -->
-                  </tr>                 
-                   @endforeach 
-                  
+                  </tr>
+                   @endforeach
+
                 </tbody>
               </table> --}}
               <table class="table table-bordered" id="student-table">
                 <thead>
                     <tr>
                         <th>Select Student</th>
-                        <th>S. No</th>
+                        <th>Student Name</th>
                         <th>Class</th>
 
                     </tr>
@@ -104,7 +104,7 @@
               <!-- <button class="submit"  type="button">Submit</button> -->
               <input type="hidden" name="weekId" value={{$weekId}}>
               <input class="submit" type="submit" value="submit">
-              
+
               <a  style="margin-left:25px;" href="{{route('offline-scoresheet', $weekId)}}"><input  class="submit" type="button" value="Next"></a>
 
               <a  href="{{route('full-marks')}}"><input class="submit" type="button" value="Back"></a>

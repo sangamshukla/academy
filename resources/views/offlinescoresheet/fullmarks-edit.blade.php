@@ -15,8 +15,8 @@
             <h6 style="margin-top: 30px; margin-left:20px; position:relative;">Select week for score card list</h6>
         </div>
     </div>
-  
-     <form method="POST" action="{{ route('full-marks-edit', $subject->id) }}" > 
+
+     <form method="POST" action="{{route('manage-year-edit', $year->id" >
       @csrf
     <div class="row">
         <div class="col-md-4">
@@ -69,5 +69,5 @@
     </div>
     </form>
 </div>
- 
+
 @endsection

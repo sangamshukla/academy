@@ -14,7 +14,7 @@
                   <div><span class="d_title">Teachers</span></div>
                   <div><img src="{{asset('wa/admin/img/teacher1.svg')}}"></div>
                  </div>
-                 <p class="d_title_val">1445</p>
+                 <p class="d_title_val">{{$totalteachers}}</p>
                 <p>
                   <span>Increased by 10% this Month</span>
                 </p>
@@ -28,11 +28,11 @@
                   <div><span class="d_title">Students</span></div>
                   <div><img src="{{asset('wa/admin/img/videoconference.svg')}}"></div>
                 </div>
-                <p class="d_title_val">1445</p>
+                <p class="d_title_val">{{$totalstudent}}</p>
                 <p>
                   <span>Increased by 15% this Month</span>
                 </p>
-               
+
               </div>
             </div>
           </div>
@@ -43,11 +43,11 @@
                    <div><span class="d_title">Classes</span></div>
                    <div><img src="{{asset('wa/admin/img/sales 1.svg')}}"></div>
                 </div>
-                <p class="d_title_val">1445</p>
+                <p class="d_title_val">{{$totalclasses}}</p>
                 <p>
                   <span>IIncreased by 2% this Month</span>
                 </p>
-               
+
               </div>
             </div>
           </div>
@@ -163,11 +163,11 @@
       <div class="col-xl-12 col-lg-12">
         <div class="cource_flex">
         <div class="card online_courses">
-          <div class="title_no">42</div>
+          <div class="title_no">{{$totonlineclasses}}</div>
           <p> Online Courses</p>
         </div>
         <div class="card offline_courses">
-          <div class="title_no">32</div>
+          <div class="title_no">{{$totofflineclasses}}</div>
           <p> Offline Courses</p>
         </div>
       </div>
@@ -254,4 +254,4 @@
   </div>
 </div>
 @endsection
- 
+

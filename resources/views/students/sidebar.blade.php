@@ -26,16 +26,16 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider" />
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a class="nav-link collapsed" href="#">
             <div class="nav_images"><img src="{{asset('wa/dashboard/img/wall-clock 1.svg')}}" /></div>
             <br />
             <span>Session</span>
           </a>
-        </li>
+        </li> --}}
 
         <li class="nav-item">
-          <a class="nav-link collapsed" href="#">
+          <a class="nav-link collapsed" href="{{url('live-session')}}">
             <div class="nav_images"><img src="{{asset('wa/dashboard/img/teacher.svg')}}" /></div>
             <br />
             <span>Teachers</span>

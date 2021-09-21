@@ -24,8 +24,9 @@ class FullCalenderController extends Controller
                     ->whereDate('end', '<=', $request->end)
                     ->whereIn('batch_id', $couseBatches)
                     ->get(['id', 'title', 'start', 'end']);
-                       
+
             $data->transform(function ($d) {
+                // you can add any key
                 $d->allDay = true;
                 if ($d->start == Carbon::today()->format('Y-m-d')) {
                     $d->backgroundColor = '#53BC9B';
@@ -38,13 +39,13 @@ class FullCalenderController extends Controller
                 // if($d->start >)
                 return $d;
             });
-  
+
             return response()->json($data);
         }
-  
+
         return view('calander.fullcalender');
     }
- 
+
     /**
      * Write code on Method
      *
@@ -70,13 +71,13 @@ class FullCalenderController extends Controller
               ]);
               return response()->json($event);
              break;
-  
+
            case 'delete':
               $event = Event::find($request->id)->delete();
-  
+
               return response()->json($event);
              break;
-             
+
            default:
              # code...
              break;

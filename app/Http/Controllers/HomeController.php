@@ -104,6 +104,7 @@ class HomeController extends Controller
             $student = User::where('id', auth()->user()->id)->first();
             // dd($student);
             $students = Batch::where('class_master_id', $student->class_master_id)->latest()->take(8)->get();
+
             // buy now || orders table
             // if(Orders::where('user_id', auth()->user()->id)->exists()){
             // return redirect('/session-list');
@@ -120,30 +121,32 @@ class HomeController extends Controller
             $paid_amount = DB::table('order_payments')->where('student_id','=', auth()->user()->id)->sum('paid_amount');
             $total_amount = DB::table('order_payments')->where('student_id','=', auth()->user()->id)->sum('order_amount');
             $due_amount=$total_amount-$paid_amount;
-            
-            
-            
-            
+
+
+
+
             $courses = OrderPayment::where('student_id', auth()->user()->id)->pluck('id');
             $couseBatches = OrderSessionMap::whereIn('order_id', $courses)->pluck('batch_id');
             $batches = Batch::whereIn('id', $couseBatches)->latest()->get();
             // dd($couseBatches);
             $relatedBatches=Batch::all();
             // $today = Batch::whereIn('id', $couseBatches)->whereDate('batch_start_date', Carbon::today())->get();
-            
-            
-        
+
+
+
             $batchSessionsToday = BatchSession::whereIn('batch_id', $couseBatches)
                 ->whereDate('start_date_time', Carbon::today())->pluck('batch_id');
             $today = Batch::whereIn('id', $batchSessionsToday)->get();
-            
+
             $tomorrow = BatchSession::whereIn('batch_id', $couseBatches)->whereDate('start_date_time', Carbon::tomorrow())->get();
-            $allsessions=BatchSession::whereIn('batch_id', $couseBatches)->latest()->get();
-            // dd($allsession);
+            // $allsessions=BatchSession::whereIn('batch_id', $couseBatches)->latest()->get();
+            $allsessions=BatchSession::whereIn('batch_id', $couseBatches)->latest()->paginate(1);
+
+            // dd($allsessions);
             // dd($tomorrow);
             $twos = Batch::whereIn('id', $couseBatches)->latest()->take(2)->get();
             $three = Batch::whereIn('id', $couseBatches)->oldest()->take(3)->get();
-            
+
             //tomorrow's session
             // $tomorrowSessions=$this->sessionForTomorrow();
             // dump($tomorrowSessions);
@@ -190,13 +193,13 @@ class HomeController extends Controller
         $three = Batch::whereIn('id', $couseBatches)->oldest()->take(3)->get();
         return view('dashboard.session-list', compact('batches', 'today', 'tomorrow'));
     }
-    
+
     public function zoom(Request $request, $id)
     {
         $batch = Batch::find($id);
         return view('dashboard.zoom', compact('batch'));
     }
-    
+
  public function contactMailSave(Request $request)
     {
         $request->validate([
@@ -235,12 +238,12 @@ class HomeController extends Controller
     public function sessionForTomorrow()
     {
         dump($this->studentOrders());
-        
+
     }
     public function studentOrders()
     {
         $orders=OrderPayment::where('student_id', 4)->get();
         return $orders;
     }
-    
+
 }

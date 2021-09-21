@@ -15,17 +15,17 @@
       <br>
       <span>Dashboard</span></a>
   </li>
-  
+
   <!--  -->
   <li class="nav-item">
     <a class="nav-link collapsed text-center" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-       
+
         <div class="nav_images mb-2"><img src="{{asset('wa/admin/img/teacher.svg')}}"></div>
         <span class="manage_section">Teacher</span>
     </a>
     <div id="collapseTwo" class="collapse side_bar" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded sub_menu">
-            
+
             <a class="collapse-item sub_menu_block" href="{{route('add-teacher')}}">Add Teacher</a>
             <a class="collapse-item sub_menu_block" href="{{route('manage-teacher')}}">Manage Teacher</a>
             <!-- <a class="collapse-item sub_menu_block" href="cards.html">Cards</a> -->
@@ -34,13 +34,13 @@
 </li>
 <li class="nav-item">
   <a class="nav-link collapsed text-center" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
-     
+
       <div class="nav_images mb-2"><img src="{{asset('wa/admin/img/Online-b.svg')}}"></div>
       <span class="manage_section">Classes</span>
   </a>
   <div id="collapseThree" class="collapse side_bar" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded sub_menu">
-          
+
           <a class="collapse-item sub_menu_block" href="{{route('class.create')}}">Add Classes</a>
           <a class="collapse-item sub_menu_block" href="{{route('manage-classnew')}}">Manage Classes</a>
           <!-- <a class="collapse-item sub_menu_block" href="cards.html">Cards</a> -->
@@ -57,7 +57,7 @@
       <br>
       <span>Students</span>
     </a>
-  </li> 
+  </li>
 
 
   <!-- Nav Item - Charts -->
@@ -74,7 +74,7 @@
       <div class="nav_images"><img src="{{asset('wa/admin/img/online-a.svg')}}"></div>
       <br>
       <span>Payment</span></a>
-      
+
   </li>  -->
 
    <!-- <li class="nav-item">
@@ -83,7 +83,7 @@
         <span class="manage_section">Payment</span>
     </a>
     <div id="collapsePayment" class="collapse side_bar" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded sub_menu">  
+        <div class="bg-white py-2 collapse-inner rounded sub_menu">
             <a class="collapse-item sub_menu_block" href="">Online Payment</a>
             <a class="collapse-item sub_menu_block" href="">Offline Payment</a>
         </div>
@@ -91,13 +91,13 @@
 </li>   -->
 <li class="nav-item">
   <a class="nav-link collapsed text-center" href="#" data-toggle="collapse" data-target="#collapsePayment" aria-expanded="true" aria-controls="collapseTwo">
-     
+
       <div class="nav_images mb-2"><img src="{{asset('wa/admin/img/online-a.svg')}}"></div>
       <span class="manage_section">Payment</span>
   </a>
   <div id="collapsePayment" class="collapse side_bar" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded sub_menu">
-          
+
           <a class="collapse-item sub_menu_block" href="">Online Payment</a>
           <a class="collapse-item sub_menu_block" href="">Offline Payment</a>
       </div>
@@ -106,19 +106,19 @@
    <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
     <a class="nav-link collapsed text-center" href="#" data-toggle="collapse" data-target="#collapseManage" aria-expanded="true" aria-controls="collapseTwo">
-       
+
         <div class="nav_images"><img src="{{asset('wa/admin/img/iconfinder-a.svg')}}"></div>
         <span class="manage_section">Manage</span>
     </a>
     <div id="collapseManage" class="collapse side_bar" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded sub_menu">
-            
-            <a class="collapse-item sub_menu_block" href="">Manage Year</a>
-            <a class="collapse-item sub_menu_block" href="">Manage Subject</a>
-            <a class="collapse-item sub_menu_block" href="">Manage Topic</a>
+
+            <a class="collapse-item sub_menu_block" href="{{route('manage-year')}}">Manage Year</a>
+            <a class="collapse-item sub_menu_block" href="{{route('manage-subject')}}">Manage Subject</a>
+            <a class="collapse-item sub_menu_block" href="{{ route('manage-topic')}}">Manage Topic</a>
         </div>
     </div>
-</li> 
+</li>
 <!-- offline scoresheet -->
 <li class="nav-item">
   <a class="nav-link collapsed" href="{{route('full-marks')}}">
@@ -126,19 +126,19 @@
     <br>
     <span>Score Sheet</span>
   </a>
-</li> 
+</li>
 <li class="nav-item">
   <a class="nav-link collapsed" href="{{route('admin-score')}}">
     <div class="nav_images"><img src="{{asset('wa/admin/img/student-a.svg')}}"></div>
     <br>
     <span>View Scores</span>
   </a>
-</li> 
+</li>
 <!-- end offlin scoresheet -->
   <!-- Nav Item - Alerts -->
    <li class="nav-item dropdown no-arrow mx-1 pl-5">
     <a class="dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <i class="fas fa-bell fa-fw"></i> 
+      <i class="fas fa-bell fa-fw"></i>
       <!-- Counter - Alerts -->
       <span class="badge badge-danger badge-counter">3+</span>
     </a>
@@ -182,7 +182,7 @@
       <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
     </div> -->
   </li>
- 
+
   <!-- <p class="manage_section" style="width: 1x;">Notification</p> -->
   <p class="manage_section" style="font-size: small;">Notification</p>
 
@@ -194,10 +194,10 @@
       class="img-profile rounded-circle"
       src="{{asset('wa/admindashboard/img/undraw_profile.svg')}}"
     />
-  </div> 
+  </div>
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">
     <button class="rounded-circle border-0" id="sidebarToggle"></button>
   </div>
-  
+
 </ul>

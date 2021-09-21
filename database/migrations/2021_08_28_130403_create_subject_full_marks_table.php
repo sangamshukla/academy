@@ -19,6 +19,7 @@ class CreateSubjectFullMarksTable extends Migration
             $table->unsignedBigInteger('subject_id');
             $table->unsignedFloat('full_marks')->nullable();
             $table->unsignedBigInteger('week_id');
+            $table->unsignedBigInteger('class_master_id');
             $table->timestamps();
 
 

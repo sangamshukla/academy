@@ -82,14 +82,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('profile/save', [ProfileController::class, 'store'])->name('image-upload');
 
     Route::get('/admin-show', [HomeController::class, 'adminshow']);
-    
+
 
     Route::get('/teacher-new-dashboard', [HomeController::class, 'teacherDashboard']);
 
     Route::get('/student-dashboard', [HomeController::class, 'studentDashboard'])->name('student-dashboard');
     Route::get('/session-list', [HomeController::class, 'sessionList']);
     Route::get('zoom/{id}', [HomeController::class, 'zoom']);
-    
+
     // for sendmail on homepage
     // Route::get('/contect-mail', [HomeController::class, 'contactMail'])->name('contect-mail');
     // Route::post('/contact-mail', [HomeController::class, 'contactMailSave'])->name('contact-mail');
@@ -175,8 +175,8 @@ Route::post('/assign-homework', [HomeWorkController::class, 'assignHomeWork'])->
 
 Route::group(['middleware' => ['auth','teacher']], function () {
     Route::get('new-teacher', [TeacherDashboardController::class, 'newindex']);
-    
- 
+
+
     Route::get('student', [BatchController::class, 'student'])->name('student');
     Route::get('available-courses', [BatchController::class, 'availableCourses'])->name('available-courses');
 });
@@ -201,7 +201,7 @@ Route::group(['middleware' => ['auth', 'student']], function () {
     });
     //
       Route::group(['midddleware'=>['auth','teacheroperationadmin']], function () {
-          
+
           // new add class
           Route::get('create-classes', [BatchController::class, 'create'])->name('class.create');
           Route::post('create-classes', [BatchController::class, 'store'])->name('class.store');
@@ -213,7 +213,7 @@ Route::group(['middleware' => ['auth', 'student']], function () {
           Route::get('destroy-classes/{id}', [BatchController::class, 'destroy'])->name('destroy-class');
           Route::get('admin-dashboard', [AdminController::class, 'adminDashboard'])->name('admin-dashboard');
       });
-    
+
     Route::get('/payment-success/{id}', function ($id) {
         Transaction::find($id)->update(['payment_status'=> 'yes']);
         session()->put('cart', []);
@@ -233,7 +233,7 @@ Route::group(['middleware' => ['auth', 'student']], function () {
       $users= User::search($request->search)->where('role', 'teacher')->get();
       return response()->json($users);
   })->name('search');
-    
+
 Route::get('have-purchased', [PaymentController::class, 'checkPurchased'])->name('have-purchased');
 Route::post('pay-due-amount', [HomeWorkController::class, 'payDueAmount'])->name('pay-due-amount');
 Route::get('is-homework-assigned', [HomeWorkController::class, 'check']);
@@ -253,7 +253,7 @@ Route::get('get-id', [HomeWorkStudentController::class, 'get_assigned_homework_a
 
 // for offline scoresheet
 Route::get('full-marks', [OfflineController::class, 'fullMarks'])->name('full-marks');
-// Route::post('full-marks', [OfflineController::class, 'fullMarksSave'])->name('full-marks');
+// Route::post('show-class', [OfflineController::class, 'ShowClass'])->name('show-class');
 Route::post('full-marks', [OfflineController::class, 'fullMarksSave'])->name('full-marks');
 Route::get('pdf/{studentId}/{weekId}', [OfflineController::class, 'pdf'])->name('pdf');
 
@@ -282,6 +282,27 @@ Route::get('get-week', [OfflineController::class, 'get_weeks'])->name('get-week'
 Route::get('get-week-marks', [OfflineController::class, 'get_week_marks'])->name('get-week-marks');
 Route::get('get-student/{weekId}', [OfflineController::class, 'get_student'])->name('get-student');
 Route::get('get-students-marks/{id}', [OfflineController::class, 'get_students_marks'])->name('get-students-marks');
+
+Route::get('manage-year', [OfflineController::class, 'manageYearIndex'])->name('manage-year');
+Route::get('add-manage-year', [OfflineController::class, 'manageYear'])->name('add-manage-year');
+Route::post('add-manage-year', [OfflineController::class, 'manageYearSave'])->name('add-manage-year');
+Route::get('manage-year-edit/{id}', [OfflineController::class, 'manageYearEdit'])->name('manage-year-edit');
+Route::post('manage-year-edit/{id}', [OfflineController::class, 'manageYearUpdate'])->name('manage-year-edit');
+
+
+Route::get('manage-subject', [OfflineController::class, 'manageSubjectIndex'])->name('manage-subject');
+Route::get('add-manage-subject', [OfflineController::class, 'manageSubject'])->name('add-manage-subject');
+Route::post('add-manage-subject', [OfflineController::class, 'manageSubjectSave'])->name('add-manage-subject');
+Route::get('manage-subject-edit/{id}', [OfflineController::class, 'manageSubjectEdit'])->name('manage-subject-edit');
+Route::post('manage-subject-edit/{id}', [OfflineController::class, 'manageSubjectUpdate'])->name('manage-subject-edit');
+
+Route::get('manage-topic', [OfflineController::class, 'manageTopic'])->name('manage-topic');
+Route::get('manage-topic-save/{id}', [OfflineController::class, 'manageTopicSave'])->name('manage-topic-save');
+Route::post('manage-topic-save/{id}', [OfflineController::class, 'manageTopicSave'])->name('manage-topic-save');
+
+
+
+
 Route::get('admin-score', [OfflineController::class, 'admin_score'])->name('admin-score');
 Route::get('admin-score-data/{week_id}', [OfflineController::class, 'admin_score_data'])->name('admin-score-data');
 Route::post('admin-score-data-week', [OfflineController::class, 'admin_score_data_save'])->name('admin-score-data-week');

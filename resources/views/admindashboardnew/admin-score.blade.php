@@ -28,49 +28,61 @@
 
     </div>
 @stop
-
-<script>
-    function get_score() {
-        week_id = $('#week_id_name').val()
-        $('#users-table').DataTable({
-            destroy: true,
-            processing: true,
-            serverSide: true,
-            ajax: "{{ url('admin-score-data') }}" + "/" + week_id,
-            columns: [{
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'maths',
-                    name: 'maths'
-                },
-                {
-                    data: 'english',
-                    name: 'english'
-                },
-                {
-                    data: 'english_rank',
-                    name: 'english_rank'
-                },
-                {
-                    data: 'physics',
-                    name: 'physics'
-                },
-                {
-                    data: 'science',
-                    name: 'science'
-                }
-            ]
-        });
-    }
-</script>
 @push('scripts')
+    <script>
+        function get_score() {
+            week_id = $('#week_id_name').val()
+            $('#users-table').DataTable({
+                destroy: true,
+                processing: true,
+                serverSide: true,
+                ajax: "{{ url('admin-score-data') }}" + "/" + week_id,
+                columns: [{
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'english',
+                        name: 'english'
+                    },
+                    {
+                        data: 'english_rank',
+                        name: 'english_rank'
+                    },
+                    {
+                        data: 'maths',
+                        name: 'maths'
+                    },
+                    {
+                        data: 'math_rank',
+                        name: 'math_rank'
+                    },
+                    {
+                        data: 'physics',
+                        name: 'physics'
+                    },
+                    {
+                        data: 'physics_rank',
+                        name: 'physics_rank'
+                    },
+                    {
+                        data: 'science',
+                        name: 'science'
+                    },
+                    {
+                        data: 'science_rank',
+                        name: 'science_rank'
+                    }
+                ]
+            });
+        }
+    </script>
+
     <script>
         $(function() {
             var week_id = $('#week_id_name').val()
             $('#users-table').DataTable({
-                destroy: true,
+                // destroy: true,
                 processing: true,
                 serverSide: true,
                 ajax: "{{ url('admin-score-data') }}" + "/" + week_id,

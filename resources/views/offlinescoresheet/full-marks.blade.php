@@ -35,23 +35,6 @@
         <div class="col-md-4">
           <div class="input-group mb-3">
 
-            <select  style="margin-left:20px; position:relative;" id="weekid" name="week_id" class="custom-select" onchange="rerender()">
-              <option selected></option>
-              @foreach($weeks as $week)
-              <option value="{{ $week->id }}" @if(request('weekId') == $week->id) selected @endif>{{ $week->week_name }}</option>
-              @endforeach
-            </select>
-            <div class="input-group-append">
-                <!-- <button class="btn btn-outline-secondary" type="button">Button</button> -->
-             <button class="btn btn-outline-secondary" type="button" style="background-color: #1D6771;">
-                 <img src="{{asset('wa/admin/img/vector.svg')}}" alt="" style="margin-left: 0px; margin:-10px;"  class="search-img" >
-            </button>
-              <!-- <label class="" for="inputGroupSelect02"></label> -->
-            </div>
-
-        </div>
-
-        </div>
 
         <div class="col-md-4">
             <div class="input-group mb-3">

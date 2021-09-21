@@ -2,6 +2,7 @@
 
 @section('content')
     <div>
+          @if (count($weeks)>1)
         <select name="select_week" id="week_id_name">
             @foreach ($weeks as $week)
                 <option value="{{ $week->id }}">{{ $week->week_name }}</option>
@@ -10,6 +11,9 @@
         <input type="button" value="Get Scoresheet" id="get-admin-score" onclick="get_score();">
     </div>
     <br>
+     @else
+        <p>No exam has been held so far</p>
+    @endif
     @if (count($weeks)>1)
         
     

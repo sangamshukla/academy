@@ -158,9 +158,9 @@ class OfflineController extends Controller
         // dd($request->all());
         // dd($request->session()->has('subjects'));
         $week_id=$id;
-        $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->sortable()->get();
+        $subject_full_marks=SubjectFullMarks::where('week_id', $week_id)->get();
         // dd($subject_full_marks);
-        $students=OfflineEnrolledStudent::where('week_id', $week_id)->sortable()->get();
+        $students=OfflineEnrolledStudent::where('week_id', $week_id)->get();
 
         // dd($students);
         // dd($marks);

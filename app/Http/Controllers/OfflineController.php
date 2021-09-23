@@ -48,6 +48,9 @@ class OfflineController extends Controller
         $week = $request->validate([
             'week_id'=>'required',
         ]);
+        $year = $request->validate([
+            'class_master_id' => 'required',
+        ]);
 
         $i=0;
         foreach ($request->sub_id as $singleSubjectId) {

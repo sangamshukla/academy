@@ -48,6 +48,9 @@ class OfflineController extends Controller
         $week = $request->validate([
             'week_id'=>'required',
         ]);
+        $year = $request->validate([
+            'class_master_id' => 'required',
+        ]);
 
         $i=0;
         foreach ($request->sub_id as $singleSubjectId) {
@@ -734,7 +737,12 @@ class OfflineController extends Controller
         return redirect(route('manage-year'))->with('status', 'Year Updated Successfully!');
         // return redirect('manage-year')->with('success', 'Year Updated Successfully');
     }
-
+    public function manageYearDestroy(Request $request , $id)
+    {
+        $year = ClassMaster::find($id);
+        $year->delete();
+        return redirect(route('manage-year'))->with('status', 'Year Deleted Successfully!');
+    }
 
     public function ManageSubjectIndex(Request $request)
     {
@@ -747,6 +755,7 @@ class OfflineController extends Controller
     }
     public function manageSubjectSave(Request $request)
     {
+        // $subjects =
         $subjects = Subject::create([
             'name' => $request->name,
             'class_master_id' => 1
@@ -772,6 +781,14 @@ class OfflineController extends Controller
 
             return redirect(route('manage-subject'))->with('status', 'Subject Updated Successfully!');
     }
+
+    public function manageSubjectDestroy(Request $request, $id)
+    {
+        $subject = Subject::find($id);
+        $subject->delete();
+        return redirect(route('manage-subject'))->with('status', 'Subject Deleted Successfully!');
+    }
+
     public function manageTopic(Request $request)
     {
         // $topics = Topic::all();

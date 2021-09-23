@@ -288,13 +288,15 @@ Route::get('add-manage-year', [OfflineController::class, 'manageYear'])->name('a
 Route::post('add-manage-year', [OfflineController::class, 'manageYearSave'])->name('add-manage-year');
 Route::get('manage-year-edit/{id}', [OfflineController::class, 'manageYearEdit'])->name('manage-year-edit');
 Route::post('manage-year-edit/{id}', [OfflineController::class, 'manageYearUpdate'])->name('manage-year-edit');
-
+Route::get('manage-year-destroy/{id}', [OfflineController::class, 'manageYearDestroy'])->name('manage-year-destroy');
 
 Route::get('manage-subject', [OfflineController::class, 'manageSubjectIndex'])->name('manage-subject');
 Route::get('add-manage-subject', [OfflineController::class, 'manageSubject'])->name('add-manage-subject');
 Route::post('add-manage-subject', [OfflineController::class, 'manageSubjectSave'])->name('add-manage-subject');
 Route::get('manage-subject-edit/{id}', [OfflineController::class, 'manageSubjectEdit'])->name('manage-subject-edit');
 Route::post('manage-subject-edit/{id}', [OfflineController::class, 'manageSubjectUpdate'])->name('manage-subject-edit');
+Route::get('manage-subject-destroy/{id}', [OfflineController::class, 'manageSubjectDestroy'])->name('manage-subject-destroy');
+
 
 Route::get('manage-topic', [OfflineController::class, 'manageTopic'])->name('manage-topic');
 Route::get('manage-topic-save/{id}', [OfflineController::class, 'manageTopicSave'])->name('manage-topic-save');

@@ -29,6 +29,7 @@
 
         <div class="form-group mb-0 text-center">
             <button class="btn btn-primary" type="submit"> Log In </button>
+
         </div>
         @if (Route::has('password.request'))
             <a class="btn btn-link" href="{{ route('password.request') }}">

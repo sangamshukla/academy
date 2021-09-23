@@ -20,7 +20,7 @@
                 @endforeach
             </ul>
         </div>
-    @endif  -->
+    @endif
     <!-- validation -->
 
     <div class="row">
@@ -28,6 +28,7 @@
             <h6 style="margin-top: 30px; margin-left:20px; position:relative;">Select week for score card list</h6>
         </div>
     </div>
+
     @include('_form.success')
     <form method="POST" action="{{route('full-marks')}}" >
       @csrf
@@ -53,7 +54,13 @@
 
         </div>
 
+
         <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <h6 style="margin-top: -30px; margin-left:20px; position:relative;">Select year for score card list</h6>
+                </div>
+            </div>
             <div class="input-group mb-3">
               <select style="margin-left:20px; position:relative;" id="classId" name="class_master_id" class="custom-select" onchange="rerender()">
                 <option selected=""></option>
@@ -92,7 +99,10 @@
                   <tr style="background-color: white;">
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $subject->name }} <input type="hidden" value="{{ $subject->id }}" name="sub_id[]" /></td>
-                    <td><input name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}" class="form-control" /></td>
+                    {{-- <td><input name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}" class="form-control" /></td> --}}
+                    <td><input type="text" name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td>
+
+
                     @if($hasValue)
                     <td>
                       <a href="#" onclick="rerenderEdit()" class="action-icon"> <i style="color:#858796"class="fa fa-edit"></i></a>

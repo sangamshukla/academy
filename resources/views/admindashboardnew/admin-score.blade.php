@@ -22,7 +22,7 @@
             </tr>
         </thead>
     </table>
-    
+
 </div>
 @stop
 

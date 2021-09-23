@@ -17,7 +17,7 @@ use App\Models\Week;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-
+use Yajra\DataTables\Html\Builder;
 use PDF;
 
 class OfflineController extends Controller
@@ -607,7 +607,7 @@ class OfflineController extends Controller
                         })
                             ->make(true);
     }
-    public function get_rank_no($rank, $student_id)
+    public static function get_rank_no($rank, $student_id)
     {
         $i=0;
         $last_score=NULL;
@@ -887,5 +887,39 @@ class OfflineController extends Controller
     public static function getTotalStudents($week_id)
     {
         return OfflineEnrolledStudent::where('week_id', $week_id)->get()->count('student_id');
+    }
+    public function get_admin_score()
+    {
+        $week_id=1;
+         $weeks=$this->get_week_data();
+        $students=OfflineEnrolledStudent::where('week_id', $week_id)->get();
+        // $subjects=SubjectFullMarks::where('week_id', $week_id)->get();
+        $subjects=$this->getSubjects($week_id);
+        // dd($subjects);
+    return view('offlinescoresheet.htmlbuilder', compact('students', 'subjects', 'week_id', 'weeks'));
+   
+    }
+    public function get_admin_score_post(Request $request)
+    {
+        // dd($request->all());
+        $week_id=$request->select_week;
+         $weeks=$this->get_week_data();
+        $students=OfflineEnrolledStudent::where('week_id', $week_id)->get();
+        // $subjects=SubjectFullMarks::where('week_id', $week_id)->get();
+        $subjects=$this->getSubjects($week_id);
+        // dd($subjects);
+    return view('offlinescoresheet.htmlbuilder', compact('students', 'subjects', 'week_id', 'weeks'));
+   
+    }
+    public function getSubjects($week_id)
+    {
+        // dd($student_id, $week_id);
+        return SubjectFullMarks::where('week_id', $week_id)->get();
+    }
+    public static function get_marks($student_id, $subject_id, $week_id)
+    {
+        $marks=OfflineScoreSheet::where('week_id', $week_id)->where('subject_full_mark_id', $subject_id)->where('student_id', $student_id)->first();
+        return $marks;
+        // return $student_id.'-'.$subject_id."-".$week_id;
     }
 }

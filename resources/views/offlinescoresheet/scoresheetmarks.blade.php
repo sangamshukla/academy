@@ -28,8 +28,8 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
                             @forelse($students as $student)
-                                <tr>
                                     <th scope="row">
                                         {{ $loop->iteration }}
                                     </th>
@@ -122,7 +122,7 @@
                                         </g>
                                         <defs>
                                             <clipPath id="clip0">
-                                                <rect width="24" height="24" fill="white" transform="translate(0.5)" />
+                                                <rect width="24" htmlheight="24" fill="white" transform="translate(0.5)" />
                                             </clipPath>
                                         </defs>
                                     </svg>
@@ -139,9 +139,9 @@
                                 <td colspan=6>
                                     <p>No data availables</p>
                                 </td>
+                                
+                                @endforelse
                             </tr>
-
-                            @endforelse
                         </tbody>
                     </table>
                 </div>

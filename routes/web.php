@@ -269,6 +269,7 @@ Route::get('student-enrollment-edit/{id}', [OfflineController::class, 'studentEn
 Route::get('offline-scoresheet/{id}', [OfflineController::class, 'offline_scoresheet'])->name('offline-scoresheet');
 Route::get('offline-scoresheet-pdf/{studentId}/{weekId}', [OfflineController::class, 'new_offline_scoresheet_pdf'])->name('offline-scoresheet-pdf');
 Route::get('offline-scoresheet-edit/{studentId}/{weekId}', [OfflineController::class, 'new_offline_scoresheet_edit'])->name('offline-scoresheet-edit');
+Route::post('offline-scoresheet-udpate', [OfflineController::class, 'new_offline_scoresheet_update'])->name('offline-scoresheet-udpate');
 Route::get('offlinescoresheet-pdf', [OfflineController::class, 'new_offlinescoresheet_pdf'])->name('offlinescoresheet-pdf');
 Route::post('submit-scores', [OfflineController::class, 'submit_score']);
 

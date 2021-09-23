@@ -103,7 +103,11 @@
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $subject->name }} <input type="hidden" value="{{ $subject->id }}" name="sub_id[]" /></td>
                     {{-- <td><input name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}" class="form-control" /></td> --}}
+                    {{-- <td><input name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}" class="form-control" /></td> --}}
+
                     <td><input type="text" name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td>
+
+                    {{-- <td><input type="text" name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td> --}}
 
 
                     @if($hasValue)

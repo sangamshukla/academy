@@ -126,8 +126,8 @@
 <script>
 $(function() {
     $('#student-table').DataTable({
-        processing: true,
-        serverSide: true,
+        processing: false,
+        serverSide: false,
         ajax: '{{route("get-student", $weekId) }}',
         columns: [
             {data: 'checkbox', name: 'student_id[]', orderable: false, searchable: false},

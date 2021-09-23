@@ -279,7 +279,7 @@ class OfflineController extends Controller
             $column_to_update->is_allowed=$is_allowed;
             $column_to_update->save();
             // dd($allowed);
-            
+
         }
         return redirect()->back();
     }
@@ -559,10 +559,10 @@ class OfflineController extends Controller
 
                             $physics_rank=$this->getRanking($week_id, 3, $student_id);
                             $physics_rank_no=$this->get_rank_no($physics_rank, $student_id);
-                            
+
                             $science_rank=$this->getRanking($week_id, 4, $student_id);
                             $science_rank_no=$this->get_rank_no($science_rank, $student_id);
-                            
+
                             $maths_marks=DB::table('offline_score_sheets AS oss')
                                             ->join('subject_full_marks AS sfm',  "sfm.id", "=", "oss.subject_full_mark_id" )
                                             ->where("oss.week_id", $week_id)

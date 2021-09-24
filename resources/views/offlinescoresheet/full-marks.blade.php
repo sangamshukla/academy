@@ -110,14 +110,23 @@
                                             class="form-control" /></td> --}}
                                     {{-- <td><input name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}" class="form-control" /></td> --}}
 
-                                    <td><input type="text" name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td>
+                                    <td>
+                                        @if($hasValue)
+                                        @php
+                                        $value = "";
+                                        if($fullMarks->where('subject_id', $subject->id)->count()){
+                                            $value = $fullMarks->where('subject_id', $subject->id)->first()->full_marks;
+                                        }else{
+                                            $value = "";
+                                        }
 
-                                    {{-- <td><input type="text" name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td> --}}
-
-                    {{-- <td><input type="text" name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td> --}}
-
-
-                                    @if ($hasValue)
+                                        @endphp
+                                        {{-- value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" --}}
+                                        <input @if ($hasValue && !request('edit')) readonly @else  @endif value="{{ $value }}"  type="text" name="sub_marks[]"  class="form-control" /></td>
+                                        @else
+                                        <input type="text" class="form-control"  name="sub_marks[]" />
+                                        @endif
+                                        @if ($hasValue)
                                         <td>
                                             <a href="#" onclick="rerenderEdit()" class="action-icon"> <i
                                                     style="color:#858796" class="fa fa-edit"></i></a>

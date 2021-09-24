@@ -125,7 +125,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
 $(function() {
-    $('#student-table').DataTable({
+    var base_array = [];
+    var table= $('#student-table').DataTable({
         processing: false,
         serverSide: false,
         ajax: '{{route("get-student", $weekId) }}',
@@ -134,6 +135,24 @@ $(function() {
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
         ]
+    });
+    $('#student-table').on( 'page.dt', function () {
+        var info = table.page.info();
+        $("input:checkbox[name='student_id[]']:checked").each(function(){
+            // if(base_array[info.page]){
+            //     base_array[info.page].push($(this).val());
+            // }else{
+            //     base_array.push(info.page);
+            //     base_array[info.page].push($(this).val());
+            // }
+            base_array.push($(this).val())
+        });
+        var unique = base_array.filter(function(itm, i, base_array) {
+            return i == base_array.indexOf(itm);
+        });
+
+        console.log("page changed", unique);
+        // $('#pageInfo').html( 'Showing page: '+info.page+' of '+info.pages );
     });
 });
 </script>

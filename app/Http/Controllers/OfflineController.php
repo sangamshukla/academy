@@ -30,17 +30,18 @@ class OfflineController extends Controller
         $weeks = Week::all();
         $hasValue = false;
         $classes = ClassMaster::all();
-
-        if ($request->has('weekId', 'classId')) {
-            $fullMarks = SubjectFullMarks::where('week_id', $request->weekId)->get();
-
-            if ($fullMarks->count() > 0) {
-                $hasValue = true;
-            }
-        } else {
-            $fullMarks = new SubjectFullMarks();
+        $fullMarks = SubjectFullMarks::query();
+        if($request->has('weekId')){
+            $fullMarks->where('week_id', $request->weekId);
         }
-        // dd($fullMarks)
+        if($request->has('yid'))
+        {
+            $fullMarks->where('class_master_id', $request->yid);
+        }
+        $fullMarks = $fullMarks->get();
+        if ($fullMarks->count() > 0) {
+            $hasValue = true;
+        }
         return view('offlinescoresheet.full-marks', compact('subjects','classes' ,'hasValue', 'weeks', 'fullMarks'));
     }
     public function fullMarksSave(Request $request)

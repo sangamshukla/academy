@@ -22,7 +22,7 @@ $("#generate-session").on("click", function () {
             <div class="card-body add_class_block add_sectionbox">
                 <form class="form_block">
                     <div class="form-group">
-                        <label class="col-md-12 control-label" for="class">Select Date</label>  
+                        <label class="col-md-12 control-label" for="class">Select Date</label>
                         <div class="col-md-12">
                             <input type="text" onchange="getAvailability(event, '${value_session}')" name="session_start_date[]" class="showdatepicker form-control" value="${firstDate}" id="first_date_time" placeholder="Select Start Date & Time">
                             <span id="${value_session}"></span>
@@ -30,20 +30,20 @@ $("#generate-session").on("click", function () {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12 control-label" for="class">Session name</label>  
+                        <label class="col-md-12 control-label" for="class">Session name</label>
                         <div class="col-md-12">
                             <input class="form-control" name="session_name[]" value="${value_session}" placeholder="Session Name">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12 control-label" for="class">Select Class</label>  
+                        <label class="col-md-12 control-label" for="class">Select Class</label>
                         <div class="col-md-12">
                             <select style="min-width:300px;" name="topic_id[]"  class="form-control js-example-basic-multiple" id="topic_id" placeholder="Select  Topic" >
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12 control-label" for="name">Comment</label>  
+                        <label class="col-md-12 control-label" for="name">Comment</label>
                         <div class="col-md-12">
                             <input type="text" name="comment[]" class="form-control" placeholder="comment">
                         </div>
@@ -172,27 +172,27 @@ function addRow() {
         <div class="card-body add_class_block add_sectionbox">
             <form class="form_block">
                 <div class="form-group">
-                    <label class="col-md-12 control-label" for="class">Select Date</label>  
+                    <label class="col-md-12 control-label" for="class">Select Date</label>
                     <div class="col-md-12">
                     <input type="text" onchange="getAvailability(event, '${value_session}')" name="session_start_date[]" class="showdatepicker form-control" id="first_date_time_${index_val}" placeholder="Select Start Date & Time">
                     <span id="${value_session}"></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-12 control-label" for="class">Session name</label>  
+                    <label class="col-md-12 control-label" for="class">Session name</label>
                     <div class="col-md-12">
                         <input class="form-control" name="session_name[]" value="${value_session}" placeholder="Session Name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-12 control-label" for="class">Select Class</label>  
+                    <label class="col-md-12 control-label" for="class">Select Class</label>
                     <div class="col-md-12">
                         <select style="min-width:300px;" name="topic_id[]" class="form-control js-example-basic-multiple topic_id" id="topic_id_${index_val}" placeholder="Select  Topic" >
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-12 control-label" for="name">Comment</label>  
+                    <label class="col-md-12 control-label" for="name">Comment</label>
                     <div class="col-md-12">
                         <input type="text" name="comment[]" class="form-control" placeholder="comment">
                     </div>

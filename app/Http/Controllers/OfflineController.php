@@ -946,4 +946,16 @@ class OfflineController extends Controller
             ]);
         }
     }
+      public function manageYearDestroy(Request $request , $id)
+    {
+        $year = ClassMaster::find($id);
+        $year->delete();
+        return redirect(route('manage-year'))->with('status', 'Year Deleted Successfully!');
+    }
+      public function manageSubjectDestroy(Request $request, $id)
+    {
+        $subject = Subject::find($id);
+        $subject->delete();
+        return redirect(route('manage-subject'))->with('status', 'Subject Deleted Successfully!');
+    }
 }

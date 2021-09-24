@@ -1,8 +1,11 @@
 @extends('layouts.admin_dashboard')
 
 @section('content')
+    @php
+    // dd(count($weeks));
+    @endphp
     <div>
-        @if (count($weeks) > 1)
+        @if (count($weeks) >= 1)
             <select name="select_week" id="week_id_name">
                 @foreach ($weeks as $week)
                     <option value="{{ $week->id }}">{{ $week->week_name }}</option>
@@ -12,7 +15,7 @@
     </div>
     <br>
     @endif
-    @if (count($weeks) > 1)
+    @if (count($weeks) >= 1)
 
 
         <div id="admin-score-table">
@@ -41,7 +44,7 @@
         function get_score() {
             week_id = $('#week_id_name').val()
             $('#users-table').DataTable({
-                destroy: true,
+                destroy: true,off
                 processing: true,
                 serverSide: true,
                 ajax: "{{ url('admin-score-data') }}" + "/" + week_id,

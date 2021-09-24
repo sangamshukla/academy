@@ -43,31 +43,24 @@
                                     <th style="width:50%" scope="col">Subject</th>
                                     <th style="width:30%" scope="col">Action</th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($subjects as $subject)
-                                    <tr style="background-color: white;">
-                                        <th scope="row">{{ $loop->iteration }}</th>
-                                        <td> <input type="text" value="{{ $subject->name }}" readonly disabled></td>
-                                        <td>
-                                            <a href="{{ route('add-manage-subject', $subject->id) }}"
-                                                class="action-icon"><i style="color:#858796" class="fa fa-plus-circle"
-                                                    aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
-                                            </a>
-                                            <a href="{{ route('manage-subject-edit', $subject->id) }}"
-                                                class="action-icon"> <i style="color:#858796"
-                                                    class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-                                            <a href="{{ route('manage-subject-destroy', $subject->id) }}"
-                                                onclick="return confirm('Are You Sure For Delete ?')"
-                                                class="action-icon"> <i style="color:#ce0b5c"
-                                                    class="fa fa-trash"></i></a>
-                                        </td>
-                                        {{-- <td><input name="sub_marks[]" value="0" class="form-control"></td> --}}
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach($subjects as $subject)
+         <tr style="background-color: white;">
+            <th scope="row">{{$loop->iteration}}</th>
+            <td> <input type="text" value="{{ $subject->name }}" readonly disabled></td>
+            <td>
+                <a href="{{route('add-manage-subject', $subject->id)}}" class="action-icon"><i style="color:#858796" class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;
+                </a>
+                <a href="{{route('manage-subject-edit', $subject->id)}}" class="action-icon"> <i style="color:#858796" class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+                <a href="{{route('manage-subject-destroy', $subject->id) }}" onclick = "return confirm('Are You Sure For Delete ?')" class="action-icon"> <i style="color:#ce0b5c" class="fa fa-trash"></i></a>
+              </td>
+            {{-- <td><input name="sub_marks[]" value="0" class="form-control"></td> --}}
+         </tr>
+         @endforeach
+         </tbody>
+      </table>
 
                     </div>
                 </div>

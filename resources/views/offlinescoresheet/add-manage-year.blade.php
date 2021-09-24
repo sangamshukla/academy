@@ -51,7 +51,7 @@
             <th scope="row">1</th>
             <td><input type="text" name="name" /></td>
             <td>
-                <button type="submit">Submit</button>
+                <button style="color: #FFFFFF; background: #1D6771; border:none;" type="submit">Submit</button>
                 {{-- <a href="{{route('manage-yearedit', $year->id)}}" onclick="rerenderEdit()" class="action-icon"> <i style="color:#858796"class="fa fa-edit"></i></a> --}}
               </td>
             {{-- <td><input name="sub_marks[]" value="0" class="form-control"></td> --}}

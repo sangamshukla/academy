@@ -45,31 +45,24 @@
                                     <th style="width:50%" scope="col">Year</th>
                                     <th style="width:30%" scope="col">Action</th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($years as $year)
-                                    <tr style="background-color: white;">
-                                        <th scope="row">{{ $loop->iteration }}</th>
-                                        <td> <input type="text" value="{{ $year->name }}" readonly disabled></td>
-                                        <td>
-                                            <a href="{{ route('add-manage-year', $year->id) }}" class="action-icon"><i
-                                                    style="color:#858796" class="fa fa-plus-circle"
-                                                    aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
-                                            <a href="{{ route('manage-year-edit', $year->id) }}" class="action-icon">
-                                                <i style="color:#858796" class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-                                            <a href="{{ route('manage-year-destroy', $year->id) }}"
-                                                onclick="return confirm('Are You Sure For Delete ?')"
-                                                class="action-icon"> <i style="color:#ce0b5c"
-                                                    class="fa fa-trash"></i></a>
-                                        </td>
-
-                                        {{-- <td><input name="sub_marks[]" value="0" class="form-control"></td> --}}
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        {{-- <div>
+          </tr>
+        </thead>
+        <tbody>
+            @foreach($years as $year)
+         <tr style="background-color: white;">
+            <th scope="row">{{$loop->iteration}}</th>
+            <td> <input type="text" value="{{ $year->name }}" readonly disabled></td>
+            <td>
+                <a href="{{route('add-manage-year', $year->id)}}" class="action-icon"><i style="color:#858796" class="fa fa-plus-circle" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                <a href="{{route('manage-year-edit', $year->id)}}" class="action-icon"> <i style="color:#858796"class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+                <a href="{{route('manage-year-destroy', $year->id) }}" onclick = "return confirm('Are You Sure For Delete ?')" class="action-icon"> <i style="color:#ce0b5c" class="fa fa-trash"></i></a>
+              </td>
+            {{-- <td><input name="sub_marks[]" value="0" class="form-control"></td> --}}
+         </tr>
+         @endforeach
+         </tbody>
+      </table>
+      {{-- <div>
         <button class="submit" type="submit">Submit</button>
       </div> --}}
                     </div>

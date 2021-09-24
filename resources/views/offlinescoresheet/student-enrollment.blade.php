@@ -103,7 +103,7 @@
               <div >
               <!-- <button class="submit"  type="button">Submit</button> -->
               <input type="hidden" name="weekId" value={{$weekId}}>
-              <input class="submit" type="submit" value="submit">
+              <input class="submit" id="saved" type="button" value="submit">
 
               <a  style="margin-left:25px;" href="{{route('offline-scoresheet', $weekId)}}"><input  class="submit" type="button" value="Next"></a>
 
@@ -125,16 +125,39 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
 $(function() {
-    $('#student-table').DataTable({
+    var checkedArray = [];
+    var table= $('#student-table').DataTable({
         processing: false,
         serverSide: false,
         ajax: '{{route("get-student", $weekId) }}',
         columns: [
-            {data: 'checkbox', name: 'student_id[]', orderable: false, searchable: false},
+            {data: 'checkbox', name: 'student_id[]', orderable: false, searchable: false, className: "call-checkbox"},
             { data: 'name', name: 'name' },
             { data: 'email', name: 'email' },
         ]
     });
+    $('#saved').on('click', function(){
+        var base_array = [];
+        var rowcollection = table.$("input:checkbox[name='student_id[]']:checked", {"page": "all"});
+        rowcollection.each(function(index,elem){
+            var checkbox_value = $(elem).val();
+            base_array.push(checkbox_value);
+        });
+        var unique = base_array.filter(function(itm, i, base_array) {
+            return i == base_array.indexOf(itm);
+        });
+        // ajax start
+
+
+        $.post("{{route('student-enrollment')}}", {
+            name: $("#class_name").val(),
+            weekId: "{{ $weekId }}",
+            student_id:unique
+        }).done(function (msg) {
+            location.reload();
+        });
+    })
 });
+
 </script>
 @endsection

@@ -13,14 +13,14 @@
 
         <!-- validation -->
         <!-- @if ($errors->any())
-                                                                                    <div class="alert alert-danger">
-                                                                                        <ul>
-                                                                                            @foreach ($errors->all() as $error)
-                                                                                                <li>{{ $error }}</li>
-                                                                                            @endforeach
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                @endif  -->
+                                                                                        <div class="alert alert-danger">
+                                                                                            <ul>
+                                                                                                @foreach ($errors->all() as $error)
+                                                                                                    <li>{{ $error }}</li>
+                                                                                                @endforeach
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    @endif  -->
         <!-- validation -->
 
         <div class="row">
@@ -114,18 +114,31 @@
                                             value="{{ request('weekId') ? ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '' : $fullMarks->where('subject_id', $subject->id)->first()->full_marks) ?? ' ' : '' }}"
                                             class="form-control" /></td> --}}
 
-                                    {{-- <td><input type="text" name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td> --}}
-
-                                    {{-- <td><input type="text" name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td> --}}
-
-
-                                    @if ($hasValue)
-                                        <td>
-                                            <a href="#" onclick="rerenderEdit()" class="action-icon"> <i
-                                                    style="color:#858796" class="fa fa-edit"></i></a>
-                                        </td>
-                                    @endif
-                                </tr>
+                                    <td>
+                                        @if ($hasValue)
+                                            @php
+                                                $value = '';
+                                                if ($fullMarks->where('subject_id', $subject->id)->count()) {
+                                                    $value = $fullMarks->where('subject_id', $subject->id)->first()->full_marks;
+                                                } else {
+                                                    $value = '';
+                                                }
+                                                
+                                            @endphp
+                                            {{-- value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" --}}
+                                            <input @if ($hasValue && !request('edit')) readonly @else  @endif value="{{ $value }}" type="text"
+                                                name="sub_marks[]" class="form-control" />
+                                    </td>
+                                @else
+                                    <input type="text" class="form-control" name="sub_marks[]" />
+                            @endif
+                            @if ($hasValue)
+                                <td>
+                                    <a href="#" onclick="rerenderEdit()" class="action-icon"> <i style="color:#858796"
+                                            class="fa fa-edit"></i></a>
+                                </td>
+                            @endif
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

@@ -1,4 +1,4 @@
-<!-- fullmarks -->
+!-- fullmarks -->
 @extends('layouts.admin_dashboard')
 @section('content')
     <link href="{{ asset('wa/admin/css/custom.css') }}" rel="stylesheet" />
@@ -13,14 +13,14 @@
 
         <!-- validation -->
         <!-- @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif  -->
+                                                                                    <div class="alert alert-danger">
+                                                                                        <ul>
+                                                                                            @foreach ($errors->all() as $error)
+                                                                                                <li>{{ $error }}</li>
+                                                                                            @endforeach
+                                                                                        </ul>
+                                                                                    </div>
+                                                                                @endif  -->
         <!-- validation -->
 
         <div class="row">
@@ -34,7 +34,6 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="input-group mb-3">
-
                         <select style="margin-left:20px; position:relative;" id="weekid" name="week_id"
                             class="custom-select" onchange="rerender()">
                             <option selected></option>
@@ -101,14 +100,19 @@
                         </thead>
                         <tbody>
                             @foreach ($subjects as $subject)
+
                                 <tr style="background-color: white;">
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $subject->name }} <input type="hidden" value="{{ $subject->id }}"
                                             name="sub_id[]" /></td>
                                     <td><input name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif
-                                            value="{{ request('weekId') ? $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}"
+                                            value="{{ request('weekId') ? $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? null : null }}"
                                             class="form-control" /></td>
                                     {{-- <td><input name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}" class="form-control" /></td> --}}
+                                    {{-- {{ dump($fullMarks->where('subject_id', $subject->id)->first()->full_marks) }} --}}
+                                    {{-- <td><input type="text" name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif
+                                            value="{{ request('weekId') ? ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '' : $fullMarks->where('subject_id', $subject->id)->first()->full_marks) ?? ' ' : '' }}"
+                                            class="form-control" /></td> --}}
 
                                     {{-- <td><input type="text" name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td> --}}
 

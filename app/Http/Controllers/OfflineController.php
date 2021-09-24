@@ -25,18 +25,19 @@ class OfflineController extends Controller
 
     public function fullMarks(Request $request)
     {
+        // dd($request->all());
         $subjects = Subject::all();
         $weeks = Week::all();
         $hasValue = false;
         $classes = ClassMaster::all();
-
-        if ($request->has('weekId', 'classId')) {
+        if ($request->has('weekId')||$request->has('yId')) {
             $fullMarks = SubjectFullMarks::where('week_id', $request->weekId)->get();
 
-            if ($fullMarks->count() > 0) {
+            if (count($fullMarks) > 0) {
                 $hasValue = true;
             }
         } else {
+            // dd("we are in else");
             $fullMarks = new SubjectFullMarks();
         }
         return view('offlinescoresheet.full-marks', compact('subjects','classes' ,'hasValue', 'weeks', 'fullMarks'));
@@ -929,24 +930,32 @@ class OfflineController extends Controller
     }
     public function new_offline_scoresheet_edit($student_id, $week_id)
     {
-        $data=OfflineScoreSheet::where('student_id', $student_id)->where('week_id', $week_id)->get();
+        $offline_scores=OfflineScoreSheet::where('student_id', $student_id)->where('week_id', $week_id)->get();
         $allowed = \App\Http\Controllers\OfflineController::is_allowed($student_id, $week_id);
-       return view('offlinescoresheet.score-edit', compact('data', 'allowed', 'student_id', 'week_id'));
+       return view('offlinescoresheet.score-edit', compact('offline_scores', 'allowed', 'student_id', 'week_id'));
     }
-    public function new_offline_scoresheet_update(Request $requests)
+    public function new_offline_scoresheet_update(Request $request)
     {
-        dd($requests->all());
-        foreach ($requests as $request) {
-            # code...
-            OfflineScoreSheet::updateOrCreate([
-                'student_id'=>$request->student_id,
-                'week_id'=>$request->week_id,
-                'subject_full_mark_id'=>$request->subject_full_mark_id,
-            ], 
-            [
-                'obtained_marks'=>$request->obtained_marks,
-            ]);
-        }
+        // dd($request->all());
+       $offline_score_instance=OfflineScoreSheet::where('id', $request->score_id)->get();
+       dd($offline_score_instance);
+    //     dd($request->all());
+    //    foreach ($requests as $request) {
+    //          dd($request);
+    //         $saved=OfflineScoreSheet::updateOrCreate([
+    //             'student_id'=>$requests->student_id,
+    //             'week_id'=>$requests->week_id,
+    //             'subject_full_mark_id'=>$requests->subject_full_mark_id,
+    //         ], 
+    //         [
+    //             'obtained_marks'=>$request->obtained_marks,
+    //         ]);
+    //         dd($saved);
+    //         $column_to_update=OfflineEnrolledStudent::where(['student_id'=>$request->student_id,'week_id'=>$request->week_id])->firstOrFail();
+    //         // dd($is_allowed);
+    //         $column_to_update->is_allowed=$request->is_allowed;
+    //         $column_to_update->save();
+        // }
     }
       public function manageYearDestroy(Request $request , $id)
     {
@@ -959,5 +968,14 @@ class OfflineController extends Controller
         $subject = Subject::find($id);
         $subject->delete();
         return redirect(route('manage-subject'))->with('status', 'Subject Deleted Successfully!');
+    }
+    public function getlastweek()
+    {
+        $previous_week = strtotime("-1 week +1 day");
+        $start_week = strtotime("last sunday midnight",$previous_week);
+        $end_week = strtotime("next saturday",$start_week);
+        $start_week = date("Y-m-d",$start_week);
+        $end_week = date("Y-m-d",$end_week);
+        SubjectFullMarks::whereBetween('created_at', [$start_week, $end_week])->get();
     }
 }

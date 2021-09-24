@@ -24,4 +24,8 @@ class OfflineScoreSheet extends Model
     {
         return $this->belongsTo(User::class, 'id');
     }
+    public function subject()
+    {
+        return $this->belongsTo(SubjectFullMarks::class, 'subject_full_mark_id');
+    }
 }

@@ -5,7 +5,11 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'cc8c7f7c4b84ebdb3536833c6fafafdd7e41037f',
+
+      
+
+        'reference' => '6986fdaae752f5c910d1db300208f1789c9c0d60',
+
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -472,7 +476,11 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'cc8c7f7c4b84ebdb3536833c6fafafdd7e41037f',
+
+        
+
+            'reference' => '6986fdaae752f5c910d1db300208f1789c9c0d60',
+
             'dev_requirement' => false,
         ),
         'laravel/legacy-factories' => array(
@@ -509,6 +517,15 @@
             'install_path' => __DIR__ . '/../laravel/ui',
             'aliases' => array(),
             'reference' => '07d725813350c695c779382cbd6dac0ab8665537',
+            'dev_requirement' => false,
+        ),
+        'laravelcollective/html' => array(
+            'pretty_version' => 'v6.2.1',
+            'version' => '6.2.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravelcollective/html',
+            'aliases' => array(),
+            'reference' => 'ae15b9c4bf918ec3a78f092b8555551dd693fde3',
             'dev_requirement' => false,
         ),
         'league/commonmark' => array(
@@ -895,8 +912,10 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+
+                0 => '1.0.0',
+                1 => '1.0|2.0',
+
             ),
         ),
         'psr/simple-cache' => array(
@@ -1470,6 +1489,15 @@
             'install_path' => __DIR__ . '/../yajra/laravel-datatables-fractal',
             'aliases' => array(),
             'reference' => '0aa387a9b3738248fa61110f0378904ef42b4a73',
+            'dev_requirement' => false,
+        ),
+        'yajra/laravel-datatables-html' => array(
+            'pretty_version' => 'v4.39.1',
+            'version' => '4.39.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../yajra/laravel-datatables-html',
+            'aliases' => array(),
+            'reference' => 'c461df1a49e84b9b38971c23765f5e7809e838da',
             'dev_requirement' => false,
         ),
         'yajra/laravel-datatables-oracle' => array(

@@ -269,6 +269,7 @@ Route::get('student-enrollment-edit/{id}', [OfflineController::class, 'studentEn
 Route::get('offline-scoresheet/{id}', [OfflineController::class, 'offline_scoresheet'])->name('offline-scoresheet');
 Route::get('offline-scoresheet-pdf/{studentId}/{weekId}', [OfflineController::class, 'new_offline_scoresheet_pdf'])->name('offline-scoresheet-pdf');
 Route::get('offline-scoresheet-edit/{studentId}/{weekId}', [OfflineController::class, 'new_offline_scoresheet_edit'])->name('offline-scoresheet-edit');
+Route::post('offline-scoresheet-udpate', [OfflineController::class, 'new_offline_scoresheet_update'])->name('offline-scoresheet-udpate');
 Route::get('offlinescoresheet-pdf', [OfflineController::class, 'new_offlinescoresheet_pdf'])->name('offlinescoresheet-pdf');
 Route::post('submit-scores', [OfflineController::class, 'submit_score']);
 
@@ -288,15 +289,13 @@ Route::get('add-manage-year', [OfflineController::class, 'manageYear'])->name('a
 Route::post('add-manage-year', [OfflineController::class, 'manageYearSave'])->name('add-manage-year');
 Route::get('manage-year-edit/{id}', [OfflineController::class, 'manageYearEdit'])->name('manage-year-edit');
 Route::post('manage-year-edit/{id}', [OfflineController::class, 'manageYearUpdate'])->name('manage-year-edit');
-Route::get('manage-year-destroy/{id}', [OfflineController::class, 'manageYearDestroy'])->name('manage-year-destroy');
+
 
 Route::get('manage-subject', [OfflineController::class, 'manageSubjectIndex'])->name('manage-subject');
 Route::get('add-manage-subject', [OfflineController::class, 'manageSubject'])->name('add-manage-subject');
 Route::post('add-manage-subject', [OfflineController::class, 'manageSubjectSave'])->name('add-manage-subject');
 Route::get('manage-subject-edit/{id}', [OfflineController::class, 'manageSubjectEdit'])->name('manage-subject-edit');
 Route::post('manage-subject-edit/{id}', [OfflineController::class, 'manageSubjectUpdate'])->name('manage-subject-edit');
-Route::get('manage-subject-destroy/{id}', [OfflineController::class, 'manageSubjectDestroy'])->name('manage-subject-destroy');
-
 
 Route::get('manage-topic', [OfflineController::class, 'manageTopic'])->name('manage-topic');
 Route::get('manage-topic-save/{id}', [OfflineController::class, 'manageTopicSave'])->name('manage-topic-save');
@@ -312,3 +311,5 @@ Route::get('get-graph-math/{student_id}', [OfflineController::class, 'get_graph_
 Route::get('get-graph-english/{student_id}', [OfflineController::class, 'get_graph_english'])->name('get-graph-english');
 Route::get('get-graph-physics/{student_id}', [OfflineController::class, 'get_graph_physics'])->name('get-graph-physics');
 Route::get('get-graph-4/{student_id}', [OfflineController::class, 'get_graph4'])->name('get-graph-4');
+Route::get('get-admin-score', [OfflineController::class, 'get_admin_score'])->name('get-admin-score');
+Route::post('get-admin-score', [OfflineController::class, 'get_admin_score_post'])->name('get-admin-score');

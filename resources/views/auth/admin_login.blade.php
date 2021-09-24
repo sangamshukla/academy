@@ -9,7 +9,7 @@
         @csrf
 
         @include('_form.input', ['title' => 'Email Address', 'name' => 'email'])
-        @include('_form.input', ['title' => 'Password', 'name' => 'password', 'type' => 'password'])
+        @include('_form.input', ['title' => 'Password', 'name' => 'password'])
 
         <div class="form-group row">
             <div class="col-md-6 offset-md-4">
@@ -24,9 +24,9 @@
         </div>
 
         <div class="form-group mb-0 text-center">
-            <button class="btn btn-primary" type="submit"> Log In</button>
+            <button class="btn btn-primary" type="submit"> Log In </button>
         </div>
-
+        
     </form>
 </div>
 @endsection

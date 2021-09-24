@@ -955,18 +955,19 @@ class OfflineController extends Controller
     }
     public function new_offline_scoresheet_update(Request $requests)
     {
-        dd($requests->all());
-        foreach ($requests as $request) {
-            # code...
-            OfflineScoreSheet::updateOrCreate([
-                'student_id'=>$request->student_id,
-                'week_id'=>$request->week_id,
-                'subject_full_mark_id'=>$request->subject_full_mark_id,
-            ],
-            [
-                'obtained_marks'=>$request->obtained_marks,
-            ]);
-        }
+        // dd($requests->week_id);
+        // foreach ($requests as $request) {
+        //     # code...
+        //     OfflineScoreSheet::updateOrCreate([
+        //         'student_id'=>$request->student_id,
+        //         'week_id'=>$request->week_id,
+        //         'subject_full_mark_id'=>$request->subject_full_mark_id,
+        //     ],
+        //     [
+        //         'obtained_marks'=>$request->obtained_marks,
+        //     ]);
+        // }
+        return redirect(route('offline-scoresheet', $requests->week_id))->with('status', 'Scoresheet Updated Successfully');
     }
 
     public function getlastweek()

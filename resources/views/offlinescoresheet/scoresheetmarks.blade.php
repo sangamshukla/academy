@@ -13,6 +13,8 @@
                     </div>
                 </div> --}}
                 <div>
+                    @include('_form.success')
+
                     <table class="table table-hover table-bordered mt-4 m-1" id="marks-table">
                         <thead class="table-head">
                             <tr>

@@ -1,8 +1,11 @@
+
 APP_NAME="Wallington Academy"
 APP_ENV=local
 APP_KEY=base64:v10ZhQGSSwy69cTpWnbw4ExkWKNFuI2rJkfZ/SZ3tMU=
 APP_DEBUG=true
-APP_URL=http://academy.pariharz.com/
+APP_URL=http://pariharz.com/testing/public
+PAYMENT_HOST="http://walocal.test"
+
 
 LOG_CHANNEL=stack
 LOG_LEVEL=debug
@@ -56,3 +59,4 @@ ZOOM_API_SECRET=9DboyGPmzghZBVbffF8Ilwh1WccM9lMtHGyA
 
 STRIPE_KEY=pk_test_51JAvqVSBWoxgIfNeVe7N6gSGPX6cCWEYw28Sz9SflgJ2sKZhyXslj2MVCbG7onkoUTlbjYsgg5Y4kEqpkkkd0GMW00S1GpeWVE
 STRIPE_SECRET=sk_test_51JAvqVSBWoxgIfNeH50XuVJ06GJPhUNyB9jQJLgUQOtYmjTyVK7cLVhbLGOvgdMgsyIwX4jbUDcjokHQYaPcTaBv0018VNQaS7
+

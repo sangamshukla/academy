@@ -230,6 +230,7 @@ return array(
     'Database\\Factories\\FullMarkFactory' => $baseDir . '/database/factories/FullMarkFactory.php',
     'Database\\Factories\\OfflineEnrolledStudentFactory' => $baseDir . '/database/factories/OfflineEnrolledStudentFactory.php',
     'Database\\Factories\\OfflineScoreSheetFactory' => $baseDir . '/database/factories/OfflineScoreSheetFactory.php',
+    'Database\\Factories\\StudentFactory' => $baseDir . '/database/factories/StudentFactory.php',
     'Database\\Factories\\SubjectFullMarksFactory' => $baseDir . '/database/factories/SubjectFullMarksFactory.php',
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Factories\\WeekFactory' => $baseDir . '/database/factories/WeekFactory.php',

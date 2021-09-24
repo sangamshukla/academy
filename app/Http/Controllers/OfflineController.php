@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignedHomeWorkStudent;
 use App\Models\ClassMaster;
 use App\Models\OfflineEnrolledStudent;
 use Illuminate\Support\Facades\DB;
@@ -83,6 +84,22 @@ class OfflineController extends Controller
             'success'
         ));
         // return redirect(route('student-enrollment', compact('weeks', 'students', 'subjects')))->with('status', 'Created FullMarks Successfully');
+    }
+
+    public function manageYearDestroy(Request $request , $id)
+    {
+        $year = ClassMaster::find($id);
+        $year->delete();
+        return redirect(route('manage-year'))->with('status', 'Year Deleted Successfully!');
+    }
+
+
+
+    public function manageSubjectDestroy(Request $request, $id)
+    {
+        $subject = Subject::find($id);
+        $subject->delete();
+        return redirect(route('manage-subject'))->with('status', 'Subject Deleted Successfully!');
     }
 
     public function ShowClass(Request $request)
@@ -943,10 +960,21 @@ class OfflineController extends Controller
                 'student_id'=>$request->student_id,
                 'week_id'=>$request->week_id,
                 'subject_full_mark_id'=>$request->subject_full_mark_id,
-            ], 
+            ],
             [
                 'obtained_marks'=>$request->obtained_marks,
             ]);
         }
+    }
+
+    public function getlastweek()
+    {
+        $previous_week = strtotime("-1 week +1 day");
+        $start_week = strtotime("last sunday midnight",$previous_week);
+        $end_week = strtotime("next saturday",$start_week);
+        $start_week = date("Y-m-d",$start_week);
+        $end_week = date("Y-m-d",$end_week);
+
+        AssignedHomeWorkStudent::whereBetween('created_at', [$start_week, $end_week])->get();
     }
 }

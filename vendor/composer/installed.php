@@ -5,11 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-<<<<<<< HEAD
-        'reference' => '8dd249c8da41f7c4d00da2e9b98fa1491c747153',
-=======
-        'reference' => 'cc8c7f7c4b84ebdb3536833c6fafafdd7e41037f',
->>>>>>> 3870dbed (zoro resolved)
+        'reference' => 'c73bf2f656dfc9c7b7169974b6c175aeea6ef597',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -476,11 +472,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-<<<<<<< HEAD
-            'reference' => '8dd249c8da41f7c4d00da2e9b98fa1491c747153',
-=======
-            'reference' => 'cc8c7f7c4b84ebdb3536833c6fafafdd7e41037f',
->>>>>>> 3870dbed (zoro resolved)
+            'reference' => 'c73bf2f656dfc9c7b7169974b6c175aeea6ef597',
             'dev_requirement' => false,
         ),
         'laravel/legacy-factories' => array(
@@ -912,8 +904,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0',
-                1 => '1.0.0 || 2.0.0 || 3.0.0',
+                0 => '1.0.0 || 2.0.0 || 3.0.0',
+                1 => '1.0|2.0',
             ),
         ),
         'psr/simple-cache' => array(

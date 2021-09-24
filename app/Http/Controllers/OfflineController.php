@@ -40,6 +40,7 @@ class OfflineController extends Controller
         } else {
             $fullMarks = new SubjectFullMarks();
         }
+        // dd($fullMarks)
         return view('offlinescoresheet.full-marks', compact('subjects','classes' ,'hasValue', 'weeks', 'fullMarks'));
     }
     public function fullMarksSave(Request $request)

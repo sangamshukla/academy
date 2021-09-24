@@ -13,14 +13,14 @@
 
         <!-- validation -->
         <!-- @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif  -->
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif  -->
         <!-- validation -->
 
         <div class="row">
@@ -57,22 +57,24 @@
                 </div>
 
 
-        <div class="col-md-4">
-            <div class="row">
-                <div class="col-md-12">
-                    <h6 style="margin-top: -30px; margin-left:20px; position:relative;">Select year for score card list</h6>
-                </div>
-            </div>
-            <div class="input-group mb-3">
-              <select style="margin-left:20px; position:relative;" id="classId" name="class_master_id" class="custom-select" onchange="rerender()">
-                <option selected=""></option>
-                @foreach ($classes as $class)
-                    <option @if(request('yid') == $class->id) selected @endif value="{{$class->id}}">{{ $class->name }}</option>
-                    {{-- <option value="{{$class->id}}" @if(request('name') == $class->id) selected @endif> {{ $class->name }} </option> --}}
-                @endforeach
-             </select>
-              <div class="input-group-append">
-                  <!-- <button class="btn btn-outline-secondary" type="button">Button</button> -->
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 style="margin-top: -30px; margin-left:20px; position:relative;">Select year for score card
+                                list</h6>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <select style="margin-left:20px; position:relative;" id="classId" name="class_master_id"
+                            class="custom-select" onchange="rerender()">
+                            <option selected=""></option>
+                            @foreach ($classes as $class)
+                                <option @if (request('yid') == $class->id) selected @endif value="{{ $class->id }}">{{ $class->name }}</option>
+                                {{-- <option value="{{$class->id}}" @if (request('name') == $class->id) selected @endif> {{ $class->name }} </option> --}}
+                            @endforeach
+                        </select>
+                        <div class="input-group-append">
+                            <!-- <button class="btn btn-outline-secondary" type="button">Button</button> -->
 
                             <button class="btn btn-outline-secondary" type="button" style="background-color: #1D6771;">
                                 <img src="{{ asset('wa/admin/img/Vector.svg') }}" alt=""
@@ -95,52 +97,56 @@
                                     <th style="width:30%" scope="col">Edit</th>
                                 @endif
 
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach($subjects as $subject)
-                  <tr style="background-color: white;">
-                    <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $subject->name }} <input type="hidden" value="{{ $subject->id }}" name="sub_id[]" /></td>
-                    {{-- <td><input name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}" class="form-control" /></td> --}}
-                    {{-- <td><input name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}" class="form-control" /></td> --}}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($subjects as $subject)
+                                <tr style="background-color: white;">
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $subject->name }} <input type="hidden" value="{{ $subject->id }}"
+                                            name="sub_id[]" /></td>
+                                    {{-- <td><input name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif
+                                            value="{{ request('weekId') ? $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}"
+                                            class="form-control" /></td> --}}
+                                    {{-- <td><input name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}" class="form-control" /></td> --}}
 
-                    <td><input type="text" name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td>
+                                    <td><input type="text" name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td>
+
+                                    {{-- <td><input type="text" name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td> --}}
 
                     {{-- <td><input type="text" name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td> --}}
 
-                    {{-- <td><input type="text" name="sub_marks[]" @if($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  ($fullMarks->where('subject_id', $subject->id)->first()->full_marks == 0 || $fullMarks->where('subject_id', $subject->id)->first()->full_marks == null ? '': $fullMarks->where('subject_id', $subject->id)->first()->full_marks)  ?? ' ' : '' }}" class="form-control" /></td> --}}
 
+                                    @if ($hasValue)
+                                        <td>
+                                            <a href="#" onclick="rerenderEdit()" class="action-icon"> <i
+                                                    style="color:#858796" class="fa fa-edit"></i></a>
+                                        </td>
+                                    @endif
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="submit" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
 
-                    @if($hasValue)
-                    <td>
-                      <a href="#" onclick="rerenderEdit()" class="action-icon"> <i style="color:#858796"class="fa fa-edit"></i></a>
-                    </td>
-                    @endif
-                  </tr>
-                  @endforeach
-                </tbody>
-              </table>
-              <div >
-                <button class="submit"  type="submit">Submit</button>
-              </div>
-        </div>
-    </div>
+        @endsection
+        @section('scripts')
+            <script>
+                function rerender() {
+                    var wid = $('#weekid').val();
+                    var yid = $('#classId').val();
+                    window.location.href = "/full-marks?weekId=" + wid + '&yid=' + yid
+                }
 
-@endsection
-@section('scripts')
-    <script>
-        function rerender() {
-            var wid = $('#weekid').val();
-            var yid = $('#classId').val();
-            window.location.href = "/full-marks?weekId=" + wid + '&yid=' + yid
-        }
-
-        function rerenderEdit() {
-            var wid = $('#weekid').val();
-            var yid = $('#classId').val();
-            window.location.href = "/full-marks?weekId=" + wid + '&yid=' + yid + "&edit=true"
-        }
-    </script>
-{{-- hjkjjbj --}}
-@endsection
+                function rerenderEdit() {
+                    var wid = $('#weekid').val();
+                    var yid = $('#classId').val();
+                    window.location.href = "/full-marks?weekId=" + wid + '&yid=' + yid + "&edit=true"
+                }
+            </script>
+            {{-- hjkjjbj --}}
+        @endsection

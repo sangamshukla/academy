@@ -1,4 +1,3 @@
- 
 <?php
 
 namespace App\Http\Controllers;
@@ -950,9 +949,9 @@ class OfflineController extends Controller
     }
     public function new_offline_scoresheet_edit($student_id, $week_id)
     {
-        $data=OfflineScoreSheet::where('student_id', $student_id)->where('week_id', $week_id)->get();
+        $offline_scores=OfflineScoreSheet::where('student_id', $student_id)->where('week_id', $week_id)->get();
         $allowed = \App\Http\Controllers\OfflineController::is_allowed($student_id, $week_id);
-       return view('offlinescoresheet.score-edit', compact('data', 'allowed', 'student_id', 'week_id'));
+       return view('offlinescoresheet.score-edit', compact('offline_scores', 'allowed', 'student_id', 'week_id'));
     }
     public function new_offline_scoresheet_update(Request $requests)
     {

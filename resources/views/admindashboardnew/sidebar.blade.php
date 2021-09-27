@@ -121,7 +121,7 @@
 </li>
 <!-- offline scoresheet -->
 <li class="nav-item">
-  <a class="nav-link collapsed" href="{{route('full-marks')}}">
+  <a class="nav-link collapsed" href="{{route('create')}}">
     <div class="nav_images"><img src="{{asset('wa/admin/img/student-a.svg')}}"></div>
     <br>
     <span>Score Sheet</span>

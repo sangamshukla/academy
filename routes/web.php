@@ -38,7 +38,7 @@ use App\Models\OrderPayment;
 use App\Models\OrderSessionMap;
 use App\Models\OrderSessions;
 use App\Http\Controllers\StudyMaterialController;
-
+use App\Http\Controllers\ScoreSheetController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -315,3 +315,15 @@ Route::get('get-graph-physics/{student_id}', [OfflineController::class, 'get_gra
 Route::get('get-graph-4/{student_id}', [OfflineController::class, 'get_graph4'])->name('get-graph-4');
 Route::get('get-admin-score', [OfflineController::class, 'get_admin_score'])->name('get-admin-score');
 Route::post('get-admin-score', [OfflineController::class, 'get_admin_score_post'])->name('get-admin-score');
+
+
+Route::get('create', [ScoreSheetController::class, 'index'])->name('create');
+Route::post('create-scoresheet', [ScoreSheetController::class, 'createScoreSheet'])->name('create-scoresheet');
+Route::post('select-student', [ScoreSheetController::class, 'selectStudent'])->name('select-student');
+Route::get('select-student-edit/{id}', [ScoreSheetController::class, 'selectStudentGet'])->name('select-student-edit');
+Route::post('select-subjects', [ScoreSheetController::class, 'selectSubjects'])->name('select-subjects');
+Route::get('select-subjects-edit/{id}', [ScoreSheetController::class, 'selectSubjectsEdit'])->name('select-subjects-edit');
+Route::get('enter-marks/{id}', [ScoreSheetController::class, 'enterMarks'])->name('enter-marks');
+Route::post('save-marks', [ScoreSheetController::class, 'saveMarks'])->name('save-marks');
+Route::get('view-score-sheet/{id}', [ScoreSheetController::class, 'viewScoreSheet'])->name('view-score-sheet');
+Route::get('student-scoresheet/{enrolled_student_id}', [ScoreSheetController::class, 'viewStudentScoreSheet'])->name('student-scoresheet');

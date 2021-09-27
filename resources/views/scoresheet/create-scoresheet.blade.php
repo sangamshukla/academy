@@ -1,8 +1,12 @@
 @extends('layouts.admin_dashboard')
 @section('content')
-    @if (Session::has('msg'))
-        {{ Session::get('msg') }}
-    @endif
+    <div class="mt-3">
+        @if (Session::has('msg'))
+            <div class="alert alert-danger" role="alert">
+                {{ Session::get('msg') }}
+            </div>
+        @endif
+    </div>
     <form action="{{ route('create-scoresheet') }}" method="post">
         @csrf
         <div class="row">

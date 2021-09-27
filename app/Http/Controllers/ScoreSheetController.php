@@ -32,11 +32,11 @@ class ScoreSheetController extends Controller
             'class_master_id'=>$request->grade,
         ]);
          $id=$create->id;
-        $students=User::all();
+        $students=User::where('role', 'student')->get();
         return view('scoresheet.select-student', compact('id', 'students'));
         }
         else {
-            return back()->with('msg', "Score sheet has already been craeted");
+            return back()->with('msg', "Score sheet has already been created");
         }
        
        
@@ -45,7 +45,7 @@ class ScoreSheetController extends Controller
     {
         
         $id=$id;
-        $students=User::all();
+        $students=User::where('role', 'student')->get();
          return view('scoresheet.select-student-edit', compact('id', 'students'));
     }
     public function selectSubjectsEdit($id)

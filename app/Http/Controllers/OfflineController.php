@@ -56,7 +56,9 @@ class OfflineController extends Controller
         ]);
 
         $i=0;
+        // dd(count($request->sub_id));
         foreach ($request->sub_id as $singleSubjectId) {
+            // dd($request->sub_marks[$i+7]);
             if ($request->sub_marks[$i] != '') {
                 SubjectFullMarks::updateOrCreate(
                     [

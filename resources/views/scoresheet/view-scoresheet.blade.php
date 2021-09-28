@@ -48,7 +48,16 @@
                             @endif
                         </td>
                         <td>
-                            5/10
+                            @php
+                                $get_ranking = App\Http\Controllers\ScoreSheetController::getRanking($score_sheet_id);
+                            @endphp
+                            {{-- {{ $get_ranking }} --}}
+                            @foreach ($get_ranking as $rank)
+                                @if ($rank->enrolled_student_id == $enrolled_student->id)
+                                    {{ $loop->iteration }}/{{ count($get_ranking) }}
+                                    {{-- {{ $rank->total }} --}}
+                                @endif
+                            @endforeach
                         </td>
                         <td>
                             <a name="" id="" class="btn btn-primary"
@@ -59,7 +68,7 @@
                 @endforeach
             </tbody>
         </table>
-        <a href="{{ route('enter-marks', $score_sheeet_id) }}"><button class="btn btn-info">Update Marks</button></a>
+        <a href="{{ route('enter-marks', $score_sheet_id) }}"><button class="btn btn-info">Update Marks</button></a>
         <a href="{{ route('create') }}"><button class="btn btn-info">Create New</button></a>
         @push('scripts')
             <script>

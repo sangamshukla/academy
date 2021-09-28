@@ -9,6 +9,7 @@ use App\Models\ScoreSheetMark;
 use App\Models\Subject;
 use App\Models\Week;
 use App\Models\ClassMaster;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -61,13 +62,16 @@ class ScoreSheetController extends Controller
     }
     public function selectStudent(Request $request)
     {   
-    //    dd($request->all());
+        // dd($request->all());
     $id=$request->scoresheet_id;
+    // $is_allowed=$request->is_allowed;
+    // dd($is_allowed);
        foreach ($request->selected_students as $student => $value) {
               $enrolled_students=EnrolledStudent::updateOrCreate( 
                   [
                   'score_sheet_id'=>$id,
                   'user_id'=>$value,
+                //   'is_allowed'=>$is_allowed,
               ]);
        }
     //    dd(EnrolledStudent::all());
@@ -146,14 +150,11 @@ class ScoreSheetController extends Controller
     }
     public function viewScoreSheet($score_sheet_id)
     {
-        $score_sheeet_id=$score_sheet_id;
+        $score_sheet_id=$score_sheet_id;
         $scoresheet=ScoreSheet::find($score_sheet_id);
         $enrolled_subjects=$scoresheet->enrolled_subjects;
         $enrolled_students=$scoresheet->enrolled_students;
-        $student_id=1;
-        // $get_full_marks=$this->get_full_marks(1);
-        // dd($get_full_marks);
-        return view('scoresheet.view-scoresheet', compact('enrolled_subjects', 'enrolled_students', 'score_sheeet_id'));
+        return view('scoresheet.view-scoresheet', compact('enrolled_subjects', 'enrolled_students', 'score_sheet_id'));
     }
     public static function get_full_marks($enrolled_student_id)
     {
@@ -180,8 +181,47 @@ class ScoreSheetController extends Controller
     public function viewStudentScoreSheet($enrolled_student_id)
     {
         $score_infos=ScoreSheetMark::where('enrolled_student_id', $enrolled_student_id)->get();
-        dd($score_infos);
-        return view('scoresheet.student-shoresheet');
+        // dd($score_infos);
+        $student_info=EnrolledStudent::find($enrolled_student_id);
+        // dd($student_info->student->id);
+        // $highest =ScoreSheetMark::classHighest();
+        // dd($highest);
+        // $lowest=ScoreSheetMark::classLowest();
+        // dd($lowest);
+        // $a=EnrolledSubject::highest(1);
+        // dd($a);
+        $score_sheet_id=EnrolledStudent::where('id', $enrolled_student_id)->first()->score_sheet_id;
+        $score_sheet_infos=EnrolledSubject::where('score_sheet_id', $score_sheet_id)->get();
+        // dd($score_sheet_info);
+        // $highest
+        return view('scoresheet.student-shoresheet', compact('score_infos', 'student_info','score_sheet_infos', 'enrolled_student_id'));
+    }
+    public static function getRanking($score_sheet_id)
+    {
+        // $population = WildlifePopulation::select(
+        //                 DB::raw("year(created_at) as year"),
+        //                 DB::raw("SUM(bears) as bears"),
+        //                 DB::raw("SUM(dolphins) as dolphins")) 
+        //             ->orderBy(DB::raw("YEAR(created_at)"))
+        //             ->groupBy(DB::raw("YEAR(created_at)"))
+        //             ->get();
+        // $ranking=EnrolledSubject::where('score_sheet_id', $score_sheet_id)
+        //         ->join('score_sheet_marks AS ssm', 'ssm.enrolled_subject_id', '')        
+        // ->get();
+        // $ranking=ScoreSheet::where('id', $score_sheet_id)
+        //         ->join('')
+        //         ->get();
+        $ranking=DB::table('score_sheet_marks AS ssm')
+                ->join('enrolled_subjects AS es', 'es.id', '=','ssm.enrolled_subject_id')
+                ->where('es.score_sheet_id' ,$score_sheet_id)
+                ->selectRaw('SUM(ssm.obtained_marks) AS total, ssm.enrolled_student_id')
+                // ->select('') 
+                ->groupBy(DB::raw('ssm.enrolled_student_id'))
+                ->orderBy('total', 'DESC')
+                ->get();
+
+       return $ranking;
+
     }
 
 

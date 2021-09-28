@@ -29,4 +29,5 @@ class ScoreSheet extends Model
     {
         return $this->belongsTo(ClassMaster::class, 'class_master_id');
     }
+   
 }

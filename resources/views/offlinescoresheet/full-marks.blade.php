@@ -1,4 +1,3 @@
-!-- fullmarks -->
 @extends('layouts.admin_dashboard')
 @section('content')
     <link href="{{ asset('wa/admin/css/custom.css') }}" rel="stylesheet" />
@@ -13,14 +12,14 @@
 
         <!-- validation -->
         <!-- @if ($errors->any())
-                                                                                                        <div class="alert alert-danger">
-                                                                                                            <ul>
-                                                                                                                @foreach ($errors->all() as $error)
-                                                                                                                    <li>{{ $error }}</li>
-                                                                                                                @endforeach
-                                                                                                            </ul>
-                                                                                                        </div>
-                                                                                                    @endif  -->
+                                                <div class="alert alert-danger">
+                                                <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                                </ul>
+                                                </div>
+                                                @endif  -->
         <!-- validation -->
 
         <div class="row">
@@ -100,14 +99,13 @@
                         </thead>
                         <tbody>
                             @foreach ($subjects as $subject)
-
                                 <tr style="background-color: white;">
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $subject->name }} <input type="hidden" value="{{ $subject->id }}"
                                             name="sub_id[]" /></td>
-                                    <td><input name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif
+                                    {{-- <td><input name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif
                                             value="{{ request('weekId') ? $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? null : null }}"
-                                            class="form-control" /></td>
+                                            class="form-control" /></td> --}}
                                     {{-- <td><input name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif value="{{ request('weekId') ?  $fullMarks->where('subject_id', $subject->id)->first()->full_marks ?? 0 : 0 }}" class="form-control" /></td> --}}
                                     {{-- {{ dump($fullMarks->where('subject_id', $subject->id)->first()->full_marks) }} --}}
                                     {{-- <td><input type="text" name="sub_marks[]" @if ($hasValue && !request('edit')) readonly @else  @endif

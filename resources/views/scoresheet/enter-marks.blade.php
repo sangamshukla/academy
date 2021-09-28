@@ -12,6 +12,7 @@
                         @foreach ($enrolled_subjects as $enrolled_subject)
                             <th>{{ $enrolled_subject->subject->name }}({{ $enrolled_subject->full_marks }})</th>
                         @endforeach
+                        <th>Allow</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,6 +31,13 @@
                             @endif
                             ></td>
                     @endforeach
+                    <td>
+                        <input type="hidden" name="enrolled_student_id" value="{{ $enrolled_student->id }}">
+                        <select name="{{ $enrolled_student->id }}">
+                            <option value="1">Yes</option>
+                            <option value="0" selected>No</option>
+                        </select>
+                    </td>
                     </tr>
                     @endforeach
                 </tbody>

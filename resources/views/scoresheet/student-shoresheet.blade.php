@@ -15,12 +15,15 @@
     <link href="{{ asset('wa/admin/css/session.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('wa/admin/css/scoresheet.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Score Sheet for {{ $name }}</title>
+    <title>Score Sheet for {{ $student_info->student->name }}</title>
 </head>
 
 <body style="margin-left:2rem; ">
 
     <div style="margin-left:3rem; border:1px solid black; padding:3%;" class="container m-2">
+        <a name="" id="" class="btn btn-primary" href="{{ route('view-score-sheet', $student_info->scoresheet->id) }}"
+            role="button">Go
+            Back</a>
         <div class="text-center">
             <div>
                 <svg width="146" height="96" viewBox="0 0 146 96" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -174,16 +177,20 @@
             </div>
 
             <div class="my-4">
-                <span class="header-para" style="font-size:24px;"> Mock Examination Report for {{ $week->week_name }}
-                    for {{ $name }}</span>
+                <span class="header-para" style="font-size:24px;"> Mock Examination Report for
+                    {{ $student_info->scoresheet->week->week_name }} for
+                    {{ $student_info->scoresheet->grade->name }}
+                </span>
             </div>
             <div>
                 <div class="row text-center ">
-                    <div class="col-4"></div>
+                    <div class="col-4">
+
+                    </div>
                     <div class="col-4">
                         <div class="row">
                             <div class="col-6">Name</div>
-                            <div class="col-6">{{ $name }}</div>
+                            <div class="col-6">{{ $student_info->student->name }}</div>
                         </div>
                         <div class="row">
                             <div class="col-6">Date Of Birth</div>
@@ -195,7 +202,7 @@
                         </div>
                         <div class="row">
                             <div class="col-6">User ID</div>
-                            <div class="col-6">0001</div>
+                            <div class="col-6">{{ $student_info->student->id }}</div>
                         </div>
                     </div>
                     <div class="col-4"></div>
@@ -218,47 +225,73 @@
                             <th scope="col" class="header-para">Class Average</th>
                             <th scope="col" class="header-para">Class Highest</th>
                             <th scope="col" class="header-para">Class Lowest</th>
-                            {{-- <th scope="col" class="header-para">Rank</th> --}}
-                            {{-- <th scope="col" class="header-para">Percentage</th> --}}
                             <th scope="col" class="header-para">Your Total Score</th>
+                            <th scope="col" class="header-para">Overall Rank</th>
+                            <th scope="col" class="header-para">Class Percentage</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @php
-                            $class_average_marks = \App\Http\Controllers\OfflineController::get_class_average($week_id);
-                            $class_highest_marks = \App\Http\Controllers\OfflineController::get_class_highest($week_id);
-                            $student_marks = \App\Http\Controllers\OfflineController::get_your_total($week_id, $student_id);
+                            $get_ranking = App\Http\Controllers\ScoreSheetController::getRanking($student_info->scoresheet->id);
+                            
+                            $ss = $student_info->scoresheet->enrolled_subjects->map(function ($item, $key) {
+                                return $item->full_marks;
+                            });
                         @endphp
                         <tr class="table-td">
                             <th scope="row" class="header-para" class="header-para">1</th>
-                            <td class="header-para">{{ round($class_average_marks) }}</td>
                             <td class="header-para">
-                                @php
-                                    $maximum = max($class_highest_marks);
-                                    echo round($maximum);
-                                @endphp
+                                {{ round($get_ranking->avg('total')) }}/{{ $ss->sum() }}
                             </td>
                             <td class="header-para">
-                                @php
-                                    $maximum = min($class_highest_marks);
-                                    echo round($maximum);
-                                @endphp
+                                {{ $get_ranking->max('total') }}
                             </td>
-                            {{-- <td class="header-para">12</td> --}}
-                            {{-- <td class="header-para">77% </td> --}}
-                            <td class="header-para">{{ round($student_marks) }}</td>
+                            <td class="header-para">
+                                {{ $get_ranking->min('total') }}
+
+                            </td>
+
+                            <td class="header-para">
+                                @foreach ($get_ranking as $rank)
+                                    @if ($rank->enrolled_student_id == $student_info->id)
+                                        {{-- {{ $loop->iteration }} --}}
+                                        {{ $rank->total }}
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td class="header-para">
+                                @foreach ($get_ranking as $rank)
+                                    @if ($rank->enrolled_student_id == $student_info->id)
+                                        {{ $loop->iteration }}
+                                        {{-- {{ $rank->total }} --}}
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td class="header-para">
+
+                                @foreach ($get_ranking as $rank)
+                                    @if ($rank->enrolled_student_id == $student_info->id)
+                                        {{-- {{ $loop->iteration }} --}}
+                                        {{ round(($rank->total / $ss->sum()) * 100) }}%
+                                    @endif
+                                @endforeach
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-        @foreach ($subject_full_marks as $subject_full_mark)
+        @forelse ($score_sheet_infos as $score_sheet_info)
+
             <div>
                 <div class="mt-4">
                     <div class="row">
                         <div class="col-4">
                             <p class="header-para" style="font-size:16px;">Overall
-                                {{ $subject_full_mark->subject->name }} Result</p>
+                                {{ $score_sheet_info->subject->name }}
+                                Result
+                            </p>
                         </div>
                     </div>
                     <div class="row">
@@ -275,7 +308,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
+                                {{-- @php
                                     $week_id = $week->id;
                                     $subject_id = $subject_full_mark->subject->id;
                                     $student_id = $student_id;
@@ -286,26 +319,56 @@
                                     $total_student = \App\Http\Controllers\OfflineController::getTotalStudents($week_id);
                                     $student_marks = \App\Http\Controllers\OfflineController::get_student_marks($week_id, $subject_id, $student_id);
                                     $student_percentage = \App\Http\Controllers\OfflineController::get_student_percentage($week_id, $subject_id, $student_id);
-                                @endphp
+                                @endphp --}}
                                 <tr>
                                     <th scope="row" class="header-para">1</th>
-                                    <td class="header-para">{{ round($class_average_marks) }}</td>
                                     <td class="header-para">
-                                        {{ round($class_highest_marks) }}
+                                        @php
+                                            $average = \App\Models\ScoreSheetMark::classAverage($score_sheet_info->id);
+                                            $highest = \App\Models\ScoreSheetMark::classHighest($score_sheet_info->id);
+                                            $lowest = \App\Models\ScoreSheetMark::classLowest($score_sheet_info->id);
+                                            $your_score = \App\Models\ScoreSheetMark::Score($score_sheet_info->id, $enrolled_student_id);
+                                        @endphp
+                                        @if (!is_object($average))
+                                            {{ round($average) }}
+                                        @else
+                                            {{ '-' }}
+                                        @endif
                                     </td>
-                                    <td class="header-para"> {{ round($class_lowest_marks) }}</td>
                                     <td class="header-para">
-                                        {{ round($student_marks->obtained_marks) }}/{{ round($student_marks->full_marks) }}
+                                        @if (!is_object($highest))
+                                            {{ $highest }}
+                                        @else
+                                            {{ '-' }}
+                                        @endif
                                     </td>
                                     <td class="header-para">
-                                        @foreach ($rankings as $ranking)
-                                            @if ($ranking->student_id == $student_id)
-                                                {{ $loop->index + 1 }}
+                                        @if (!is_object($lowest))
+                                            {{ $lowest }}
+                                        @else
+                                            {{ '-' }}
+                                        @endif
+                                    </td>
+                                    <td class="header-para">
+                                        {{-- {{ var_dump($your_score) }} --}}
+
+                                        {{ $your_score[0] ?? '-' }} / {{ $score_sheet_info->full_marks }}
+                                    </td>
+                                    <td class="header-para">
+                                        @forelse ($score_sheet_info->scores->sortByDesc('obtained_marks') as $item)
+                                            @if ($item->enrolled_student_id == $enrolled_student_id)
+                                                {{ $loop->iteration }}
                                             @endif
-                                        @endforeach
-                                        /{{ $total_student }}
+                                        @empty
+
+                                        @endforelse
                                     </td>
-                                    <td class="header-para">{{ round($student_percentage) }}%</td>
+                                    <td class="header-para">
+                                        @isset($your_score[0])
+                                            {{ round(($your_score[0] / $score_sheet_info->full_marks) * 100) ?? '-' }}%
+                                        @endisset
+
+                                    </td>
                                 </tr>
 
                             </tbody>
@@ -313,7 +376,10 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+
+        @endforelse
+        {{-- @endforeach --}}
         <div class="row">
             <div class="col-6">
                 <div class="container m-4">
@@ -360,7 +426,7 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        var url = "{{ url('get-graph-math/' . $student_id) }}";
+        var url = "{{ url('get-graph-math') }}";
         var Weeks = new Array();
         var Marks = new Array();
         var subject;
@@ -397,7 +463,7 @@
 
     {{-- english graph start --}}
     <script>
-        var url1 = "{{ url('get-graph-english/' . $student_id) }}";
+        var url1 = "{{ url('get-graph-english') }}";
         var Weeks_English = new Array();
         var Marks_english = new Array();
         var subject_english;
@@ -434,7 +500,7 @@
 
     {{-- physics graph --}}
     <script>
-        var url2 = "{{ url('get-graph-physics/' . $student_id) }}";
+        var url2 = "{{ url('get-graph-physics') }}";
         var Weeks2 = new Array();
         var Marks2 = new Array();
         var subject2;
@@ -471,7 +537,7 @@
 
     {{-- Subject 4 --}}
     <script>
-        var url4 = "{{ url('get-graph-4/' . $student_id) }}";
+        var url4 = "{{ url('get-graph-4/') }}";
         var Weeks4 = new Array();
         var Marks4 = new Array();
         var subject4;

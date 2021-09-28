@@ -15,34 +15,34 @@ class WeekSeeder extends Seeder
     public function run()
     {
         DB::table('weeks')->insert([
-            'week_name' => 'Week1',
+            'week_name' => 'Week 1',
         ]);
         DB::table('weeks')->insert([
-            'week_name' => 'Week2',
+            'week_name' => 'Week 2',
         ]);
         DB::table('weeks')->insert([
-            'week_name' => 'Week3',
+            'week_name' => 'Week 3',
         ]);
         DB::table('weeks')->insert([
-            'week_name' => 'Week4',
+            'week_name' => 'Week 4',
         ]);
         DB::table('weeks')->insert([
-            'week_name' => 'Week5',
+            'week_name' => 'Week 5',
         ]);
         DB::table('weeks')->insert([
-            'week_name' => 'Week6',
+            'week_name' => 'Week 6',
         ]);
         DB::table('weeks')->insert([
-            'week_name' => 'Week7',
+            'week_name' => 'Week 7',
         ]);
         DB::table('weeks')->insert([
-            'week_name' => 'Week8',
+            'week_name' => 'Week 8',
         ]);
         DB::table('weeks')->insert([
-            'week_name' => 'Week9',
+            'week_name' => 'Week 9',
         ]);
         DB::table('weeks')->insert([
-            'week_name' => 'week10',
+            'week_name' => 'week 10',
         ]);
     }
 }

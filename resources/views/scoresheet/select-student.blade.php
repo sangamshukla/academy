@@ -19,6 +19,7 @@
                         <td>{{ $student->email }}</td>
 
                         <td><input type="checkbox" name="selected_students[]" value="{{ $student->id }}"></td>
+
                     </tr>
                 @endforeach
             </tbody>

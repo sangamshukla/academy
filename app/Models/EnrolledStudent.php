@@ -20,4 +20,12 @@ class EnrolledStudent extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    public function scoresheet()
+    {
+        return $this->belongsTo(ScoreSheet::class, 'score_sheet_id');
+    }
+    public function marks()
+    {
+        return $this->hasMany(ScoreSheetMark::class, 'enrolled_student_id');
+    }
 }

@@ -420,6 +420,22 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="container">
+                    <div id="fifth_subject" style="width: 100%; height: 500px">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="container">
+                    <div id="sixth_subject" style="width: 100%; height: 500px">
+
+                    </div>
+                </div>
+            </div>
+        </div>
         @php
             $subject_1 = 'English';
         @endphp
@@ -430,6 +446,7 @@
         var chart_data_2 = <?php echo $chart_data_2; ?>;
         var chart_data_3 = <?php echo $chart_data_3; ?>;
         var chart_data_4 = <?php echo $chart_data_4; ?>;
+        var chart_data_5 = <?php echo $chart_data_5; ?>;
         google.charts.load('current', {
             'packages': ['corechart']
         });
@@ -437,6 +454,7 @@
         google.charts.setOnLoadCallback(drawChart2);
         google.charts.setOnLoadCallback(drawChart3);
         google.charts.setOnLoadCallback(drawChart4);
+        google.charts.setOnLoadCallback(drawChart5);
 
         function drawChart1() {
             var data = google.visualization.arrayToDataTable(chart_data_1);
@@ -501,6 +519,25 @@
             };
 
             var chart = new google.visualization.LineChart(document.getElementById('fourth_subject'));
+
+            chart.draw(data, options);
+        }
+
+        function drawChart5() {
+            // console.log(chart_data)
+            var data = google.visualization.arrayToDataTable(chart_data_5);
+            if (data == null) {
+                console.log("its null")
+            }
+            var options = {
+                title: 'Weekly  Performance',
+                curveType: 'function',
+                legend: {
+                    position: 'top'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('fifth_subject'));
 
             chart.draw(data, options);
         }

@@ -212,6 +212,16 @@ Route::group(['middleware' => ['auth', 'student']], function () {
           Route::get('show-classes/{id}', [BatchController::class, 'show'])->name('show-class');
           Route::get('destroy-classes/{id}', [BatchController::class, 'destroy'])->name('destroy-class');
           Route::get('admin-dashboard', [AdminController::class, 'adminDashboard'])->name('admin-dashboard');
+
+            Route::get('create', [ScoreSheetController::class, 'index'])->name('create')->middleware(['auth', 'admin']);
+            Route::post('create-scoresheet', [ScoreSheetController::class, 'createScoreSheet'])->name('create-scoresheet')->middleware(['auth', 'admin']);
+            Route::post('select-student', [ScoreSheetController::class, 'selectStudent'])->name('select-student')->middleware(['auth', 'admin']);
+            Route::get('select-student-edit/{id}', [ScoreSheetController::class, 'selectStudentGet'])->name('select-student-edit')->middleware(['auth', 'admin']);
+            Route::post('select-subjects', [ScoreSheetController::class, 'selectSubjects'])->name('select-subjects')->middleware(['auth', 'admin']);
+            Route::get('select-subjects-edit/{id}', [ScoreSheetController::class, 'selectSubjectsEdit'])->name('select-subjects-edit')->middleware(['auth', 'admin']);
+            Route::get('enter-marks/{id}', [ScoreSheetController::class, 'enterMarks'])->name('enter-marks')->middleware(['auth', 'admin']);
+            Route::post('save-marks', [ScoreSheetController::class, 'saveMarks'])->name('save-marks')->middleware(['auth', 'admin']);
+            Route::get('view-score-sheet/{id}', [ScoreSheetController::class, 'viewScoreSheet'])->name('view-score-sheet')->middleware(['auth', 'admin']);
       });
 
     Route::get('/payment-success/{id}', function ($id) {
@@ -317,15 +327,7 @@ Route::get('get-admin-score', [OfflineController::class, 'get_admin_score'])->na
 Route::post('get-admin-score', [OfflineController::class, 'get_admin_score_post'])->name('get-admin-score');
 
 
-Route::get('create', [ScoreSheetController::class, 'index'])->name('create');
-Route::post('create-scoresheet', [ScoreSheetController::class, 'createScoreSheet'])->name('create-scoresheet');
-Route::post('select-student', [ScoreSheetController::class, 'selectStudent'])->name('select-student');
-Route::get('select-student-edit/{id}', [ScoreSheetController::class, 'selectStudentGet'])->name('select-student-edit');
-Route::post('select-subjects', [ScoreSheetController::class, 'selectSubjects'])->name('select-subjects');
-Route::get('select-subjects-edit/{id}', [ScoreSheetController::class, 'selectSubjectsEdit'])->name('select-subjects-edit');
-Route::get('enter-marks/{id}', [ScoreSheetController::class, 'enterMarks'])->name('enter-marks');
-Route::post('save-marks', [ScoreSheetController::class, 'saveMarks'])->name('save-marks');
-Route::get('view-score-sheet/{id}', [ScoreSheetController::class, 'viewScoreSheet'])->name('view-score-sheet');
-Route::get('student-scoresheet/{enrolled_student_id}', [ScoreSheetController::class, 'viewStudentScoreSheet'])->name('student-scoresheet');
-Route::get('get-my-scoresheet', [ScoreSheetController::class, 'getStudentScoresheet'])->name('get-my-scoresheet');
+
+Route::get('student-scoresheet/{enrolled_student_id}', [ScoreSheetController::class, 'viewStudentScoreSheet'])->name('student-scoresheet')->middleware('auth');
+Route::get('get-my-scoresheet', [ScoreSheetController::class, 'getStudentScoresheet'])->name('get-my-scoresheet')->middleware('auth');
 // Route::get('student-view-scoresheet', [ScoreSheetController::class, 'studentViewScoresheet'])->name('student-view-scoresheet');

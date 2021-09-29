@@ -212,6 +212,7 @@ class ScoreSheetController extends Controller
         $chart_data_2=$this->getChartData(2, $student_info->student->id);
         $chart_data_3=$this->getChartData(3, $student_info->student->id);
         $chart_data_4=$this->getChartData(4, $student_info->student->id);
+        $chart_data_5=$this->getChartData(5, $student_info->student->id);
         // dd($chart_data_1);
         return view('scoresheet.student-shoresheet', compact(
             'score_infos', 
@@ -222,6 +223,7 @@ class ScoreSheetController extends Controller
             'chart_data_2', 
             'chart_data_3', 
             'chart_data_4',
+            'chart_data_5',
             'subjects',
         )
     );

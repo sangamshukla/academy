@@ -199,14 +199,14 @@
                             <div class="col-6">Name</div>
                             <div class="col-6">{{ $student_info->student->name }}</div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-6">Date Of Birth</div>
                             <div class="col-6">17-9-1911</div>
                         </div>
                         <div class="row">
                             <div class="col-6">Username</div>
                             <div class="col-6">Username</div>
-                        </div>
+                        </div> --}}
                         <div class="row">
                             <div class="col-6">User ID</div>
                             <div class="col-6">{{ $student_info->student->id }}</div>
@@ -221,7 +221,7 @@
         <div class="mt-4">
             <div class="row">
                 <div class="col-4">
-                    <p class="header-para" style="font-size:16px;">Overall Week Result</p>
+                    <p class="header-para" style="font-size:16px;">Week Result</p>
                 </div>
             </div>
             <div class="row">
@@ -233,7 +233,7 @@
                             <th scope="col" class="header-para">Class Highest</th>
                             <th scope="col" class="header-para">Class Lowest</th>
                             <th scope="col" class="header-para">Your Total Score</th>
-                            <th scope="col" class="header-para">Overall Rank</th>
+                            <th scope="col" class="header-para">Rank</th>
                             <th scope="col" class="header-para">Class Percentage</th>
                         </tr>
                     </thead>
@@ -295,8 +295,7 @@
                 <div class="mt-4">
                     <div class="row">
                         <div class="col-4">
-                            <p class="header-para" style="font-size:16px;">Overall
-                                {{ $score_sheet_info->subject->name }}
+                            <p class="header-para" style="font-size:16px;"> {{ $score_sheet_info->subject->name }}
                                 Result
                             </p>
                         </div>

@@ -327,3 +327,5 @@ Route::get('enter-marks/{id}', [ScoreSheetController::class, 'enterMarks'])->nam
 Route::post('save-marks', [ScoreSheetController::class, 'saveMarks'])->name('save-marks');
 Route::get('view-score-sheet/{id}', [ScoreSheetController::class, 'viewScoreSheet'])->name('view-score-sheet');
 Route::get('student-scoresheet/{enrolled_student_id}', [ScoreSheetController::class, 'viewStudentScoreSheet'])->name('student-scoresheet');
+Route::get('get-my-scoresheet', [ScoreSheetController::class, 'getStudentScoresheet'])->name('get-my-scoresheet');
+// Route::get('student-view-scoresheet', [ScoreSheetController::class, 'studentViewScoresheet'])->name('student-view-scoresheet');

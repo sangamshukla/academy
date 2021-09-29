@@ -21,16 +21,8 @@
 <body style="margin-left:2rem; ">
 
     <div style="margin-left:3rem; border:1px solid black; padding:3%;" class="container m-2">
-        @if (auth()->user()->role != 'student')
-            <a name="" id="" class="btn btn-primary"
-                href="{{ route('view-score-sheet', $student_info->scoresheet->id) }}" role="button">Go
-                Back</a>
-
-        @else
-            <a name="" id="" class="btn btn-primary" href="{{ route('get-my-scoresheet') }}" role="button">Go
-                Back</a>
-
-        @endif
+        <a name="" id="" class="btn btn-primary" href="{{ route('get-my-scoresheet') }}" role="button">Go
+            Back</a>
         <div class="text-center">
             <div>
                 <svg width="146" height="96" viewBox="0 0 146 96" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -383,129 +375,201 @@
                     </div>
                 </div>
             </div>
-
         @empty
 
         @endforelse
         {{-- @endforeach --}}
         <div class="row">
             <div class="col-6">
-                <div class="container">
-                    <div id="first_subject" style="width: 100%; height: 500px">
+                <div class="container m-4">
+                    <canvas id="score-chart">
 
-                    </div>
+                    </canvas>
                 </div>
             </div>
             <div class="col-6">
-                <div class="container">
-                    <div id="second_subject" style="width: 100%; height: 500px">
+                <div class="container m-4">
+                    <canvas id="math-chart">
 
-                    </div>
+                    </canvas>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-6">
-                <div class="container">
-                    <div id="third_subject" style="width: 100%; height: 500px">
+                <div class="container m-4">
+                    <canvas id="physics-chart">
 
-                    </div>
+                    </canvas>
                 </div>
             </div>
             <div class="col-6">
-                <div class="container">
-                    <div id="fourth_subject" style="width: 100%; height: 500px">
+                <div class="container m-4">
+                    <canvas id="chart-4">
 
-                    </div>
+                    </canvas>
                 </div>
             </div>
         </div>
-        @php
-            $subject_1 = 'English';
-        @endphp
+        {{-- @php
+          $subjects=[];
+          foreach($subject_full_marks as $subject_marks)
+          {
+            $subjects=$subjects.append($subject_marks);
+            echo $subjects;
+          }
+          
+      @endphp --}}
     </div>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        var chart_data_1 = <?php echo $chart_data_1; ?>;
-        var chart_data_2 = <?php echo $chart_data_2; ?>;
-        var chart_data_3 = <?php echo $chart_data_3; ?>;
-        var chart_data_4 = <?php echo $chart_data_4; ?>;
-        google.charts.load('current', {
-            'packages': ['corechart']
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var url = "{{ url('get-graph-math') }}";
+        var Weeks = new Array();
+        var Marks = new Array();
+        var subject;
+        $(document).ready(function() {
+            $.get(url, function(response) {
+                response.forEach(function(data) {
+                    Weeks.push(data.week_name)
+                    Marks.push(data.obtained_marks)
+                    subject = data.name
+                    //  console.log(data.week_name)
+                });
+                const data = {
+                    labels: Weeks,
+                    datasets: [{
+                        label: 'Your ' + subject + ' Progress',
+                        backgroundColor: ['green', 'red', 'orange', 'purple'],
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: Marks,
+                    }]
+                };
+                const config = {
+                    type: 'line',
+                    data: data,
+                    options: {}
+                };
+                var myChart = new Chart(
+                    document.getElementById('score-chart'),
+                    config
+                );
+            });
         });
-        google.charts.setOnLoadCallback(drawChart1);
-        google.charts.setOnLoadCallback(drawChart2);
-        google.charts.setOnLoadCallback(drawChart3);
-        google.charts.setOnLoadCallback(drawChart4);
-
-        function drawChart1() {
-            var data = google.visualization.arrayToDataTable(chart_data_1);
-            var subject_1 = "<?php echo $subjects[0]; ?>";
-            var options = {
-                title: 'Weekly ' + subject_1 + ' Performance',
-                curveType: 'function',
-                legend: {
-                    position: 'top'
-                }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('first_subject'));
-            chart.draw(data, options);
-        }
-
-        function drawChart2() {
-            var data = google.visualization.arrayToDataTable(chart_data_2);
-            var subject_1 = "<?php echo $subjects[1]; ?>";
-            var options = {
-                title: 'Weekly ' + subject_1 + ' Performance',
-                curveType: 'function',
-                legend: {
-                    position: 'top'
-                }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('second_subject'));
-
-            chart.draw(data, options);
-        }
-
-        function drawChart3() {
-            // console.log(chart_data_1)
-            var data = google.visualization.arrayToDataTable(chart_data_3);
-            var subject_1 = "<?php echo $subjects[2]; ?>";
-            var options = {
-                title: 'Weekly ' + subject_1 + ' Performance',
-                curveType: 'function',
-                legend: {
-                    position: 'top'
-                }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('third_subject'));
-
-            chart.draw(data, options);
-        }
-
-        function drawChart4() {
-            // console.log(chart_data)
-            var data = google.visualization.arrayToDataTable(chart_data_4);
-            if (data == null) {
-                console.log("its null")
-            }
-            var options = {
-                title: 'Weekly  Performance',
-                curveType: 'function',
-                legend: {
-                    position: 'top'
-                }
-            };
-
-            var chart = new google.visualization.LineChart(document.getElementById('fourth_subject'));
-
-            chart.draw(data, options);
-        }
     </script>
 
+
+    {{-- english graph start --}}
+    <script>
+        var url1 = "{{ url('get-graph-english') }}";
+        var Weeks_English = new Array();
+        var Marks_english = new Array();
+        var subject_english;
+        $(document).ready(function() {
+            $.get(url1, function(response) {
+                response.forEach(function(data1) {
+                    Weeks_English.push(data1.week_name)
+                    Marks_english.push(data1.obtained_marks)
+                    subject_english = data1.name
+                    console.log(data1)
+                });
+                const data1 = {
+                    labels: Weeks_English,
+                    datasets: [{
+                        label: 'Your ' + subject_english + ' Progress',
+                        backgroundColor: ['green', 'red', 'orange', 'purple'],
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: Marks_english,
+                    }]
+                };
+                const config = {
+                    type: 'line',
+                    data: data1,
+                    options: {}
+                };
+                var myChart = new Chart(
+                    document.getElementById('math-chart'),
+                    config
+                );
+            });
+        });
+    </script>
+    {{-- end english graph --}}
+
+    {{-- physics graph --}}
+    <script>
+        var url2 = "{{ url('get-graph-physics') }}";
+        var Weeks2 = new Array();
+        var Marks2 = new Array();
+        var subject2;
+        $(document).ready(function() {
+            $.get(url2, function(response) {
+                response.forEach(function(data2) {
+                    Weeks2.push(data2.week_name)
+                    Marks2.push(data2.obtained_marks)
+                    subject2 = data2.name
+                    console.log(data2)
+                });
+                const data2 = {
+                    labels: Weeks2,
+                    datasets: [{
+                        label: 'Your ' + subject2 + ' Progress',
+                        backgroundColor: ['green', 'red', 'orange', 'purple'],
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: Marks2,
+                    }]
+                };
+                const config = {
+                    type: 'line',
+                    data: data2,
+                    options: {}
+                };
+                var myChart = new Chart(
+                    document.getElementById('physics-chart'),
+                    config
+                );
+            });
+        });
+    </script>
+    {{-- eng physics graph --}}
+
+    {{-- Subject 4 --}}
+    <script>
+        var url4 = "{{ url('get-graph-4/') }}";
+        var Weeks4 = new Array();
+        var Marks4 = new Array();
+        var subject4;
+        $(document).ready(function() {
+            $.get(url4, function(response) {
+                response.forEach(function(data4) {
+                    Weeks4.push(data4.week_name)
+                    Marks4.push(data4.obtained_marks)
+                    subject4 = data4.name
+                    console.log(data4)
+                });
+                const data4 = {
+                    labels: Weeks4,
+                    datasets: [{
+                        label: 'Your ' + subject4 + ' Progress',
+                        backgroundColor: ['green', 'red', 'orange', 'purple'],
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: Marks4,
+                    }]
+                };
+                const config = {
+                    type: 'line',
+                    data: data4,
+                    options: {}
+                };
+                var myChart = new Chart(
+                    document.getElementById('chart-4'),
+                    config
+                );
+            });
+        });
+    </script>
+    {{-- End Subject 4 --}}
 </body>
 
 </html>

@@ -23,6 +23,7 @@
                             @foreach ($enrolled_subjects as $enrolled_subject)
                                 @php
                                     $obtained_mark = App\Http\Controllers\ScoreSheetController::get_obtained_marks($enrolled_student->id, $enrolled_subject->id);
+                                    $is_allowed = App\Http\Controllers\ScoreSheetController::is_allowed($enrolled_student->id);
                                 @endphp
                                 <td><input type="number"
                                         name="marks[{{ $enrolled_student->id }}][{{ $enrolled_subject->id }}]"
@@ -33,9 +34,16 @@
                     @endforeach
                     <td>
                         <input type="hidden" name="enrolled_student_id" value="{{ $enrolled_student->id }}">
-                        <select name="{{ $enrolled_student->id }}">
-                            <option value="1">Yes</option>
-                            <option value="0" selected>No</option>
+                        <select name="allowed_students[{{ $enrolled_student->id }}]">
+                            @if ($is_allowed)
+
+                                <option value="1" selected>Yes</option>
+                                <option value="0">No</option>
+                            @else
+
+                                <option value="1">Yes</option>
+                                <option value="0" selected>No</option>
+                            @endif
                         </select>
                     </td>
                     </tr>

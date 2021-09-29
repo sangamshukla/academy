@@ -12,7 +12,6 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Select</th>
-                        <th>Allow</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,9 +27,7 @@
                                 checked
                     @endif >
                     </td>
-                    <td>
-                        <input type="checkbox" name="allowed_students[]" id="" value="{{ $student->id }}">
-                    </td>
+
                     </tr>
                     @endforeach
                 </tbody>

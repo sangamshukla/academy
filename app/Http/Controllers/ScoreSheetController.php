@@ -113,7 +113,9 @@ class ScoreSheetController extends Controller
     {
         // dd($request->all());
         $marks=$request->marks;
+        // ddd($marks);
         foreach ($marks as $enrolled_student_id => $value) {
+            // dd($value);
             foreach ($value as $enrolled_subject_id => $valueinner) {
                 if($valueinner!=NULL)
                 {
@@ -128,6 +130,15 @@ class ScoreSheetController extends Controller
                     );
                 }
             }
+            foreach ($request->allowed_students as $key => $value) {
+                // dd($value);
+                $students_to_update=EnrolledStudent::find($key);
+                // dd($students_to_update);
+                $students_to_update->is_allowed=$value;
+                $students_to_update->save();
+            }
+
+
         }
         return back();
     }
@@ -192,9 +203,28 @@ class ScoreSheetController extends Controller
         // dd($a);
         $score_sheet_id=EnrolledStudent::where('id', $enrolled_student_id)->first()->score_sheet_id;
         $score_sheet_infos=EnrolledSubject::where('score_sheet_id', $score_sheet_id)->get();
-        // dd($score_sheet_info);
+        $subjects=Subject::all()->map(function($item, $key){
+            return $item->name;
+        });
+        // dd($subjects[0]);
         // $highest
-        return view('scoresheet.student-shoresheet', compact('score_infos', 'student_info','score_sheet_infos', 'enrolled_student_id'));
+        $chart_data_1=$this->getChartData(1, $student_info->student->id);
+        $chart_data_2=$this->getChartData(2, $student_info->student->id);
+        $chart_data_3=$this->getChartData(3, $student_info->student->id);
+        $chart_data_4=$this->getChartData(4, $student_info->student->id);
+        // dd($chart_data_1);
+        return view('scoresheet.student-shoresheet', compact(
+            'score_infos', 
+            'student_info',
+            'score_sheet_infos',
+            'enrolled_student_id', 
+            'chart_data_1', 
+            'chart_data_2', 
+            'chart_data_3', 
+            'chart_data_4',
+            'subjects',
+        )
+    );
     }
     public static function getRanking($score_sheet_id)
     {
@@ -223,6 +253,48 @@ class ScoreSheetController extends Controller
        return $ranking;
 
     }
+    public static function is_allowed($enrolled_student_id)
+    {
+        $is_allowed=EnrolledStudent::find($enrolled_student_id)->is_allowed;
+        // dd($is_allowed);
+        return $is_allowed;
+    }
+    public function getStudentScoresheet()
+    {
 
+        $id=auth()->user()->id;
+        $scoresheets=EnrolledStudent::where('user_id', $id)->get();
+        return view('scoresheet.my-score', compact('scoresheets'));
+    }
+    public static function is_created($enrolled_student_id)
+    {
+        $is_created=ScoreSheetMark::where('enrolled_student_id', $enrolled_student_id)->exists();
+        return $is_created;
+    }
+    public function getChartData($subject_id, $student_id)
+    {
+        // SELECT ssm.obtained_marks, es.user_id, es2.subject_id, es2.full_marks, ss.week_id, (ssm.obtained_marks/es2.full_marks)*100 AS percentage from score_sheet_marks ssm  
+        // INNER JOIN enrolled_students es on es.id = ssm.enrolled_student_id 
+        // INNER JOIN enrolled_subjects es2 on es2.id=ssm.enrolled_subject_id 
+        // INNER JOIN score_sheets ss on ss.id =es2.score_sheet_id 
+        // WHERE es.user_id =6 and es2.subject_id =2
+        $chart_data=DB::table('score_sheet_marks AS ssm')
+                        ->selectRaw('w.week_name, (ssm.obtained_marks/es2.full_marks)*100 AS percentage, sb.name AS subject')
+                        ->join('enrolled_students AS es' , 'es.id', '=', 'ssm.enrolled_student_id')
+                        ->join('enrolled_subjects AS es2', 'es2.id', '=', 'ssm.enrolled_subject_id')
+                        ->join('score_sheets AS ss', 'ss.id', '=', 'es2.score_sheet_id')
+                        ->join('weeks AS w', 'w.id', 'ss.week_id')
+                        ->join('subjects AS sb', 'sb.id', 'es2.subject_id')
+                        ->where('es.user_id', $student_id)
+                        ->where('es2.subject_id', $subject_id)
+                        ->get();
+                        // dd($chart_data);
+                 $res[] = ['Week', 'Percentage Wise Graph'];
+        foreach ($chart_data as $key => $val) {
+            $res[++$key] = [$val->week_name, (int)$val->percentage];
+        }      
+        return json_encode($res);
+
+    }
 
 }

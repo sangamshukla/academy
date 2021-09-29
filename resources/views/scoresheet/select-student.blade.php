@@ -4,7 +4,7 @@
     Select Student for Scoresheet {{ $id }}
     <form action="{{ route('select-student') }}" method="post">
         @csrf
-        <table class="table table-hover table-inverse table-responsive" id="select-student">
+        <table class="table table-hover table-inverse" id="select-student">
             <thead class="thead-inverse">
                 <tr>
                     <th>Name</th>
@@ -17,10 +17,7 @@
                     <tr>
                         <td scope="row">{{ $student->name }}</td>
                         <td>{{ $student->email }}</td>
-
-                        <td><input type="checkbox" name="selected_students[]" value="{{ $student->id }}"></td>
-
-                    </tr>
+                        <td><input type="checkbox" name="selected_students[]" value="{{ $student->id }}"></td </tr>
                 @endforeach
             </tbody>
         </table>

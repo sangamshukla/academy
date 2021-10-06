@@ -208,7 +208,17 @@ class ScoreSheetController extends Controller
         });
         // dd($subjects[0]);
         // $highest
+        $id=$student_info->student->id;
+        // dd($id);
+        $calling=Subject::all()->map(function($item, $key)
+        {
+            // dump($item->id);
+            $chart_data=$this->getChartData($item->id, 16);
+            return $chart_data;
+        });
+        // dd($calling);
         $chart_data_1=$this->getChartData(1, $student_info->student->id);
+        // dd($chart_data_1);
         $chart_data_2=$this->getChartData(2, $student_info->student->id);
         $chart_data_3=$this->getChartData(3, $student_info->student->id);
         $chart_data_4=$this->getChartData(4, $student_info->student->id);
@@ -219,6 +229,7 @@ class ScoreSheetController extends Controller
             'student_info',
             'score_sheet_infos',
             'enrolled_student_id', 
+            'calling',
             'chart_data_1', 
             'chart_data_2', 
             'chart_data_3', 
@@ -228,21 +239,10 @@ class ScoreSheetController extends Controller
         )
     );
     }
+
     public static function getRanking($score_sheet_id)
     {
-        // $population = WildlifePopulation::select(
-        //                 DB::raw("year(created_at) as year"),
-        //                 DB::raw("SUM(bears) as bears"),
-        //                 DB::raw("SUM(dolphins) as dolphins")) 
-        //             ->orderBy(DB::raw("YEAR(created_at)"))
-        //             ->groupBy(DB::raw("YEAR(created_at)"))
-        //             ->get();
-        // $ranking=EnrolledSubject::where('score_sheet_id', $score_sheet_id)
-        //         ->join('score_sheet_marks AS ssm', 'ssm.enrolled_subject_id', '')        
-        // ->get();
-        // $ranking=ScoreSheet::where('id', $score_sheet_id)
-        //         ->join('')
-        //         ->get();
+
         $ranking=DB::table('score_sheet_marks AS ssm')
                 ->join('enrolled_subjects AS es', 'es.id', '=','ssm.enrolled_subject_id')
                 ->where('es.score_sheet_id' ,$score_sheet_id)

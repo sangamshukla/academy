@@ -456,7 +456,9 @@
         google.charts.setOnLoadCallback(drawChart5);
 
         function drawChart1() {
+            // console.log(chart_data_1);
             var data = google.visualization.arrayToDataTable(chart_data_1);
+            // console.log(data);
             var subject_1 = "<?php echo $subjects[0]; ?>";
             var options = {
                 title: 'Weekly ' + subject_1 + ' Performance',
@@ -465,12 +467,17 @@
                     position: 'top'
                 }
             };
-
-            var chart = new google.visualization.LineChart(document.getElementById('first_subject'));
-            chart.draw(data, options);
+            if (chart_data_1[1] != null) {
+                var chart = new google.visualization.LineChart(document.getElementById('first_subject'));
+                chart.draw(data, options);
+            } else {
+                document.getElementById('first_subject').innerHTML = '<p>Do not have enough data</p>';
+            }
         }
 
         function drawChart2() {
+            // console.log(chart_data_2);
+
             var data = google.visualization.arrayToDataTable(chart_data_2);
             var subject_1 = "<?php echo $subjects[1]; ?>";
             var options = {
@@ -480,14 +487,18 @@
                     position: 'top'
                 }
             };
-
-            var chart = new google.visualization.LineChart(document.getElementById('second_subject'));
-
-            chart.draw(data, options);
+            if (chart_data_2[1] != null) {
+                var chart = new google.visualization.LineChart(document.getElementById('second_subject'));
+                chart.draw(data, options);
+            } else {
+                document.getElementById('second_subject').innerHTML = '<p>Do not have enough data to show ' + subject_1 +
+                    ' chart</p>';;
+            }
         }
 
         function drawChart3() {
-            // console.log(chart_data_1)
+
+            // console.log(chart_data_3[1]) 
             var data = google.visualization.arrayToDataTable(chart_data_3);
             var subject_1 = "<?php echo $subjects[2]; ?>";
             var options = {
@@ -498,17 +509,20 @@
                 }
             };
 
-            var chart = new google.visualization.LineChart(document.getElementById('third_subject'));
+            if (chart_data_3[1] != null) {
+                var chart = new google.visualization.LineChart(document.getElementById('third_subject'));
+                chart.draw(data, options);
+            } else {
+                document.getElementById('third_subject').innerHTML = '<p>Do not have enough data to show ' + subject_1 +
+                    ' chart</p>';
+            }
 
-            chart.draw(data, options);
         }
 
         function drawChart4() {
             // console.log(chart_data)
             var data = google.visualization.arrayToDataTable(chart_data_4);
-            if (data == null) {
-                console.log("its null")
-            }
+            var subject_1 = "<?php echo $subjects[3]; ?>";
             var options = {
                 title: 'Weekly  Performance',
                 curveType: 'function',
@@ -516,18 +530,21 @@
                     position: 'top'
                 }
             };
-
-            var chart = new google.visualization.LineChart(document.getElementById('fourth_subject'));
-
-            chart.draw(data, options);
+            if (chart_data_4[1] != null) {
+                var chart = new google.visualization.LineChart(document.getElementById('fourth_subject'));
+                chart.draw(data, options);
+            } else {
+                document.getElementById('fourth_subject').innerHTML = '<p>Do not have enough data to show ' + subject_1 +
+                    ' Chart</p>';
+            }
         }
 
         function drawChart5() {
             // console.log(chart_data)
             var data = google.visualization.arrayToDataTable(chart_data_5);
-            if (data == null) {
-                console.log("its null")
-            }
+            var subject_1 = "<?php if (isset($subjects[4])) {
+    echo $subjects[4];
+} ?>";
             var options = {
                 title: 'Weekly  Performance',
                 curveType: 'function',
@@ -535,10 +552,15 @@
                     position: 'top'
                 }
             };
+            if (chart_data_5[1] != null) {
+                var chart = new google.visualization.LineChart(document.getElementById('fifth_subject'));
 
-            var chart = new google.visualization.LineChart(document.getElementById('fifth_subject'));
+                chart.draw(data, options);
 
-            chart.draw(data, options);
+            } else {
+                document.getElementById('fifth_subject').innerHTML = '<p>Do not have enough data to' + subject_1 +
+                    ' chart</p>';
+            }
         }
     </script>
 
